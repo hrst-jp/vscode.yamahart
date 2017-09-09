@@ -4,7 +4,7 @@
 	"patterns": [
 		{
 			"match": "#",
-			"name": "comment.line.number-sign.yamasart"
+			"name": "comment.line"
 		},
 		{
 			"include": "#keywords"
@@ -13,16 +13,40 @@
 			"include": "#strings"
 		},
 		{
-			"match": "\\b(ipsec|ip|telnetd|dhcp)",
-			"name":"keyword.yamasart"
+			"match": "\\b^(yno|wol|wins|wan|vlan|user|usbhost|url|upnp|tunnel|tftp|terminate|telnetd|tcp)\\b",
+			"name":"keyword"
+		},
+		{
+			"match": "\\b^(system|syslog|switch|sshd|sntpd|snmpv3|snmpv2c|snmp|sip|sftpd|security|rtfs|rotate|rip)\\b",
+			"name":"keyword"
+		},
+		{
+			"match": "\\b^(remote|radius|queue|qac-tm|provider|pri|pptp|pppoe|ppp|pp|pki|ospf|operation)\\b",
+			"name":"keyword"
+		},
+		{
+			"match": "\\b^(ntp|ngn|netvolante-dns|nat|mobile|mail|login|leased|lan-map|lan|l2tp|jate)\\b",
+			"name":"keyword"
+		},
+		{
+			"match": "\\b^(isdn|ipv6|ipsec|ipip|ip|httpd|heartbeat2|heartbeat|fr)\\b",
+			"name":"keyword"
+		},
+		{
+			"match": "\\b^(external-memory|execute|ethernet|dns|diagnose|dhcp|dashboardaccumulate)\\b",
+			"name":"keyword"
+		},
+		{
+			"match": "\\b^(console|cloud|bridge|bgp|auth|ap|alarm|account)\\b",
+			"name":"keyword"
 		},
 		{
 			"match": "\\d+\\.\\d+\\.\\d+\\.\\d+(/\\d{1,2})?",
-			"name": "constant.numeric.yamahart"
+			"name": "constant.numeric"
 		},
 		{
 			"match": "[0-9a-fA-F]{0,4}:([0-9a-fA-F]{0,4}:)+[0-9a-fA-F]{0,4}(/\\d{1,3})?",
-			"name": "constant.numeric.yamahart"
+			"name": "constant.numeric"
 		}
 	],
 	"repository": {
