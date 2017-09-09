@@ -1,0 +1,34 @@
+{
+    "name": "yamaha-rt",
+    "displayName": "YAMAHA RT",
+    "description": "YAMAHA RT config",
+    "version": "0.0.1",
+    "publisher": "hrst-jp",
+    "engines": {
+        "vscode": "^1.16.0"
+    },
+    "categories": [
+        "Languages",    "Snippets"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "yamahart",
+            "aliases": ["YAMAHA RT", "yamahart"],
+            "extensions": [""],
+            "configuration": "./language-configuration.json",
+            "filenamePatterns": [     ""            ]
+        }],
+        "grammars": [{
+            "language": "yamahart",
+            "scopeName": "yamahart",
+            "path": "./syntaxes/yamahart.tmLanguage.json"
+        }],
+        "snippets": [
+            {
+                "language": "yamahart",
+                "path": "./snippets/snippets.json"
+            }
+        ]
+    }
+}
+

@@ -1,0 +1,48 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "YAMAHA RT",
+	"patterns": [
+		{
+			"match": "#",
+			"name": "comment.line.number-sign.yamasart"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"match": "\\b(ipsec|ip|telnetd)",
+			"name":"keyword.yamasart"
+		},
+		{
+			"match": "\\d+\\.\\d+\\.\\d+\\.\\d+(/\\d{1,2})?",
+			"name": "constant.numeric.yamahart"
+		},
+		{
+			"match": "[0-9a-fA-F]{0,4}:([0-9a-fA-F]{0,4}:)+[0-9a-fA-F]{0,4}(/\\d{1,3})?",
+			"name": "constant.numeric.yamahart"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.yamahart",
+				"match": "\\b(if|while|for|return)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.yamahart",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.yamahart",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "yamahart"
+}
