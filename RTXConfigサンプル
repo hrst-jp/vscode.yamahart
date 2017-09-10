@@ -1,0 +1,223 @@
+# YAMAHA RTX
+#
+# L2TP/IPsecを使用して多拠点とVPN接続する
+#
+isdn spoof
+ntp gfgs
+
+#
+# センタールーター
+#
+
+#
+# LANのインタフェースの設定
+#
+bridge member bridge1 lan1 tunnel1-tunnel3
+ip bridge1 address 192.168.0.200/24
+ip bridge1 proxyarp on
+ip lan2 address 192.168.10.1/24
+
+#
+# WAN（ISP1)のインタフェースの設定
+#
+pp select 1
+ pp always-on on
+ pppoe use lan3
+ pp auth accept pap chap
+ pp auth myname (ISP1と接続するID) (ISP1と接続するパスワード)
+ ppp lcp mru on 1454
+ ppp ipcp msext on
+ ip pp address (センターのグローバルアドレス)
+ ip pp mtu 1454
+ ip pp secure filter in 1020 1030 1031 1040 1041 1042 2000 dynamic 200
+ ip pp secure filter out 1010 1011 1012 1013 1014 1015 3000 dynamic 100 101 102 103 104 105 106
+ ip pp nat descriptor 1
+ pp enable 1
+ip route default gateway pp 1
+
+#
+# L2TP接続を受け入れるための設定
+#
+pp select anonymous
+ pp bind tunnel4-tunnel5
+ pp auth request mschap-v2
+ pp auth username (ユーザー1) (パスワード1)
+ pp auth username (ユーザー2) (パスワード2)
+ ppp ipcp ipaddress on
+ ppp ipcp msext on
+ ip pp remote address pool 192.168.0.192-192.168.0.199
+ ip pp mtu 1258
+ pp enable anonymous
+l2tp service on
+
+#
+# L2TPv3/IPsecの設定(拠点1)
+#
+tunnel select 1
+ tunnel encapsulation l2tpv3
+ tunnel endpoint address 192.168.0.200 (拠点1のグローバルアドレス)
+ ipsec tunnel 101
+  ipsec sa policy 101 1 esp aes-cbc sha-hmac
+  ipsec ike keepalive use 1 on
+  ipsec ike local address 1 192.168.0.200
+  ipsec ike pre-shared-key 1 text (IPsecの事前共有鍵1)
+  ipsec ike remote address 1 any
+  ipsec ike remote name 1 (拠点1の名前) key-id
+ l2tp always-on on
+ l2tp hostname (接続相手に通知するセンターのホスト名)
+ l2tp tunnel auth on (L2TPv3トンネル認証に用いるパスワード1)
+ l2tp tunnel disconnect time off
+ l2tp keepalive use on 60 3
+ l2tp keepalive log on
+ l2tp syslog on
+ l2tp local router-id 192.168.0.200
+ l2tp remote router-id 192.168.0.201
+ l2tp remote end-id (L2TPv3のリモートエンドID1)
+ tunnel enable 1
+
+#
+# L2TPv3/IPsecの設定(拠点2)
+#
+tunnel select 2
+ tunnel encapsulation l2tpv3
+ ipsec tunnel 102
+  ipsec sa policy 102 2 esp aes-cbc sha-hmac
+  ipsec ike keepalive use 2 on
+  ipsec ike local address 2 192.168.0.200
+  ipsec ike pre-shared-key 2 text (IPsecの事前共有鍵2)
+  ipsec ike remote address 2 any
+  ipsec ike remote name 2 (拠点2の名前) key-id
+ l2tp always-on on
+ l2tp hostname (接続相手に通知するセンターのホスト名)
+ l2tp tunnel auth on (L2TPv3トンネル認証に用いるパスワード2)
+ l2tp tunnel disconnect time off
+ l2tp keepalive use on 60 3
+ l2tp keepalive log on
+ l2tp syslog on
+ l2tp local router-id 192.168.0.200
+ l2tp remote router-id 192.168.0.202
+ l2tp remote end-id (L2TPv3のリモートエンドID2)
+ tunnel enable 2
+
+#
+# L2TPv3/IPsecの設定(拠点3)
+#
+tunnel select 3
+ tunnel encapsulation l2tpv3
+ ipsec tunnel 103
+  ipsec sa policy 103 3 esp aes-cbc sha-hmac
+  ipsec ike keepalive use 3 on
+  ipsec ike local address 3 192.168.0.200
+  ipsec ike nat-traversal 3 on
+  ipsec ike pre-shared-key 3 text (IPsecの事前共有鍵3)
+  ipsec ike remote address 3 any
+  ipsec ike remote name 3 (拠点3の名前) key-id
+ l2tp always-on on
+ l2tp hostname (接続相手に通知するセンターのホスト名)
+ l2tp tunnel auth on (L2TPv3トンネル認証に用いるパスワード3)
+ l2tp tunnel disconnect time off
+ l2tp keepalive use on 60 3
+ l2tp keepalive log on
+ l2tp syslog on
+ l2tp local router-id 192.168.0.200
+ l2tp remote router-id 192.168.0.203
+ l2tp remote end-id (L2TPv3のリモートエンドID3)
+ tunnel enable 3
+
+#
+# L2TP/IPsecの設定(拠点4)
+#
+tunnel select 4
+ tunnel encapsulation l2tp
+ ipsec tunnel 104
+  ipsec sa policy 104 4 esp aes-cbc sha-hmac
+  ipsec ike keepalive use 4 off
+  ipsec ike local address 4 192.168.0.200
+  ipsec ike nat-traversal 4 on
+  ipsec ike pre-shared-key 4 text (IPsecの事前共有鍵4)
+  ipsec ike remote address 4 any
+ l2tp tunnel disconnect time off
+ l2tp keepalive use on 10 3
+ l2tp keepalive log on
+ l2tp syslog on
+ ip tunnel tcp mss limit auto
+ tunnel enable 4
+
+#
+# L2TP/IPsecの設定(拠点5)
+#
+tunnel select 5
+ tunnel encapsulation l2tp
+ ipsec tunnel 105
+  ipsec sa policy 105 5 esp aes-cbc sha-hmac
+  ipsec ike keepalive use 5 off
+  ipsec ike local address 5 192.168.0.200
+  ipsec ike nat-traversal 5 on
+  ipsec ike pre-shared-key 5 text (IPsecの事前共有鍵5)
+  ipsec ike remote address 5 any
+ l2tp tunnel disconnect time off
+ l2tp keepalive use on 10 3
+ l2tp keepalive log on
+ l2tp syslog on
+ ip tunnel tcp mss limit auto
+ tunnel enable 5
+
+#
+# フィルターの設定
+#
+ip filter source-route on
+ip filter directed-broadcast on
+ip filter 1010 reject * * udp,tcp 135 *
+ip filter 1011 reject * * udp,tcp * 135
+ip filter 1012 reject * * udp,tcp netbios_ns-netbios_ssn *
+ip filter 1013 reject * * udp,tcp * netbios_ns-netbios_ssn
+ip filter 1014 reject * * udp,tcp 445 *
+ip filter 1015 reject * * udp,tcp * 445
+ip filter 1020 reject 192.168.0.0/24 *
+ip filter 1030 pass * 192.168.0.0/24 icmp
+ip filter 1031 pass * 192.168.10.2 tcpflag=0x0002/0x0fff * www
+ip filter 1040 pass * 192.168.0.200 udp * 500
+ip filter 1041 pass * 192.168.0.200 udp * 4500
+ip filter 1042 pass * 192.168.0.200 esp
+ip filter 2000 reject * *
+ip filter 3000 pass * *
+ip filter dynamic 100 * * ftp
+ip filter dynamic 101 * * www
+ip filter dynamic 102 * * domain
+ip filter dynamic 103 * * smtp
+ip filter dynamic 104 * * pop3
+ip filter dynamic 105 * * tcp
+ip filter dynamic 106 * * udp
+
+#
+# NATの設定
+#
+nat descriptor type 1 masquerade
+nat descriptor masquerade static 1 1 192.168.0.200 udp 500
+nat descriptor masquerade static 1 2 192.168.0.200 udp 4500
+nat descriptor masquerade static 1 3 192.168.0.200 esp
+nat descriptor masquerade static 1 4 192.168.10.2 tcp www
+
+#
+# IPsecのトランスポートモード設定
+#
+ipsec auto refresh on
+ipsec transport 1 101 udp 1701
+ipsec transport 2 102 udp 1701
+ipsec transport 3 103 udp 1701
+ipsec transport 4 104 udp 1701
+ipsec transport 5 105 udp 1701
+
+#
+# DHCPの設定
+#
+dhcp service server
+dhcp server rfc2131 compliant except remain-silent
+dhcp scope 1 192.168.0.2-192.168.0.191/24
+
+#
+# DNSの設定
+#
+dns server (ISP1より指定されたDNSサーバーのIPアドレス)
+dns private address spoof on
+
