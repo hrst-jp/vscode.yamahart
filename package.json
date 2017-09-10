@@ -3,7 +3,7 @@
     "displayName": "YAMAHA RT",
     "description": "YAMAHA RT config",
     "version": "0.0.1",
-    "publisher": "hrst-jp",
+    "publisher": "hrst",
     "engines": {
         "vscode": "^1.16.0"
     },
@@ -16,7 +16,7 @@
             "aliases": ["YAMAHA RT", "yamahart"],
             "extensions": [""],
             "configuration": "./language-configuration.json",
-            "filenamePatterns": [     ""            ]
+            "firstLine": "^#.*YAMAHA RT"
         }],
         "grammars": [{
             "language": "yamahart",
