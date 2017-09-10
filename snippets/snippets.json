@@ -1,3 +1,8 @@
 {
+    "syslog debug": {
+        "prefix": "syslog debug",
+        "body": "syslog debug $1",
+        "description": "DEBUGタイプのSyslogを出力するか否かの設定"
+    }
 
 }

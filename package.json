@@ -2,7 +2,7 @@
     "name": "yamaha-rt",
     "displayName": "YAMAHA RT",
     "description": "YAMAHA RT config",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "publisher": "hrst",
     "engines": {
         "vscode": "^1.16.0"

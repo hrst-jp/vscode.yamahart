@@ -7,42 +7,65 @@
 			"name": "comment.line"
 		},
 		{
-			"match": "\\b^(yno|wol|wins|wan|vlan|user|usbhost|url|upnp|tunnel|tftp|terminate|telnetd|tcp)\\b",
-			"name":"keyword"
+			"include": "#ipaddress"
 		},
 		{
-			"match": "\\b^(system|syslog|switch|sshd|sntpd|snmpv3|snmpv2c|snmp|sip|sftpd|security|rtfs|rotate|rip)\\b",
-			"name":"keyword"
+			"match": "ip filter (\\d+) (\\S+)",
+			"name":"keyword",
+			"captures": {
+				"1":{ "name":"constant.numeric"},
+				"2":{ "name":"keyword.control"}
+			}	
 		},
 		{
-			"match": "\\b^(remote|radius|queue|qac-tm|provider|pri|pptp|pppoe|ppp|pp|pki|ospf|operation)\\b",
-			"name":"keyword"
-		},
-		{
-			"match": "\\b^(ntp|ngn|netvolante-dns|nat|mobile|mail|login|leased|lan-map|lan|l2tp|jate)\\b",
-			"name":"keyword"
-		},
-		{
-			"match": "\\b^(isdn|ipv6|ipsec|ipip|ip|httpd|heartbeat2|heartbeat|fr)\\b",
-			"name":"keyword"
-		},
-		{
-			"match": "\\b^(external-memory|execute|ethernet|dns|diagnose|dhcp|dashboardaccumulate)\\b",
-			"name":"keyword"
-		},
-		{
-			"match": "\\b^(console|cloud|bridge|bgp|auth|ap|alarm|account)\\b",
-			"name":"keyword"
+			"match": "ip filter dynamic (\\d+)",
+			"name":"keyword",
+			"captures": {
+				"1":{ "name":"constant.numeric"}
+			}	
 		},
 		{
 			"match": "\\s(on|off|in|out)\\s",
 			"name":"keyword.control"
 		},
 		{
-			"include": "#ipaddress"
+			"include": "#commands"
 		}
+
 	],
 	"repository": {
+		"commands":{
+			"patterns": [
+				{
+					"match": "\\b^(yno|wol|wins|wan|vlan|user|usbhost|url|upnp|tunnel|tftp|terminate|telnetd|tcp)\\b",
+					"name":"keyword"
+				},
+				{
+					"match": "\\b^(system|syslog|switch|sshd|sntpd|snmpv3|snmpv2c|snmp|sip|sftpd|security|rtfs|rotate|rip)\\b",
+					"name":"keyword"
+				},
+				{
+					"match": "\\b^(remote|radius|queue|qac-tm|provider|pri|pptp|pppoe|ppp|pp|pki|ospf|operation)\\b",
+					"name":"keyword"
+				},
+				{
+					"match": "\\b^(ntp|ngn|netvolante-dns|nat|mobile|mail|login|leased|lan-map|lan|l2tp|jate)\\b",
+					"name":"keyword"
+				},
+				{
+					"match": "\\b^(isdn|ipv6|ipsec|ipip|ip|httpd|heartbeat2|heartbeat|fr)\\b",
+					"name":"keyword"
+				},
+				{
+					"match": "\\b^(external-memory|execute|ethernet|dns|diagnose|dhcp|dashboardaccumulate)\\b",
+					"name":"keyword"
+				},
+				{
+					"match": "\\b^(console|cloud|bridge|bgp|auth|ap|alarm|account)\\b",
+					"name":"keyword"
+				}
+			]
+		},
 		"ipaddress":{
 			"patterns":[
 				{
