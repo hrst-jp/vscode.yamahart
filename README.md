@@ -1,7 +1,14 @@
 # yamaha-rt README
-
 YAMAHA　ルーターの設定ファイルをハイライト表示します。
 
+# 目的
+ファイルで管理する設定の見やすさを向上するための色分けを行います。  
+設定の区切りなどを強調するため、同じ文字でも色がつかない場合があります。
+
+# 使用方法
+Show Configで表示された結果を保存し、Visual Studio Codeで開きます。  
+ファイル拡張子は「無し」または「.TXT」で、  
+一行目に「# RT～ Rev.～」が存在する場合に機能するように設定しています。
 
 ## 対象製品
 ### YAMAHA ルーター(http://jp.yamaha.com/products/network/routers/)  
@@ -11,7 +18,6 @@ YAMAHA　ルーターの設定ファイルをハイライト表示します。
  RT250i/RT107e  
  SRT100  
  そのほかコマンドリファレンスの対象製品
-
 
 ## 参考資料
 * [YAMAHA Webページ](http://www.rtpro.yamaha.co.jp/RT/manual.htm）
