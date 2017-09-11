@@ -1,9 +1,10 @@
 {
     "name": "yamaha-rt",
-    "displayName": "YAMAHA RT",
-    "description": "YAMAHA RT config",
-    "version": "1.0.4",
+    "displayName": "YAMAHA Router",
+    "description": "YAMAHA RT series configuration file highlight",
+    "version": "1.0.5",
     "publisher": "hrst",
+    "icon": "images/rtx1210_icon.png",
     "engines": {
         "vscode": "^1.16.0"
     },
@@ -16,11 +17,12 @@
             {
                 "id": "yamahart",
                 "aliases": [
-                    "YAMAHA RT",
-                    "yamahart"
+                    "YAMAHA"
                 ],
                 "extensions": [
-                    "",".TXT",".conf"
+                    "",
+                    ".TXT",
+                    ".conf"
                 ],
                 "configuration": "./language-configuration.json",
                 "firstLine": "^# RT\\S* Rev\\."
@@ -39,5 +41,9 @@
                 "path": "./snippets/snippets.json"
             }
         ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hrst-jp/vscode.yamahart.git"
     }
 }

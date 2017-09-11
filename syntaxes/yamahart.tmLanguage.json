@@ -3,8 +3,12 @@
 	"name": "YAMAHA RT",
 	"patterns": [
 		{
-			"match": "#",
+			"match": "#.*",
 			"name": "comment.line"
+		},
+		{
+			"match": "(tunnel|pp) name \\S+",
+			"name":"comment"
 		},
 		{
 			"include": "#ipaddress"
@@ -15,6 +19,13 @@
 			"captures": {
 				"1":{ "name":"constant.numeric"},
 				"2":{ "name":"keyword.control"}
+			}	
+		},
+		{
+			"match": "(tunnel|pp) select (\\d+)",
+			"name":"keyword",
+			"captures": {
+				"2":{ "name":"constant.numeric"}
 			}	
 		},
 		{
