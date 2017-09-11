@@ -20,10 +20,10 @@
                     "yamahart"
                 ],
                 "extensions": [
-                    ""
+                    "",".TXT",".conf"
                 ],
                 "configuration": "./language-configuration.json",
-                "firstLine": "^#.*YAMAHA RT"
+                "firstLine": "^# RT\\S* Rev\\."
             }
         ],
         "grammars": [
