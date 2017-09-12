@@ -1,4 +1,4 @@
-{
+test{
     "ip route default": {
         "prefix": "ip route default gateway",
         "body": "ip route default gateway $1",
