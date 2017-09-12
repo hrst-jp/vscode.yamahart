@@ -20,7 +20,7 @@ Show Configで表示された結果を保存し、Visual Studio Codeで開きま
  そのほかコマンドリファレンスの対象製品
 
 ## 参考資料
-* [YAMAHA Webページ](http://www.rtpro.yamaha.co.jp/RT/manual.htm）
+* [RTシリーズのマニュアル](http://www.rtpro.yamaha.co.jp/RT/manual.html）
 
 ## ソース
 * [GitHub](https://github.com/hrst-jp/vscode.yamahart)

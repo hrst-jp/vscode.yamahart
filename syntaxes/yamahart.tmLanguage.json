@@ -33,8 +33,19 @@
 			}	
 		},
 		{
-			"match": "\\s(on|off|in|out)\\s",
+			"match": "\\s(on|off|in|out|hide)\\s",
 			"name":"keyword.control"
+		},
+		{
+			"match": "\\b\\d+\\b",
+			"name":"constant.numeric"
+		},
+		{
+			"match": "\\b(myname|name|text) (\\S+)(\\s\\S+)?",
+			"captures": {
+				"2":{ "name":"string"},
+				"3":{ "name":"string"}
+			}
 		},
 		{
 			"include": "#commands"
@@ -43,22 +54,12 @@
 			"include": "#ipaddress"
 		},
 		{
-			"match": "\\b(lan\\d(\\.\\d|/\\d)?)\\b",
-			"name":"constant.language"
+			"include": "#inferface"
 		},
 		{
-			"match": "\\b(bri[1-2](\\.\\d)?)\\b",
-			"name":"constant.language"
-		},
-		{
-			"match": "\\b(vlan\\d|pri1|bridge1|null)\\b",
-			"name":"constant.language"
-		},
-		{
-			"match": "\\b(loopback[1-9])\\b",
-			"name":"constant.language"
+			"match": "gateway",
+			"name":"keyword"
 		}
-
 	],
 	"repository": {
 		"commands":{
@@ -104,6 +105,26 @@
 					"name": "constant.numeric"
 				}
 			]
+		},
+		"interface":{
+			"patterns": [
+				{
+					"match": "\\b(lan\\d(\\.\\d|/\\d)?)\\b",
+					"name":"constant.language"
+				},
+				{
+					"match": "\\b(bri[1-2](\\.\\d)?)\\b",
+					"name":"constant.language"
+				},
+				{
+					"match": "\\b(vlan\\d|pri1|bridge1|null)\\b",
+					"name":"constant.language"
+				},
+				{
+					"match": "\\b(loopback[1-9])\\b",
+					"name":"constant.language"
+				}
+			]	
 		}
 	},
 		"scopeName": "yamahart"

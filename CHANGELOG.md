@@ -7,3 +7,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.0.1] - 2017-9-9
 - Initial release
+## [0.0.6]
+- いろいろ試行錯誤中
