@@ -11,7 +11,11 @@
 			"name":"comment"
 		},
 		{
-			"include": "#ipaddress"
+			"match": "(tunnel|pp) select (\\d+)",
+			"name":"keyword",
+			"captures": {
+				"2":{ "name":"constant.numeric"}
+			}	
 		},
 		{
 			"match": "ip filter (\\d+) (\\S+)",
@@ -19,13 +23,6 @@
 			"captures": {
 				"1":{ "name":"constant.numeric"},
 				"2":{ "name":"keyword.control"}
-			}	
-		},
-		{
-			"match": "(tunnel|pp) select (\\d+)",
-			"name":"keyword",
-			"captures": {
-				"2":{ "name":"constant.numeric"}
 			}	
 		},
 		{
@@ -41,6 +38,25 @@
 		},
 		{
 			"include": "#commands"
+		},
+		{
+			"include": "#ipaddress"
+		},
+		{
+			"match": "\\b(lan\\d(\\.\\d|/\\d)?)\\b",
+			"name":"constant.language"
+		},
+		{
+			"match": "\\b(bri[1-2](\\.\\d)?)\\b",
+			"name":"constant.language"
+		},
+		{
+			"match": "\\b(vlan\\d|pri1|bridge1|null)\\b",
+			"name":"constant.language"
+		},
+		{
+			"match": "\\b(loopback[1-9])\\b",
+			"name":"constant.language"
 		}
 
 	],
@@ -88,9 +104,7 @@
 					"name": "constant.numeric"
 				}
 			]
-			
 		}
-
 	},
 		"scopeName": "yamahart"
 }
