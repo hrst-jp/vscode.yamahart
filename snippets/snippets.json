@@ -1,13 +1,4 @@
-<<<<<<< HEAD
 {
-=======
-test{
-    "ip route default": {
-        "prefix": "ip route default gateway",
-        "body": "ip route default gateway $1",
-        "description": "デフォルトゲートウェイの設定"
-    },
->>>>>>> 68b1a23d375de247557a086d477780c920b38d4d
     "ip route": {
         "prefix": "ip route",
         "body": "ip route $1 gateway $2",
