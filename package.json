@@ -25,7 +25,7 @@
                     ".conf"
                 ],
                 "configuration": "./language-configuration.json",
-                "firstLine": "^# RT\\S* Rev\\."
+                "firstLine": "^#\\s*(RT.?|NVR)\\S* Rev\\."
             }
         ],
         "grammars": [
