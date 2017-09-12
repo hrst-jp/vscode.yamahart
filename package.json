@@ -1,7 +1,7 @@
 {
     "name": "yamaha-rt",
     "displayName": "YAMAHA Router",
-    "description": "YAMAHA RT series configuration file highlight",
+    "description": "Highlight the configuration file of YAMAHA router product.",
     "version": "1.0.5",
     "publisher": "hrst",
     "icon": "images/rtx1210_icon.png",
