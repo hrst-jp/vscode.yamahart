@@ -1,4 +1,14 @@
 {
+    "ip route default": {
+        "prefix": "ip route default gateway",
+        "body": "ip route default gateway $1"
+        "description": "デフォルトゲートウェイの設定"
+    },
+    "ip route": {
+        "prefix": "ip route",
+        "body": "ip route $1 gateway $2"
+        "description": "スタティックルートの設定"
+    },
     "syslog debug": {
         "prefix": "syslog debug",
         "body": "syslog debug $1",
