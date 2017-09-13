@@ -5,7 +5,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-## [0.0.1] - 2017-9-9
+## [1.0.1] - 2017-9-9
 - Initial release
-## [0.0.6]
+## [1.0.6]
 - いろいろ試行錯誤中
+## [1.0.7]
+- IPv4アドレスの正規表現がおかしかったので修正などその他諸々
+- いろいろ調整中
