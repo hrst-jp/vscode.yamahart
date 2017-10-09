@@ -10,6 +10,9 @@
 			"include": "#interface"
 		},
 		{
+			"include": "#dhcp"
+		},
+		{
 			"match": "(tunnel|pp) name \\S+",
 			"name":"comment"
 		},
@@ -82,7 +85,7 @@
 					"name":"keyword"
 				},
 				{
-					"match": "\\b^(system|syslog|switch|sshd|sntpd|snmpv3|snmpv2c|snmp|sip|sftpd|security|rtfs|rotate|rip)\\b",
+					"match": "\\b^(system|syslog|switch|sshd|sntpd|snmpv3|snmpv2c|snmp|sip|schedule|sftpd|security|rtfs|rotate|rip)\\b",
 					"name":"keyword"
 				},
 				{
@@ -94,7 +97,7 @@
 					"name":"keyword"
 				},
 				{
-					"match": "\\b^(isdn|ipv6|ipsec|ipip|ip|httpd|heartbeat2|heartbeat|fr)\\b",
+					"match": "\\b^(isdn|ipv6|ipsec|ipip|ip|httpd|http|heartbeat2|heartbeat|fr)\\b",
 					"name":"keyword"
 				},
 				{
@@ -102,7 +105,7 @@
 					"name":"keyword"
 				},
 				{
-					"match": "\\b^(console|cloud|bridge|bgp|auth|ap|alarm|account)\\b",
+					"match": "\\b^(console|cloud|bridge|bgp|auth|ap|alarm|account|administrator)\\b",
 					"name":"keyword"
 				}
 			]
@@ -146,6 +149,26 @@
 					"name":"constant.language"
 				}
 			]	
+		},
+		"dhcp":{
+			"patterns": [
+				{
+					"begin": "dhcp scope option", "end": "\\n", "patterns": [
+						{
+							"match": "\\b(\\d+)\\b",
+							"name":"constant.numeric"
+						},
+						{
+							"match": "\\b(router|dns|hostname|domain|wins_server)=([0-9a-zA-Z.]+)",
+							"captures": {
+								"1":{"name":"keyword.control"},
+								"2":{"name":"string"}
+							}
+						}
+					],
+					"name":"keyword"
+				}
+			]
 		}
 	},
 		"scopeName": "yamahart"
