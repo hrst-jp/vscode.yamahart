@@ -181,7 +181,7 @@
 				{
 					"begin": "dhcp scope", "end": "\\n", "patterns": [
 						{
-							"match": "\\b(gateway|expire|maxexpire)\\b",
+							"match": "\\b(except|gateway|expire|maxexpire)\\b",
 							"name":"keyword.control"
 						},
 						{
@@ -189,9 +189,14 @@
 						},
 
 						{
-							"match": "\\b(\\d+:\\d+)\\b",
+							"match": "\\b(\\d+:\\d+|\\d+)\\b",
 							"name":"constant.numeric"
+						},
+						{
+							"match": "infinity",
+							"name":"constant.character"
 						}
+						
 					],
 					"name":"keyword"
 				}
