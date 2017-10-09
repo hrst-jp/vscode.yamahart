@@ -10,18 +10,10 @@
 			"include": "#interface"
 		},
 		{
+			"include": "#tunnel"
+		},
+		{
 			"include": "#dhcp"
-		},
-		{
-			"match": "(tunnel|pp) name \\S+",
-			"name":"comment"
-		},
-		{
-			"match": "(tunnel|pp) select (\\d+)",
-			"name":"storage",
-			"captures": {
-				"2":{ "name":"constant.numeric"}
-			}	
 		},
 		{
 			"match": "ip filter (\\d+) (\\S+)",
@@ -66,7 +58,7 @@
 			"include": "#commands"
 		},
 		{
-			"include": "#ipaddress"
+			"include": "#address"
 		},
 		{
 			"match": "gateway",
@@ -110,7 +102,7 @@
 				}
 			]
 		},
-		"ipaddress":{
+		"address":{
 			"patterns":[
 				{
 					"match": "\\b(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(/(([1-2]?[0-9])|3[0-2]))?\\b",
@@ -126,6 +118,11 @@
 					"match": "\\b([0-9a-f]{0,4}:){3}(:|[0-9a-f]{0,4})?(:[0-9a-f]{0,4}){0,4}(%\\S+|(/([1-9]?[0-9]|1[0-9]{2}|12[0-8])))?\\b",
 					"name": "string",
 					"comment": "IPv6 Address省略あり48bitマスク以上"
+				},
+				{
+					"match": "\\b(([0-9a-fA-F]{2}(:|-)){5}[0-9a-fA-F]{2})\\b",
+					"name":"string",
+					"comment": "MACアドレス"
 				}
 
 			]
@@ -150,6 +147,28 @@
 				}
 			]	
 		},
+		"tunnel":{
+			"patterns": [
+				{
+					"match": "(tunnel|pp) name \\S+",
+					"name":"comment"
+				},
+				{
+					"match": "(tunnel|pp) select (\\d+)",
+					"name":"storage",
+					"captures": {
+						"2":{ "name":"constant.numeric"}
+					}	
+				},
+				{
+					"match": "tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp)",
+					"name":"keyword",
+					"captures": {
+						"1":{"name":"keyword.control"}
+					}
+				}
+			]
+		},
 		"dhcp":{
 			"patterns": [
 				{
@@ -162,7 +181,7 @@
 				{
 					"begin": "dhcp scope option", "end": "\\n", "patterns": [
 						{
-							"include": "#ipaddress"
+							"include": "#address"
 						},
 						{
 							"match": "\\b(\\d+)\\b",
@@ -185,7 +204,7 @@
 							"name":"keyword.control"
 						},
 						{
-							"include": "#ipaddress"
+							"include": "#address"
 						},
 
 						{
