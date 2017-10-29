@@ -10,7 +10,7 @@ Show Configで表示された結果を保存し、Visual Studio Codeで開きま
 ファイル拡張子は「無し」または「.TXT」で、  
 一行目に「# RT～ Rev.～」が存在する場合に機能するように設定しています。
 
-## 対象製品
+# 対象製品
 ### YAMAHA ルーター(http://jp.yamaha.com/products/network/routers/)  
  RTX5000/RTX3500  
  RTX3000/RTX1500/RTX1100  
@@ -19,8 +19,9 @@ Show Configで表示された結果を保存し、Visual Studio Codeで開きま
  SRT100  
  そのほかコマンドリファレンスの対象製品
 
-## 参考資料
+# 参考資料
 * [RTシリーズのマニュアル](http://www.rtpro.yamaha.co.jp/RT/manual.html）
 
-## ソース
+# ソース
 * [GitHub](https://github.com/hrst-jp/vscode.yamahart)
+S

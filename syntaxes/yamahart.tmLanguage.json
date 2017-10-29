@@ -6,14 +6,53 @@
 			"match": "#.*",
 			"name": "comment.line"
 		},
+
 		{
 			"include": "#interface"
+		},
+		{
+			"include": "#pp"
 		},
 		{
 			"include": "#tunnel"
 		},
 		{
+			"include": "#ipsec"
+		},
+		{
 			"include": "#dhcp"
+		},
+		{
+			"begin": "ip route","end": "\\n","patterns": [
+				{
+					"include": "#address"
+				},
+				{
+					"match": "\\b(\\d+)\\b",
+					"name":"constant.numeric"
+				},
+				{
+					"match": "(default|pp|dhcp|tunnel)",
+					"name":"string"
+				},
+				{
+					"match": "gateway",
+					"name":"keyword"
+				},
+				{
+					"match": "(filter|metric|hide|weight|keepalive)",
+					"name":"keyword.control"
+				}
+			],
+			"name":"keyword"
+		},
+		{
+			"match": "ip (\\S+) tcp mss limit (\\S+|\\d+)",
+			"name":"keyword",
+			"captures": {
+				"1":{ "name":"string"},
+				"2":{ "name":"keyword.control"}
+			}
 		},
 		{
 			"match": "ip filter (\\d+) (\\S+)",
@@ -28,7 +67,23 @@
 			"name":"keyword",
 			"captures": {
 				"1":{ "name":"constant.numeric"}
-			}	
+			}	 
+		},
+		{
+			"begin": "ip (pp|tunnel|\\S+) secure filter", "end": "\\n", "patterns": [
+				{
+					"match":"(in|out|dynamic)",
+					"name":"keyword.control"
+				},
+				{
+					"match": "\\b(\\d+)\\b",
+					"name":"constant.numeric"
+				}
+			],
+			"name":"keyword",
+			"captures": {
+				"1":{"name":"string"}
+			}
 		},
 		{
 			"match": "\\b(on|off|in|out|hide|weight)\\b",
@@ -53,6 +108,33 @@
 				"1":{"name":"keyword.control"},
 				"2":{"name":"string"}
 			}
+		},
+		{
+			"match": "(tunnel|pp) name \\S+",
+			"name":"comment"
+		},
+		{
+			"match": "(pp|ipsec\\sike|l2tp|wan) always-on (on|off)",
+			"name":"keyword",
+			"captures": {
+				"2":{"name":"keyword.control"}
+			}
+		},
+		{
+			"match": "(pp|tunnel) backup (\\S+) ([0-9|a-z|A-Z|\\.]+)",
+			"name":"keyword",
+			"captures": {
+				"2":{"name":"constant.language"},
+				"3":{ "name":"string"}
+			}
+		},
+		{
+			"match": "(tunnel|pp) (select|enable|disable) (\\d+)",
+			"name":"storage",
+			"captures": {
+				"2":{ "name":"keyword.control"},
+				"3":{ "name":"constant.numeric"}
+			}	
 		},
 		{
 			"include": "#commands"
@@ -131,40 +213,77 @@
 			"patterns": [
 				{
 					"match": "\\b(lan\\d(\\.\\d|/\\d)?)\\b",
-					"name":"constant.language"
+					"name":"string"
 				},
 				{
 					"match": "\\b(bri[1-2](\\.\\d)?)\\b",
-					"name":"constant.language"
+					"name":"string"
 				},
 				{
 					"match": "\\b(vlan\\d|pri1|bridge1|null)\\b",
-					"name":"constant.language"
+					"name":"string"
 				},
 				{
 					"match": "\\b(loopback[1-9])\\b",
-					"name":"constant.language"
+					"name":"string"
 				}
 			]	
 		},
-		"tunnel":{
+		"pp":{
 			"patterns": [
 				{
-					"match": "(tunnel|pp) name \\S+",
-					"name":"comment"
+					"match": "pp auth accept (pap|chap|mschap|mschap-v2)( (pap|chap|mschap|mschap-v2))?",
+					"name":"keyword",
+					"captures": {
+						"1":{"name":"keyword.control"},
+						"2":{"name":"keyword.control"}
+					}
 				},
 				{
-					"match": "(tunnel|pp) select (\\d+)",
-					"name":"storage",
+					"match": "pp auth myname (\\S+) (\\S+)",
+					"name":"keyword",
 					"captures": {
-						"2":{ "name":"constant.numeric"}
-					}	
-				},
+						"1":{"name":"string"},
+						"2":{"name":"string"}
+					}
+				}
+			]
+		},
+		"tunnel":{
+			"patterns": [
 				{
 					"match": "tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp)",
 					"name":"keyword",
 					"captures": {
 						"1":{"name":"keyword.control"}
+					}
+				}
+			]
+		},
+		"ipsec":{
+			"patterns": [
+				{
+					"match": "ipsec ike pre-shared-key (\\d+) (text){0,1} (\\S+)",
+					"name":"keyword",
+					"captures": {
+						"1":{"name":"constant.numeric"},
+						"3":{"name":"string"}
+					}
+					
+				},
+				{
+					"match": "ipsec ike always-on (on|off)",
+					"name":"keyword",
+					"captures": {
+						"1":{"name":"keyword.control"}
+					}
+				},
+				{
+					"match": "ipsec ike (local|remote) (address|id|name) (\\d+) (\\S+)",
+					"name":"keyword",
+					"captures": {
+						"3":{"name":"constant.numeric"},
+						"4":{"name":"string"}
 					}
 				}
 			]
