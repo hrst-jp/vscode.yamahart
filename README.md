@@ -24,4 +24,3 @@ Show Configで表示された結果を保存し、Visual Studio Codeで開きま
 
 # ソース
 * [GitHub](https://github.com/hrst-jp/vscode.yamahart)
-S

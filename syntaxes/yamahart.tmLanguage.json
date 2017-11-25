@@ -121,11 +121,12 @@
 			}
 		},
 		{
-			"match": "(pp|tunnel) backup (\\S+) ([0-9|a-z|A-Z|\\.]+)",
+			"match": "(pp|tunnel) (backup) (\\S+) ([0-9|a-z|A-Z|\\.]+)",
 			"name":"keyword",
 			"captures": {
-				"2":{"name":"constant.language"},
-				"3":{ "name":"string"}
+				"2":{ "name":"string"},
+				"3":{"name":"constant.language"},
+				"4":{ "name":"string"}
 			}
 		},
 		{
