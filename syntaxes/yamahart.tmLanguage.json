@@ -273,6 +273,26 @@
 					
 				},
 				{
+					"match": "ipsec sa policy (\\d+) (\\d+) esp (3des-cbc|des-cbc|aes-cbc|aes256-cbc)+ (md5-hmac|sha-hmac|sha256-hmac)+",
+					"name":"keyword",
+					"captures": {
+						"1":{"name":"constant.numeric"},
+						"2":{"name":"constant.numeric"},
+						"3":{"name":"string"},
+						"4":{"name":"string"}
+					}
+				},
+				{
+					"match": "ipsec ike keepalive use (\\d+) (on|off|auto) (heartbeat|dpd|rfc4306)+ (\\d+) (\\d+)",
+					"name":"keyword",
+					"captures": {
+						"1":{"name":"constant.numeric"},
+						"2":{"name":"keyword.control"},
+						"4":{"name":"string"},
+						"5":{"name":"string"}
+					}
+				},
+				{
 					"match": "ipsec ike always-on (on|off)",
 					"name":"keyword",
 					"captures": {
@@ -342,5 +362,5 @@
 			]
 		}
 	},
-		"scopeName": "yamahart"
+		"scopeName":"text.yamahart"
 }
