@@ -12,3 +12,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [1.0.7]
 - IPv4アドレスの正規表現がおかしかったので修正などその他諸々
 - いろいろ調整中
+## [1.0.11]
+- 久々にIPSEC関連を追加しました。
