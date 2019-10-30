@@ -6,8 +6,25 @@
 			"match": "#.*",
 			"name": "comment.line"
 		},
-
 		{
+			"match": "(ip|ipv6) (\\S+) (address)",
+			"captures": {
+				"1":{"name":"keyword"},
+				"2":{ "name":"string"},
+				"3":{ "name":"keyword"}
+			}
+
+		},
+		{
+			"match": "(ip|ipv6) (\\S+) (mtu|nat descriptor) (\\d+)",
+			"captures": {
+				"1":{"name":"keyword"},
+				"2":{ "name":"string"},
+				"3":{ "name":"keyword"},
+				"4":{ "name":"constant.numeric"}
+			}
+
+		},		{
 			"include": "#interface"
 		},
 		{
@@ -118,7 +135,7 @@
 					"name":"keyword"
 				},
 				{
-					"match": "\\b^(isdn|ipv6|ipsec|ipip|ip|httpd|http|heartbeat2|heartbeat|fr)\\b",
+					"match": "\\b^(isdn|ipsec|ipip|ip|httpd|http|heartbeat2|heartbeat|fr)\\b",
 					"name":"keyword"
 				},
 				{
