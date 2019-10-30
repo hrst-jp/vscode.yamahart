@@ -26,6 +26,9 @@
 			"include": "#nat"
 		},
 		{
+			"include": "#ipfilter"
+		},
+		{
 			"include":"#ip"
 		},
 		{
@@ -152,6 +155,46 @@
 				}
 			]
 		},
+		"interface":{
+			"patterns": [
+				{
+					"match": "\\b(lan\\d(\\.\\d|/\\d)?)\\b",
+					"name":"string"
+				},
+				{
+					"match": "\\b(bri[1-2](\\.\\d)?)\\b",
+					"name":"string"
+				},
+				{
+					"match": "\\b(vlan\\d|pri1|bridge1|null)\\b",
+					"name":"string"
+				},
+				{
+					"match": "\\b(loopback[1-9])\\b",
+					"name":"string"
+				}
+			]	
+		},
+
+		"ipfilter":{
+			"patterns": [
+				{
+					"match": "ip filter (\\d+) (\\S+)",
+					"name":"keyword",
+					"captures": {
+						"1":{ "name":"constant.numeric"},
+						"2":{ "name":"keyword.control"}
+					}	
+				},
+				{
+					"match": "ip filter dynamic (\\d+)",
+					"name":"keyword",
+					"captures": {
+						"1":{ "name":"constant.numeric"}
+					}	 
+				}
+			]
+		},
 		"ip":{
 			"patterns": [
 				{
@@ -187,21 +230,6 @@
 					}
 				},
 				{
-					"match": "ip filter (\\d+) (\\S+)",
-					"name":"keyword",
-					"captures": {
-						"1":{ "name":"constant.numeric"},
-						"2":{ "name":"keyword.control"}
-					}	
-				},
-				{
-					"match": "ip filter dynamic (\\d+)",
-					"name":"keyword",
-					"captures": {
-						"1":{ "name":"constant.numeric"}
-					}	 
-				},
-				{
 					"begin": "ip (pp|tunnel|\\S+) secure filter", "end": "\\n", "patterns": [
 						{
 							"match":"(in|out|dynamic)",
@@ -218,26 +246,6 @@
 					}
 				}
 			]
-		},
-		"interface":{
-			"patterns": [
-				{
-					"match": "\\b(lan\\d(\\.\\d|/\\d)?)\\b",
-					"name":"string"
-				},
-				{
-					"match": "\\b(bri[1-2](\\.\\d)?)\\b",
-					"name":"string"
-				},
-				{
-					"match": "\\b(vlan\\d|pri1|bridge1|null)\\b",
-					"name":"string"
-				},
-				{
-					"match": "\\b(loopback[1-9])\\b",
-					"name":"string"
-				}
-			]	
 		},
 		"pp":{
 			"patterns": [
@@ -344,10 +352,11 @@
 							"name":"constant.numeric"
 						},
 						{
-							"match": "\\b(router|dns|hostname|domain|wins_server)=([0-9a-zA-Z.]+)",
+							"match": "\\b(router|dns|hostname|domain|wins_server)(=)([0-9a-zA-Z.]+)",
 							"captures": {
-								"1":{"name":"keyword.control"},
-								"2":{"name":"string"}
+								"1":{ "name":"keyword.control"},
+								"2":{ "name":"keyword.operator"},
+								"3":{ "name":"string"}
 							}
 						}
 					],
@@ -392,7 +401,7 @@
 							}
 						},
 						{
-							"match": "//b(incoming|port range|rlogin|session limit|session limit total|unconvertible port)//b (\\d+) (\\S+)",
+							"match": "//b(incoming|port range|rlogin|session limit total|session limit|unconvertible port)//b (\\d+) (\\S+)",
 							"captures": {
 								"1":{ "name":"keyword"},
 								"2":{ "name":"constant.numeric"},
