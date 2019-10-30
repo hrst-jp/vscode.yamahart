@@ -23,67 +23,10 @@
 			"include": "#dhcp"
 		},
 		{
-			"begin": "ip route","end": "\\n","patterns": [
-				{
-					"include": "#address"
-				},
-				{
-					"match": "\\b(\\d+)\\b",
-					"name":"constant.numeric"
-				},
-				{
-					"match": "(default|pp|dhcp|tunnel)",
-					"name":"string"
-				},
-				{
-					"match": "gateway",
-					"name":"keyword"
-				},
-				{
-					"match": "(filter|metric|hide|weight|keepalive)",
-					"name":"keyword.control"
-				}
-			],
-			"name":"keyword"
+			"include": "#nat"
 		},
 		{
-			"match": "ip (\\S+) tcp mss limit (\\S+|\\d+)",
-			"name":"keyword",
-			"captures": {
-				"1":{ "name":"string"},
-				"2":{ "name":"keyword.control"}
-			}
-		},
-		{
-			"match": "ip filter (\\d+) (\\S+)",
-			"name":"keyword",
-			"captures": {
-				"1":{ "name":"constant.numeric"},
-				"2":{ "name":"keyword.control"}
-			}	
-		},
-		{
-			"match": "ip filter dynamic (\\d+)",
-			"name":"keyword",
-			"captures": {
-				"1":{ "name":"constant.numeric"}
-			}	 
-		},
-		{
-			"begin": "ip (pp|tunnel|\\S+) secure filter", "end": "\\n", "patterns": [
-				{
-					"match":"(in|out|dynamic)",
-					"name":"keyword.control"
-				},
-				{
-					"match": "\\b(\\d+)\\b",
-					"name":"constant.numeric"
-				}
-			],
-			"name":"keyword",
-			"captures": {
-				"1":{"name":"string"}
-			}
+			"include":"#ip"
 		},
 		{
 			"match": "\\b(on|off|in|out|hide|weight)\\b",
@@ -168,7 +111,7 @@
 					"name":"keyword"
 				},
 				{
-					"match": "\\b^(ntp|ngn|netvolante-dns|nat|mobile|mail|login|leased|lan-map|lan|l2tp|jate)\\b",
+					"match": "\\b^(ntp|ngn|netvolante-dns|mobile|mail|login|leased|lan-map|lan|l2tp|jate)\\b",
 					"name":"keyword"
 				},
 				{
@@ -207,7 +150,73 @@
 					"name":"string",
 					"comment": "MACアドレス"
 				}
-
+			]
+		},
+		"ip":{
+			"patterns": [
+				{
+					"begin": "ip route","end": "\\n","patterns": [
+						{
+							"include": "#address"
+						},
+						{
+							"match": "\\b(\\d+)\\b",
+							"name":"constant.numeric"
+						},
+						{
+							"match": "(default|pp|dhcp|tunnel)",
+							"name":"string"
+						},
+						{
+							"match": "gateway",
+							"name":"keyword"
+						},
+						{
+							"match": "(filter|metric|hide|weight|keepalive)",
+							"name":"keyword.control"
+						}
+					],
+					"name":"keyword"
+				},
+				{
+					"match": "ip (\\S+) tcp mss limit (\\S+|\\d+)",
+					"name":"keyword",
+					"captures": {
+						"1":{ "name":"string"},
+						"2":{ "name":"keyword.control"}
+					}
+				},
+				{
+					"match": "ip filter (\\d+) (\\S+)",
+					"name":"keyword",
+					"captures": {
+						"1":{ "name":"constant.numeric"},
+						"2":{ "name":"keyword.control"}
+					}	
+				},
+				{
+					"match": "ip filter dynamic (\\d+)",
+					"name":"keyword",
+					"captures": {
+						"1":{ "name":"constant.numeric"}
+					}	 
+				},
+				{
+					"begin": "ip (pp|tunnel|\\S+) secure filter", "end": "\\n", "patterns": [
+						{
+							"match":"(in|out|dynamic)",
+							"name":"keyword.control"
+						},
+						{
+							"match": "\\b(\\d+)\\b",
+							"name":"constant.numeric"
+						}
+					],
+					"name":"keyword",
+					"captures": {
+						"1":{"name":"string"}
+					}
+				}
 			]
 		},
 		"interface":{
@@ -247,13 +256,20 @@
 						"1":{"name":"string"},
 						"2":{"name":"string"}
 					}
+				},
+				{
+					"match": "pppoe use (\\S+)",
+					"name":"keyword",
+					"captures": {
+						"1":{"name":"string"}
+					}
 				}
 			]
 		},
 		"tunnel":{
 			"patterns": [
 				{
-					"match": "tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp)",
+					"match": "tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp|map-e)",
 					"name":"keyword",
 					"captures": {
 						"1":{"name":"keyword.control"}
@@ -360,6 +376,73 @@
 					"name":"keyword"
 				}
 			]
+		},
+		"nat":{
+			"patterns": [
+				{
+					"include": "#address"
+				},
+				{
+					"begin": "nat descriptor masquerade", "end": "\\n", "patterns": [
+						{
+							"match": "\\b(remove df-bit|ttl hold)\\b (\\S+)",
+							"captures": {
+								"1":{ "name":"keyword"},
+								"2":{ "name":"keyword.control"}
+							}
+						},
+						{
+							"match": "//b(incoming|port range|rlogin|session limit|session limit total|unconvertible port)//b (\\d+) (\\S+)",
+							"captures": {
+								"1":{ "name":"keyword"},
+								"2":{ "name":"constant.numeric"},
+								"3":{ "name":"keyword.control"}
+							}
+						},
+						{
+							"match": "static (\\d+) (\\d+) (\\S+)",
+							"name":"keyword",
+							"captures": {
+								"1":{ "name":"constant.numeric"},
+								"2":{ "name":"constant.numeric"},
+								"3":{ "name":"string"}
+							}
+						}
+					],
+					"name":"keyword"
+				},
+				{
+					"begin": "nat descriptor", "end": "\\n", "patterns": [
+						{
+							"match": "\\b(type|log|sip|timer|ftp port)\\b (\\d+) (\\S+)",
+							"captures": {
+								"1":{ "name":"keyword"},
+								"2":{ "name":"constant.numeric"},
+								"3":{ "name":"keyword.control"}
+							}
+						},
+						{
+							"match": "address (outer|inner) (\\d+) (\\S+)",
+							"name":"keyword",
+							"captures": {
+								"1":{ "name":"keyword"},
+								"2":{ "name":"constant.numeric"},
+								"3":{ "name":"string"}
+							}
+						},		
+						{
+							"match": "static (\\d+) (\\d+) (\\S+)",
+							"name":"keyword",
+							"captures": {
+								"1":{ "name":"constant.numeric"},
+								"2":{ "name":"constant.numeric"},
+								"3":{ "name":"string"}
+							}
+						}
+					],
+					"name":"keyword"
+				}
+			]	
 		}
 	},
 		"scopeName":"text.yamahart"

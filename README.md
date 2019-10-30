@@ -14,7 +14,7 @@ Show Configで表示された結果を保存し、Visual Studio Codeで開きま
 ### YAMAHA ルーター(http://jp.yamaha.com/products/network/routers/)  
  RTX5000/RTX3500  
  RTX3000/RTX1500/RTX1100  
- RTX1210/RTX1200/RTX810  
+ RTX1210/RTX1200/RTX810/RTX830  
  RT250i/RT107e  
  SRT100  
  そのほかコマンドリファレンスの対象製品
