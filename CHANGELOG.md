@@ -17,3 +17,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [1.0.11] - 2018-4-28
 - 久々にIPSEC関連を追加しました。
+
+## [1.2.0] - 2019-10-30
+- NAT設定の定義を追加
