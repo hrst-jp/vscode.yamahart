@@ -1,49 +1,49 @@
 {
-    "name": "yamaha-rt",
-    "displayName": "YAMAHA Router",
-    "description": "Highlight the configuration file of YAMAHA router product.",
-    "version": "1.0.11",
-    "publisher": "hrst",
-    "icon": "images/rtx1210_icon.png",
-    "engines": {
-        "vscode": "^1.16.0"
-    },
-    "categories": [
-        "Languages",
-        "Snippets"
+  "name": "yamaha-rt",
+  "displayName": "YAMAHA Router",
+  "description": "Highlight the configuration file of YAMAHA router product.",
+  "version": "1.1.0",
+  "publisher": "hrst",
+  "icon": "images/rtx1210_icon.png",
+  "engines": {
+    "vscode": "^1.16.0"
+  },
+  "categories": [
+    "Languages",
+    "Snippets"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "yamahart",
+        "aliases": [
+          "YAMAHA"
+        ],
+        "extensions": [
+          "",
+          ".TXT",
+          ".conf"
+        ],
+        "configuration": "./language-configuration.json",
+        "firstLine": "^#\\s*(RT.?|NVR)\\S* Rev\\."
+      }
     ],
-    "contributes": {
-        "languages": [
-            {
-                "id": "yamahart",
-                "aliases": [
-                    "YAMAHA"
-                ],
-                "extensions": [
-                    "",
-                    ".TXT",
-                    ".conf"
-                ],
-                "configuration": "./language-configuration.json",
-                "firstLine": "^#\\s*(RT.?|NVR)\\S* Rev\\."
-            }
-        ],
-        "grammars": [
-            {
-                "language": "yamahart",
-                "scopeName": "text.yamahart",
-                "path": "./syntaxes/yamahart.tmLanguage.json"
-            }
-        ],
-        "snippets": [
-            {
-                "language": "yamahart",
-                "path": "./snippets/snippets.json"
-            }
-        ]
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/hrst-jp/vscode.yamahart.git"
-    }
+    "grammars": [
+      {
+        "language": "yamahart",
+        "scopeName": "text.yamahart",
+        "path": "./syntaxes/yamahart.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "yamahart",
+        "path": "./snippets/snippets.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hrst-jp/vscode.yamahart.git"
+  }
 }
