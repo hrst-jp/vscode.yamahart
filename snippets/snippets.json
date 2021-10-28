@@ -4,10 +4,13 @@
         "body": "ip route $1 gateway $2",
         "description": "スタティックルートの設定"
     },
-    "syslog debug": {
-        "prefix": "syslog debug",
-        "body": "syslog debug $1",
-        "description": "DEBUGタイプのSyslogを出力するか否かの設定"
-    }
-
-}
+    "syslog": {
+        "prefix": "syslog",
+        "body": "syslog ${1|debug,info,notice,execute command|} ${2|on,off|}",
+        "description": "Syslog出力するレベルと可否の設定"
+    },
+    "syslog srcport": {
+        "prefix": "syslog srcport",
+        "body": "syslog srcport $1",
+        "description": "Syslog出力するソースポートを指定する(1..65535)"
+    }}
