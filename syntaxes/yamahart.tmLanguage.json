@@ -275,7 +275,7 @@
 					}
 				},
 				{
-					"match": "pp auth myname (\\S+) (\\S+)",
+					"match": "pp auth (myname|username) (\\S+) (\\S+)",
 					"name":"keyword",
 					"captures": {
 						"1":{"name":"string"},
