@@ -166,6 +166,7 @@ tunnel select 5
 # フィルターの設定
 #
 ip filter source-route on
+ip filter directed-broadcast filter 33 33 33 33 33 33 33 33
 ip filter directed-broadcast on
 ip filter 1010 reject * * udp,tcp 135 *
 ip filter 1011 reject * * udp,tcp * 135
@@ -221,3 +222,12 @@ dhcp scope 1 192.168.0.2-192.168.0.191/24
 dns server (ISP1より指定されたDNSサーバーのIPアドレス)
 dns private address spoof on
 
+syslog info off
+syslog srcport 2
+syslog host 192.168.1.1
+
+account threshold pp yen
+account threshold  lan1 yen 333
+administrator password
+administrator password encrypted 
+administrator radius auth on

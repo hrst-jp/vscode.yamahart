@@ -5,9 +5,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.3.0] - 2021-10-30
+- 色々大きく変更
+
 ## [1.2.2] - 2021-10-28
 - syslog設定の定義を追加
-
 
 ## [1.2.0] - 2019-10-30
 - NAT設定の定義を追加
