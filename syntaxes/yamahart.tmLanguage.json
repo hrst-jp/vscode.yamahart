@@ -3,39 +3,14 @@
 	"name": "YAMAHA RT",
 	"patterns": [
 		{
-			"include": "#comments"
+			"include": "#comment"
 		},
 		{
-			"match": "^account threshold(\\spp)?",
-			"name": "entity.name.function"
+			"include": "#commands",
+			"comment": "未定義のコマンド"
 		},
 		{
-			"match": "^(administrator|login) radius auth",
-			"name": "entity.name.function"
-		},
-		{
-			"match": "^(administrator|login)(\\spassword)?(\\sencrypted)?",
-			"name": "entity.name.function"
-		},
-		{
-			"match": "^alarm (batch|entire|http revision-up|http upload|lua|mobile|sd|startup|usbhost)",
-			"name": "entity.name.function"
-		},
-		{
-			"match": "^alias",
-			"name": "entity.name.function"
-		},
-		{
-			"include": "#tunnel"
-		},
-		{
-			"include": "#ppp"
-		},
-		{
-			"include": "#pp"
-		},
-		{
-			"include": "#ipsec"
+			"include": "#a"
 		},
 		{
 			"include": "#dhcp"
@@ -44,7 +19,7 @@
 			"include": "#dns"
 		},
 		{
-			"include": "#nat"
+			"include": "#ipsec"
 		},
 		{
 			"include": "#ipfilter"
@@ -53,136 +28,51 @@
 			"include": "#ip"
 		},
 		{
+			"include": "#l2tp"
+		},
+		{
+			"include": "#nat"
+		},
+		{
+			"include": "#pp"
+		},
+		{
+			"include": "#ppp"
+		},
+		{
+			"include": "#pppoe"
+		},
+		{
 			"include": "#syslog"
 		},
 		{
 			"include": "#snmp"
 		},
 		{
-			"match": "\\b(myname|name|text) (\\S+)(\\s\\S+)?",
-			"captures": {
-				"2": {
-					"name": "string"
-				},
-				"3": {
-					"name": "string"
-				}
-			}
+			"include": "#tunnel"
 		},
 		{
-			"match": "(pp|ipsec ike|l2tp|wan) always-on (on|off)",
-			"name": "keyword",
-			"captures": {
-				"2": {
-					"name": "keyword.control"
-				}
-			}
+			"include": "#ntp"
 		},
 		{
-			"match": "gateway",
-			"name": "keyword"
-		},
-		{
-			"match": "ntpdate \\b(\\S+)\\b",
-			"name": "keyword",
-			"captures": {
-				"1": {
-					"name": "string"
-				}
-			}
-		},
-		{
-			"include": "#commands"
-		},
-		{
-			"include": "#address"
-		},
-		{
-			"include": "#keyword"
-		},
-		{
-			"include": "#interface"
+			"include": "#keyword",
+			"comment": "コマンド内で利用される予約語"
 		}
 	],
 	"repository": {
-		"comments": {
+		"comment": {
 			"patterns": [
 				{
-					"match": "#.*",
+					"match": "^#.*",
 					"name": "comment.line"
 				},
 				{
 					"match": "(tunnel|pp) name .*",
-					"name": "comment"
+					"name": "comment.line"
 				}
 			]
 		},
 		"keyword": {
-			"patterns": [
-				{
-					"match": "\\b(backup|select|enable|disable)\\b",
-					"name": "keyword.control"
-				},
-				{
-					"match": "\\b(auto|on|off|in|out|only|none|hide|weight|dynamic|static)\\b",
-					"name": "keyword.control"
-				},
-				{
-					"match": "\\b(icmp|tcp|udp|gre|esp|ah|icmp6)\\b",
-					"name": "variable.language"
-				},
-				{
-					"match": "\\b(ftp|ftpdata|telnet|smtp|domain|gopher|finger|www|pop3|sunrpc|ident|ntp|nntp|snmp|syslog|printer|talk|route|uucp|submission)\\b",
-					"name": "variable.language"
-				},
-				{
-					"match": "\\b(icmp-error|icmp-info|tcpsyn|tcpfin|tcprst|established)\\b",
-					"name": "variable.language"
-				},
-				{
-					"match": "\\b(([0-1][0-9]|2[0-3]):[0-5][0-9])\\b",
-					"name": "constant.numeric",
-					"comment": "時間"
-				},
-				{
-					"match": "\\b\\d+\\b",
-					"name": "constant.numeric"
-				}
-			]
-		},
-		"commands": {
-			"patterns": [
-				{
-					"match": "^\\b(yno|wol|wins|wan|vlan|user|usbhost|url|upnp|tunnel|tftp|terminate|telnetd|tcp)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^\\b(system|switch|sshd|sntpd|snmpv3|snmpv2c|snmp|sip|schedule|sftpd|security|rtfs|rotate|rip)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^\\b(remote|radius|queue|qac-tm|provider|pri|pptp|pppoe|ppp|pp|pki|ospf|operation)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^\\b(ntp|ngn|netvolante-dns|mobile|mail|login|leased|lan-map|lan|l2tp|jate)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^\\b(isdn|ipsec|ipip|ip|httpd|http|heartbeat2|heartbeat|fr)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^\\b(external-memory|execute|ethernet|dns|diagnose|dhcp|dashboardaccumulate)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^\\b(console|cloud|bridge|bgp|auth|ap|alarm|account|administrator)\\b",
-					"name": "entity.name.function"
-				}
-			]
-		},
-		"address": {
 			"patterns": [
 				{
 					"match": "\\b(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(/(([1-2]?[0-9])|3[0-2]))?\\b",
@@ -203,14 +93,11 @@
 					"match": "\\b(([0-9a-fA-F]{2}(:|-)){5}[0-9a-fA-F]{2})\\b",
 					"name": "string",
 					"comment": "MACアドレス"
-				}
-			]
-		},
-		"interface": {
-			"patterns": [
+				},
 				{
 					"match": "\\b(lan\\d(\\.\\d|/\\d)?)\\b",
-					"name": "variable.language"
+					"name": "variable.language",
+					"comment": "LANインターフェース"
 				},
 				{
 					"match": "\\b(bri[1-2](\\.\\d)?)\\b",
@@ -225,13 +112,206 @@
 					"name": "variable.language"
 				},
 				{
-					"match": "(pp|tunnel) (enable|disable|select)",
-					"name": "storage.type",
+					"match": "\\b(backup|select|enable|disable)\\b",
+					"name": "keyword.control"
+				},
+				{
+					"comment": "スイッチ",
+					"match": "\\b(auto|dhcp|on|off|in|out|only|none|hide|weight|dynamic|static|any)\\b",
+					"name": "keyword.control"
+				},
+				{
+					"match": "\\b(icmp|tcp|udp|gre|esp|ah|icmp6)\\b",
+					"name": "variable.language"
+				},
+				{
+					"comment": "サービス",
+					"match": "\\b(dftp|ftpdata|telnet|smtp|domain|gopher|finger|www|pop3|sunrpc|ident|ntp|nntp|snmp|syslog|printer|talk|route|uucp|submission)\\b",
+					"name": "variable.language"
+				},
+				{
+					"match": "\\b(icmp-error|icmp-info|tcpsyn|tcpfin|tcprst|established)\\b",
+					"name": "variable.language"
+				},
+				{
+					"match": "\\b(([0-1][0-9]|2[0-3]):[0-5][0-9])\\b",
+					"name": "constant.numeric",
+					"comment": "時間"
+				},
+				{
+					"match": "\\b(\\d+)\\b",
+					"name": "constant.numeric",
+					"comment": "数字"
+				}
+			]
+		},
+		"commands": {
+			"patterns": [
+				{
+					"match": "^\\b(yno|wol|wins|wan|vlan|user|usbhost|url|upnp|tftp|terminate|telnetd|tcp)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\b(system|switch|sshd|sntpd|sip|schedule|sftpd|security|rtfs|rotate|rip)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\b(remote|radius|queue|qac-tm|provider|pri|pptp|pppoe|pki|ospf|operation)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\b(ngn|netvolante-dns|mobile|mail|leased|lan-map|lan|jate)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\b(isdn|ipip|httpd|http|heartbeat2|heartbeat|fr)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\b(external-memory|execute|ethernet|diagnose|dashboardaccumulate)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\b(console|cloud|bridge|bgp)\\b",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"a": {
+			"patterns": [
+				{
+					"match": "^account threshold( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^(administrator|login) radius auth",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^(administrator|login)( password)?( encrypted)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^alarm (batch|entire|http revision-up|http upload|lua|mobile|sd|startup|usbhost)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^alias",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^ap config (directory|filename)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^ap control (config delete|config get|config set|config-auto-set use|firmware update go|http proxy timeout|http proxy use)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^ap select",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^auth user( (attribute|user group|group attribute))?",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"dhcp": {
+			"patterns": [
+				{
+					"match": "^dhcp service (server|relay)",
+					"name": "entity.name.function",
 					"captures": {
-						"2": {
+						"1": {
 							"name": "keyword.control"
 						}
 					}
+				},
+				{
+					"match": "^dhcp scope (bind)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"begin": "^dhcp scope (option)",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#keyword"
+						},
+						{
+							"match": "(router|dns|hostname|domain|wins_server)(=)([0-9a-zA-Z.]+)",
+							"captures": {
+								"1": {
+									"name": "variable.language"
+								},
+								"2": {
+									"name": "keyword.operator"
+								},
+								"3": {
+									"name": "string"
+								}
+							}
+						}
+					]
+				},
+				{
+					"begin": "^dhcp scope",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"patterns": [
+						{
+							"include": "#keyword"
+						},
+						{
+							"match": "\\b(except|gateway|expire|maxexpire|infinity)\\b",
+							"name": "keyword.other"
+						},
+						{
+							"match": "\\b(-)\\b",
+							"name": "keyword.operator"
+						}
+					]
+				},
+				{
+					"match": "^dhcp (client|convert|duplicate|manual|relay|scope|server|service)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"dns": {
+			"patterns": [
+				{
+					"match": "dns server (aaa filter|fallback)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "dns service (dhcp|pp|select)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "dns domain (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"match": "^dns (cache max entry|cache use|domain|host|notice order|private address spoof|srcport|static)",
+					"name": "entity.name.function"
 				}
 			]
 		},
@@ -298,11 +378,7 @@
 					"end": "\\n",
 					"patterns": [
 						{
-							"include": "#address"
-						},
-						{
-							"match": "\\b(\\d+)\\b",
-							"name": "constant.numeric"
+							"include": "#keyword"
 						},
 						{
 							"match": "(default|pp|dhcp|tunnel)",
@@ -345,105 +421,9 @@
 							"name": "variable.language"
 						}
 					}
-				}
-			]
-		},
-		"ppp": {
-			"patterns": [
-				{
-					"match": "ppp (lcp mru|ccp type|ipcp msext|ipcp ipaddress)",
-					"name": "entity.name.function"
-				}
-			]
-		},
-		"pp": {
-			"patterns": [
-				{
-					"match": "pp auth accept (pap|chap|mschap|mschap-v2)( (pap|chap|mschap|mschap-v2))?",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "keyword.control"
-						},
-						"2": {
-							"name": "keyword.control"
-						}
-					}
 				},
 				{
-					"match": "pp auth (myname|username) (\\S+) (\\S+)",
-					"name": "entity.name.function",
-					"captures": {
-						"2": {
-							"name": "string"
-						}
-					}
-				},
-				{
-					"match": "pppoe use",
-					"name": "entity.name.function"
-				}
-			]
-		},
-		"tunnel": {
-			"patterns": [
-				{
-					"match": "tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp|map-e)",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "keyword.control"
-						}
-					}
-				},
-				{
-					"match": "tunnel backup",
-					"name": "entity.name.function"
-				}
-			]
-		},
-		"snmp": {
-			"patterns": [
-				{
-					"match": "^snmp community (read-only|read-write) (\\S+)",
-					"name": "entity.name.function",
-					"captures": {
-						"2": {
-							"name": "string"
-						}
-					}
-				},
-				{
-					"match": "^snmp sys(contact|name|location) (\\S+)",
-					"name": "entity.name.function",
-					"captures": {
-						"2": {
-							"name": "string"
-						}
-					}
-				},
-				{
-					"match": "^snmp (display|host|ifindex|local|trap)",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^snmp (yrifppdisplayatmib2|yrifswitchdisplayatmib2|yriftunneldisplayatmib2)",
-					"name": "entity.name.function"
-				}
-			]
-		},
-		"syslog": {
-			"patterns": [
-				{
-					"match": "^syslog (debug|info|notice|execute command)",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^syslog (srcport|host|local address)",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "\\S* (syslog)",
+					"match": "^(ip|ipv6)",
 					"name": "entity.name.function"
 				}
 			]
@@ -451,19 +431,84 @@
 		"ipsec": {
 			"patterns": [
 				{
-					"match": "ipsec ike pre-shared-key (\\d+) (text){0,1} (\\S+)",
+					"begin": "ipsec ike",
+					"end": "\\n",
 					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "constant.numeric"
+					"patterns": [
+						{
+							"include": "#keyword"
 						},
-						"2": {
-							"name": "constant.language"
+						{
+							"match": "(always-on|auth method|backward-compatibility|child-exchange type|duration|eap myname)",
+							"name": "entity.name.function"
 						},
-						"3": {
-							"name": "string"
+						{
+							"match": "(eap request|eap send certreq|encryption|esp-encapsulation)",
+							"name": "entity.name.function"
+						},
+						{
+							"match": "(group|hash|keepalive log|license-key|license-key use)",
+							"name": "entity.name.function"
+						},
+						{
+							"match": "keepalive use (\\d+) (on|off|auto)( (heartbeat|dpd|rfc4306)+ (\\d+) (\\d+))?",
+							"name": "entity.name.function",
+							"captures": {
+								"1": {
+									"name": "constant.numeric"
+								},
+								"2": {
+									"name": "keyword.control"
+								},
+								"4": {
+									"name": "string"
+								},
+								"5": {
+									"name": "string"
+								}
+							}
+						},
+						{
+							"match": "(local|remote) (address|id|name) (\\d+)",
+							"name": "entity.name.function",
+							"captures": {
+								"3": {
+									"name": "constant.numeric"
+								}
+							}
+						},
+						{
+							"match": "(log|message-id-control|mode-cfg address|mode-cfg address pool|mode-cfg method|nat-traversal)",
+							"name": "entity.name.function"
+						},
+						{
+							"match": "(negotiate-strictly|negotiation receive|payload type|pfs|pki file)",
+							"name": "entity.name.function"
+						},
+						{
+							"match": "pre-shared-key (\\d+) (text){0,1} (\\S+)",
+							"name": "entity.name.function",
+							"captures": {
+								"1": {
+									"name": "constant.numeric"
+								},
+								"2": {
+									"name": "constant.language"
+								},
+								"3": {
+									"name": "string"
+								}
+							}
+						},
+						{
+							"match": "(proposal-limitation|queue length|restrict-dangling-sa|retry|send info|version|xauth myname|xauth request)",
+							"name": "entity.name.function"
 						}
-					}
+					]
+				},
+				{
+					"match": "ipsec (auto refresh|ipsec ipcomp type|log illegal-spi|refresh sa|sa delete|transport template|transport|use)",
+					"name": "entity.name.function"
 				},
 				{
 					"match": "ipsec sa policy (\\d+) (\\d+) esp (3des-cbc|des-cbc|aes-cbc|aes256-cbc)+ (md5-hmac|sha-hmac|sha256-hmac)+",
@@ -484,105 +529,16 @@
 					}
 				},
 				{
-					"match": "ipsec ike keepalive use (\\d+) (on|off|auto) (heartbeat|dpd|rfc4306)+ (\\d+) (\\d+)",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "constant.numeric"
-						},
-						"2": {
-							"name": "keyword.control"
-						},
-						"4": {
-							"name": "string"
-						},
-						"5": {
-							"name": "string"
-						}
-					}
-				},
-				{
-					"match": "ipsec ike always-on",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "ipsec ike (local|remote) (address|id|name) (\\d+)",
-					"name": "entity.name.function",
-					"captures": {
-						"3": {
-							"name": "constant.numeric"
-						}
-					}
-				},
-				{
-					"match": "ipsec tunnel (\\d+)",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "constant.numeric"
-						}
-					}
-				}
-			]
-		},
-		"dhcp": {
-			"patterns": [
-				{
-					"match": "dhcp service (server|relay)",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "keyword.control"
-						}
-					}
-				},
-				{
-					"begin": "dhcp scope option",
-					"end": "\\n",
-					"patterns": [
-						{
-							"include": "#address"
-						},
-						{
-							"match": "\\b(\\d+)\\b",
-							"name": "constant.numeric"
-						},
-						{
-							"match": "\\b(router|dns|hostname|domain|wins_server)(=)([0-9a-zA-Z.]+)",
-							"captures": {
-								"1": {
-									"name": "keyword"
-								},
-								"2": {
-									"name": "keyword.operator"
-								},
-								"3": {
-									"name": "string"
-								}
-							}
-						}
-					],
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^dhcp scope \\b(except|gateway|expire|maxexpire)\\b",
-					"name": "keyword.control"
-				},
-				{
-					"match": "infinity",
-					"name": "constant.character"
-				},
-				{
-					"match": "^dhcp (client|convert|duplicate|manual|relay|scope|server|service)",
+					"match": "ipsec tunnel( (fastpath-fragment-function follow df-bit|outer df-bit))?",
 					"name": "entity.name.function"
 				}
 			]
 		},
-		"dns": {
+		"l2tp": {
 			"patterns": [
 				{
-					"match": "dns (cache max entry|cache use|domain|host|notice order|private address spoof|server|service|srcport|static)",
-					"name": "support.function"
+					"match": "l2tp (always-on|hostname|keepalive log|keepalive use|local router-id|remote end-id|remote router-id|service|tunnel auth|tunnel disconnect time)",
+					"name": "entity.name.function"
 				}
 			]
 		},
@@ -632,6 +588,171 @@
 				},
 				{
 					"match": "^nat descriptor (masquerade|backward-compatibility)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"ntp": {
+			"patterns": [
+				{
+					"match": "ntpdate \\b(\\S+)\\b(\\ssyslog)?",
+					"name": "keyword",
+					"captures": {
+						"1": {
+							"name": "string"
+						},
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "^ntp (backward-compatibility|local address)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"pp": {
+			"patterns": [
+				{
+					"match": "pp auth accept (pap|chap|mschap|mschap-v2)( (pap|chap|mschap|mschap-v2))?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						},
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "pp auth (myname|username) (\\S+) (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"match": "pp (enable|disable|select)",
+					"name": "storage.type",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "\\b(pp)\\b",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"ppp": {
+			"patterns": [
+				{
+					"match": "ppp (lcp mru|ccp type|ipcp msext|ipcp ipaddress)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "\\b(ppp)\\b",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"pppoe": {
+			"patterns": [
+				{
+					"match": "pppoe (access concentrator|auto connect|auto disconnect|disconnect time|invalid-session forced close)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "pppoe (padi maxretry|padi restart|padr maxretry|padr restart|pass-through member|service-name|tcp mss limit|use)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"snmp": {
+			"patterns": [
+				{
+					"match": "^snmp(v2c)? community (read-only|read-write) (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"2":{
+							"name":"keyword.control"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"match": "^snmp sys(contact|name|location) (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"match": "^snmp (display|host|ifindex|local|trap)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^snmp (yrifppdisplayatmib2|yrifswitchdisplayatmib2|yriftunneldisplayatmib2)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\b(snmpv3|snmpv2c)\\b",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"syslog": {
+			"patterns": [
+				{
+					"match": "^syslog (debug|info|notice|execute command)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^syslog (srcport|host|local address)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "\\S* (syslog)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"tunnel": {
+			"patterns": [
+				{
+					"match": "tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp|map-e)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "tunnel backup",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "tunnel (enable|disable|select)",
+					"name": "storage.type",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "tunnel",
 					"name": "entity.name.function"
 				}
 			]

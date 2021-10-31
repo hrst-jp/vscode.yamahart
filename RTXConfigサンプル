@@ -54,6 +54,8 @@ l2tp service on
 # L2TPv3/IPsecの設定(拠点1)
 #
 tunnel select 1
+ tunnel name test
+ 
  tunnel encapsulation l2tpv3
  tunnel endpoint address 192.168.0.200 (拠点1のグローバルアドレス)
  ipsec tunnel 101
