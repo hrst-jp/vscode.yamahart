@@ -1,10 +1,6 @@
 # Change Log
 All notable changes to the "yamaha-rt" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
 ## [1.3.0] - 2021-10-30
 - 色々大きく変更
 

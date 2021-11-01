@@ -3,7 +3,7 @@
 # L2TP/IPsecを使用して多拠点とVPN接続する
 #
 isdn spoof
-ntp gfgs
+ntp 
 
 #
 # センタールーター
