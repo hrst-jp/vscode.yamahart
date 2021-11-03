@@ -223,6 +223,9 @@ dhcp scope 1 192.168.0.2-192.168.0.191/24
 #
 dns server (ISP1より指定されたDNSサーバーのIPアドレス)
 dns private address spoof on
+ip host pc1.rtpro.yamaha.co.jp 133.176.200.1
+dns static ptr 133.176.200.2 pc2.yamaha.co.jp ttl=255
+dns static cname mail.yamaha.co.jp mail2.yamaha.co.jp
 
 syslog info off
 syslog srcport 2
@@ -233,3 +236,9 @@ account threshold  lan1 yen 333
 administrator password
 administrator password encrypted 
 administrator radius auth on
+
+embedded file sample.txt <<EOF
+show ip route
+show ip connection
+EOF
+

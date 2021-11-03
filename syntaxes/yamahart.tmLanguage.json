@@ -126,17 +126,61 @@
 					"name": "keyword.control"
 				},
 				{
+					"match": "\\b(talk|route|uucp|submission)\\b",
+					"name": "variable.language",
+					"comment": "port_list"
+				},
+				{
+					"match": "\\b(echo|discard|daytime|chargen|ftp(data)?|ssh|telnet|smtp|time|whois|dns|domain)\\b",
+					"name": "variable.language",
+					"comment": "port_list"
+				},
+				{
+					"match": "\\b(tftp|gopher|finger|http(s)?|www|pop3|sunrpc|ident|netmeeting|nntp|ntp|ms-(rpc|ds|sql))\\b",
+					"name": "variable.language",
+					"comment": "port_list"
+				},
+				{
+					"match": "\\b(netbios_(ns|dgm|ssn)|imap|snmp(trap)?|bgp|imap3|ldap)\\b",
+					"name": "variable.language",
+					"comment": "port_list"
+				},
+				{
+					"match": "\\b(ike|rlogin|rwho|rsh|syslog|printer|rip|ripng)\\b",
+					"name": "variable.language",
+					"comment": "port_list"
+				},
+				{
+					"match": "\\b(radius|l2tp|pptp|nfs|msblast|ipsec-nat-t|sip|ping(6)?|tcp|udp)\\b",
+					"name": "variable.language",
+					"comment": "port_list"
+				},
+				{
+					"match": "(pass|reject|restrict)(-log|-nolog)?",
+					"name": "keyword.control",
+					"comment": "pass_reject"
+				},
+				{
 					"match": "\\b(icmp|tcp|udp|gre|esp|ah|icmp6)\\b",
-					"name": "variable.language"
+					"name": "variable.language",
+					"comment": "protocol"
 				},
 				{
-					"comment": "サービス",
-					"match": "\\b(dftp|ftpdata|telnet|smtp|domain|gopher|finger|www|pop3|sunrpc|ident|ntp|nntp|snmp|syslog|printer|talk|route|uucp|submission)\\b",
-					"name": "variable.language"
+					"match": "\\b(icmp(-error|-info)|tcp(syn|fin|rst)|established)\\b",
+					"name": "variable.language",
+					"comment": "protocol"
 				},
 				{
-					"match": "\\b(icmp-error|icmp-info|tcpsyn|tcpfin|tcprst|established)\\b",
-					"name": "variable.language"
+					"match": "tcpflag(!=|=)(\\S+)",
+					"name": "variable.language",
+					"captures": {
+						"1": {
+							"name": "keyword.operator"
+						},
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"match": "\\b(([0-1][0-9]|2[0-3]):[0-5][0-9])\\b",
@@ -165,7 +209,7 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^alarm (batch|entire|http revision-up|http upload|lua|mobile|sd|startup|usbhost)",
+					"match": "^alarm (batch|entire|http (revision-up|upload)|lua|mobile|sd|startup|usbhost)",
 					"name": "entity.name.function"
 				},
 				{
@@ -177,7 +221,7 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^ap control (config delete|config get|config set|config-auto-set use|firmware update go|http proxy timeout|http proxy use)",
+					"match": "^ap control (config (delete|get|set)|config-auto-set use|firmware update go|http proxy (timeout|use))",
 					"name": "entity.name.function"
 				},
 				{
@@ -201,7 +245,11 @@
 		"c": {
 			"patterns": [
 				{
-					"match": "^\\b(console|cloud vpn|cooperation)\\b",
+					"match": "^\\b(cloud vpn|cooperation)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^console (character|columns|info|lines|prompt)",
 					"name": "entity.name.function"
 				}
 			]
@@ -220,6 +268,26 @@
 							"name": "keyword.control"
 						}
 					}
+				},
+				{
+					"match": "dhcp client ((client-identifier|hostname|option)( pool| pp)|release linkdown)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^dhcp convert lease to bind",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^dhcp duplicate check",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^dhcp manual (lease|release)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^dhcp relay (select|server|srcport|threshold)",
+					"name": "entity.name.function"
 				},
 				{
 					"match": "^dhcp scope (bind)",
@@ -278,19 +346,24 @@
 					]
 				},
 				{
-					"match": "^dhcp (client|convert|duplicate|manual|relay|scope|server|service)",
+					"match": "^dhcp server rfc2131 compliant",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dns server (aaa filter|fallback)?",
+					"match": "^dhcp service (server|relay)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "^dns (cache max entry|cache use|host|notice order|private address spoof|srcport)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dns service (dhcp|pp|select)?",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "dns domain (\\S+)",
+					"match": "^dns domain (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -299,13 +372,69 @@
 					}
 				},
 				{
-					"match": "^dns (cache max entry|cache use|domain|host|notice order|private address spoof|srcport|static)",
+					"match": "^dns server (aaa filter|fallback)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^dns service (dhcp|pp|select)?",
+					"name": "entity.name.function"
+				},
+				{
+					"begin": "^(dns static|ip host)",
+					"end": "\\n",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.function"
+						}
+					},
+					"patterns": [
+						{
+							"match": "\\b(a(aaa)?|ptr|mx|ns|cname)\\b",
+							"name": "variable.language"
+						},
+						{
+							"match": "ttl(=)(\\d{1,10})",
+							"name": "variable.language",
+							"captures": {
+								"1": {
+									"name": "keyword.operator"
+								},
+								"2": {
+									"name": "constant.numeric"
+								}
+							}
+						},
+						{
+							"include": "#keyword"
+						}
+					]
+				},
+				{
+					"match": "^\\b(dpi (log|signature download (go|url)|use))\\b",
 					"name": "entity.name.function"
 				}
 			]
 		},
 		"e": {
 			"patterns": [
+				{
+					"match": "^embedded file (-b )?(\\S*) (<<)(\\S*)",
+					"name": "storage",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						},
+						"2": {
+							"name": "string"
+						},
+						"3": {
+							"name": "entity.name.function"
+						},
+						"4": {
+							"name": "string"
+						}
+					}
+				},
 				{
 					"match": "^\\b(external-memory|execute|ethernet)\\b",
 					"name": "entity.name.function"
@@ -344,20 +473,6 @@
 							"name": "keyword.control"
 						},
 						{
-							"match": "(pass|reject|restrict)(-log|-nolog)?",
-							"name": "keyword.control"
-						},
-
-						{
-							"match": "\\b(tcpflag)(!=|=)(\\S+)\\b",
-							"name": "keyword.other",
-							"captures": {
-								"2": {
-									"name": "constant.numeric"
-								}
-							}
-						},
-						{
 							"include": "#keyword"
 						}
 					]
@@ -388,7 +503,7 @@
 					"match": "(ip|ipv6) (\\S+) tcp mss limit",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword"
 						}
 					}
@@ -434,9 +549,6 @@
 					"end": "\\n",
 					"name": "entity.name.function",
 					"patterns": [
-						{
-							"include": "#keyword"
-						},
 						{
 							"match": "(always-on|auth method|backward-compatibility|child-exchange type|duration|eap myname)",
 							"name": "entity.name.function"
@@ -502,6 +614,9 @@
 						{
 							"match": "(proposal-limitation|queue length|restrict-dangling-sa|retry|send info|version|xauth myname|xauth request)",
 							"name": "entity.name.function"
+						},
+						{
+							"include": "#keyword"
 						}
 					]
 				},
@@ -534,7 +649,8 @@
 				{
 					"match": "^(ip|ipv6)",
 					"name": "entity.name.function"
-				}			]
+				}
+			]
 		},
 		"j": {
 			"patterns": [
@@ -563,7 +679,7 @@
 		"m": {
 			"patterns": [
 				{
-					"match": "^\\b(mail-notify|mail|mobile)\\b",
+					"match": "^\\b(mail(-notify)?|mobile)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -573,7 +689,7 @@
 				{
 					"begin": "^(nat descriptor)",
 					"end": "\\n",
-					"captures": {
+					"beginCaptures": {
 						"1": {
 							"name": "entity.name.function"
 						}
@@ -679,7 +795,7 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "\\b(ppp) (bacp|bap|ccp|chap|ipcp|ipv6cp|lcp|mp|mscbcp|pap)\\b",
+					"match": "ppp (bacp|bap|ccp|chap|ipcp|ipv6cp|lcp|mp|mscbcp|pap)",
 					"name": "entity.name.function"
 				},
 				{
@@ -703,7 +819,11 @@
 		"r": {
 			"patterns": [
 				{
-					"match": "^\\b(remote|radius)\\b",
+					"match": "^\\b(radius)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^remote setup( accept)?",
 					"name": "entity.name.function"
 				},
 				{
@@ -790,7 +910,7 @@
 					}
 				},
 				{
-					"match": "tunnel (backup|endpoint|map-e|multipoint|ngn|template|translation|tunnel type)",
+					"match": "tunnel (backup|endpoint (name|local|remote|address)( address)?|map-e type|multipoint (limit|local name|server)|ngn|template|translation|tunnel type)",
 					"name": "entity.name.function"
 				}
 			]
