@@ -249,8 +249,17 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^console (character|columns|info|lines|prompt)",
+					"match": "^console (character|columns|info|lines)",
 					"name": "entity.name.function"
+				},
+				{
+					"match": "^console prompt (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "string"
+						}
+					}
 				}
 			]
 		},
@@ -456,13 +465,9 @@
 					"name": "entity.name.function"
 				},
 				{
-					"begin": "^((ip|ipv6) filter)",
+					"begin": "^ip(v6)? filter",
 					"end": "\\n",
-					"captures": {
-						"1": {
-							"name": "entity.name.function"
-						}
-					},
+					"name": "entity.name.function",
 					"patterns": [
 						{
 							"match": "(directed-broadcast|dynamic|fqdn timer|set|source-route)",
@@ -478,7 +483,40 @@
 					]
 				},
 				{
-					"begin": "^(ip|ipv6) route",
+					"match": "ip(v6)? (flow(limit|time)|forward filter|fragment remove df-bit)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "ip(v6)? icmp (echo-reply send(-only-linkup)?|error-decrypted-ipsec send|log|mask-reply send|parameter-problem send)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "ip(v6)? icmp (redirect (receive|send)|time-exceeded send|timestamp-reply send|unreachable( send|-for-truncated send))",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "ip implicit-route preference",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "ip(v6)? inbound filter ",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "ip(v6)? (\\S+) (address|arp|dhcp|dpi|igmp|ospf|pim|proxyarp|rip|secondary address|traffic|vrrp|wol)",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "variable.language"
+						}
+					}
+				},
+				{
+					"match": "ip(v6)? (pim|policy)",
+					"name": "entity.name.function"
+				},
+				{
+					"begin": "^ip(v6)? route",
 					"end": "\\n",
 					"patterns": [
 						{
@@ -500,7 +538,26 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "(ip|ipv6) (\\S+) tcp mss limit",
+					"begin": "ip(v6)? (\\S+) secure filter",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "variable.language"
+						}
+					},
+					"patterns": [
+						{
+							"match": "dynamic",
+							"name": "keyword.control"
+						},
+						{
+							"include": "#keyword"
+						}
+					]
+				},
+				{
+					"match": "ip(v6)? (\\S+) tcp (mss limit|window-scale)",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -509,7 +566,7 @@
 					}
 				},
 				{
-					"match": "(ip|ipv6) (\\S+) secure filter",
+					"match": "ip(v6)? (\\S+) intrusion detection",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -518,25 +575,7 @@
 					}
 				},
 				{
-					"match": "(ip|ipv6) (\\S+) intrusion detection",
-					"name": "entity.name.function",
-					"captures": {
-						"2": {
-							"name": "variable.language"
-						}
-					}
-				},
-				{
-					"match": "(ip|ipv6) (\\S+) address",
-					"name": "entity.name.function",
-					"captures": {
-						"2": {
-							"name": "variable.language"
-						}
-					}
-				},
-				{
-					"match": "(ip|ipv6) (\\S+) (mtu|nat descriptor)",
+					"match": "ip(v6)? (\\S+) (mtu|nat descriptor)",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -647,8 +686,21 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^(ip|ipv6)",
+					"match": "ipip keepalive (log|use)",
 					"name": "entity.name.function"
+				},
+				{
+					"match": "ipv6 (\\S+) (prefix|rtadv send)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						}
+					}
+				},
+				{
+					"match": "ipv6 prefix",
+					"name": "support.function"
 				}
 			]
 		},
@@ -718,7 +770,11 @@
 					]
 				},
 				{
-					"match": "^\\b(nat46|netvolante-dns|ngn)\\b",
+					"match": "^\\b(nat46|netvolante-dns)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^ngn (radius (account (callee|caller))|auth password|renumbering link-refresh|type)",
 					"name": "entity.name.function"
 				},
 				{
