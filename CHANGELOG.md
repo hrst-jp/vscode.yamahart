@@ -3,6 +3,7 @@ All notable changes to the "yamaha-rt" extension will be documented in this file
 
 ## [1.3.0] - 2021-10-30
 - 色々大きく変更
+- 定義のレイアウトを見直しました。
 
 ## [1.2.2] - 2021-10-28
 - syslog設定の定義を追加
