@@ -318,10 +318,7 @@
 					},
 					"patterns": [
 						{
-							"include": "#keyword"
-						},
-						{
-							"match": "(router|dns|hostname|domain|wins_server)(=)([0-9a-zA-Z.]+)",
+							"match": "(router|dns|hostname|domain|wins_server)(=)(\\S+)",
 							"captures": {
 								"1": {
 									"name": "variable.language"
@@ -355,7 +352,16 @@
 					]
 				},
 				{
-					"match": "^dhcp server rfc2131 compliant",
+					"match": "^dhcp server rfc2131 compliant (on|off)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "^dhcp server rfc2131 compliant except",
 					"name": "entity.name.function"
 				},
 				{
@@ -453,7 +459,19 @@
 		"f-h": {
 			"patterns": [
 				{
-					"match": "^\\b(httpd|http|heartbeat2|heartbeat|fr)\\b",
+					"match": "^httpd (timeout|service|proxy-access l2ms permit|listen|host)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^httpd custom-gui (user|user|api use|api password)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^http (revision-(up|down)|upload)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\b(heartbeat2|heartbeat|fr)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -576,6 +594,15 @@
 				},
 				{
 					"match": "ip(v6)? (\\S+) (mtu|nat descriptor)",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "variable.language"
+						}
+					}
+				},
+				{
+					"match": "ip(v6)? (\\S+) (remote address( pool)?)",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -916,7 +943,76 @@
 					}
 				},
 				{
-					"match": "^snmp (display|host|ifindex|local|trap)",
+					"match": "^snmp(v2c)? trap community (.*)",
+					"name": "entity.name.function",
+					"captures": {
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"match": "^snmp trap enable snmp (all)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"begin": "^snmp trap enable snmp",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"patterns": [
+						{
+							"match": "((coldstart|warmstart|linkdown|linkup|authenticationfailure)+)",
+							"captures": {
+								"1": {
+									"name": "string"
+								}
+							}
+						}
+					]
+				},
+				{
+					"match": "^snmp trap enable switch (\\S+) (all|none)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						},
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"begin": "^snmp trap enable switch (\\S+)",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					},
+					"patterns": [
+						{
+							"match": "((linkup|linkdown|fanlock|loopdetect|poesuppply|poeterminate|oversupply|overtemp|powerfailure)+)",
+							"captures": {
+								"1": {
+									"name": "string"
+								}
+							}
+						}
+					]
+				},
+				{
+					"match": "^snmp(v2c)? trap (cpu threshold|delay-timer|host|link-updown separate-l2switch-port|memory threshold|mobile signal-strength|send linkdown pp|send linkdown tunnel|send linkdown)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^snmp(v2c)? (display|host|ifindex|local)",
 					"name": "entity.name.function"
 				},
 				{

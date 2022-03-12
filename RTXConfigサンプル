@@ -45,6 +45,7 @@ pp select anonymous
  pp auth username (ユーザー2) (パスワード2)
  ppp ipcp ipaddress on
  ppp ipcp msext on
+ ip pp remote address ip_address
  ip pp remote address pool 192.168.0.192-192.168.0.199
  ip pp mtu 1258
  pp enable anonymous
@@ -216,7 +217,12 @@ ipsec transport 5 105 udp 1701
 #
 dhcp service server
 dhcp server rfc2131 compliant except remain-silent
+dhcp server rfc2131 compliant off
+
 dhcp scope 1 192.168.0.2-192.168.0.191/24
+dhcp scope option 1 router=192.18.1.1 dns=111.11.11.11 domain=tttt hostname=TEST
+
+
 
 #
 # DNSの設定
@@ -242,3 +248,5 @@ show ip route
 show ip connection
 EOF
 
+snmp trap enable snmp coldstart warmstart all eee
+snmp trap enable snmp all
