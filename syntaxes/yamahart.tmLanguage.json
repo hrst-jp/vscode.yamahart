@@ -121,6 +121,10 @@
 					"name": "keyword.control"
 				},
 				{
+					"match": "\\b(dhcp-prefix|ra-prefix|preferred_lifetime|valid_lifetime|l_flag|a_flag)\\b",
+					"name": "variable.language"
+				},
+				{
 					"comment": "スイッチ",
 					"match": "\\b(auto|dhcp|on|off|in|out|only|none|hide|weight|static|any)\\b",
 					"name": "keyword.control"
@@ -717,7 +721,108 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ipv6 (\\S+) (prefix|rtadv send)",
+					"begin": "ipv6 (\\S+) rtadv send",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						}
+					},
+					"patterns": [
+						{
+							"match": "\\b(m_flag|o_flag)(=)(on|off)\\b",
+							"captures": {
+								"1": {
+									"name": "variable.language"
+								},
+								"2": {
+									"name": "keyword.operator"
+								},
+								"3": {
+									"name": "keyword.control"
+								}
+							}
+						},
+						{
+							"match": "\\b(prfflag)(=)(high|medium|low)\\b",
+							"captures": {
+								"1": {
+									"name": "variable.language"
+								},
+								"2": {
+									"name": "keyword.operator"
+								},
+								"3": {
+									"name": "keyword.control"
+								}
+							}
+						},
+						{
+							"match": "\\b(max-rtr-adv-interval|min-rtr-adv-interval|adv-default-lifetime|adv-reachable-time|adv-retrans-time|adv-cur-hop-limit)(=)(\\d)\\b",
+							"captures": {
+								"1": {
+									"name": "variable.language"
+								},
+								"2": {
+									"name": "keyword.operator"
+								},
+								"3": {
+									"name": "keyword.control"
+								}
+							}
+						},
+						{
+							"match": "\\b(mtu)(=)(auto|off|\\d+)\\b",
+							"captures": {
+								"1": {
+									"name": "variable.language"
+								},
+								"2": {
+									"name": "keyword.operator"
+								},
+								"3": {
+									"name": "keyword.control"
+								},
+								"4": {
+									"name": "constant.numeric"
+								}
+							}
+						},
+						{
+							"match": "\\b(rdnss)(=)(rdnss|off|dhcpv6)\\b",
+							"captures": {
+								"1": {
+									"name": "variable.language"
+								},
+								"2": {
+									"name": "keyword.operator"
+								},
+								"3": {
+									"name": "keyword.control"
+								}
+							}
+						},
+						{
+							"match": "\\b(\\d+)\\b",
+							"name": "constant.numeric"
+						}
+					]
+				},
+				{
+					"match": "ipv6 (\\S+) prefix change log (on|off)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "ipv6 (\\S+) prefix",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -918,7 +1023,40 @@
 		"s": {
 			"patterns": [
 				{
-					"match": "^\\b(system|switch|sshd|sntpd|sip|schedule|sftpd|security)\\b",
+					"match": "^\\b(system|sshd|sntpd|sip|schedule|sftpd|security)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^switch control use (\\S+) (on|off)( (terminal)(=)(on|off))?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "keyword.control"
+						},
+						"4": {
+							"name": "variable.language"
+						},
+						"5": {
+							"name": "keyword.operator"
+						},
+						"6": {
+							"name": "keyword.control"
+						}
+					}
+				},{
+					"match": "^switch control function (get|set) (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1":{
+							"name":"keyword.control"
+						}
+					}
+				},
+				{
+					"match": "^\\b(switch)\\b",
 					"name": "entity.name.function"
 				},
 				{
@@ -1070,7 +1208,43 @@
 		"u-z": {
 			"patterns": [
 				{
-					"match": "^\\b(yno|wol|wins|wan|vlan|user|usbhost|url|upnp)\\b",
+					"match": "^vlan port mapping",
+					"name": "entity.name.function"
+				},
+				{
+					"begin": "^(vlan) (\\S+)",
+					"end": "\\n",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.function"
+						},
+						"2": {
+							"name": "variable.language"
+						}
+					},
+					"patterns": [
+						{
+							"match": "802\\.1q",
+							"name": "entity.name.function"
+						},
+						{
+							"match": "(vid|name)(=)(\\S+)",
+							"captures": {
+								"1": {
+									"name": "variable.language"
+								},
+								"2": {
+									"name": "keyword.operator"
+								},
+								"3": {
+									"name": "string"
+								}
+							}
+						}
+					]
+				},
+				{
+					"match": "^\\b(yno|wol|wins|wan|user|usbhost|url|upnp)\\b",
 					"name": "entity.name.function"
 				}
 			]

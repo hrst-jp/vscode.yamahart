@@ -1,7 +1,10 @@
 # RTX1100 Rev.8.03.94 (Thu Dec  5 19:06:16 2013)
 #
-# L2TP/IPsecを使用して多拠点とVPN接続する
-#
+# 正しく認識しているかチェックするためのサンプル設定です。
+# YAMAHAが公開している設定例を適当に転記しています。
+# 
+
+
 isdn spoof
 ntp 
 
@@ -250,3 +253,28 @@ EOF
 
 snmp trap enable snmp coldstart warmstart all eee
 snmp trap enable snmp all
+
+
+【NGNとの接続設定】
+ngn type lan2 ntt
+ipv6 route default gateway dhcp lan2
+ipv6 lan2 address dhcp
+ipv6 lan2 dhcp service client
+ipv6 lan2 dhcp service client ir=on
+【タグVLAN設定】
+# lan1/1
+vlan lan1/1 802.1q vid=10 name=VLAN10
+ipv6 prefix 10 dhcp-prefix@lan2:10::/64
+ipv6 lan1/1 address dhcp-prefix@lan2:10::1/64
+ipv6 lan1/1 rtadv send 10 o_flag=on
+ipv6 lan1/1 dhcp service server
+ipv6 pp rtadv send 2 4 6 max-rtr-adv-interval=2 mtu=20000 rdnss=off
+
+
+vlan port mapping lan1.1 vlan1
+lan type lan1 auto port-based-option=divide-network
+
+switch control use interface on terminal=on
+switch control use interface off
+
+
