@@ -278,3 +278,26 @@ switch control use interface on terminal=on
 switch control use interface off
 
 
+switch select lan1:1-1-6-6-4-8-6-3-4
+switch control function set loopdetect-linkdown linkdown-recovery
+switch control function set loopdetect-recovery-timer 1200
+
+switch select 5b:31:44:55:00:3a
+switch control function set vlan-multiple-use on
+switch control function set vlan-multiple 1 1 join
+switch control function set vlan-multiple 1 2 join
+switch control function set vlan-multiple 22 3 join
+switch control function set vlan-multiple 23 3 join
+switch select lan1:1-2
+switch control function set vlan-port-mode 1 hybrid
+switch control function set vlan-access 2 101
+switch control function set vlan-access 3 101
+switch control function set vlan-access 4 101
+switch select lan1:1
+switch control function set mirroring-use on
+switch control function set mirroring-dest 9
+switch control function set mirroring-src-rx 1 on
+switch control function set mirroring-src-rx 2 on
+switch control mode master
+switch control mode slave
+switch control function set port-speed 5 1000-fdx

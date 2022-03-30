@@ -80,6 +80,11 @@
 		"keyword": {
 			"patterns": [
 				{
+					"match": "\\b(1000-fdx|(100|10)-(fdx|hdx))\\b",
+					"name": "variable.language",
+					"comment": "speed"
+				},
+				{
 					"match": "\\b(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(/(([1-2]?[0-9])|3[0-2]))?\\b",
 					"name": "string",
 					"comment": "IPv4 Address"
@@ -98,6 +103,14 @@
 					"match": "\\b(([0-9a-fA-F]{2}(:|-)){5}[0-9a-fA-F]{2})\\b",
 					"name": "string",
 					"comment": "MACアドレス"
+				},
+				{
+					"match": "(tn\\d+|lan\\d+(:\\d+)?)(-\\d+)*",
+					"name": "variable.language"
+				},
+				{
+					"match": "\\b(hybrid|join|leave|af|cs)\\b",
+					"name": "variable.language"
 				},
 				{
 					"match": "\\b(lan\\d(\\.\\d|/\\d)?)\\b",
@@ -195,6 +208,20 @@
 					"match": "\\b(\\d+)\\b",
 					"name": "constant.numeric",
 					"comment": "数字"
+				},
+				{
+					"match": "\\b(\\S+)(!=|=)(.+)\\b",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "keyword.operator"
+						},
+						"3": {
+							"name": "keyword.control"
+						}
+					}
 				}
 			]
 		},
@@ -1027,37 +1054,58 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^switch control use (\\S+) (on|off)( (terminal)(=)(on|off))?",
-					"name": "entity.name.function",
+					"begin": "^\\b(switch)\\b",
+					"end": "\\n",
 					"captures": {
 						"1": {
-							"name": "variable.language"
-						},
-						"2": {
-							"name": "keyword.control"
-						},
-						"4": {
-							"name": "variable.language"
-						},
-						"5": {
-							"name": "keyword.operator"
-						},
-						"6": {
-							"name": "keyword.control"
+							"name": "entity.name.function"
 						}
-					}
-				},{
-					"match": "^switch control function (get|set) (\\S+)",
-					"name": "entity.name.function",
-					"captures": {
-						"1":{
-							"name":"keyword.control"
+					},
+					"patterns": [
+
+						{
+							"include": "#keyword"
+						},
+						{
+							"match": "control mode (master|slave|off)",
+							"name": "entity.name.function",
+							"captures": {
+								"1": {
+									"name": "variable.language"
+								}
+							}
+						},
+						{
+							"match": "control use (\\S+) (on|off)( (terminal)(=)(on|off))?",
+							"name": "entity.name.function",
+							"captures": {
+								"1": {
+									"name": "variable.language"
+								},
+								"2": {
+									"name": "keyword.control"
+								},
+								"4": {
+									"name": "variable.language"
+								},
+								"5": {
+									"name": "keyword.operator"
+								},
+								"6": {
+									"name": "keyword.control"
+								}
+							}
+						},
+						{
+							"match": "control function (get|set) (\\S+)",
+							"name": "entity.name.function",
+							"captures": {
+								"1": {
+									"name": "keyword.control"
+								}
+							}
 						}
-					}
-				},
-				{
-					"match": "^\\b(switch)\\b",
-					"name": "entity.name.function"
+					]
 				},
 				{
 					"match": "^snmp(v2c)? community (read-only|read-write) (\\S+)",
