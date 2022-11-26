@@ -301,3 +301,15 @@ switch control function set mirroring-src-rx 2 on
 switch control mode master
 switch control mode slave
 switch control function set port-speed 5 1000-fdx
+
+
+lan port type 3 auto auto-crossover=off
+lan port type 3 auto speed-downshift=off
+lan port type 3 auto speed-downshift=ff
+lan backup
+lan port-mirroring 33tt
+lan port shutdown 3
+lan flexible-port lan1=3-8 lan2=1-2 lan3=9 lan4=10
+switching-hub macaddress-aging 50
+switching-hub macaddress-aging on
+

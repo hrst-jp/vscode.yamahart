@@ -882,7 +882,7 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "lan (backup|count-hub-overflow|keepalive interval|link-aggregation static|linkup send-wait-time|port-mirroring|receive-buffer-size|shutdown|type)",
+					"match": "lan (backup|count-hub-overflow|flexible-port|keepalive interval|link-aggregation static|linkup send-wait-time|port-mirroring|port type|port shutdown|receive-buffer-size|shutdown|type)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1050,7 +1050,7 @@
 		"s": {
 			"patterns": [
 				{
-					"match": "^\\b(system|sshd|sntpd|sip|schedule|sftpd|security)\\b",
+					"match": "^\\b(system|sshd|sntpd|sip|schedule|sftpd|security|switching-hub)\\b",
 					"name": "entity.name.function"
 				},
 				{
