@@ -21,7 +21,13 @@
 			"include": "#e"
 		},
 		{
-			"include": "#f-h"
+			"include": "#f"
+		},
+		{
+			"include": "#g"
+		},
+		{
+			"include": "#h"
 		},
 		{
 			"include": "#i"
@@ -57,7 +63,19 @@
 			"include": "#t"
 		},
 		{
-			"include": "#u-z"
+			"include": "#u"
+		},
+		{
+			"include": "#v"
+		},
+		{
+			"include": "#w"
+		},
+		{
+			"include": "#y"
+		},
+		{
+			"include": "#z"
 		},
 		{
 			"include": "#keyword",
@@ -256,7 +274,7 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^analog call (route|route-table)",
+					"match": "^analog call (route-table|route)",
 					"name": "entity.name.function"
 				},
 				{
@@ -461,7 +479,7 @@
 					}
 				},
 				{
-					"match": "^dns (cache max entry|cache use|host|notice order|private address spoof|srcport)",
+					"match": "^dns (cache max entry|cache use|host|notice order|private (address spoof|name)|srcport)",
 					"name": "entity.name.function"
 				},
 				{
@@ -543,7 +561,7 @@
 				}
 			]
 		},
-		"f-h": {
+		"f": {
 			"patterns": [
 				{
 					"match": "^httpd (timeout|service|proxy-access l2ms permit|listen|host)",
@@ -563,10 +581,65 @@
 				}
 			]
 		},
+		"g": {
+			"patterns": []
+		},
+		"h": {
+			"patterns": [
+				{
+					"match": "^heartbeat (pre-shared-key|receive|send)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^heartbeat2 receive (enable|log|monitor|record limit)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^heartbeat2 transmit (enable|interval|log)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^heartbeat2 (myname|transmit|receive)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^http revision-down permit",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^http revision-up (go|permit|proxy|schedule|timeout|url)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^http wwan-module-up (go|permit|timeout|url)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^httpd custom-gui api (password|use)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^httpd custom-gui (user|use)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^httpd (host|listen|proxy-access l2ms permit|service|timeout)",
+					"name": "entity.name.function"
+				}
+			]
+		},
 		"i": {
 			"patterns": [
 				{
-					"match": "^\\b(isdn|ipip)\\b",
+					"match": "^\\b(isdn)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "ipip keepalive (use|log)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "ip keepalive",
 					"name": "entity.name.function"
 				},
 				{
@@ -1021,7 +1094,32 @@
 		"p": {
 			"patterns": [
 				{
-					"match": "^\\b(provider|pri|pptp|pki)\\b",
+					"match": "^\\b(pri|pptp|pki)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "provider auto connect forced disable",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "provider dns server( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "provider filter routing",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "provider (\\S*) (bind|dns server|name)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						}
+					}
+				},
+				{
+					"match": "provider (ipv6 connect pp|ntp server|ntpdate|select|set|type)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1070,7 +1168,7 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pppoe (access concentrator|auto connect|auto disconnect|disconnect time|invalid-session forced close)",
+					"match": "pppoe (access concentrator|auto connect|auto disconnect|call prohibit auth-error count|disconnect time|invalid-session forced close)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1106,7 +1204,11 @@
 		"s": {
 			"patterns": [
 				{
-					"match": "^\\b(system|sshd|sntpd|schedule|sftpd|security|switching-hub)\\b",
+					"match": "^\\b(system|sshd|sntpd|schedule|sftpd|security|switching-hub macaddress-aging)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^show \\S*",
 					"name": "entity.name.function"
 				},
 				{
@@ -1336,7 +1438,52 @@
 				}
 			]
 		},
-		"u-z": {
+		"u": {
+			"patterns": [
+				{
+					"match": "^unlock (wwan pin-code|wwan-module firmware)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^upnp external address (refer pp|refer)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^upnp port mapping (timer type|timer)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^upnp use",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^url filter (log|port|reject|use)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^url (filter|pp filter|tunnel filter)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^url (\\S) filter",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						}
+					}
+				},
+				{
+					"match": "^usbhost (modem flow control|modem initialize|overcurrent duration|use)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^user attribute",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"v": {
 			"patterns": [
 				{
 					"match": "^vlan port mapping",
@@ -1373,12 +1520,75 @@
 							}
 						}
 					]
+				}
+			]
+		},
+		"w": {
+			"patterns": [
+				{
+					"match": "^wan access limit (connection length|connection time|duration|length|time)",
+					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\b(yno|wol|wins|wan|user|usbhost|url|upnp)\\b",
+					"match": "^wan (access-point name|always-on|auth myname|auto connect|bind)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^wan disconnect (input time|output time|time)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^wins server",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^wol send",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^wwan access limit (connection length|connection time|duration|length|time)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^wwan (access-point name|always-on|auth accept|auth myname|auto connect|disable)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^wwan disconnect (input time|output time|time)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^wwan (enable|pin code|radio access technology|select)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^wwan-module (radio-power|signal-strength go|signal-strength|syslog|use)",
 					"name": "entity.name.function"
 				}
 			]
+		},
+		"y": {
+			"patterns": [
+				{
+					"match": "^yno (access code|gui-forwarder timeout|https-proxy)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^yno las (connection keepalive|request retry|request timeout|syslog queue length)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^yno (log|use|xmpp connection keepalive|zero-config id)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\b(wol|wins|wan|user|usbhost|url|upnp)\\b",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"z": {
+			"patterns": []
 		}
 	},
 	"scopeName": "text.yamahart"
