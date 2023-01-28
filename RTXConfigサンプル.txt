@@ -58,8 +58,7 @@ l2tp service on
 # L2TPv3/IPsecの設定(拠点1)
 #
 tunnel select 1
- tunnel name test
- 
+ tunnel name test 
  tunnel encapsulation l2tpv3
  tunnel endpoint address 192.168.0.200 (拠点1のグローバルアドレス)
  ipsec tunnel 101
@@ -313,3 +312,5 @@ lan flexible-port lan1=3-8 lan2=1-2 lan3=9 lan4=10
 switching-hub macaddress-aging 50
 switching-hub macaddress-aging on
 
+ap control config-auto-set use on
+ap control http proxy timeout 60
