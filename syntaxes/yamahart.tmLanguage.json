@@ -248,6 +248,62 @@
 					"name": "entity.name.function"
 				},
 				{
+					"match": "^analog arrive (another-device|global|ignore-subaddress|ring-while-talking|without-subaddress) permit",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^analog arrive (incoming-signal|incoming-signal timing pb|inumber-port|number display|priority|restrict|restrict list|ringer-type list|without-calling-number)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^analog call (route|route-table)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^analog (device type|disc-signal|end-of-dialing-code)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^analog extension",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^analog (hooking (inhibit timer|timer|wait timer)|impedance|local address|local address notice)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^analog (loop-closure threshold|mp prior|off-hook call|off-hook mask|pad (receive|rtp receive|rtp send|send))",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^analog (pause timer|power|rapid call|re-ringing-timer)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^analog sip (arrive (incoming-signal|myaddress|permit|restrict|restrict list|without-calling-number)|call display name|call myname|call permit)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^analog (supplementary-service|supplementary-service call-deflection (address|reject||ringer|talkie))",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^analog use (1|2) (on|off|call-only|arrive-only)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.numeric"
+						},
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "^analog wait dial timer",
+					"name": "entity.name.function"
+				},
+				{
 					"match": "^ap config (directory|filename)",
 					"name": "entity.name.function"
 				},
@@ -1050,7 +1106,7 @@
 		"s": {
 			"patterns": [
 				{
-					"match": "^\\b(system|sshd|sntpd|sip|schedule|sftpd|security|switching-hub)\\b",
+					"match": "^\\b(system|sshd|sntpd|schedule|sftpd|security|switching-hub)\\b",
 					"name": "entity.name.function"
 				},
 				{
@@ -1062,7 +1118,6 @@
 						}
 					},
 					"patterns": [
-
 						{
 							"include": "#keyword"
 						},
@@ -1106,6 +1161,34 @@
 							}
 						}
 					]
+				},
+				{
+					"match": "^sip (100rel|codec permit|ip protocol|log|use|user agent|outer address|request retransmit timer|response code busy)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^sip arrive (address check|name-display default|ringing p-n-uatype|session timer method|session timer refresher)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^sip netvolante dial (domain|figure)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^sip server (100rel|analog service|arrive number display|call (mode|own permit|remote domain|server error)|connect)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^sip server (dial number-only|disconnect|display name|pilot address|privacy|qvalue|session timer)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^sip server register (contact mode|request-uri|timer)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^sip (server|session timer)",
+					"name": "entity.name.function"
 				},
 				{
 					"match": "^snmp(v2c)? community (read-only|read-write) (\\S+)",
