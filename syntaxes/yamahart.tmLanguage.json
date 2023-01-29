@@ -246,67 +246,78 @@
 		"a": {
 			"patterns": [
 				{
-					"match": "^account threshold( pp)?",
+					"match": "account threshold( pp)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^(administrator|login) radius auth",
+					"match": "(administrator|login) radius auth",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^(administrator|login)( password)?( encrypted)?",
+					"match": "(administrator|login)( password)?( encrypted)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^alarm (batch|entire|http (revision-up|upload)|lua|mobile|sd|startup|usbhost)",
+					"match": "alarm (batch|entire|http (revision-up|upload)|lua|mobile|sd|startup|usbhost)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^alias",
+					"match": "alias (\\S+)(=)(\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword"
+						},
+						"2": {
+							"name": "keyword.operator"
+						},
+						"3": {
+							"name": "keyword"
+						}
+					}
+				},
+				{
+					"match": "analog arrive (another-device|global|ignore-subaddress|ring-while-talking|without-subaddress) permit",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^analog arrive (another-device|global|ignore-subaddress|ring-while-talking|without-subaddress) permit",
+					"match": "analog arrive (incoming-signal|incoming-signal timing pb|inumber-port|number display|priority|restrict|restrict list|ringer-type list|without-calling-number)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^analog arrive (incoming-signal|incoming-signal timing pb|inumber-port|number display|priority|restrict|restrict list|ringer-type list|without-calling-number)",
+					"match": "analog call (route-table|route)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^analog call (route-table|route)",
+					"match": "analog (device type|disc-signal|end-of-dialing-code)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^analog (device type|disc-signal|end-of-dialing-code)",
+					"match": "analog extension",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^analog extension",
+					"match": "analog (hooking (inhibit timer|timer|wait timer)|impedance|local address|local address notice)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^analog (hooking (inhibit timer|timer|wait timer)|impedance|local address|local address notice)",
+					"match": "analog (loop-closure threshold|mp prior|off-hook call|off-hook mask|pad (receive|rtp receive|rtp send|send))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^analog (loop-closure threshold|mp prior|off-hook call|off-hook mask|pad (receive|rtp receive|rtp send|send))",
+					"match": "analog (pause timer|power|rapid call|re-ringing-timer)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^analog (pause timer|power|rapid call|re-ringing-timer)",
+					"match": "analog sip (arrive (incoming-signal|myaddress|permit|restrict|restrict list|without-calling-number)|call display name|call myname|call permit)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^analog sip (arrive (incoming-signal|myaddress|permit|restrict|restrict list|without-calling-number)|call display name|call myname|call permit)",
+					"match": "analog (supplementary-service|supplementary-service call-deflection (address|reject||ringer|talkie))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^analog (supplementary-service|supplementary-service call-deflection (address|reject||ringer|talkie))",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^analog use (1|2) (on|off|call-only|arrive-only)",
+					"match": "analog use (1|2) (on|off|call-only|arrive-only)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -318,23 +329,23 @@
 					}
 				},
 				{
-					"match": "^analog wait dial timer",
+					"match": "analog wait dial timer",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^ap config (directory|filename)",
+					"match": "ap config (directory|filename)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^ap control (config (delete|get|set)|config-auto-set use|firmware update go|http proxy (timeout|use))",
+					"match": "ap control (config (delete|get|set)|config-auto-set use|firmware update go|http proxy (timeout|use))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^ap select",
+					"match": "ap select",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^auth user( (attribute|user group|group attribute))?",
+					"match": "auth user( (attribute|user group|group attribute))?",
 					"name": "entity.name.function"
 				}
 			]
@@ -342,7 +353,35 @@
 		"b": {
 			"patterns": [
 				{
-					"match": "^\\b(bridge|bgp)\\b",
+					"match": "bgp aggregate( filter)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "bgp (autonomous-system|configure refresh|default med|force-to-advertise)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "bgp export( aspath| filter| route selection rule)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "bgp import( filter)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "bgp neighbor( pre-shared-key)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "bgp (log|preference|reric interval|router id|use)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "bridge bridge learning( \\S* (static|timer)?)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "bridge member",
 					"name": "entity.name.function"
 				}
 			]
@@ -350,15 +389,19 @@
 		"c": {
 			"patterns": [
 				{
-					"match": "^\\b(cloud vpn|cooperation)\\b",
+					"match": "cooperation( bandwidth-measuring remote|load-watch (control|remote|trigger)|port|type go)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^console (character|columns|info|lines)",
+					"match": "cloud vpn (bind|name|option|parameter|service|set go|syslog)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^console prompt (\\S+)",
+					"match": "console (character|columns|info|lines)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "console prompt (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -371,11 +414,11 @@
 		"d": {
 			"patterns": [
 				{
-					"match": "^\\b(diagnose|dashboard accumulate)\\b",
+					"match": "dashboard accumulate",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^dhcp service (server|relay)",
+					"match": "dhcp service (server|relay)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -479,11 +522,19 @@
 					}
 				},
 				{
-					"match": "^dns (cache max entry|cache use|host|notice order|private (address spoof|name)|srcport)",
+					"match": "diagnose config port (access|map)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^dns domain (\\S+)",
+					"match": "diagnosis config port (history-num|max-detect)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "dns (cache max entry|cache use|host|notice order|private (address spoof|name)|srcport)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "dns domain (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -492,11 +543,11 @@
 					}
 				},
 				{
-					"match": "^dns server (aaa filter|fallback)?",
+					"match": "dns server (aaa filter|fallback)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^dns service (dhcp|pp|select)?",
+					"match": "dns service (dhcp|pp|select)?",
 					"name": "entity.name.function"
 				},
 				{
@@ -530,7 +581,7 @@
 					]
 				},
 				{
-					"match": "^\\b(dpi (log|signature download (go|url)|use))\\b",
+					"match": "dpi (log|signature download (go|url)|use)",
 					"name": "entity.name.function"
 				}
 			]
@@ -538,7 +589,7 @@
 		"e": {
 			"patterns": [
 				{
-					"match": "^embedded file (-b )?(\\S*) (<<)(\\S*)",
+					"match": "embedded file (-b )?(\\S*) (<<)(\\S*)",
 					"name": "storage",
 					"captures": {
 						"1": {
@@ -556,7 +607,15 @@
 					}
 				},
 				{
-					"match": "^\\b(external-memory|execute|ethernet)\\b",
+					"match": "external-memory (accelerator cache size|auto-search time|batch filename|boot (permit|timeout)|cache mode|config filename)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "external-memory (dpi signature directory|exec filename|performance-test go|statistics filename prefix|syslog filename)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\b(execute|ethernet)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -564,19 +623,11 @@
 		"f": {
 			"patterns": [
 				{
-					"match": "^httpd (timeout|service|proxy-access l2ms permit|listen|host)",
+					"match": "fr (dlci|cir|lmi|inarp|backup|compression use|confestion control)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^httpd custom-gui (user|user|api use|api password)",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^http (revision-(up|down)|upload)",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^\\b(heartbeat2|heartbeat|fr)\\b",
+					"match": "fr (pp dequeue type|de)",
 					"name": "entity.name.function"
 				}
 			]
@@ -587,43 +638,43 @@
 		"h": {
 			"patterns": [
 				{
-					"match": "^heartbeat (pre-shared-key|receive|send)",
+					"match": "heartbeat (pre-shared-key|receive|send)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^heartbeat2 receive (enable|log|monitor|record limit)",
+					"match": "heartbeat2 receive (enable|log|monitor|record limit)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^heartbeat2 transmit (enable|interval|log)",
+					"match": "heartbeat2 transmit (enable|interval|log)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^heartbeat2 (myname|transmit|receive)",
+					"match": "heartbeat2 (myname|transmit|receive)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^http revision-down permit",
+					"match": "http revision-down permit",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^http revision-up (go|permit|proxy|schedule|timeout|url)",
+					"match": "http revision-up (go|permit|proxy|schedule|timeout|url)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^http wwan-module-up (go|permit|timeout|url)",
+					"match": "http wwan-module-up (go|permit|timeout|url)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^httpd custom-gui api (password|use)",
+					"match": "httpd custom-gui api (password|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^httpd custom-gui (user|use)",
+					"match": "httpd custom-gui (user|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^httpd (host|listen|proxy-access l2ms permit|service|timeout)",
+					"match": "httpd (host|listen|proxy-access l2ms permit|service|timeout)",
 					"name": "entity.name.function"
 				}
 			]
@@ -631,7 +682,31 @@
 		"i": {
 			"patterns": [
 				{
-					"match": "^\\b(isdn)\\b",
+					"match": "isdn (arrive permit|auto connect)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn call (block time|permit|prohibit time)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn callback (mscbcp user-specify|(permit|request)( type)?|(response|wait) time)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn disconnect ((input|interval|output) time|(policy|time))",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn (fast|forced) disconnect time",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn (local|remote) address",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn (remote call order|terminator)",
 					"name": "entity.name.function"
 				},
 				{
@@ -681,7 +756,16 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ip(v6)? (\\S+) (address|arp|dhcp|dpi|igmp|ospf|pim|proxyarp|rip|secondary address|traffic|vrrp|wol)",
+					"match": "ip(v6)? (\\S+) (address|arp|dhcp|dpi|igmp|ospf (area|neighbor)|pim|proxyarp|secondary address|traffic|vrrp|wol)",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "variable.language"
+						}
+					}
+				},
+				{
+					"match": "ip(v6)? (\\S+) rip (auth key|auth key text|auth type|filter|force-to-advertise|hop|receive|send|trust gateway)",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -762,7 +846,7 @@
 					}
 				},
 				{
-					"match": "ip(v6)? (\\S+) (remote address( pool)?)",
+					"match": "ip(v6)? (\\S+) ((remote|local) address( pool)?)",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -1007,7 +1091,11 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\b(leased|lan-map)\\b",
+					"match": "lan-map (log|snapshot use|sysname|terminal watch interval)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "leased (backupkeepalive down)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1019,7 +1107,35 @@
 		"m": {
 			"patterns": [
 				{
-					"match": "^\\b(mail(-notify)?|mobile)\\b",
+					"match": "mail (notify( status exec)?|server (name|pop|smtp|timeout)|template)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "make directory",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "mobile access( limit (connection (length|time)|duration|length|time)|-point name)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "mobile arrive (permit|use)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "mobile call (prohibit auth-error count|type)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "mobile (auto connect|carrier mode|dial number)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "mobile disconnect( input| output)? time",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "mobile (display caller id|firmware update go|pin code|signal-strength( go)?|syslog|use)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1027,7 +1143,7 @@
 		"n": {
 			"patterns": [
 				{
-					"begin": "^(nat descriptor)",
+					"begin": "(nat descriptor)",
 					"end": "\\n",
 					"beginCaptures": {
 						"1": {
@@ -1062,11 +1178,11 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^ngn (radius (account (callee|caller))|auth password|renumbering link-refresh|type)",
+					"match": "ngn (radius (account (callee|caller))|auth password|renumbering link-refresh|type)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^ntp (backward-compatibility|local address)",
+					"match": "ntp (backward-compatibility|local address)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1086,7 +1202,23 @@
 		"o": {
 			"patterns": [
 				{
-					"match": "^\\b(ospf|operation)\\b",
+					"match": "operation (button function download|execute batch permit|external-memory download permit|http revision-up permit)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^ospf area( network|stubhost)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "ospf configure refresh",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "ospf (export|import) (filter|from) (ospf)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "ospf (log|merge equal cost stub|preference|reric interval|router id|use|virtual-link)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1094,29 +1226,8 @@
 		"p": {
 			"patterns": [
 				{
-					"match": "^\\b(pri|pptp|pki)\\b",
+					"match": "pki (certificate file|crl file)",
 					"name": "entity.name.function"
-				},
-				{
-					"match": "provider auto connect forced disable",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "provider dns server( pp)?",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "provider filter routing",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "provider (\\S*) (bind|dns server|name)",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "variable.language"
-						}
-					}
 				},
 				{
 					"match": "provider (ipv6 connect pp|ntp server|ntpdate|select|set|type)",
@@ -1174,21 +1285,59 @@
 				{
 					"match": "pppoe (padi maxretry|padi restart|padr maxretry|padr restart|pass-through member|service-name|tcp mss limit|use)",
 					"name": "entity.name.function"
+				},
+				{
+					"match": "pptp (hostname|keepalive (interval|log|use)|service( type)?|tunnel disconnect time|vendorname|window size)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "pri (leased channel|loopback (active|passive))",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "provider auto connect forced disable",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "provider dns server( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "provider filter routing",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "provider (\\S*) (bind|dns server|name)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						}
+					}
 				}
 			]
 		},
 		"q": {
 			"patterns": [
 				{
-					"match": "^\\b(queue|qac-tm)\\b",
+					"match": "queue class filter",
 					"name": "entity.name.function"
+				},
+				{
+					"match": "queue (\\S+) (class (control|filter list|property)|default class( secondary)?|length( secondary)?|type)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						}
+					}
 				}
 			]
 		},
 		"r": {
 			"patterns": [
 				{
-					"match": "^\\b(radius)\\b",
+					"match": "radius ((account|auth)( port| server)?|retry|secret|server)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1196,7 +1345,11 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\b(rtfs|rotate|rip)\\b",
+					"match": "^\\b(rtfs|rotate)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "rip (advertise mode|filter rule|preference|timer|use)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1212,88 +1365,77 @@
 					"name": "entity.name.function"
 				},
 				{
-					"begin": "^\\b(switch)\\b",
-					"end": "\\n",
+					"match": "switch control mode (master|slave|off)",
+					"name": "entity.name.function",
 					"captures": {
 						"1": {
-							"name": "entity.name.function"
+							"name": "variable.language"
 						}
-					},
-					"patterns": [
-						{
-							"include": "#keyword"
+					}
+				},
+				{
+					"match": "switch control use (\\S+) (on|off)( (terminal)(=)(on|off))?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
 						},
-						{
-							"match": "control mode (master|slave|off)",
-							"name": "entity.name.function",
-							"captures": {
-								"1": {
-									"name": "variable.language"
-								}
-							}
+						"2": {
+							"name": "keyword.control"
 						},
-						{
-							"match": "control use (\\S+) (on|off)( (terminal)(=)(on|off))?",
-							"name": "entity.name.function",
-							"captures": {
-								"1": {
-									"name": "variable.language"
-								},
-								"2": {
-									"name": "keyword.control"
-								},
-								"4": {
-									"name": "variable.language"
-								},
-								"5": {
-									"name": "keyword.operator"
-								},
-								"6": {
-									"name": "keyword.control"
-								}
-							}
+						"4": {
+							"name": "variable.language"
 						},
-						{
-							"match": "control function (get|set) (\\S+)",
-							"name": "entity.name.function",
-							"captures": {
-								"1": {
-									"name": "keyword.control"
-								}
-							}
+						"5": {
+							"name": "keyword.operator"
+						},
+						"6": {
+							"name": "keyword.control"
 						}
-					]
+					}
 				},
 				{
-					"match": "^sip (100rel|codec permit|ip protocol|log|use|user agent|outer address|request retransmit timer|response code busy)",
+					"match": "switch control function (get|set) (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},				{
+					"match": "switch select",
+					"name": "storage.type"
+				},
+				{
+					"match": "sip (100rel|codec permit|ip protocol|log|use|user agent|outer address|request retransmit timer|response code busy)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^sip arrive (address check|name-display default|ringing p-n-uatype|session timer method|session timer refresher)",
+					"match": "sip arrive (address check|name-display default|ringing p-n-uatype|session timer method|session timer refresher)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^sip netvolante dial (domain|figure)",
+					"match": "sip netvolante dial (domain|figure)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^sip server (100rel|analog service|arrive number display|call (mode|own permit|remote domain|server error)|connect)",
+					"match": "sip server (100rel|analog service|arrive number display|call (mode|own permit|remote domain|server error)|connect)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^sip server (dial number-only|disconnect|display name|pilot address|privacy|qvalue|session timer)",
+					"match": "sip server (dial number-only|disconnect|display name|pilot address|privacy|qvalue|session timer)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^sip server register (contact mode|request-uri|timer)",
+					"match": "sip server register (contact mode|request-uri|timer)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^sip (server|session timer)",
+					"match": "sip (server|session timer)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^snmp(v2c)? community (read-only|read-write) (\\S+)",
+					"match": "snmp(v2c)? community (read-only|read-write) (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -1305,7 +1447,7 @@
 					}
 				},
 				{
-					"match": "^snmp sys(contact|name|location) (\\S+)",
+					"match": "snmp sys(contact|name|location) (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -1314,7 +1456,7 @@
 					}
 				},
 				{
-					"match": "^snmp(v2c)? trap community (.*)",
+					"match": "snmp(v2c)? trap community (.*)",
 					"name": "entity.name.function",
 					"captures": {
 						"3": {
@@ -1323,7 +1465,7 @@
 					}
 				},
 				{
-					"match": "^snmp trap enable snmp (all)",
+					"match": "snmp trap enable snmp (all)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1332,7 +1474,7 @@
 					}
 				},
 				{
-					"begin": "^snmp trap enable snmp",
+					"begin": "snmp trap enable snmp",
 					"end": "\\n",
 					"name": "entity.name.function",
 					"patterns": [
@@ -1347,7 +1489,7 @@
 					]
 				},
 				{
-					"match": "^snmp trap enable switch (\\S+) (all|none)",
+					"match": "snmp trap enable switch (\\S+) (all|none)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1359,7 +1501,7 @@
 					}
 				},
 				{
-					"begin": "^snmp trap enable switch (\\S+)",
+					"begin": "snmp trap enable switch (\\S+)",
 					"end": "\\n",
 					"name": "entity.name.function",
 					"captures": {
@@ -1379,27 +1521,31 @@
 					]
 				},
 				{
-					"match": "^snmp(v2c)? trap (cpu threshold|delay-timer|host|link-updown separate-l2switch-port|memory threshold|mobile signal-strength|send linkdown pp|send linkdown tunnel|send linkdown)",
+					"match": "snmp(v2c)? trap (cpu threshold|delay-timer|host|link-updown separate-l2switch-port|memory threshold|mobile signal-strength|send linkdown pp|send linkdown tunnel|send linkdown)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^snmp(v2c)? (display|host|ifindex|local)",
+					"match": "snmp(v2c)? (display|host|ifindex|local)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^snmp (yrifppdisplayatmib2|yrifswitchdisplayatmib2|yriftunneldisplayatmib2)",
+					"match": "snmp (yrifppdisplayatmib2|yrifswitchdisplayatmib2|yriftunneldisplayatmib2)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\b(snmpv3|snmpv2c)\\b",
+					"match": "^snmpv3 ",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^syslog (debug|info|notice|execute command)",
+					"match": "^snmpv2c ",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^syslog (srcport|host|local address)",
+					"match": "syslog (debug|info|notice|execute command)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "syslog (srcport|host|local address)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1411,7 +1557,19 @@
 		"t": {
 			"patterns": [
 				{
-					"match": "^\\b(tftp|terminate|telnetd|tcp)\\b",
+					"match": "^tftp host",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^terminate lua( file)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^telnetd (host|listen|service|session)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^tcp (log|session limit)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1441,31 +1599,31 @@
 		"u": {
 			"patterns": [
 				{
-					"match": "^unlock (wwan pin-code|wwan-module firmware)",
+					"match": "unlock (wwan pin-code|wwan-module firmware)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^upnp external address (refer pp|refer)",
+					"match": "upnp external address (refer pp|refer)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^upnp port mapping (timer type|timer)",
+					"match": "upnp port mapping (timer type|timer)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^upnp use",
+					"match": "upnp use",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^url filter (log|port|reject|use)",
+					"match": "url filter (log|port|reject|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^url (filter|pp filter|tunnel filter)",
+					"match": "url (filter|pp filter|tunnel filter)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^url (\\S) filter",
+					"match": "url (\\S) filter",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1474,11 +1632,11 @@
 					}
 				},
 				{
-					"match": "^usbhost (modem flow control|modem initialize|overcurrent duration|use)",
+					"match": "usbhost (modem flow control|modem initialize|overcurrent duration|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^user attribute",
+					"match": "user attribute",
 					"name": "entity.name.function"
 				}
 			]
@@ -1486,11 +1644,11 @@
 		"v": {
 			"patterns": [
 				{
-					"match": "^vlan port mapping",
+					"match": "vlan port mapping",
 					"name": "entity.name.function"
 				},
 				{
-					"begin": "^(vlan) (\\S+)",
+					"begin": "(vlan) (\\S+)",
 					"end": "\\n",
 					"beginCaptures": {
 						"1": {
@@ -1570,19 +1728,15 @@
 		"y": {
 			"patterns": [
 				{
-					"match": "^yno (access code|gui-forwarder timeout|https-proxy)",
+					"match": "yno (access code|gui-forwarder timeout|https-proxy)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^yno las (connection keepalive|request retry|request timeout|syslog queue length)",
+					"match": "yno las (connection keepalive|request retry|request timeout|syslog queue length)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^yno (log|use|xmpp connection keepalive|zero-config id)",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^\\b(wol|wins|wan|user|usbhost|url|upnp)\\b",
+					"match": "yno (log|use|xmpp connection keepalive|zero-config id)",
 					"name": "entity.name.function"
 				}
 			]
