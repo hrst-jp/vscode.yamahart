@@ -123,25 +123,23 @@
 					"comment": "MACアドレス"
 				},
 				{
-					"match": "(tn\\d+|lan\\d+(:\\d+)?)(-\\d+)*",
-					"name": "variable.language"
-				},
-				{
 					"match": "\\b(hybrid|join|leave|af|cs)\\b",
 					"name": "variable.language"
 				},
 				{
-					"match": "\\b(lan\\d(\\.\\d|/\\d)?)\\b",
+					"match": "\\b(lan\\d+(\\.\\d+|/\\d+)?)\\b",
 					"name": "variable.language",
 					"comment": "LANインターフェース"
 				},
 				{
-					"match": "\\b(bri[1-2](\\.\\d)?)\\b",
-					"name": "variable.language"
+					"match": "\\b(bri[1-2](\\.\\d+)?)\\b",
+					"name": "variable.language",
+					"comment": "BRIインターフェース"
 				},
 				{
-					"match": "\\b(vlan\\d|pri1|bridge1|null|tunnel)\\b",
-					"name": "variable.language"
+					"match": "\\b(vlan\\d+|pri1|bridge1)\\b",
+					"name": "variable.language",
+					"comment": "その他インターフェース"
 				},
 				{
 					"match": "\\b(loopback[1-9])\\b",
@@ -191,7 +189,7 @@
 					"comment": "port_list"
 				},
 				{
-					"match": "(pass|reject|restrict)(-log|-nolog)?",
+					"match": "\\b(pass|reject|restrict)(-log|-nolog)?\\b",
 					"name": "keyword.control",
 					"comment": "pass_reject"
 				},
@@ -224,8 +222,22 @@
 						"2": {
 							"name": "keyword.operator"
 						},
-						"3":{
-							"name":"constant.numeric"
+						"3": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"match": "\\b(\\S+)(!=|=)(on|off)\\b",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "keyword.operator"
+						},
+						"3": {
+							"name": "keyword.control"
 						}
 					}
 				},
@@ -239,7 +251,7 @@
 							"name": "keyword.operator"
 						},
 						"3": {
-							"name": "keyword.control"
+							"name": "string"
 						}
 					}
 				}
