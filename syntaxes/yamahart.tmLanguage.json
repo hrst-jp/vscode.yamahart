@@ -79,7 +79,7 @@
 		},
 		{
 			"include": "#keyword",
-			"comment": "コマンド内で利用される予約語"
+			"comment": "コマンド内で利用される汎用的な予約語など"
 		}
 	],
 	"repository": {
@@ -90,7 +90,11 @@
 					"name": "comment.line"
 				},
 				{
-					"match": "(tunnel|pp) name .*",
+					"match": "description .*",
+					"name": "comment.line"
+				},
+				{
+					"match": "(tunnel|pp) name \\S+",
 					"name": "comment.line"
 				}
 			]
@@ -118,13 +122,14 @@
 					"comment": "IPv6 Address省略あり48bitマスク以上"
 				},
 				{
+					"match": "\\b(dhcp|ra)-prefix@lan([0-9a-f:]+)(%\\S+)?(/([1-9]?[0-9]|1[0-9]{2}|12[0-8]))?\\b",
+					"name": "string",
+					"comment": "IPv6 プレフィックス表記"
+				},
+				{
 					"match": "\\b(([0-9a-fA-F]{2}(:|-)){5}[0-9a-fA-F]{2})\\b",
 					"name": "string",
 					"comment": "MACアドレス"
-				},
-				{
-					"match": "\\b(hybrid|join|leave|af|cs)\\b",
-					"name": "variable.language"
 				},
 				{
 					"match": "\\b(lan\\d+(\\.\\d+|/\\d+)?)\\b",
@@ -137,26 +142,19 @@
 					"comment": "BRIインターフェース"
 				},
 				{
-					"match": "\\b(vlan\\d+|pri1|bridge1)\\b",
+					"match": "\\b(vlan\\d+|pri1|bridge1|loopback[1-9])\\b",
 					"name": "variable.language",
 					"comment": "その他インターフェース"
 				},
 				{
-					"match": "\\b(loopback[1-9])\\b",
-					"name": "variable.language"
-				},
-				{
 					"match": "\\b(backup|select|enable|disable)\\b",
-					"name": "keyword.control"
+					"name": "keyword.control",
+					"comment": "トンネル等の選択と有効無効の切り替えその他インターフェース"
 				},
 				{
-					"match": "\\b(dhcp-prefix|ra-prefix|preferred_lifetime|valid_lifetime|l_flag|a_flag)\\b",
-					"name": "variable.language"
-				},
-				{
-					"comment": "スイッチ",
 					"match": "\\b(auto|dhcp|on|off|in|out|only|none|hide|weight|static|any)\\b",
-					"name": "keyword.control"
+					"name": "keyword.control",
+					"comment": "スイッチ"
 				},
 				{
 					"match": "\\b(talk|route|uucp|submission)\\b",
@@ -269,11 +267,11 @@
 					}
 				},
 				{
-					"match": "(administrator|login) radius auth",
+					"match": "administrator radius auth",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "(administrator|login)( password)?( encrypted)?",
+					"match": "administrator( password)?( encrypted)?",
 					"name": "entity.name.function"
 				},
 				{
@@ -1101,6 +1099,14 @@
 				{
 					"match": "lan (backup|count-hub-overflow|flexible-port|keepalive interval|link-aggregation static|linkup send-wait-time|port-mirroring|port type|port shutdown|receive-buffer-size|shutdown|type)",
 					"name": "entity.name.function"
+				},
+				{
+					"match": "line type",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "login(( password( encrypted)?)| radius use| timer| user)",
+					"name": "entity.name.function"
 				}
 			]
 		},
@@ -1343,11 +1349,11 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\b(rtfs|rotate)\\b",
+					"match": "rip (advertise mode|filter rule|preference|timer|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "rip (advertise mode|filter rule|preference|timer|use)",
+					"match": "(rollback timer|rotate external-memory syslog|rtfs format|rtfs garbage-collect)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1355,55 +1361,12 @@
 		"s": {
 			"patterns": [
 				{
-					"match": "^\\b(system|sshd|sntpd|schedule|sftpd|security|switching-hub macaddress-aging)\\b",
+					"match": "\\b(schedule at|sd use|security class|set-default-(config|exec)|set-serial-baudrate|sftpd host|switching-hub macaddress-aging)\\b",
 					"name": "entity.name.function"
 				},
 				{
 					"match": "^show \\S*",
 					"name": "entity.name.function"
-				},
-				{
-					"match": "switch control mode (master|slave|off)",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "variable.language"
-						}
-					}
-				},
-				{
-					"match": "switch control use (\\S+) (on|off)( (terminal)(=)(on|off))?",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "variable.language"
-						},
-						"2": {
-							"name": "keyword.control"
-						},
-						"4": {
-							"name": "variable.language"
-						},
-						"5": {
-							"name": "keyword.operator"
-						},
-						"6": {
-							"name": "keyword.control"
-						}
-					}
-				},
-				{
-					"match": "switch control function (get|set) (\\S+)",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "keyword.control"
-						}
-					}
-				},
-				{
-					"match": "switch select",
-					"name": "storage.type"
 				},
 				{
 					"match": "sip (100rel|codec permit|ip protocol|log|use|user agent|outer address|request retransmit timer|response code busy)",
@@ -1434,13 +1397,13 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "snmp(v2c)? community (read-only|read-write) (\\S+)",
+					"match": "snmp community (read-only|read-write) (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
-						"2": {
+						"1": {
 							"name": "keyword.control"
 						},
-						"3": {
+						"2": {
 							"name": "string"
 						}
 					}
@@ -1455,10 +1418,10 @@
 					}
 				},
 				{
-					"match": "snmp(v2c)? trap community (.*)",
+					"match": "snmp trap community (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
-						"3": {
+						"1": {
 							"name": "string"
 						}
 					}
@@ -1520,11 +1483,11 @@
 					]
 				},
 				{
-					"match": "snmp(v2c)? trap (cpu threshold|delay-timer|host|link-updown separate-l2switch-port|memory threshold|mobile signal-strength|send linkdown pp|send linkdown tunnel|send linkdown)",
+					"match": "snmp trap (cpu threshold|delay-timer|host|link-updown separate-l2switch-port|memory threshold|mobile signal-strength|send linkdown pp|send linkdown tunnel|send linkdown)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "snmp(v2c)? (display|host|ifindex|local)",
+					"match": "snmp (display|host|ifindex|local)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1532,12 +1495,198 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^snmpv3 ",
+					"match": "snmpv2c (community read-(only|write)|host|trap (community|host))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^snmpv2c ",
+					"match": "snmpv3 (context name|engine id|host|trap host|usm user|vacm access|vacm view)",
 					"name": "entity.name.function"
+				},
+				{
+					"match": "sntpd (host|service)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "speed (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						}
+					}
+				},
+				{
+					"match": "ssh (encrypt algorithm|known hosts)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "sshd (auth method|authorized-keys filename|client alive|encrypt algorithm|hide openssh version|host|host key generate|listen|service|session)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "statistics (cpu|memory|traffic|flow|nat|route|filter|qos|application)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						}
+					}
+				},
+				{
+					"match": "switch control mode (master|slave|off)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control use (\\S+) (on|off)( (terminal)(=)(on|off))?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "keyword.control"
+						},
+						"4": {
+							"name": "variable.language"
+						},
+						"5": {
+							"name": "keyword.operator"
+						},
+						"6": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get) (boot-rom-version|firmware-revision|lag-type|model-name|serial-number)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get) status-(combo-port|counter-(frame|octet)-(rx|tx)|fan(-rpm)?|led-mode|loopdetect-(port|recovery-timer)|macaddress-(addr|port)|poe-(detect-class|state|supply(-detail|-total)?|temperature|sfp-rx-power)|port-speed)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get) system-(macaddress|uptime)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get|set) counter-frame-(rx|tx)-type",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get|set) (energy-saving|led-brightness)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get|set) loopdetect-(count|linkdown|port-use|recovery-timer|time|use-control-packet)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get|set) macaddress-aging(-timer)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get|set) mirroring-(dest|src-(rx|tx)|use)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get|set) poe-class",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get|set) port-(auto-crossover|blocking-(control|data)-packet|flow-control|speed(-downshift)?|use)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get|set) qos-(dscp-remark-(class|type)|(policing|shaping)-(speed|use)|speed-unit)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get|set) system-name",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch control function (get|set) vlan-(access|id|multiple(-use)?|port-mode|trunk)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "switch select (\\S+)",
+					"name": "storage.type",
+					"captures": {
+						"1": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"match": "syslog (debug|info|notice|execute command)",
@@ -1549,6 +1698,10 @@
 				},
 				{
 					"match": "\\S* (syslog)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "system (packet-(buffer|scheduling( filter( list)?)?)|(cpu|memory|temperature) threshold|led brightness)",
 					"name": "entity.name.function"
 				}
 			]
