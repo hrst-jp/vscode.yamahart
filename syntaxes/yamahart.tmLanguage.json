@@ -78,6 +78,24 @@
 			"include": "#z"
 		},
 		{
+			"include": "#wlx-a"
+		},
+		{
+			"include": "#wlx-c"
+		},
+		{
+			"include": "#wlx-l"
+		},
+		{
+			"include": "#wlx-r"
+		},
+		{
+			"include": "#wlx-v"
+		},
+		{
+			"include": "#wlx-w"
+		},
+		{
 			"include": "#keyword",
 			"comment": "コマンド内で利用される汎用的な予約語など"
 		}
@@ -1249,7 +1267,19 @@
 					}
 				},
 				{
-					"match": "nat descriptor (ftp port|log|sip|timer|type|static|backward-compatibility)",
+					"match": "nat descriptor type (\\d+) (none|nat|masquerade|nat-masquerade)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.numeric"
+						},
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "nat descriptor (ftp port|log|sip|timer|static|backward-compatibility)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1421,7 +1451,8 @@
 				{
 					"match": "qac-tm (client (permit|port|refresh go|update)|port|redirect|server (refresh go)?|unqualified client access control|use|version margin|warning url)",
 					"name": "entity.name.function"
-				},				{
+				},
+				{
 					"match": "queue class filter",
 					"name": "entity.name.function"
 				},
@@ -2001,6 +2032,147 @@
 		},
 		"z": {
 			"patterns": []
+		},
+		"wlx-a": {
+			"patterns": [
+				{
+					"match": "airlink configure refresh",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "airlink (enable|select|disable) (all|module\\S|\\S+|none)",
+					"name": "storage.type",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "airlink emergency-mode",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "airlink (mode|channel|beacon)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "airlink optimization use",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "airlink macaddress filter list",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "airlink macaddress filter use",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "airlink (ssid|vlan-id|bind|auth|radius (auth|server|secret)|psk-key|privacy)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"wlx-c": {
+			"patterns": [
+				{
+					"match": "cluster config-id",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "cluster cluster-mode (auto-cluster|standalone)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "cluster virtual-ip address",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"wlx-l": {
+			"patterns": [
+				{
+					"match": "led blink",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"wlx-r": {
+			"patterns": [
+				{
+					"match": "radiusd (use|reauth|client|user)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"wlx-v": {
+			"patterns": [
+				{
+					"match": "vlan-access (\\S+) (\\d+)",
+					"name": "support.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"match": "vlan-id (\\d+) (\\d+)",
+					"name": "support.function",
+					"captures": {
+						"1": {
+							"name": "constant.numeric"
+						},
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"match": "vlan-port-mode",
+					"name": "support.function"
+				},
+				{
+					"match": "vlan-trunk (\\S+) (\\d+) (join|leave)",
+					"name": "support.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "variable.language"
+						}
+					}
+				}
+			]
+		},
+		"wlx-w": {
+			"patterns": [
+				{
+					"match": "wlan-controller config set",
+					"name": "support.function"
+				},
+				{
+					"match": "wlan-controller select",
+					"name": "storage.type"
+				},
+				{
+					"match": "wlan-controller (member-ap|serial|system name|ip address)",
+					"name": "support.function"
+				}
+			]
 		}
 	},
 	"scopeName": "text.yamahart"
