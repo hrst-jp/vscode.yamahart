@@ -267,16 +267,26 @@
 					}
 				},
 				{
-					"match": "administrator radius auth",
-					"name": "entity.name.function"
+					"match": "administrator radius auth (on|only|off)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
 					"match": "administrator( password)?( encrypted)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "alarm (batch|entire|http (revision-up|upload)|lua|mobile|sd|startup|usbhost)",
-					"name": "entity.name.function"
+					"match": "alarm (batch|entire|http (revision-up|upload)|lua|mobile|sd|startup|usbhost) (on|off)",
+					"name": "entity.name.function",
+					"captures": {
+						"3": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
 					"match": "alias (\\S+)(=)(\\S+)",
@@ -406,11 +416,39 @@
 		"c": {
 			"patterns": [
 				{
-					"match": "cooperation( bandwidth-measuring remote|load-watch (control|remote|trigger)|port|type go)?",
+					"match": "^call",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "clear account( mobile| ngn data| pp| tunnel)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "clear (arp|boot list|bridge learning|diagnosis config port|dns cache|dpi (cache|statistics)|ex-license|external-memory syslog|heartbeat2( id| name)?)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "clear (inarp|ip dynamic routing|ip traffic list( pp| tunnel)?|ipv6 dynamic routing|ipv6 neighbor cache|log)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "clear (mobile access limitation( pp)?|nat descriptor (dynamic|interface dynamic( pp| tunnel)?|masquerade session statistics))",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "clear (pppoe pass-through learning|pri status|status|switching-hub macaddress|url filter( external-database( pp| tunnel)?| pp| tunnel)?)",
 					"name": "entity.name.function"
 				},
 				{
 					"match": "cloud vpn (bind|name|option|parameter|service|set go|syslog)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "cold start",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^connect ",
 					"name": "entity.name.function"
 				},
 				{
@@ -425,6 +463,14 @@
 							"name": "string"
 						}
 					}
+				},
+				{
+					"match": "cooperation( bandwidth-measuring remote|load-watch (control|remote|trigger)|port|type go)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^copy ",
+					"name": "entity.name.function"
 				}
 			]
 		},
@@ -432,6 +478,14 @@
 			"patterns": [
 				{
 					"match": "dashboard accumulate",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^date ",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^delete (config|exec)",
 					"name": "entity.name.function"
 				},
 				{
@@ -529,6 +583,10 @@
 					"name": "entity.name.function"
 				},
 				{
+					"match": "^ disconnect ",
+					"name": "entity.name.function"
+				},
+				{
 					"match": "dns (cache max entry|cache use|host|notice order|private (address spoof|name)|srcport)",
 					"name": "entity.name.function"
 				},
@@ -569,6 +627,10 @@
 		"e": {
 			"patterns": [
 				{
+					"match": "^echo ",
+					"name": "entity.name.function"
+				},
+				{
 					"match": "embedded file (-b )?(\\S*) (<<)(\\S*)",
 					"name": "storage",
 					"captures": {
@@ -587,15 +649,28 @@
 					}
 				},
 				{
+					"match": "ethernet (\\S+)? filter",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						}
+					}
+				},
+				{
+					"match": "ex-license password",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "execute (at-command|batch)",
+					"name": "entity.name.function"
+				},
+				{
 					"match": "external-memory (accelerator cache size|auto-search time|batch filename|boot (permit|timeout)|cache mode|config filename)",
 					"name": "entity.name.function"
 				},
 				{
 					"match": "external-memory (dpi signature directory|exec filename|performance-test go|statistics filename prefix|syslog filename)",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "^\\b(execute|ethernet)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -662,35 +737,11 @@
 		"i": {
 			"patterns": [
 				{
-					"match": "isdn (arrive permit|auto connect)",
+					"match": "import (ex-license key|sshd authorized-keys)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "isdn call (block time|permit|prohibit time)",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "isdn callback (mscbcp user-specify|(permit|request)( type)?|(response|wait) time)",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "isdn disconnect ((input|interval|output) time|(policy|time))",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "isdn (fast|forced) disconnect time",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "isdn (local|remote) address",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "isdn (remote call order|terminator)",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "ipip keepalive (use|log)",
+					"match": "interface reset",
 					"name": "entity.name.function"
 				},
 				{
@@ -1071,6 +1122,34 @@
 				{
 					"match": "ipv6 prefix",
 					"name": "support.function"
+				},
+				{
+					"match": "isdn (arrive permit|auto connect)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn call (block time|permit|prohibit time)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn callback (mscbcp user-specify|(permit|request)( type)?|(response|wait) time)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn disconnect ((input|interval|output) time|(policy|time))",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn (fast|forced) disconnect time",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn (local|remote) address",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "isdn (remote call order|terminator)",
+					"name": "entity.name.function"
 				}
 			]
 		},
@@ -1089,6 +1168,10 @@
 					"name": "entity.name.function"
 				},
 				{
+					"match": "lan (backup|count-hub-overflow|flexible-port|keepalive interval|link-aggregation static|linkup send-wait-time|port-mirroring|port type|port shutdown|receive-buffer-size|shutdown|type)",
+					"name": "entity.name.function"
+				},
+				{
 					"match": "lan-map (log|snapshot use|sysname|terminal watch interval)",
 					"name": "entity.name.function"
 				},
@@ -1097,15 +1180,23 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "lan (backup|count-hub-overflow|flexible-port|keepalive interval|link-aggregation static|linkup send-wait-time|port-mirroring|port type|port shutdown|receive-buffer-size|shutdown|type)",
+					"match": "less (config (ap|list|pp|switch|tunnel)?|(exec|file) list|log)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "line type",
+					"match": "license (authentication go|authentication retry interval)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "line (masterclock|type)",
 					"name": "entity.name.function"
 				},
 				{
 					"match": "login(( password( encrypted)?)| radius use| timer| user)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "lua(c| (use)?)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1230,11 +1321,11 @@
 		"p": {
 			"patterns": [
 				{
-					"match": "pki (certificate file|crl file)",
+					"match": "packetdump ",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "provider (ipv6 connect pp|ntp server|ntpdate|select|set|type)",
+					"match": "pki (certificate file|crl file)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1318,12 +1409,19 @@
 							"name": "variable.language"
 						}
 					}
+				},
+				{
+					"match": "provider (ipv6 connect pp|ntp server|ntpdate|select|set|type)",
+					"name": "entity.name.function"
 				}
 			]
 		},
 		"q": {
 			"patterns": [
 				{
+					"match": "qac-tm (client (permit|port|refresh go|update)|port|redirect|server (refresh go)?|unqualified client access control|use|version margin|warning url)",
+					"name": "entity.name.function"
+				},				{
 					"match": "queue class filter",
 					"name": "entity.name.function"
 				},
@@ -1709,11 +1807,11 @@
 		"t": {
 			"patterns": [
 				{
-					"match": "^tftp host",
+					"match": "take lan-map snapshot ",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^terminate lua( file)?",
+					"match": "^tcp (log|session limit)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1721,7 +1819,15 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^tcp (log|session limit)",
+					"match": "^terminate lua( file)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^tftp host",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^time(zone)?",
 					"name": "entity.name.function"
 				},
 				{
