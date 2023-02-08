@@ -19,7 +19,7 @@
         "aliases": [
           "YAMAHA Router"
         ],
-        "firstLine": "^# (# )?(RT|NVR)\\S+ Rev\\.",
+        "firstLine": "^# (# )?(RT|NVR|WLX)\\S+ Rev\\.",
         "extensions": [
           ".conf"
         ],
