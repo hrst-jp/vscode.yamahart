@@ -1,0 +1,274 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "YAMAHA WLX",
+    "patterns": [
+        {
+            "include": "#comment"
+        },
+        {
+            "include": "#wlx-a"
+        },
+        {
+            "include": "#wlx-c"
+        },
+        {
+            "include": "#wlx-l"
+        },
+        {
+            "include": "#wlx-r"
+        },
+        {
+            "include": "#wlx-v"
+        },
+        {
+            "include": "#wlx-w"
+        },
+        {
+            "include": "#keyword",
+            "comment": "コマンド内で利用される汎用的な予約語など"
+        }
+    ],
+    "repository": {
+        "comment": {
+            "patterns": [
+                {
+                    "match": "^#.*",
+                    "name": "comment.line"
+                }
+            ]
+        },
+        "keyword": {
+            "patterns": [
+                {
+                    "match": "\\b(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(/(([1-2]?[0-9])|3[0-2]))?\\b",
+                    "name": "string",
+                    "comment": "IPv4 Address"
+                },
+                {
+                    "match": "\\b([0-9a-f]{0,4}:){7}[0-9a-f]{0,4}(%\\S+|(/([1-9]?[0-9]|1[0-9]{2}|12[0-8])))?\\b",
+                    "name": "string",
+                    "comment": "IPv6 Address省略なし"
+                },
+                {
+                    "match": "\\b([0-9a-f]{0,4}:){3}(:|[0-9a-f]{0,4})?(:[0-9a-f]{0,4}){0,4}(%\\S+|(/([1-9]?[0-9]|1[0-9]{2}|12[0-8])))?\\b",
+                    "name": "string",
+                    "comment": "IPv6 Address省略あり48bitマスク以上"
+                },
+                {
+                    "match": "\\b(([0-9a-fA-F]{2}(:|-)){5}[0-9a-fA-F]{2})\\b",
+                    "name": "string",
+                    "comment": "MACアドレス"
+                },
+                {
+                    "match": "\\b(lan\\d+(\\.\\d+|/\\d+|:\\d+)?)\\b",
+                    "name": "variable.language",
+                    "comment": "LANインターフェース"
+                },
+                {
+                    "match": "\\b(vlan\\d+|pri1|bridge1|loopback[1-9])\\b",
+                    "name": "variable.language",
+                    "comment": "その他インターフェース"
+                },
+                {
+                    "match": "\\b(on|off|all)\\b",
+                    "name": "keyword.control",
+                    "comment": "スイッチ"
+                },
+                {
+                    "match": "\\b(([0-1][0-9]|2[0-3]):[0-5][0-9])\\b",
+                    "name": "constant.numeric",
+                    "comment": "時間"
+                },
+                {
+                    "match": "\\b(\\d+)\\b",
+                    "name": "constant.numeric",
+                    "comment": "数字"
+                },
+                {
+                    "match": "\\b(\\S+)(!=|=)(\\d+)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "variable.language"
+                        },
+                        "2": {
+                            "name": "keyword.operator"
+                        },
+                        "3": {
+                            "name": "constant.numeric"
+                        }
+                    }
+                },
+                {
+                    "match": "\\b(\\S+)(!=|=)(on|off)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "variable.language"
+                        },
+                        "2": {
+                            "name": "keyword.operator"
+                        },
+                        "3": {
+                            "name": "keyword.control"
+                        }
+                    }
+                },
+                {
+                    "match": "\\b(\\S+)(!=|=)(\\S+)\\b",
+                    "captures": {
+                        "1": {
+                            "name": "variable.language"
+                        },
+                        "2": {
+                            "name": "keyword.operator"
+                        },
+                        "3": {
+                            "name": "string"
+                        }
+                    }
+                }
+            ]
+        },
+        "wlx-a": {
+            "patterns": [
+                {
+                    "match": "airlink configure refresh",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "airlink (enable|select|disable) (all|module\\S|\\S+|none)",
+                    "name": "storage.type",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.control"
+                        }
+                    }
+                },
+                {
+                    "match": "airlink emergency-mode",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "airlink (mode|channel|beacon)",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "airlink optimization use",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "airlink macaddress filter list",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "airlink macaddress filter use",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "airlink (ssid|vlan-id|bind|auth|radius (auth|server|secret)|psk-key|privacy)",
+                    "name": "entity.name.function"
+                }
+            ]
+        },
+        "wlx-c": {
+            "patterns": [
+                {
+                    "match": "cluster config-id",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "cluster cluster-mode (auto-cluster|standalone)",
+                    "name": "entity.name.function",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.control"
+                        }
+                    }
+                },
+                {
+                    "match": "cluster virtual-ip address",
+                    "name": "entity.name.function"
+                }
+            ]
+        },
+        "wlx-l": {
+            "patterns": [
+                {
+                    "match": "led blink",
+                    "name": "entity.name.function"
+                }
+            ]
+        },
+        "wlx-r": {
+            "patterns": [
+                {
+                    "match": "radiusd (use|reauth|client|user)",
+                    "name": "entity.name.function"
+                }
+            ]
+        },
+        "wlx-v": {
+            "patterns": [
+                {
+                    "match": "vlan-access (\\S+) (\\d+)",
+                    "name": "support.function",
+                    "captures": {
+                        "1": {
+                            "name": "variable.language"
+                        },
+                        "2": {
+                            "name": "constant.numeric"
+                        }
+                    }
+                },
+                {
+                    "match": "vlan-id (\\d+) (\\d+)",
+                    "name": "support.function",
+                    "captures": {
+                        "1": {
+                            "name": "constant.numeric"
+                        },
+                        "2": {
+                            "name": "constant.numeric"
+                        }
+                    }
+                },
+                {
+                    "match": "vlan-port-mode",
+                    "name": "support.function"
+                },
+                {
+                    "match": "vlan-trunk (\\S+) (\\d+) (join|leave)",
+                    "name": "support.function",
+                    "captures": {
+                        "1": {
+                            "name": "variable.language"
+                        },
+                        "2": {
+                            "name": "constant.numeric"
+                        },
+                        "3": {
+                            "name": "variable.language"
+                        }
+                    }
+                }
+            ]
+        },
+        "wlx-w": {
+            "patterns": [
+                {
+                    "match": "wlan-controller config set",
+                    "name": "support.function"
+                },
+                {
+                    "match": "wlan-controller select",
+                    "name": "storage.type"
+                },
+                {
+                    "match": "wlan-controller (member-ap|serial|system name|ip address)",
+                    "name": "support.function"
+                }
+            ]
+        }
+    },
+    "scopeName": "text.yamahawlx"
+}

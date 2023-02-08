@@ -1,8 +1,9 @@
 # Change Log
 All notable changes to the "yamaha-rt" extension will be documented in this file.
 
-## [1.3.22] - 2023-02-05
+## [1.4.0] - 2023-02-05
 - RTX系コマンドをほぼ網羅したよ。
+- WLX系コマンドを追加
 
 ## [1.3.0] - 2021-10-30
 - 色々大きく変更

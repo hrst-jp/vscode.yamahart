@@ -175,6 +175,16 @@
 					"comment": "スイッチ"
 				},
 				{
+					"match": "\\b(pap|chap|mschap(-v2)?)\\b",
+					"name": "keyword.control",
+					"comment": "認証方式"
+				},
+				{
+					"match": "\\b(myname|clid|mscbcp)\\b",
+					"name": "variable.language",
+					"comment": "pp auth キーワード"
+				},
+				{
 					"match": "\\b(talk|route|uucp|submission)\\b",
 					"name": "variable.language",
 					"comment": "port_list"
@@ -767,22 +777,8 @@
 					"name": "entity.name.function"
 				},
 				{
-					"begin": "ip(v6)? filter",
-					"end": "\\n",
-					"name": "entity.name.function",
-					"patterns": [
-						{
-							"match": "(directed-broadcast|dynamic|fqdn timer|set|source-route)",
-							"name": "entity.name.function"
-						},
-						{
-							"match": "\\b(filter)\\b",
-							"name": "keyword.control"
-						},
-						{
-							"include": "#keyword"
-						}
-					]
+					"match": "ip filter (directed-broadcast|dynamic( timer)?|fqdn timer|set|source-route)?",
+					"name": "entity.name.function"
 				},
 				{
 					"match": "ip (flow(limit|time)|forward filter|fragment remove df-bit|host)",
@@ -831,9 +827,6 @@
 					"end": "\\n",
 					"patterns": [
 						{
-							"include": "#keyword"
-						},
-						{
 							"match": "(default|pp|dhcp|tunnel)",
 							"name": "variable.language"
 						},
@@ -844,6 +837,9 @@
 						{
 							"match": "(filter|metric|hide|weight|keepalive)",
 							"name": "keyword.control"
+						},
+						{
+							"include": "#keyword"
 						}
 					],
 					"name": "entity.name.function"
@@ -1007,6 +1003,10 @@
 				},
 				{
 					"match": "ipip keepalive (log|use)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "ipv6 filter( dynamic)?",
 					"name": "entity.name.function"
 				},
 				{
@@ -1359,40 +1359,31 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pp auth accept (pap|chap|mschap|mschap-v2)( (pap|chap|mschap|mschap-v2))?",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "keyword.control"
-						},
-						"2": {
-							"name": "keyword.control"
-						}
-					}
+					"match": "pp always-on",
+					"name": "entity.name.function"
 				},
 				{
-					"match": "pp auth (myname|username) (\\S+) (\\S+)",
-					"name": "entity.name.function",
-					"captures": {
-						"2": {
-							"name": "string"
-						},
-						"3": {
-							"name": "string"
-						}
-					}
+					"match": "pp auth (accept|multi connect prohibit|myname|request|username)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "pp backup (pp|recovery time|tunnel)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "pp bind",
+					"name": "entity.name.function"
 				},
 				{
 					"match": "pp (enable|disable|select)",
-					"name": "storage.type",
-					"captures": {
-						"2": {
-							"name": "keyword.control"
-						}
-					}
+					"name": "storage.type"
 				},
 				{
-					"match": "pp (always-on|auth|auth request|backup|bind|encapsulation|keepalive interval|keepalive log|keepalive use)",
+					"match": "pp (encapsulation|keepalive interval|keepalive log|keepalive use)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "pp keepalive (interval|log|use)",
 					"name": "entity.name.function"
 				},
 				{
@@ -1863,12 +1854,7 @@
 				},
 				{
 					"match": "tunnel (enable|disable|select)",
-					"name": "storage.type",
-					"captures": {
-						"2": {
-							"name": "keyword.control"
-						}
-					}
+					"name": "storage.type"
 				},
 				{
 					"match": "tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp|map-e)",

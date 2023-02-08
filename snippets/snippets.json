@@ -13,4 +13,5 @@
         "prefix": "syslog srcport",
         "body": "syslog srcport $1",
         "description": "Syslog出力するソースポートを指定する(1..65535)"
-    }}
+    }
+}
