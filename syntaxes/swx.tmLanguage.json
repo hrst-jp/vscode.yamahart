@@ -1,0 +1,255 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "YAMAHA SWX",
+    "patterns": [
+        {
+            "include": "#swx-l2-vlan"
+        },
+        {
+            "include": "#swx-traffic-acl"
+        },
+        {
+            "include": "#swx-traffic-qos",
+            "comment": "9.2 QoS (Quality of Service)"
+        },
+        {
+            "include": "#swx-ap-dhcp"
+        },
+        {
+            "include": "#swx-ap-dhcp-relay"
+        },
+        {
+            "include": "#swx-ap-dns-relay"
+        }
+    ],
+    "repository": {
+        "swx-l2-vlan": {
+            "patterns": [
+                {
+                    "match": "^vlan (database)",
+                    "name": "entity.name.function",
+                    "captures": {
+                        "1": {
+                            "name": "string"
+                        }
+                    }
+                },
+                {
+                    "match": " vlan (\\d+)( name (\\S+))?( state (enable|disable))?",
+                    "name": "entity.name.function",
+                    "captures": {
+                        "1": {
+                            "name": "constant.numeric"
+                        },
+                        "3": {
+                            "name": "keyword"
+                        },
+                        "5": {
+                            "name": "keyword.control"
+                        }
+                    }
+                },
+                {
+                    "match": "private-vlan (\\d+) (primary|community|isolated)",
+                    "name": "entity.name.function",
+                    "captures": {
+                        "1": {
+                            "name": "constant.numeric"
+                        },
+                        "2": {
+                            "name": "entity.name.type"
+                        }
+                    }
+                },
+                {
+                    "match": "private-vlan (\\d+) association (add|remove)",
+                    "name": "entity.name.function",
+                    "captures": {
+                        "1": {
+                            "name": "constant.numeric"
+                        },
+                        "2": {
+                            "name": "keyword.control"
+                        }
+                    }
+                },
+                {
+                    "match": " switchport mode access",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": " switchport access vlan",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": " switchport mode trunk",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": " switchport trunk allowed vlan (all|none|add|except|remove)",
+                    "name": "entity.name.function",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.control"
+                        }
+                    }
+                },
+                {
+                    "match": " switchport trunk native vlan",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": " switchport mode private-vlan (promiscuous|host)",
+                    "name": "entity.name.function",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.type"
+                        }
+                    }
+                },
+                {
+                    "match": " switchport private-vlan (host-association|mapping) (\\d+) add",
+                    "name": "entity.name.function",
+                    "captures": {
+                        "2": {
+                            "name": "constant.numeric"
+                        }
+                    }
+                },
+                {
+                    "match": "switchport voice (vlan|cos|dscp) (dot1p|untagged)?",
+                    "name": "entity.name.function",
+                    "captures": {
+                        "2": {
+                            "name": "entity.name.type"
+                        }
+                    }
+                },
+                {
+                    "match": " switchport multiple-vlan group",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "multiple-vlan group (\\d+) name (\\S+)",
+                    "name": "entity.name.function",
+                    "captures": {
+                        "1": {
+                            "name": "constant.numeric"
+                        },
+                        "2": {
+                            "name": "string"
+                        }
+                    }
+                },
+                {
+                    "match": "multiple-vlan transfer ympi",
+                    "name": "entity.name.function"
+                }
+            ]
+        },
+        "swx-traffic-acl": {
+            "patterns": [
+                {
+                    "match": "^access-list ",
+                    "name": "entity.name.function"
+                }
+            ]
+        },
+        "swx-traffic-qos": {
+            "patterns": [
+                {
+                    "match": "^qos (cos-queue|dscp-queue|queue sent-from-cpu|wrr-weight)?",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": " qos (cos|trust|port-priority-queue)",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "^(class-map|policy-map|aggregate-police) (\\S+)",
+                    "name": "storage",
+                    "captures": {
+                        "1": {
+                            "name": "string"
+                        }
+                    }
+                },
+                {
+                    "match": " class ",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": " match (access-list|cos|ip-precedence|ip-dscp|ethertype|vlan|vlan-range) ",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": " service-policy input ",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "  set (cos|ip-precedence|ip-dscp|cos-queue|ip-dscp-queue) ",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "  (police|remark-map) ",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": " traffic-shape (rate|queue) ",
+                    "name": "entity.name.function"
+                }
+            ]
+        },
+        "swx-ap-dhcp": {
+            "patterns": [
+                {
+                    "match": "\\b(dhcp-server)\\b",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "server-type (normal|auth-web)",
+                    "name": "entity.name.function",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.type"
+                        }
+                    }
+                },
+                {
+                    "match": "^dhcp pool (\\S+)",
+                    "name": "storage",
+                    "captures": {
+                        "1": {
+                            "name": "string"
+                        }
+                    }
+                },
+                {
+                    "match": " (network|range|bind host|lease|probe( timeout)?|default-router|dns-server|domain-name|bootfile|next-server|option) ",
+                    "name": "entity.name.function"
+                }
+            ]
+        },
+        "swx-ap-dhcp-relay": {
+            "patterns": [
+                {
+                    "match": "^dhcp-relay( broadcast)?",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": " dhcp-relay server-address",
+                    "name": "entity.name.function"
+                }
+            ]
+        },
+        "swx-ap-dns-relay": {
+            "patterns": [
+                {
+                    "match": "dns-forwarding (name-server|cache max-ttl|static-host)?",
+                    "name": "entity.name.function"
+                }
+            ]
+        }
+    },
+    "scopeName": "text.yamahawlx"
+}

@@ -22,10 +22,6 @@
         },
         {
             "include": "#wlx-w"
-        },
-        {
-            "include": "#keyword",
-            "comment": "コマンド内で利用される汎用的な予約語など"
         }
     ],
     "repository": {
@@ -34,97 +30,6 @@
                 {
                     "match": "^#.*",
                     "name": "comment.line"
-                }
-            ]
-        },
-        "keyword": {
-            "patterns": [
-                {
-                    "match": "\\b(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(/(([1-2]?[0-9])|3[0-2]))?\\b",
-                    "name": "string",
-                    "comment": "IPv4 Address"
-                },
-                {
-                    "match": "\\b([0-9a-f]{0,4}:){7}[0-9a-f]{0,4}(%\\S+|(/([1-9]?[0-9]|1[0-9]{2}|12[0-8])))?\\b",
-                    "name": "string",
-                    "comment": "IPv6 Address省略なし"
-                },
-                {
-                    "match": "\\b([0-9a-f]{0,4}:){3}(:|[0-9a-f]{0,4})?(:[0-9a-f]{0,4}){0,4}(%\\S+|(/([1-9]?[0-9]|1[0-9]{2}|12[0-8])))?\\b",
-                    "name": "string",
-                    "comment": "IPv6 Address省略あり48bitマスク以上"
-                },
-                {
-                    "match": "\\b(([0-9a-fA-F]{2}(:|-)){5}[0-9a-fA-F]{2})\\b",
-                    "name": "string",
-                    "comment": "MACアドレス"
-                },
-                {
-                    "match": "\\b(lan\\d+(\\.\\d+|/\\d+|:\\d+)?)\\b",
-                    "name": "variable.language",
-                    "comment": "LANインターフェース"
-                },
-                {
-                    "match": "\\b(vlan\\d+|pri1|bridge1|loopback[1-9])\\b",
-                    "name": "variable.language",
-                    "comment": "その他インターフェース"
-                },
-                {
-                    "match": "\\b(on|off|all)\\b",
-                    "name": "keyword.control",
-                    "comment": "スイッチ"
-                },
-                {
-                    "match": "\\b(([0-1][0-9]|2[0-3]):[0-5][0-9])\\b",
-                    "name": "constant.numeric",
-                    "comment": "時間"
-                },
-                {
-                    "match": "\\b(\\d+)\\b",
-                    "name": "constant.numeric",
-                    "comment": "数字"
-                },
-                {
-                    "match": "\\b(\\S+)(!=|=)(\\d+)\\b",
-                    "captures": {
-                        "1": {
-                            "name": "variable.language"
-                        },
-                        "2": {
-                            "name": "keyword.operator"
-                        },
-                        "3": {
-                            "name": "constant.numeric"
-                        }
-                    }
-                },
-                {
-                    "match": "\\b(\\S+)(!=|=)(on|off)\\b",
-                    "captures": {
-                        "1": {
-                            "name": "variable.language"
-                        },
-                        "2": {
-                            "name": "keyword.operator"
-                        },
-                        "3": {
-                            "name": "keyword.control"
-                        }
-                    }
-                },
-                {
-                    "match": "\\b(\\S+)(!=|=)(\\S+)\\b",
-                    "captures": {
-                        "1": {
-                            "name": "variable.language"
-                        },
-                        "2": {
-                            "name": "keyword.operator"
-                        },
-                        "3": {
-                            "name": "string"
-                        }
-                    }
                 }
             ]
         },
