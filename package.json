@@ -2,7 +2,7 @@
   "name": "yamaha-rt",
   "displayName": "YAMAHA Router",
   "description": "Highlight the configuration file of YAMAHA router product.",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "publisher": "hrst",
   "icon": "images/rtx1210_icon.png",
   "engines": {
@@ -21,7 +21,10 @@
         ],
         "firstLine": "^# (# )?(RT|NVR|WLX)\\S+ Rev\\.",
         "extensions": [
-          ".conf"
+          ".conf",
+          ".rtx",
+          ".nvr",
+          ".wlx"
         ],
         "configuration": "./language-configuration.json"
       }

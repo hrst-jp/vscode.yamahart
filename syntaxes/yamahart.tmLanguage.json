@@ -3,10 +3,16 @@
 	"name": "YAMAHA RT",
 	"patterns": [
 		{
+			"include": "#common"
+		},
+		{
 			"include": "#comment"
 		},
 		{
 			"include": "#a"
+		},
+		{
+			"include": "#a-nvr"
 		},
 		{
 			"include": "#b"
@@ -193,17 +199,17 @@
 					"comment": "IPv4 Address"
 				},
 				{
-					"match": "\\b([0-9a-f]{0,4}:){7}[0-9a-f]{0,4}(%\\S+|(/([1-9]?[0-9]|1[0-9]{2}|12[0-8])))?\\b",
+					"match": "\\b([0-9a-f]{0,4}:){7}[0-9a-f]{0,4}(%\\S+|(/(12[0-8]|1([0-1]|[39]){2}|[1-9]?[0-9])))?\\b",
 					"name": "string",
 					"comment": "IPv6 Address省略なし"
 				},
 				{
-					"match": "\\b([0-9a-f]{0,4}:){3}(:|[0-9a-f]{0,4})?(:[0-9a-f]{0,4}){0,4}(%\\S+|(/([1-9]?[0-9]|1[0-9]{2}|12[0-8])))?\\b",
+					"match": "\\b([0-9a-f]{0,4}:){3}(:|[0-9a-f]{0,4})?(:[0-9a-f]{0,4}){0,4}(%\\S+|(/(12[0-8]|1([0-1]|[39]){2}|[1-9]?[0-9])))?\\b",
 					"name": "string",
 					"comment": "IPv6 Address省略あり48bitマスク以上"
 				},
 				{
-					"match": "\\b(dhcp|ra)-prefix@lan([0-9a-f:]+)(%\\S+)?(/([1-9]?[0-9]|1[0-9]{2}|12[0-8]))?\\b",
+					"match": "\\b(dhcp|ra)-prefix@lan([0-9a-f:]+)(%\\S+)?(/(12[0-8]|1([0-1]|[39]){2}|[1-9]?[0-9]))?\\b",
 					"name": "string",
 					"comment": "IPv6 プレフィックス表記"
 				},
@@ -309,10 +315,24 @@
 				}
 			]
 		},
+		"common": {
+			"patterns": [
+				{
+					"match": "^.* syslog (on|off)",
+					"name": "entity.name.function",
+					"comment": "各種SYSLOG表示",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				}
+			]
+		},
 		"a": {
 			"patterns": [
 				{
-					"match": "account threshold (\\S+)",
+					"match": "^\\s*account threshold (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -321,7 +341,7 @@
 					}
 				},
 				{
-					"match": "administrator radius auth (on|only|off)",
+					"match": "^\\s*administrator radius auth (on|only|off)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -330,15 +350,15 @@
 					}
 				},
 				{
-					"match": "administrator( password)?( encrypted)?",
+					"match": "^\\s*administrator( password)?( encrypted)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "alarm (batch|entire|http (revision-up|upload)|lua|mobile|sd|startup|usbhost)",
+					"match": "^\\s*alarm (batch|entire|http (revision-up|upload)|lua|mobile|sd|startup|usbhost)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "alias (\\S+)(=)(\\S+)",
+					"match": "^\\s*alias (\\S+)(=)(\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -353,67 +373,71 @@
 					}
 				},
 				{
-					"match": "analog arrive (another-device|global|ignore-subaddress|ring-while-talking|without-subaddress) permit",
+					"match": "^\\s*ap config (directory|filename)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "analog arrive (incoming-signal|incoming-signal timing pb|inumber-port|number display|priority|restrict|restrict list|ringer-type list|without-calling-number)",
+					"match": "^\\s*ap control (config (delete|get|set)|config-auto-set use|firmware update go|http proxy (timeout|use))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "analog call (route-table|route)",
+					"match": "^\\s*ap select",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "analog (device type|disc-signal|end-of-dialing-code)",
+					"match": "^\\s*auth user( (attribute|user group|group attribute))?",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"a-nvr": {
+			"patterns": [
+				{
+					"match": "^\\s*analog arrive (another-device|global|ignore-subaddress|ring-while-talking|without-subaddress) permit",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "analog extension (address refer|agent permit|dial prefix|emergency-call-dial type|incoming ringer|log|machine-id|manager|master|mode|other-dial-tone|sip address|slave permit)",
+					"match": "^\\s*analog arrive (incoming-signal|incoming-signal timing pb|inumber-port|number display|priority|restrict|restrict list|ringer-type list|without-calling-number)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "analog (hooking (inhibit timer|timer|wait timer)|impedance|local address|local address notice)",
+					"match": "^\\s*analog call (route-table|route)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "analog (loop-closure threshold|mp prior|off-hook call|off-hook mask|pad (receive|rtp receive|rtp send|send))",
+					"match": "^\\s*analog (device type|disc-signal|end-of-dialing-code)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "analog (pause timer|power|rapid call|re-ringing-timer)",
+					"match": "^\\s*analog extension (address refer|agent permit|dial prefix|emergency-call-dial type|incoming ringer|log|machine-id|manager|master|mode|other-dial-tone|sip address|slave permit)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "analog sip (arrive (incoming-signal|myaddress|permit|restrict|restrict list|without-calling-number)|call display name|call myname|call permit)",
+					"match": "^\\s*analog (hooking (inhibit timer|timer|wait timer)|impedance|local address|local address notice)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "analog (supplementary-service|supplementary-service call-deflection (address|reject||ringer|talkie))",
+					"match": "^\\s*analog (loop-closure threshold|mp prior|off-hook call|off-hook mask|pad (receive|rtp receive|rtp send|send))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "analog use",
+					"match": "^\\s*analog (pause timer|power|rapid call|re-ringing-timer)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "analog wait dial timer",
+					"match": "^\\s*analog sip (arrive (incoming-signal|myaddress|permit|restrict|restrict list|without-calling-number)|call display name|call myname|call permit)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ap config (directory|filename)",
+					"match": "^\\s*analog (supplementary-service|supplementary-service call-deflection (address|reject||ringer|talkie))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ap control (config (delete|get|set)|config-auto-set use|firmware update go|http proxy (timeout|use))",
+					"match": "^\\s*analog use",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ap select",
-					"name": "entity.name.function"
-				},
-				{
-					"match": "auth user( (attribute|user group|group attribute))?",
+					"match": "^\\s*analog wait dial timer",
 					"name": "entity.name.function"
 				}
 			]
@@ -421,35 +445,35 @@
 		"b": {
 			"patterns": [
 				{
-					"match": "bgp aggregate( filter)?",
+					"match": "^\\s*bgp aggregate( filter)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "bgp (autonomous-system|configure refresh|default med|force-to-advertise)",
+					"match": "^\\s*bgp (autonomous-system|configure refresh|default med|force-to-advertise)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "bgp export( aspath| filter| route selection rule)?",
+					"match": "^\\s*bgp export( aspath| filter| route selection rule)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "bgp import( filter)?",
+					"match": "^\\s*bgp import( filter)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "bgp neighbor( pre-shared-key)?",
+					"match": "^\\s*bgp neighbor( pre-shared-key)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "bgp (log|preference|reric interval|router id|use)",
+					"match": "^\\s*bgp (log|preference|reric interval|router id|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "bridge bridge learning( \\S* (static|timer)?)",
+					"match": "^\\s*bridge bridge learning( \\S* (static|timer)?)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "bridge member",
+					"match": "^\\s*bridge member",
 					"name": "entity.name.function"
 				}
 			]
@@ -457,47 +481,47 @@
 		"c": {
 			"patterns": [
 				{
-					"match": "^call",
+					"match": "^\\s*call",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "clear account( mobile| ngn data| pp| tunnel)?",
+					"match": "^\\s*clear account( mobile| ngn data| pp| tunnel)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "clear (arp|boot list|bridge learning|diagnosis config port|dns cache|dpi (cache|statistics)|ex-license|external-memory syslog|heartbeat2( id| name)?)",
+					"match": "^\\s*clear (arp|boot list|bridge learning|diagnosis config port|dns cache|dpi (cache|statistics)|ex-license|external-memory syslog|heartbeat2( id| name)?)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "clear (inarp|ip dynamic routing|ip traffic list( pp| tunnel)?|ipv6 dynamic routing|ipv6 neighbor cache|log)",
+					"match": "^\\s*clear (inarp|ip dynamic routing|ip traffic list( pp| tunnel)?|ipv6 dynamic routing|ipv6 neighbor cache|log)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "clear (mobile access limitation( pp)?|nat descriptor (dynamic|interface dynamic( pp| tunnel)?|masquerade session statistics))",
+					"match": "^\\s*clear (mobile access limitation( pp)?|nat descriptor (dynamic|interface dynamic( pp| tunnel)?|masquerade session statistics))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "clear (pppoe pass-through learning|pri status|status|switching-hub macaddress|url filter( external-database( pp| tunnel)?| pp| tunnel)?)",
+					"match": "^\\s*clear (pppoe pass-through learning|pri status|status|switching-hub macaddress|url filter( external-database( pp| tunnel)?| pp| tunnel)?)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "cloud vpn (bind|name|option|parameter|service|set go|syslog)",
+					"match": "^\\s*cloud vpn (bind|name|option|parameter|service|set go|syslog)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "cold start",
+					"match": "^\\s*cold start",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^connect ",
+					"match": "^\\s*connect ",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "console (character|columns|info|lines)",
+					"match": "^\\s*console (character|columns|info|lines)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "console prompt (\\S+)",
+					"match": "^\\s*console prompt (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -506,11 +530,11 @@
 					}
 				},
 				{
-					"match": "cooperation( bandwidth-measuring remote|load-watch (control|remote|trigger)|port|type go)?",
+					"match": "^\\s*cooperation( bandwidth-measuring remote|load-watch (control|remote|trigger)|port|type go)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^copy ",
+					"match": "^\\s*copy ",
 					"name": "entity.name.function"
 				}
 			]
@@ -518,39 +542,39 @@
 		"d": {
 			"patterns": [
 				{
-					"match": "dashboard accumulate",
+					"match": "^\\s*dashboard accumulate",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^date ",
+					"match": "^\\s*date ",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^delete (config|exec)",
+					"match": "^\\s*delete (config|exec)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dhcp client ((client-identifier|hostname|option)( pool| pp)|release linkdown)",
+					"match": "^\\s*dhcp client ((client-identifier|hostname|option)( pool| pp)|release linkdown)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dhcp convert lease to bind",
+					"match": "^\\s*dhcp convert lease to bind",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dhcp duplicate check",
+					"match": "^\\s*dhcp duplicate check",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dhcp manual (lease|release)",
+					"match": "^\\s*dhcp manual (lease|release)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dhcp relay (select|server|srcport|threshold)",
+					"match": "^\\s*dhcp relay (select|server|srcport|threshold)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dhcp scope (bind)",
+					"match": "^\\s*dhcp scope (bind)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -559,15 +583,15 @@
 					}
 				},
 				{
-					"match": "dhcp scope (option)?",
+					"match": "^\\s*dhcp scope (option)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dhcp server rfc2131 compliant( except)?",
+					"match": "^\\s*dhcp server rfc2131 compliant( except)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dhcp service (server|relay)",
+					"match": "^\\s*dhcp service (server|relay)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -576,11 +600,11 @@
 					}
 				},
 				{
-					"match": "diagnose config port (access|map)",
+					"match": "^\\s*diagnose config port (access|map)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "diagnosis config port (history-num|max-detect)",
+					"match": "^\\s*diagnosis config port (history-num|max-detect)",
 					"name": "entity.name.function"
 				},
 				{
@@ -588,11 +612,11 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dns (cache max entry|cache use|host|notice order|private (address spoof|name)|srcport)",
+					"match": "^\\s*dns (cache max entry|cache use|host|notice order|private (address spoof|name)|srcport)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dns domain (\\S+)",
+					"match": "^\\s*dns domain (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -601,11 +625,11 @@
 					}
 				},
 				{
-					"match": "dns server (aaa filter|fallback)?",
+					"match": "^\\s*dns server (aaa filter|fallback)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "dns service (dhcp|pp|select)?",
+					"match": "^\\s*dns service (dhcp|pp|select)?",
 					"name": "entity.name.function"
 				},
 				{
@@ -620,7 +644,7 @@
 					}
 				},
 				{
-					"match": "dpi (log|signature download (go|url)|use)",
+					"match": "^\\s*dpi (log|signature download (go|url)|use)",
 					"name": "entity.name.function"
 				}
 			]
@@ -628,11 +652,11 @@
 		"e": {
 			"patterns": [
 				{
-					"match": "^echo ",
+					"match": "^\\s*echo ",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "embedded file (-b )?(\\S*) <<(\\S*)",
+					"match": "^\\s*embedded file (-b )?(\\S*) <<(\\S*)",
 					"name": "storage",
 					"captures": {
 						"1": {
@@ -647,7 +671,7 @@
 					}
 				},
 				{
-					"match": "ethernet (\\S+)? filter",
+					"match": "^\\s*ethernet (\\S+)? filter",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -656,19 +680,19 @@
 					}
 				},
 				{
-					"match": "ex-license password",
+					"match": "^\\s*ex-license password",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "execute (at-command|batch)",
+					"match": "^\\s*execute (at-command|batch)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "external-memory (accelerator cache size|auto-search time|batch filename|boot (permit|timeout)|cache mode|config filename)",
+					"match": "^\\s*external-memory (accelerator cache size|auto-search time|batch filename|boot (permit|timeout)|cache mode|config filename)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "external-memory (dpi signature directory|exec filename|performance-test go|statistics filename prefix|syslog filename)",
+					"match": "^\\s*external-memory (dpi signature directory|exec filename|performance-test go|statistics filename prefix|syslog filename)",
 					"name": "entity.name.function"
 				}
 			]
@@ -676,11 +700,11 @@
 		"f": {
 			"patterns": [
 				{
-					"match": "fr (dlci|cir|lmi|inarp|backup|compression use|confestion control)",
+					"match": "^\\s*fr (dlci|cir|lmi|inarp|backup|compression use|confestion control)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "fr (pp dequeue type|de)",
+					"match": "^\\s*fr (pp dequeue type|de)",
 					"name": "entity.name.function"
 				}
 			]
@@ -691,43 +715,43 @@
 		"h": {
 			"patterns": [
 				{
-					"match": "heartbeat (pre-shared-key|receive|send)",
+					"match": "^\\s*heartbeat (pre-shared-key|receive|send)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "heartbeat2 receive (enable|log|monitor|record limit)",
+					"match": "^\\s*heartbeat2 receive (enable|log|monitor|record limit)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "heartbeat2 transmit (enable|interval|log)",
+					"match": "^\\s*heartbeat2 transmit (enable|interval|log)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "heartbeat2 (myname|transmit|receive)",
+					"match": "^\\s*heartbeat2 (myname|transmit|receive)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "http revision-down permit",
+					"match": "^\\s*http revision-down permit",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "http revision-up (go|permit|proxy|schedule|timeout|url)",
+					"match": "^\\s*http revision-up (go|permit|proxy|schedule|timeout|url)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "http wwan-module-up (go|permit|timeout|url)",
+					"match": "^\\s*http wwan-module-up (go|permit|timeout|url)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "httpd custom-gui api (password|use)",
+					"match": "^\\s*httpd custom-gui api (password|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "httpd custom-gui (user|use)",
+					"match": "^\\s*httpd custom-gui (user|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "httpd (host|listen|proxy-access l2ms permit|service|timeout)",
+					"match": "^\\s*httpd (host|listen|proxy-access l2ms permit|service|timeout)",
 					"name": "entity.name.function"
 				}
 			]
@@ -735,43 +759,43 @@
 		"i": {
 			"patterns": [
 				{
-					"match": "import (ex-license key|sshd authorized-keys)",
+					"match": "^\\s*import (ex-license key|sshd authorized-keys)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "interface reset",
+					"match": "^\\s*interface reset",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ip keepalive",
+					"match": "^\\s*ip keepalive",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ip filter (directed-broadcast( filter)?|dynamic( timer)?|fqdn timer|set|source-route)?",
+					"match": "^\\s*ip filter (directed-broadcast( filter)?|dynamic( timer)?|fqdn timer|set|source-route)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ip (flow(limit|time)|forward filter|fragment remove df-bit|host)",
+					"match": "^\\s*ip (flow(limit|time)|forward filter|fragment remove df-bit|host)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ip icmp (echo-reply send(-only-linkup)?|error-decrypted-ipsec send|log|mask-reply send|parameter-problem send)",
+					"match": "^\\s*ip icmp (echo-reply send(-only-linkup)?|error-decrypted-ipsec send|log|mask-reply send|parameter-problem send)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ip icmp (redirect (receive|send)|time-exceeded send|timestamp-reply send|unreachable( send|-for-truncated send))",
+					"match": "^\\s*ip icmp (redirect (receive|send)|time-exceeded send|timestamp-reply send|unreachable( send|-for-truncated send))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ip implicit-route preference",
+					"match": "^\\s*ip implicit-route preference",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ip inbound filter ",
+					"match": "^\\s*ip inbound filter ",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ip (\\S+) (address|arp|dhcp service|dpi filter|igmp|ospf (area|neighbor)|pim|proxyarp|secondary address|traffic|vrrp|wol)",
+					"match": "^\\s*ip (\\S+) (address|arp|dhcp service|dpi filter|igmp|ospf (area|neighbor)|pim|proxyarp|secondary address|traffic|vrrp|wol)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -780,7 +804,7 @@
 					}
 				},
 				{
-					"match": "ip(v6)? (\\S+) rip (auth key|auth key text|auth type|filter|force-to-advertise|hop|receive|send|trust gateway)",
+					"match": "^\\s*ip(v6)? (\\S+) rip (auth key|auth key text|auth type|filter|force-to-advertise|hop|receive|send|trust gateway)",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -789,11 +813,11 @@
 					}
 				},
 				{
-					"match": "ip(v6)? (pim|policy)",
+					"match": "^\\s*ip(v6)? (pim|policy)",
 					"name": "entity.name.function"
 				},
 				{
-					"begin": "ip(v6)? route",
+					"begin": "^\\s*ip(v6)? route",
 					"end": "\\n",
 					"name": "entity.name.function",
 					"patterns": [
@@ -815,7 +839,7 @@
 					]
 				},
 				{
-					"match": "ip(v6)? routing process",
+					"match": "^\\s*ip(v6)? routing process",
 					"name": "entity.name.function"
 				},
 				{
@@ -829,7 +853,7 @@
 					},
 					"patterns": [
 						{
-							"match": "dynamic",
+							"match": "^\\s*dynamic",
 							"name": "keyword.control"
 						},
 						{
@@ -838,7 +862,7 @@
 					]
 				},
 				{
-					"match": "ip(v6)? (\\S+) tcp (mss limit|window-scale)",
+					"match": "^\\s*ip(v6)? (\\S+) tcp (mss limit|window-scale)",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -847,7 +871,7 @@
 					}
 				},
 				{
-					"match": "ip (\\S+) intrusion detection",
+					"match": "^\\s*ip (\\S+) intrusion detection",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -856,7 +880,7 @@
 					}
 				},
 				{
-					"match": "ip (\\S+) (mtu|nat descriptor)",
+					"match": "^\\s*ip (\\S+) (mtu|nat descriptor)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -865,7 +889,7 @@
 					}
 				},
 				{
-					"match": "ip (\\S+) ((remote|local) address( pool)?)",
+					"match": "^\\s*ip (\\S+) ((remote|local) address( pool)?)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -874,39 +898,39 @@
 					}
 				},
 				{
-					"match": "ipsec auto refresh",
+					"match": "^\\s*ipsec auto refresh",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ipsec ike (always-on|auth method|backward-compatibility|child-exchange type|duration|eap (myname|request|send certreq)|encryption|esp-encapsulation)",
+					"match": "^\\s*ipsec ike (always-on|auth method|backward-compatibility|child-exchange type|duration|eap (myname|request|send certreq)|encryption|esp-encapsulation)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ipsec ike (group|hash|keepalive (log|use)|license-key( use)?|local (address|id|name)|log|message-id-control|mode-cfg (address( pool)?|method))",
+					"match": "^\\s*ipsec ike (group|hash|keepalive (log|use)|license-key( use)?|local (address|id|name)|log|message-id-control|mode-cfg (address( pool)?|method))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ipsec ike (nat-traversal|negotiat(e-strictly|ion receive)|payload type|pfs|pki file|pre-shared-key|proposal-limitation|queue length)",
+					"match": "^\\s*ipsec ike (nat-traversal|negotiat(e-strictly|ion receive)|payload type|pfs|pki file|pre-shared-key|proposal-limitation|queue length)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ipsec ike (remote (address|id|name)|restrict-dangling-sa|retry|send info|version|xauth (myname|request))",
+					"match": "^\\s*ipsec ike (remote (address|id|name)|restrict-dangling-sa|retry|send info|version|xauth (myname|request))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ipsec (ipcomp type|log illegal-spi|refresh sa|sa (delete|policy)|transport( template)?|tunnel( fastpath-fragment-function follow df-bit| outer df-bit)?|use)",
+					"match": "^\\s*ipsec (ipcomp type|log illegal-spi|refresh sa|sa (delete|policy)|transport( template)?|tunnel( fastpath-fragment-function follow df-bit| outer df-bit)?|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ipip keepalive (log|use)",
+					"match": "^\\s*ipip keepalive (log|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ipv6 filter( dynamic)?",
+					"match": "^\\s*ipv6 filter( dynamic)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ipv6 (\\S+) (address|dad retry count|dhcp service|dpi filter|icmp-nd queue length|mld( static)?)",
+					"match": "^\\s*ipv6 (\\S+) (address|dad retry count|dhcp service|dpi filter|icmp-nd queue length|mld( static)?)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -915,7 +939,7 @@
 					}
 				},
 				{
-					"match": "ipv6 (\\S+) (mtu|neighbor cache max entry|ospf area|rtsol max-retransmit|vrrp|vrrp shutdown trigger)",
+					"match": "^\\s*ipv6 (\\S+) (mtu|neighbor cache max entry|ospf area|rtsol max-retransmit|vrrp|vrrp shutdown trigger)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -924,7 +948,7 @@
 					}
 				},
 				{
-					"match": "ipv6 (\\S+) rtadv send",
+					"match": "^\\s*ipv6 (\\S+) rtadv send",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -933,7 +957,7 @@
 					}
 				},
 				{
-					"match": "ipv6 (\\S+) prefix change log",
+					"match": "^\\s*ipv6 (\\S+) prefix change log",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -942,7 +966,7 @@
 					}
 				},
 				{
-					"match": "ipv6 (\\S+) prefix",
+					"match": "^\\s*ipv6 (\\S+) prefix",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -951,35 +975,35 @@
 					}
 				},
 				{
-					"match": "ipv6 prefix",
+					"match": "^\\s*ipv6 prefix",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "isdn (arrive permit|auto connect)",
+					"match": "^\\s*isdn (arrive permit|auto connect)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "isdn call (block time|permit|prohibit time)",
+					"match": "^\\s*isdn call (block time|permit|prohibit time)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "isdn callback (mscbcp user-specify|(permit|request)( type)?|(response|wait) time)",
+					"match": "^\\s*isdn callback (mscbcp user-specify|(permit|request)( type)?|(response|wait) time)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "isdn disconnect ((input|interval|output) time|(policy|time))",
+					"match": "^\\s*isdn disconnect ((input|interval|output) time|(policy|time))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "isdn (fast|forced) disconnect time",
+					"match": "^\\s*isdn (fast|forced) disconnect time",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "isdn (local|remote) address",
+					"match": "^\\s*isdn (local|remote) address",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "isdn (remote call order|terminator)",
+					"match": "^\\s*isdn (remote call order|terminator)",
 					"name": "entity.name.function"
 				}
 			]
@@ -987,7 +1011,7 @@
 		"j": {
 			"patterns": [
 				{
-					"match": "^\\b(jate number)\\b",
+					"match": "^\\s*jate number",
 					"name": "entity.name.function"
 				}
 			]
@@ -995,39 +1019,39 @@
 		"l": {
 			"patterns": [
 				{
-					"match": "l2tp (always-on|hostname|keepalive log|keepalive use|local router-id|remote end-id|remote router-id|service|tunnel auth|tunnel disconnect time)",
+					"match": "^\\s*l2tp (always-on|hostname|keepalive log|keepalive use|local router-id|remote end-id|remote router-id|service|tunnel auth|tunnel disconnect time)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "lan (backup|count-hub-overflow|flexible-port|keepalive interval|link-aggregation static|linkup send-wait-time|port-mirroring|port type|port shutdown|receive-buffer-size|shutdown|type)",
+					"match": "^\\s*lan (backup|count-hub-overflow|flexible-port|keepalive interval|link-aggregation static|linkup send-wait-time|port-mirroring|port type|port shutdown|receive-buffer-size|shutdown|type)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "lan-map (log|snapshot use|sysname|terminal watch interval)",
+					"match": "^\\s*lan-map (log|snapshot use|sysname|terminal watch interval)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "leased (backupkeepalive down)",
+					"match": "^\\s*leased (backupkeepalive down)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "less (config (ap|list|pp|switch|tunnel)?|(exec|file) list|log)",
+					"match": "^\\s*less (config (ap|list|pp|switch|tunnel)?|(exec|file) list|log)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "license (authentication go|authentication retry interval)",
+					"match": "^\\s*license (authentication go|authentication retry interval)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "line (masterclock|type)",
+					"match": "^\\s*line (masterclock|type)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "login(( password( encrypted)?)| radius use| timer| user)",
+					"match": "^\\s*login(( password( encrypted)?)| radius use| timer| user)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "lua(c| (use)?)",
+					"match": "^\\s*lua(c| (use)?)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1035,7 +1059,7 @@
 		"m": {
 			"patterns": [
 				{
-					"match": "macro( -v| -x){,2} (\\S*) <<(\\S*)",
+					"match": "^\\s*macro( -v| -x){,2} (\\S*) <<(\\S*)",
 					"name": "storage",
 					"captures": {
 						"1": {
@@ -1050,35 +1074,35 @@
 					}
 				},
 				{
-					"match": "mail (notify( status exec)?|server (name|pop|smtp|timeout)|template)",
+					"match": "^\\s*mail (notify( status exec)?|server (name|pop|smtp|timeout)|template)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "make directory",
+					"match": "^\\s*make directory",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "mobile access( limit (connection (length|time)|duration|length|time)|-point name)",
+					"match": "^\\s*mobile access( limit (connection (length|time)|duration|length|time)|-point name)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "mobile arrive (permit|use)",
+					"match": "^\\s*mobile arrive (permit|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "mobile call (prohibit auth-error count|type)",
+					"match": "^\\s*mobile call (prohibit auth-error count|type)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "mobile (auto connect|carrier mode|dial number)",
+					"match": "^\\s*mobile (auto connect|carrier mode|dial number)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "mobile disconnect( input| output)? time",
+					"match": "^\\s*mobile disconnect( input| output)? time",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "mobile (display caller id|firmware update go|pin code|signal-strength( go)?|syslog|use)",
+					"match": "^\\s*mobile (display caller id|firmware update go|pin code|signal-strength( go)?|syslog|use)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1086,7 +1110,7 @@
 		"n": {
 			"patterns": [
 				{
-					"match": "nat descriptor address (outer|inner)",
+					"match": "^\\s*nat descriptor address (outer|inner)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1095,7 +1119,7 @@
 					}
 				},
 				{
-					"match": "nat descriptor type (\\d+) (none|nat|masquerade|nat-masquerade)",
+					"match": "^\\s*nat descriptor type (\\d+) (none|nat|masquerade|nat-masquerade)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1107,39 +1131,39 @@
 					}
 				},
 				{
-					"match": "nat descriptor (ftp port|log|sip|timer|static|backward-compatibility)",
+					"match": "^\\s*nat descriptor (ftp port|log|sip|timer|static|backward-compatibility)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "nat descriptor masquerade (incoming|port range|remove df-bit|rlogin|session limit( total)?|static|unconvertible port)",
+					"match": "^\\s*nat descriptor masquerade (incoming|port range|remove df-bit|rlogin|session limit( total)?|static|unconvertible port)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "nat46 (ip address pool|ipv6 prefix|static)",
+					"match": "^\\s*nat46 (ip address pool|ipv6 prefix|static)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "netvolante-dns ((auto|set) hostname|get hostname list|auto save|delete go|go)",
+					"match": "^\\s*netvolante-dns ((auto|set) hostname|get hostname list|auto save|delete go|go)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "netvolante-dns (hostname host|port|register timer|retry interval)",
+					"match": "^\\s*netvolante-dns (hostname host|port|register timer|retry interval)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "netvolante-dns (server( update address (port|use))?|timeout|use)",
+					"match": "^\\s*netvolante-dns (server( update address (port|use))?|timeout|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ngn (radius (account (callee|caller))|auth password|renumbering link-refresh|type)",
+					"match": "^\\s*ngn (radius (account (callee|caller))|auth password|renumbering link-refresh|type)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ntp (backward-compatibility|local address)",
+					"match": "^\\s*ntp (backward-compatibility|local address)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ntpdate \\b(\\S+)\\b(\\ssyslog)?",
+					"match": "^\\s*ntpdate \\b(\\S+)\\b(\\ssyslog)?",
 					"name": "keyword",
 					"captures": {
 						"1": {
@@ -1155,27 +1179,27 @@
 		"o": {
 			"patterns": [
 				{
-					"match": "operation (button function download|execute batch permit|external-memory download permit|http revision-up permit)",
+					"match": "^\\s*operation (button function download|execute batch permit|external-memory download permit|http revision-up permit)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^ospf area( network|stubhost)?",
+					"match": "^\\s*ospf area( network|stubhost)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ospf configure refresh",
+					"match": "^\\s*ospf configure refresh",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ospf (export|import) (filter|from) (ospf)?",
+					"match": "^\\s*ospf (export|import) (filter|from) (ospf)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ospf (log|merge equal cost stub|preference|reric interval|router id|use|virtual-link)",
+					"match": "^\\s*ospf (log|merge equal cost stub|preference|reric interval|router id|use|virtual-link)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "onu type",
+					"match": "^\\s*onu type",
 					"name": "entity.name.function"
 				}
 			]
@@ -1183,79 +1207,79 @@
 		"p": {
 			"patterns": [
 				{
-					"match": "packetdump ",
+					"match": "^\\s*packetdump ",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pki (certificate file|crl file)",
+					"match": "^\\s*pki (certificate file|crl file)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pp always-on",
+					"match": "^\\s*pp always-on",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pp auth (accept|multi connect prohibit|myname|request|username)",
+					"match": "^\\s*pp auth (accept|multi connect prohibit|myname|request|username)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pp backup (pp|recovery time|tunnel)?",
+					"match": "^\\s*pp backup (pp|recovery time|tunnel)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pp bind",
+					"match": "^\\s*pp bind",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pp (enable|disable|select)",
+					"match": "^\\s*pp (enable|disable|select)",
 					"name": "storage.type"
 				},
 				{
-					"match": "pp (encapsulation|keepalive interval|keepalive log|keepalive use)",
+					"match": "^\\s*pp (encapsulation|keepalive interval|keepalive log|keepalive use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pp keepalive (interval|log|use)",
+					"match": "^\\s*pp keepalive (interval|log|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ppp (lcp mru|ccp type|ipcp msext|ipcp ipaddress)",
+					"match": "^\\s*ppp (lcp mru|ccp type|ipcp msext|ipcp ipaddress)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ppp (bacp|bap|ccp|chap|ipcp|ipv6cp|lcp|mp|mscbcp|pap)",
+					"match": "^\\s*ppp (bacp|bap|ccp|chap|ipcp|ipv6cp|lcp|mp|mscbcp|pap)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pppoe (access concentrator|auto connect|auto disconnect|call prohibit auth-error count|disconnect time|invalid-session forced close)",
+					"match": "^\\s*pppoe (access concentrator|auto connect|auto disconnect|call prohibit auth-error count|disconnect time|invalid-session forced close)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pppoe (padi maxretry|padi restart|padr maxretry|padr restart|pass-through member|service-name|tcp mss limit|use)",
+					"match": "^\\s*pppoe (padi maxretry|padi restart|padr maxretry|padr restart|pass-through member|service-name|tcp mss limit|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pptp (hostname|keepalive (interval|log|use)|service( type)?|tunnel disconnect time|vendorname|window size)",
+					"match": "^\\s*pptp (hostname|keepalive (interval|log|use)|service( type)?|tunnel disconnect time|vendorname|window size)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "pri (leased channel|loopback (active|passive))",
+					"match": "^\\s*pri (leased channel|loopback (active|passive))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "provider auto connect forced disable",
+					"match": "^\\s*provider auto connect forced disable",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "provider dns server( pp)?",
+					"match": "^\\s*provider dns server( pp)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "provider filter routing",
+					"match": "^\\s*provider filter routing",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "provider (\\S*) (bind|dns server|name)",
+					"match": "^\\s*provider (\\S*) (bind|dns server|name)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1264,7 +1288,7 @@
 					}
 				},
 				{
-					"match": "provider (ipv6 connect pp|ntp server|ntpdate|select|set|type)",
+					"match": "^\\s*provider (ipv6 connect pp|ntp server|ntpdate|select|set|type)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1272,15 +1296,15 @@
 		"q": {
 			"patterns": [
 				{
-					"match": "qac-tm (client (permit|port|refresh go|update)|port|redirect|server (refresh go)?|unqualified client access control|use|version margin|warning url)",
+					"match": "^\\s*qac-tm (client (permit|port|refresh go|update)|port|redirect|server (refresh go)?|unqualified client access control|use|version margin|warning url)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "queue class filter",
+					"match": "^\\s*queue class filter",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "queue (\\S+) (class (control|filter list|property)|default class( secondary)?|length( secondary)?|type)",
+					"match": "^\\s*queue (\\S+) (class (control|filter list|property)|default class( secondary)?|length( secondary)?|type)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1293,19 +1317,19 @@
 		"r": {
 			"patterns": [
 				{
-					"match": "radius ((account|auth)( port| server)?|retry|secret|server)",
+					"match": "^\\s*radius ((account|auth)( port| server)?|retry|secret|server)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "remote setup( accept)?",
+					"match": "^\\s*remote setup( accept)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "rip (advertise mode|filter rule|preference|timer|use)",
+					"match": "^\\s*rip (advertise mode|filter rule|preference|timer|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "(rollback timer|rotate external-memory syslog|rtfs format|rtfs garbage-collect)",
+					"match": "^\\s*(rollback timer|rotate external-memory syslog|rtfs format|rtfs garbage-collect)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1321,83 +1345,83 @@
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show (account( mobile| ngn data| pp| tunnel)?|alias|arp|bridge learning)",
+					"match": "^\\s*show (account( mobile| ngn data| pp| tunnel)?|alias|arp|bridge learning)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show (command( history)?|config( ap| difference| list| switch)?|copyright)",
+					"match": "^\\s*show (command( history)?|config( ap| difference| list| switch)?|copyright)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show (diagnosis config port (access|map)|dns cache|dpi (application|cache|category|statistics)|environment|(exec|file) list|history)",
+					"match": "^\\s*show (diagnosis config port (access|map)|dns cache|dpi (application|cache|category|statistics)|environment|(exec|file) list|history)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show ip (connection|intrusion detection|rip table|route|secure filter|traffic list)",
+					"match": "^\\s*show ip (connection|intrusion detection|rip table|route|secure filter|traffic list)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show (ipsec sa( gateway)?|ipv6 (address|connection|mroute fib|neighbor cache|ospf|rip table|route|secure filter)|lan( flexible-port|-map)|line masterclock|log)",
+					"match": "^\\s*show (ipsec sa( gateway)?|ipv6 (address|connection|mroute fib|neighbor cache|ospf|rip table|route|secure filter)|lan( flexible-port|-map)|line masterclock|log)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show (macro|nat descriptor (address|interface( address| bind)?|masquerade( port summary| session statistics| session summary)?))",
+					"match": "^\\s*show (macro|nat descriptor (address|interface( address| bind)?|masquerade( port summary| session statistics| session summary)?))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show (pki (certificate summary|crl)|pp connect time|pppoe pass-through learning|set|sfp-module info|sshd (authorized-keys|host key|public key))",
+					"match": "^\\s*show (pki (certificate summary|crl)|pp connect time|pppoe pass-through learning|set|sfp-module info|sshd (authorized-keys|host key|public key))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show status (backup|bgp neighbor|boot( all| list)?|cloud vpn|cooperation|dhcp(c)?|dpi|ethernet filter|external-memory)",
+					"match": "^\\s*show status (backup|bgp neighbor|boot( all| list)?|cloud vpn|cooperation|dhcp(c)?|dpi|ethernet filter|external-memory)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show status (heartbeat(2( id| name)?)?|ip keepalive|ip pim sparse|ipip|ipv6 (dhcp|mld)|l2tp|license|license authentication|lua)",
+					"match": "^\\s*show status (heartbeat(2( id| name)?)?|ip keepalive|ip pim sparse|ipip|ipv6 (dhcp|mld)|l2tp|license|license authentication|lua)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show status (mail service|mobile signal-strength|nat46 table|netvolante-dns( pp)?|ngn|ospf|packet-(buffer|scheduling))",
+					"match": "^\\s*show status (mail service|mobile signal-strength|nat46 table|netvolante-dns( pp)?|ngn|ospf|packet-(buffer|scheduling))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show status (pp|pptp|qos|remote setup|rtfs|sd|status-led|switch control( route backup)?|switching-hub macaddress)",
+					"match": "^\\s*show status (pp|pptp|qos|remote setup|rtfs|sd|status-led|switch control( route backup)?|switching-hub macaddress)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show status (tunnel|upnp|usbhost|user( history)?|vlan|vrrp|yno( las)?)",
+					"match": "^\\s*show status (tunnel|upnp|usbhost|user( history)?|vlan|vrrp|yno( las)?)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "show (techinfo|url filter( external-database( id)?)?)",
+					"match": "^\\s*show (techinfo|url filter( external-database( id)?)?)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "sip (100rel|codec permit|ip protocol|log|use|user agent|outer address|request retransmit timer|response code busy)",
+					"match": "^\\s*sip (100rel|codec permit|ip protocol|log|use|user agent|outer address|request retransmit timer|response code busy)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "sip arrive (address check|name-display default|ringing p-n-uatype|session timer method|session timer refresher)",
+					"match": "^\\s*sip arrive (address check|name-display default|ringing p-n-uatype|session timer method|session timer refresher)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "sip netvolante dial (domain|figure)",
+					"match": "^\\s*sip netvolante dial (domain|figure)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "sip server (100rel|analog service|arrive number display|call (mode|own permit|remote domain|server error)|connect)",
+					"match": "^\\s*sip server (100rel|analog service|arrive number display|call (mode|own permit|remote domain|server error)|connect)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "sip server (dial number-only|disconnect|display name|pilot address|privacy|qvalue|session timer)",
+					"match": "^\\s*sip server (dial number-only|disconnect|display name|pilot address|privacy|qvalue|session timer)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "sip server register (contact mode|request-uri|timer)",
+					"match": "^\\s*sip server register (contact mode|request-uri|timer)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "sip (server|session timer) (\\d+)",
+					"match": "^\\s*sip (server|session timer) (\\d+)",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -1406,7 +1430,7 @@
 					}
 				},
 				{
-					"match": "snmp community (read-only|read-write) (\\S+)",
+					"match": "^\\s*snmp community (read-only|read-write) (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1418,7 +1442,7 @@
 					}
 				},
 				{
-					"match": "snmp sys(contact|name|location) (\\S+)",
+					"match": "^\\s*snmp sys(contact|name|location) (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -1427,7 +1451,7 @@
 					}
 				},
 				{
-					"match": "snmp trap community (\\S+)",
+					"match": "^\\s*snmp trap community (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1436,7 +1460,7 @@
 					}
 				},
 				{
-					"match": "snmp trap enable snmp (all)",
+					"match": "^\\s*snmp trap enable snmp (all)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1445,7 +1469,7 @@
 					}
 				},
 				{
-					"begin": "snmp trap enable snmp",
+					"begin": "^\\s*snmp trap enable snmp",
 					"end": "\\n",
 					"name": "entity.name.function",
 					"patterns": [
@@ -1460,7 +1484,7 @@
 					]
 				},
 				{
-					"match": "snmp trap enable switch (\\S+) (all|none)",
+					"match": "^\\s*snmp trap enable switch (\\S+) (all|none)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1472,7 +1496,7 @@
 					}
 				},
 				{
-					"begin": "snmp trap enable switch (\\S+)",
+					"begin": "^\\s*snmp trap enable switch (\\S+)",
 					"end": "\\n",
 					"name": "entity.name.function",
 					"captures": {
@@ -1492,31 +1516,31 @@
 					]
 				},
 				{
-					"match": "snmp trap (cpu threshold|delay-timer|host|link-updown separate-l2switch-port|memory threshold|mobile signal-strength|send linkdown pp|send linkdown tunnel|send linkdown)",
+					"match": "^\\s*snmp trap (cpu threshold|delay-timer|host|link-updown separate-l2switch-port|memory threshold|mobile signal-strength|send linkdown pp|send linkdown tunnel|send linkdown)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "snmp (display|host|ifindex|local)",
+					"match": "^\\s*snmp (display|host|ifindex|local)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "snmp (yrifppdisplayatmib2|yrifswitchdisplayatmib2|yriftunneldisplayatmib2)",
+					"match": "^\\s*snmp (yrifppdisplayatmib2|yrifswitchdisplayatmib2|yriftunneldisplayatmib2)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "snmpv2c (community read-(only|write)|host|trap (community|host))",
+					"match": "^\\s*snmpv2c (community read-(only|write)|host|trap (community|host))",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "snmpv3 (context name|engine id|host|trap host|usm user|vacm access|vacm view)",
+					"match": "^\\s*snmpv3 (context name|engine id|host|trap host|usm user|vacm access|vacm view)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "sntpd (host|service)",
+					"match": "^\\s*sntpd (host|service)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "speed (\\S+)",
+					"match": "^\\s*speed (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1525,15 +1549,15 @@
 					}
 				},
 				{
-					"match": "ssh (encrypt algorithm|known hosts)",
+					"match": "^\\s*ssh (encrypt algorithm|known hosts)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "sshd (auth method|authorized-keys filename|client alive|encrypt algorithm|hide openssh version|host|host key generate|listen|service|session)",
+					"match": "^\\s*sshd (auth method|authorized-keys filename|client alive|encrypt algorithm|hide openssh version|host|host key generate|listen|service|session)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "statistics (cpu|memory|traffic|flow|nat|route|filter|qos|application)",
+					"match": "^\\s*statistics (cpu|memory|traffic|flow|nat|route|filter|qos|application)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1542,7 +1566,7 @@
 					}
 				},
 				{
-					"match": "switch control mode (master|slave|off)",
+					"match": "^\\s*switch control mode (master|slave|off)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1551,7 +1575,7 @@
 					}
 				},
 				{
-					"match": "switch control use (\\S+)",
+					"match": "^\\s*switch control use (\\S+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1560,7 +1584,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get) (boot-rom-version|firmware-revision|lag-type|model-name|serial-number)",
+					"match": "^\\s*switch control function (get) (boot-rom-version|firmware-revision|lag-type|model-name|serial-number)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1569,7 +1593,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get) status-(combo-port|counter-(frame|octet)-(rx|tx)|fan(-rpm)?|led-mode|loopdetect-(port|recovery-timer)|macaddress-(addr|port)|poe-(detect-class|state|supply(-detail|-total)?|temperature|sfp-rx-power)|port-speed)",
+					"match": "^\\s*switch control function (get) status-(combo-port|counter-(frame|octet)-(rx|tx)|fan(-rpm)?|led-mode|loopdetect-(port|recovery-timer)|macaddress-(addr|port)|poe-(detect-class|state|supply(-detail|-total)?|temperature|sfp-rx-power)|port-speed)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1578,7 +1602,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get) system-(macaddress|uptime)",
+					"match": "^\\s*switch control function (get) system-(macaddress|uptime)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1587,7 +1611,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get|set) counter-frame-(rx|tx)-type",
+					"match": "^\\s*switch control function (get|set) counter-frame-(rx|tx)-type",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1596,7 +1620,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get|set) (energy-saving|led-brightness)",
+					"match": "^\\s*switch control function (get|set) (energy-saving|led-brightness)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1605,7 +1629,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get|set) loopdetect-(count|linkdown|port-use|recovery-timer|time|use-control-packet)",
+					"match": "^\\s*switch control function (get|set) loopdetect-(count|linkdown|port-use|recovery-timer|time|use-control-packet)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1614,7 +1638,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get|set) macaddress-aging(-timer)?",
+					"match": "^\\s*switch control function (get|set) macaddress-aging(-timer)?",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1623,7 +1647,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get|set) mirroring-(dest|src-(rx|tx)|use)",
+					"match": "^\\s*switch control function (get|set) mirroring-(dest|src-(rx|tx)|use)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1632,7 +1656,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get|set) poe-class",
+					"match": "^\\s*switch control function (get|set) poe-class",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1641,7 +1665,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get|set) port-(auto-crossover|blocking-(control|data)-packet|flow-control|speed(-downshift)?|use)",
+					"match": "^\\s*switch control function (get|set) port-(auto-crossover|blocking-(control|data)-packet|flow-control|speed(-downshift)?|use)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1650,7 +1674,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get|set) qos-(dscp-remark-(class|type)|(policing|shaping)-(speed|use)|speed-unit)",
+					"match": "^\\s*switch control function (get|set) qos-(dscp-remark-(class|type)|(policing|shaping)-(speed|use)|speed-unit)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1659,7 +1683,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get|set) system-name",
+					"match": "^\\s*switch control function (get|set) system-name",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1668,7 +1692,7 @@
 					}
 				},
 				{
-					"match": "switch control function (get|set) vlan-(access|id|multiple(-use)?|port-mode|trunk)",
+					"match": "^\\s*switch control function (get|set) vlan-(access|id|multiple(-use)?|port-mode|trunk)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1677,7 +1701,7 @@
 					}
 				},
 				{
-					"match": "switch select (\\S+)",
+					"match": "^\\s*switch select (\\S+)",
 					"name": "storage.type",
 					"captures": {
 						"1": {
@@ -1686,24 +1710,15 @@
 					}
 				},
 				{
-					"match": "syslog (debug|info|notice|execute command)",
+					"match": "^\\s*syslog (debug|info|notice|execute command)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "syslog (srcport|host|local address)",
+					"match": "^\\s*syslog (srcport|host|local address)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^.* syslog (on|off)",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "constant.language"
-						}
-					}
-				},
-				{
-					"match": "system (packet-(buffer|scheduling( filter( list)?)?)|(cpu|memory|temperature) threshold|led brightness)",
+					"match": "^\\s*system (packet-(buffer|scheduling( filter( list)?)?)|(cpu|memory|temperature) threshold|led brightness)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1711,35 +1726,35 @@
 		"t": {
 			"patterns": [
 				{
-					"match": "take lan-map snapshot ",
+					"match": "^\\s*take lan-map snapshot ",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^tcp (log|session limit)",
+					"match": "^\\s*tcp (log|session limit)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^telnetd (host|listen|service|session)",
+					"match": "^\\s*telnetd (host|listen|service|session)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^terminate lua( file)?",
+					"match": "^\\s*terminate lua( file)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^tftp host",
+					"match": "^\\s*tftp host",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^time(zone)?",
+					"match": "^\\s*time(zone)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "tunnel (enable|disable|select)",
+					"match": "^\\s*tunnel (enable|disable|select)",
 					"name": "storage.type"
 				},
 				{
-					"match": "tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp|map-e)",
+					"match": "^\\s*tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp|map-e)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1748,7 +1763,7 @@
 					}
 				},
 				{
-					"match": "tunnel (backup|endpoint (name|local|remote|address)( address)?|map-e type|multipoint (limit|local name|server)|ngn|template|translation|tunnel type)",
+					"match": "^\\s*tunnel (backup|endpoint (name|local|remote|address)( address)?|map-e type|multipoint (limit|local name|server)|ngn|template|translation|tunnel type)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1756,31 +1771,31 @@
 		"u": {
 			"patterns": [
 				{
-					"match": "unlock (wwan pin-code|wwan-module firmware)",
+					"match": "^\\s*unlock (wwan pin-code|wwan-module firmware)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "upnp external address (refer pp|refer)",
+					"match": "^\\s*upnp external address (refer pp|refer)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "upnp port mapping (timer type|timer)",
+					"match": "^\\s*upnp port mapping (timer type|timer)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "upnp use",
+					"match": "^\\s*upnp use",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "url filter (log|port|reject|use)",
+					"match": "^\\s*url filter (log|port|reject|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "url (filter|pp filter|tunnel filter)",
+					"match": "^\\s*url (filter|pp filter|tunnel filter)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "url (\\S) filter",
+					"match": "^\\s*url (\\S) filter",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1789,11 +1804,11 @@
 					}
 				},
 				{
-					"match": "usbhost (modem flow control|modem initialize|overcurrent duration|use)",
+					"match": "^\\s*usbhost (modem flow control|modem initialize|overcurrent duration|use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "user attribute",
+					"match": "^\\s*user attribute",
 					"name": "entity.name.function"
 				}
 			]
@@ -1801,11 +1816,11 @@
 		"v": {
 			"patterns": [
 				{
-					"match": "vlan port mapping",
+					"match": "^\\s*vlan port mapping",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "vlan (\\S+) 802\\.1q",
+					"match": "^\\s*vlan (\\S+) 802\\.1q",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1818,43 +1833,43 @@
 		"w": {
 			"patterns": [
 				{
-					"match": "wan access limit (connection length|connection time|duration|length|time)",
+					"match": "^\\s*wan access limit (connection length|connection time|duration|length|time)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "wan (access-point name|always-on|auth myname|auto connect|bind)",
+					"match": "^\\s*wan (access-point name|always-on|auth myname|auto connect|bind)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "wan disconnect (input time|output time|time)",
+					"match": "^\\s*wan disconnect (input time|output time|time)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "wins server",
+					"match": "^\\s*wins server",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "wol send",
+					"match": "^\\s*wol send",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "wwan access limit (connection length|connection time|duration|length|time)",
+					"match": "^\\s*wwan access limit (connection length|connection time|duration|length|time)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "wwan (access-point name|always-on|auth accept|auth myname|auto connect|disable)",
+					"match": "^\\s*wwan (access-point name|always-on|auth accept|auth myname|auto connect|disable)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "wwan disconnect (input time|output time|time)",
+					"match": "^\\s*wwan disconnect (input time|output time|time)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "wwan (enable|pin code|radio access technology|select)",
+					"match": "^\\s*wwan (enable|pin code|radio access technology|select)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "wwan-module (radio-power|signal-strength go|signal-strength|syslog|use)",
+					"match": "^\\s*wwan-module (radio-power|signal-strength go|signal-strength|syslog|use)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1862,15 +1877,15 @@
 		"y": {
 			"patterns": [
 				{
-					"match": "yno (access code|gui-forwarder timeout|https-proxy)",
+					"match": "^\\s*yno (access code|gui-forwarder timeout|https-proxy)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "yno las (connection keepalive|request retry|request timeout|syslog queue length)",
+					"match": "^\\s*yno las (connection keepalive|request retry|request timeout|syslog queue length)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "yno (log|use|xmpp connection keepalive|zero-config id)",
+					"match": "^\\s*yno (log|use|xmpp connection keepalive|zero-config id)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1881,11 +1896,11 @@
 		"wlx-a": {
 			"patterns": [
 				{
-					"match": "airlink configure refresh",
+					"match": "^\\s*airlink configure refresh",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "airlink (enable|select|disable) (all|module\\S|\\S+|none)",
+					"match": "^\\s*airlink (enable|select|disable) (all|module\\S|\\S+|none)",
 					"name": "storage.type",
 					"captures": {
 						"2": {
@@ -1894,31 +1909,31 @@
 					}
 				},
 				{
-					"match": "airlink emergency-mode",
+					"match": "^\\s*airlink emergency-mode",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "airlink channel (range)?",
+					"match": "^\\s*airlink channel (range)?",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "airlink (mode|beacon dtim-period|mac client|stealth|cce use)",
+					"match": "^\\s*airlink (mode|beacon dtim-period|mac client|stealth|cce use)",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "airlink optimization use",
+					"match": "^\\s*airlink optimization use",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "airlink macaddress filter list",
+					"match": "^\\s*airlink macaddress filter list",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "airlink macaddress filter use",
+					"match": "^\\s*airlink macaddress filter use",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "airlink (ssid|vlan-id|bind|auth|radius (auth|server|secret)|psk-key|privacy)",
+					"match": "^\\s*airlink (ssid|vlan-id|bind|auth|radius (auth|server|secret)|psk-key|privacy)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1926,11 +1941,11 @@
 		"wlx-c": {
 			"patterns": [
 				{
-					"match": "cluster config-id",
+					"match": "^\\s*cluster config-id",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "cluster cluster-mode (auto-cluster|standalone)",
+					"match": "^\\s*cluster cluster-mode (auto-cluster|standalone)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1939,7 +1954,7 @@
 					}
 				},
 				{
-					"match": "cluster virtual-ip address",
+					"match": "^\\s*cluster virtual-ip address",
 					"name": "entity.name.function"
 				}
 			]
@@ -1947,11 +1962,11 @@
 		"wlx-i": {
 			"patterns": [
 				{
-					"match": "ip http-client proxy",
+					"match": "^\\s*ip http-client proxy",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "ip vlan-id (\\d+) address",
+					"match": "^\\s*ip vlan-id (\\d+) address",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1964,7 +1979,7 @@
 		"wlx-l": {
 			"patterns": [
 				{
-					"match": "led blink",
+					"match": "^\\s*led blink",
 					"name": "entity.name.function"
 				}
 			]
@@ -1972,7 +1987,7 @@
 		"wlx-r": {
 			"patterns": [
 				{
-					"match": "radiusd (use|reauth|client|user)",
+					"match": "^\\s*radiusd (use|reauth|client|user)",
 					"name": "entity.name.function"
 				}
 			]
@@ -1980,7 +1995,7 @@
 		"wlx-v": {
 			"patterns": [
 				{
-					"match": "vlan-access (\\S+) (\\d+)",
+					"match": "^\\s*vlan-access (\\S+) (\\d+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1992,7 +2007,7 @@
 					}
 				},
 				{
-					"match": "vlan-id (\\d+) (\\d+)",
+					"match": "^\\s*vlan-id (\\d+) (\\d+)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -2004,11 +2019,11 @@
 					}
 				},
 				{
-					"match": "vlan-port-mode",
+					"match": "^\\s*vlan-port-mode",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "vlan-trunk (\\S+) (\\d+) (join|leave)",
+					"match": "^\\s*vlan-trunk (\\S+) (\\d+) (join|leave)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -2027,15 +2042,15 @@
 		"wlx-w": {
 			"patterns": [
 				{
-					"match": "wlan-controller config set",
+					"match": "^\\s*wlan-controller config set",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "wlan-controller select",
+					"match": "^\\s*wlan-controller select",
 					"name": "storage.type"
 				},
 				{
-					"match": "wlan-controller (member-ap|serial|system name|ip address)",
+					"match": "^\\s*wlan-controller (member-ap|serial|system name|ip address)",
 					"name": "entity.name.function"
 				}
 			]
