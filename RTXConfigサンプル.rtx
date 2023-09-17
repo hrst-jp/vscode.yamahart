@@ -3,6 +3,9 @@
 # 正しく認識しているかチェックするためのサンプル設定です。
 # YAMAHAが公開している設定例を適当に転記しています。
 # 
+url filter 222
+url filter log on
+
 
 
  vlan lan2/1 802.1q vid=10

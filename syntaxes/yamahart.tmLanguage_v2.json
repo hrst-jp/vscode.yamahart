@@ -1,0 +1,6625 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "YAMAHA RT",
+	"patterns": [
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#rtx-4-setup"
+		},
+		{
+			"include": "#rtx-5-rtfs"
+		},
+		{
+			"include": "#rtx-6-isdn"
+		},
+		{
+			"include": "#rtx-7-pri"
+		},
+		{
+			"include": "#rtx-8-ip"
+		},
+		{
+			"include": "#rtx-9-ethernet_filter"
+		},
+		{
+			"include": "#rtx-10-url_filter"
+		},
+		{
+			"include": "#rtx-11-ppp"
+		},
+		{
+			"include": "#rtx-12.1-dhcp_server"
+		},
+		{
+			"include": "#rtx-12.1-dhcp_client"
+		},
+		{
+			"include": "#rtx-13-icmp"
+		},
+		{
+			"include": "#rtx-14-tunneling"
+		},
+		{
+			"include": "#rtx-15-ipsesc"
+		},
+		{
+			"include": "#rtx-16-l2tp"
+		},
+		{
+			"include": "#rtx-17-pptp"
+		},
+		{
+			"include": "#rtx-18-ipip"
+		},
+		{
+			"include": "#rtx-19-cloud_vpn"
+		},
+		{
+			"include": "#rtx-20-sip"
+		},
+		{
+			"include": "#rtx-21-snmp"
+		},
+		{
+			"include": "#rtx-22-radius"
+		},
+		{
+			"include": "#rtx-23-nat"
+		},
+		{
+			"include": "#rtx-24-dns"
+		},
+		{
+			"include": "#rtx-25-nat45anddns46"
+		},
+		{
+			"include": "#rtx-26-queue"
+		},
+		{
+			"include": "#rtx-27-cooperation"
+		},
+		{
+			"include": "#rtx-28-ospf"
+		},
+		{
+			"include": "#rtx-29-bgp"
+		},
+		{
+			"include": "#rtx-30-ipv6"
+		},
+		{
+			"include": "#rtx-31-ospfv3"
+		},
+		{
+			"include": "#rtx-32-mail_notify_trigger"
+		},
+		{
+			"include": "#rtx-33-http_server"
+		},
+		{
+			"include": "#rtx-34-netvolante-dns"
+		},
+		{
+			"include": "#rtx-35-upnp"
+		},
+		{
+			"include": "#rtx-36-usb"
+		},
+		{
+			"include": "#rtx-37-schedule"
+		},
+		{
+			"include": "#rtx-38-vlan"
+		},
+		{
+			"include": "#rtx-39-heartbeat"
+		},
+		{
+			"include": "#rtx-40-heartbeat2"
+		},
+		{
+			"include": "#rtx-41-sntp"
+		},
+		{
+			"include": "#rtx-42-external-memory"
+		},
+		{
+			"include": "#rtx-43-http_upload"
+		},
+		{
+			"include": "#rtx-44-mobile_internet"
+		},
+		{
+			"include": "#rtx-45-bridge_interface"
+		},
+		{
+			"include": "#rtx-46-lua"
+		},
+		{
+			"include": "#rtx-47-custom_gui"
+		},
+		{
+			"include": "#rtx-48-l2ms"
+		},
+		{
+			"include": "#rtx-49-yno"
+		},
+		{
+			"include": "#rtx-50-diagnose"
+		},
+		{
+			"include": "#rtx-51-statistics"
+		},
+		{
+			"include": "#rtx-52-dpi"
+		},
+		{
+			"include": "#rtx-53-flexible-lan"
+		},
+		{
+			"include": "#rtx-54-dashboard"
+		},
+		{
+			"include": "#rtx-55-operation"
+		},
+		{
+			"include": "#rtx-56-showconfig"
+		},
+		{
+			"include": "#rtx-57-showstatus"
+		},
+		{
+			"include": "#rtx-58-logging"
+		},
+		{
+			"include": "#rtxold-7-fr"
+		},
+		{
+			"include": "#rtxold-8-pri"
+		},
+		{
+			"include": "#rtxold-48-mobile"
+		},
+		{
+			"include": "#rtxold-50-qac_tm"
+		},
+		{
+			"include": "#rtxold-59"
+		},
+		{
+			"include": "#nvr-4-onu"
+		},
+		{
+			"include": "#nvr-29-analog"
+		},
+		{
+			"include": "#nvr-42-wwan"
+		},
+		{
+			"include": "#nvr-50-swctl"
+		},
+		{
+			"include": "#wlx-a"
+		},
+		{
+			"include": "#wlx-c"
+		},
+		{
+			"include": "#wlx-i"
+		},
+		{
+			"include": "#wlx-l"
+		},
+		{
+			"include": "#wlx-r"
+		},
+		{
+			"include": "#wlx-v"
+		},
+		{
+			"include": "#wlx-w"
+		},
+		{
+			"include": "#common"
+		},
+		{
+			"include": "#keyword",
+			"comment": "コマンド内で利用される汎用的な予約語など"
+		},
+		{
+			"include": "#mnemonic",
+			"comment": "RTシリーズで使えるニーモニック"
+		}
+	],
+	"repository": {
+		"comment": {
+			"patterns": [
+				{
+					"match": "^#.*",
+					"name": "comment.line"
+				}
+			]
+		},
+		"rtx-4-setup": {
+			"patterns": [
+				{
+					"comment": "4.1, 4.2",
+					"match": "^\\s*login password( encrypted)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.3, 4.4",
+					"match": "^\\s*administrator password( encrypted)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.5",
+					"match": "^\\s*login user",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.6",
+					"match": "^\\s*login radius use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.7",
+					"match": "^\\s*administrator radius auth (on|only|off)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "4.8.1",
+					"match": "^\\s*ex-license password",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.8.2, 4.8.3",
+					"match": "^\\s*(un)?register ex-license password",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.8.4",
+					"match": "^\\s*import ex-license key",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.8.5",
+					"match": "^\\s*clear ex-license",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.9",
+					"match": "^\\s*user attribute",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.10",
+					"match": "^\\s*disconnect user",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.11",
+					"match": "^\\s*security class",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.12",
+					"match": "^\\s*timezone",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.13",
+					"match": "^\\s*date ",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.14",
+					"match": "^\\s*time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.15",
+					"match": "^\\s*rdate ",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.16",
+					"match": "^\\s*ntpdate \\b(\\S+)\\b(\\ssyslog)?",
+					"name": "keyword",
+					"captures": {
+						"1": {
+							"name": "string"
+						},
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "4.17",
+					"match": "^\\s*ntp local address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.18",
+					"match": "^\\s*ntp backward-compatibility",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.19",
+					"match": "^\\s*console prompt (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "4.20, 4.21, 4.22, 4.23",
+					"match": "^\\s*console (character|columns|info|lines)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.24",
+					"match": "^\\s*syslog host",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.25",
+					"match": "^\\s*syslog facility",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.26",
+					"match": "^\\s*syslog notice",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.27",
+					"match": "^\\s*syslog info",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.28",
+					"match": "^\\s*syslog debug",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.29",
+					"match": "^\\s*syslog local address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.30",
+					"match": "^\\s*syslog srcport",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.31",
+					"match": "^\\s*syslog execute command",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.32",
+					"match": "^\\s*packetdump ",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.33, 4.34, 4.35, 4.36",
+					"match": "^\\s*telnetd (service|listen|host|session)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.37",
+					"match": "^\\s*line masterclock",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.38, 4.39, 4.40",
+					"match": "^\\s*system (cpu|memory|temperature) threshold",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.41",
+					"match": "^\\s*ip routing process",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.42",
+					"match": "^\\s*lan shutdown",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.43",
+					"match": "^\\s*lan count-hub-overflow",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.44",
+					"match": "^\\s*lan linkup send-wait-time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.45",
+					"match": "^\\s*lan port-mirroring",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.46",
+					"match": "^\\s*lan type",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.47",
+					"match": "^\\s*lan link-aggregation static",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.48",
+					"match": "^\\s*lan receive-buffer-size",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.49",
+					"match": "^\\s*login timer",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.50",
+					"match": "^\\s*tftp host",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.51",
+					"match": "^\\s*ip (\\S+) wol relay",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "4.52",
+					"match": "description .*",
+					"name": "comment.line"
+				},
+				{
+					"comment": "4.53",
+					"match": "^\\s*tcp log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.54, 4.55, 4.56, 4.57",
+					"match": "^\\s*http revision-up (permit|url|proxy|timeout)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.58",
+					"match": "^\\s*http revision-down permit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.59",
+					"match": "^\\s*operation http revision-up permit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.60",
+					"match": "^\\s*http revision-up schedule( startup)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.61, 4.62, 6.64",
+					"match": "^\\s*sshd (service|listen|session)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.63, 4.65",
+					"match": "^\\s*sshd host( key generate)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.66",
+					"match": "^\\s*show sshd host key",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.67, 4.68, 4.69, 4.70, 4.71",
+					"match": "^\\s*sshd (encrypt algorithm|client alive|hide openssh version|auth method|authorized-keys filename)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.72",
+					"match": "^\\s*import sshd authorized-keys",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.74",
+					"match": "^\\s*sftpd host",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.77, 4.78",
+					"match": "^\\s*ssh (encrypt algorithm|known hosts)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.79",
+					"match": "^\\s*system packet-buffer",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.80",
+					"match": "^\\s*alarm entire",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.81",
+					"match": "^\\s*alarm usbhost",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.82",
+					"match": "^\\s*alarm sd",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.83",
+					"match": "^\\s*alarm batch",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.84",
+					"match": "^\\s*alarm startup",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.85",
+					"match": "^\\s*alarm http revision-up",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.86",
+					"match": "^\\s*system led brightness",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "4.87",
+					"match": "^\\s*set (\\S+)(=)(\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.parameter"
+						},
+						"2": {
+							"name": "keyword.operator"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "4.88",
+					"match": "^\\s*alias (\\S+)(=)(\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.parameter"
+						},
+						"2": {
+							"name": "keyword.operator"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "4.89",
+					"match": "^\\s*macro( -v| -x){,2} (\\S*) <<(\\S*)",
+					"name": "storage",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						},
+						"2": {
+							"name": "string"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "4.90",
+					"match": "^\\s*embedded file (-b )?(\\S*) <<(\\S*)",
+					"name": "storage",
+					"captures": {
+						"1": {
+							"name": "storage"
+						},
+						"2": {
+							"name": "string"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "4.91, 4.92, 4.93",
+					"match": "^\\s*system packet-scheduling( filter( list)?)?",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-5-rtfs": {
+			"patterns": [
+				{
+					"comment": "5.1",
+					"match": "^\\s*rtfs garbage-collect",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "5.2",
+					"match": "^\\s*rtfs garbage-collect",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-6-isdn": {
+			"patterns": [
+				{
+					"comment": "6.1.1",
+					"match": "^\\s*line type",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.1.2",
+					"match": "^\\s*isdn local address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.1.3",
+					"match": "^\\s*isdn terminator",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.1.4",
+					"match": "^\\s*pp bind",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.1.5",
+					"match": "^\\s*account threshold (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "6.1.6",
+					"match": "^\\s*leased backu",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.1",
+					"match": "^\\s*pp always-on",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.2",
+					"match": "^\\s*isdn remote address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.3",
+					"match": "^\\s*isdn auto connect",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.4",
+					"match": "^\\s*isdn remote call order",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.5",
+					"match": "^\\s*isdn arrive permit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.6",
+					"match": "^\\s*isdn call permit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.7",
+					"match": "^\\s*isdn call block time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.8",
+					"match": "^\\s*isdn call prohibit time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.9, 6.2.11",
+					"match": "^\\s*isdn callback request( type)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.10, 6.2.12",
+					"match": "^\\s*isdn callback permit( type)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.13",
+					"match": "^\\s*isdn callback mscbcp user-specify",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.14",
+					"match": "^\\s*isdn callback response time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.15",
+					"match": "^\\s*isdn callback wait time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.16",
+					"match": "^\\s*isdn disconnect policy",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.17",
+					"match": "^\\s*isdn disconnect time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.18, 6.2.19",
+					"match": "^\\s*isdn (fast|forced) disconnect time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "6.2.20, 6.2.21, 6.2.22",
+					"match": "^\\s*isdn disconnect (input|output|interval) time",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-7-pri": {
+			"patterns": [
+				{
+					"comment": "7.2",
+					"match": "^\\s*pri leased channel",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-8-ip": {
+			"patterns": [
+				{
+					"comment": "8.1.1",
+					"match": "^\\s*ip routing",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.2",
+					"match": "^\\s*ip (\\S+) address",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.3",
+					"match": "^\\s*ip (\\S+) secondary address",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.4",
+					"match": "^\\s*ip (\\S+) mtu",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.5",
+					"match": "^\\s*ip (\\S+) rebound",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.6",
+					"match": "^\\s*ip simple-service",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.7",
+					"begin": "^\\s*ip route",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"patterns": [
+						{
+							"match": "(default|pp|dhcp|tunnel)",
+							"name": "constant.language"
+						},
+						{
+							"match": "gateway",
+							"name": "entity.name.function"
+						},
+						{
+							"match": "(filter|metric|hide|weight|keepalive)",
+							"name": "keyword.control"
+						},
+						{
+							"include": "#keyword"
+						}
+					]
+				},
+				{
+					"comment": "8.1.8",
+					"match": "^\\s*ip (\\S+) dhcp auto default-route-add",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.9",
+					"match": "^\\s*ip (\\S+) dhcp auto interface-route-add",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.10",
+					"match": "^\\s*ip filter (\\d+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "8.1.11",
+					"match": "^\\s*ip filter set",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.12",
+					"match": "^\\s*ip filter source-route",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.13",
+					"match": "^\\s*ip filter directed-broadcast( filter)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.14, 8.1.15",
+					"match": "^\\s*ip filter dynamic( timer)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.16",
+					"match": "^\\s*ip filter fqdn timer",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.17, 8.1.18, 8.1.19, 8.1.20",
+					"match": "^\\s*ip (\\S+) intrusion detection( (notice-interval|repeat-control|report))?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.21",
+					"match": "^\\s*ip (\\S+) tcp mss limit",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.22",
+					"match": "^\\s*ip (\\S+) tcp window-scale",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.23",
+					"match": "^\\s*tcp session limit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.24",
+					"match": "^\\s*ip route change log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.25",
+					"begin": "ip (\\S+) secure filter",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					},
+					"patterns": [
+						{
+							"match": "^\\s*dynamic",
+							"name": "keyword.control"
+						},
+						{
+							"include": "#keyword"
+						}
+					]
+				},
+				{
+					"comment": "8.1.26",
+					"match": "^\\s*ip fragment remove df-bit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.27",
+					"match": "^\\s*ip tos supersede",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.28",
+					"match": "^\\s*ip (\\S+) proxyarp( vrrp)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.29",
+					"match": "^\\s*ip arp timer",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.30",
+					"match": "^\\s*ip (\\S+) arp static",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.31",
+					"match": "^\\s*ip (\\S+) arp queue length",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.32",
+					"match": "^\\s*ip (\\S+) arp log",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.1.33",
+					"match": "^\\s*ip implicit-route preference",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.34",
+					"match": "^\\s*ip flow timer",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.35",
+					"match": "^\\s*ip flow limit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.36",
+					"match": "^\\s*ip reassembly hold-time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.1.37",
+					"match": "^\\s*ip dscp supersede",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.2.1, 8.2.2",
+					"match": "^\\s*ip pp remote address( pool)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.2.3",
+					"match": "^\\s*pp keepalive interval",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.2.4",
+					"match": "^\\s*pp keepalive use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.2.5",
+					"match": "^\\s*pp keepalive log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.2.6",
+					"match": "^\\s*leased keepalive down",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.3.1",
+					"match": "^\\s*rip use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.3.2",
+					"match": "^\\s*ip (\\S+) rip trust gateway",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.3.3",
+					"match": "^\\s*rip preference",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.3.4",
+					"match": "^\\s*ip (\\S+) rip send",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.3.5",
+					"match": "^\\s*ip (\\S+) rip receive",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.3.6",
+					"match": "^\\s*ip (\\S+) rip filter",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.3.7",
+					"match": "^\\s*ip (\\S+) rip hop",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.3.8",
+					"match": "^\\s*ip (\\S+) rip auth type",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.3.9",
+					"match": "^\\s*ip (\\S+) rip auth key( text)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.3.10",
+					"match": "^\\s*rip advertise mode",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.3.11",
+					"match": "^\\s*ip pp rip hold routing",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.3.12",
+					"match": "^\\s*ip pp rip connect send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.3.13",
+					"match": "^\\s*ip pp rip connect interval",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.3.14",
+					"match": "^\\s*ip pp rip disconnect send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.3.15",
+					"match": "^\\s*ip pp rip disconnect interval",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.3.16",
+					"match": "^\\s*ip pp rip backup interface",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.3.17",
+					"match": "^\\s*ip (\\S+) rip force-to-advertise",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.3.18",
+					"match": "^\\s*rip filter rule",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.3.19",
+					"match": "^\\s*rip timer",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.4.1, 8.4.2",
+					"match": "^\\s*ip (\\S+) vrrp( shutdown trigger)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.5.1",
+					"match": "^\\s*pp backup (pp|tunnel)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.5.2",
+					"match": "^\\s*pp backup recovery time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.5.3, 8.5.4",
+					"match": "^\\s*lan backup( recovery time)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.5.5",
+					"match": "^\\s*lan keepalive use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.5.6",
+					"match": "^\\s*lan keepalive interval",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.5.7",
+					"match": "^\\s*lan keepalive log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.5.8",
+					"match": "^\\s*ip keepalive",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.6.1, 8.6.4",
+					"match": "^\\s*ip (\\S+) traffic list( threshold)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "8.6.2",
+					"match": "^\\s*clear ip traffic list",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.6.3",
+					"match": "^\\s*show ip traffic list",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.7.1",
+					"match": "^\\s*ip forward filter",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "8.7.2",
+					"match": "^\\s*ip (\\S+) forward filter",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				}
+			]
+		},
+		"rtx-9-ethernet_filter": {
+			"patterns": [
+				{
+					"comment": "9.1",
+					"match": "^\\s*ethernet filter",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "9.2",
+					"match": "^\\s*ethernet (\\S+) filter",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "9.3",
+					"match": "^\\s*show status ethernet filter",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-10-url_filter": {
+			"patterns": [
+				{
+					"comment": "10.1",
+					"match": "^\\s*url filter (\\d+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "10.2",
+					"match": "^\\s*url (\\S) filter",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "10.3, 10.4, 10.5, 10.6",
+					"match": "^\\s*url filter (port|use|reject|log)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "10.7, 10.8, 10.9, 10.10, 10.11, 10.12, 10.13",
+					"match": "^\\s*url filter external-database (use|server|proxy server|category|access failure|reject redirect|ipaddress access)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "10.14, 10.15",
+					"match": "^\\s*url filter external-database lookup specified extension( list)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "10.16",
+					"match": "^\\s*url filter external-database log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "10.17",
+					"match": "^\\s*url filter external-database register url",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "10.18, 10.19, 10.20",
+					"match": "^\\s*url filter external-database id ((activate|check) go)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "10.21",
+					"match": "^\\s*url filter external-database auth retry",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-11-ppp": {
+			"patterns": [
+				{
+					"comment": "11.1, 11.2, 11.3, 11.4, 11.5",
+					"match": "^\\s*pp auth (username|accept|request|myname|multi connect prohibit)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.6",
+					"match": "^\\s*ppp lcp (acfc|magicnumber|mru|pfc|restart|maxterminate|maxconfigure|maxfailure|silent)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.7",
+					"match": "^\\s*ppp pap (restart|maxauthreq)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.8",
+					"match": "^\\s*ppp chap (restart|maxchallenge)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.9",
+					"match": "^\\s*ppp ipcp (vjc|ipaddress|restart|maxterminate|maxconfigure|maxfailure|msext)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.9.7",
+					"match": "^\\s*wins server",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.8",
+					"match": "^\\s*ppp ipcp msext",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.9.9",
+					"match": "^\\s*ppp ipcp remote address check",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.10",
+					"match": "^\\s*ppp mscbcp (restart|maxretry)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.11.1",
+					"match": "^\\s*ppp ccp type",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.11.2, 11.11.3, 11.11.4, 11.11.5",
+					"match": "^\\s*ppp ccp (restart|maxterminate|maxconfigure|maxfailure)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.12.1",
+					"match": "^\\s*ppp ipv6cp use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.13.1",
+					"match": "^\\s*ppp mp use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.14",
+					"match": "^\\s*ppp bacp (restart|maxterminate|maxconfigure|maxfailure)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.15",
+					"match": "^\\s*ppp bap (restart|maxretry)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.1",
+					"match": "^\\s*pppoe use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.2",
+					"match": "^\\s*pppoe access concentrator",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.3",
+					"match": "^\\s*pppoe auto connect",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.4",
+					"match": "^\\s*pppoe auto disconnect",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.5",
+					"match": "^\\s*pppoe padi maxretry",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.6",
+					"match": "^\\s*pppoe padi restart",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.7",
+					"match": "^\\s*pppoe padr maxretry",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.8",
+					"match": "^\\s*pppoe padr restart",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.9",
+					"match": "^\\s*pppoe disconnect time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.10",
+					"match": "^\\s*pppoe service-name",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.11",
+					"match": "^\\s*pppoe tcp mss limite",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.12",
+					"match": "^\\s*pppoe invalid-session forced close",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "11.16.13",
+					"match": "^\\s*pppoe pass-through member",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-12.1-dhcp_server": {
+			"patterns": [
+				{
+					"comment": "12.1.1",
+					"match": "^\\s*dhcp service (server|relay)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "12.1.2",
+					"match": "^\\s*dhcp server rfc2131 compliant( except)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.1.3",
+					"match": "^\\s*dhcp duplicate check",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.1.5",
+					"match": "^\\s*dhcp scope (bind)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "12.1.7",
+					"match": "^\\s*dhcp convert lease to bind",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.1.8",
+					"match": "^\\s*dhcp scope (option)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.1.9",
+					"match": "^\\s*dhcp manual (lease|release)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.1.11",
+					"match": "^\\s*dhcp relay server",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.1.12",
+					"match": "^\\s*dhcp relay srcport",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.1.13",
+					"match": "^\\s*dhcp relay select",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.1.14",
+					"match": "^\\s*dhcp relay hreshold",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.1.15",
+					"match": "^\\s*ip (\\S+) dhcp service",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				}
+			]
+		},
+		"rtx-12.1-dhcp_client": {
+			"patterns": [
+				{
+					"comment": "12.2.1",
+					"match": "^\\s*dhcp client hostname( (pp|pool))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.2.2",
+					"match": "^\\s*ip (\\S+) dhcp lease time",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "12.2.3",
+					"match": "^\\s*ip (\\S+) dhcp retry",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "12.2.4",
+					"match": "^\\s*dhcp client client-identifier( (pp|pool))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.2.5",
+					"match": "^\\s*dhcp client option( (pp|pool))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "12.2.6",
+					"match": "^\\s*dhcp client release linkdown",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-13-icmp": {
+			"patterns": [
+				{
+					"comment": "13.1.1, 13.1.2",
+					"match": "^\\s*ip icmp echo-reply send(-only-linkup)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.1.3",
+					"match": "^\\s*ip icmp mask-reply send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.1.4",
+					"match": "^\\s*ip icmp parameter-problem send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.1.5",
+					"match": "^\\s*ip icmp redirect send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.1.6",
+					"match": "^\\s*ip icmp redirect receive",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.1.7",
+					"match": "^\\s*ip icmp time-exceeded send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.1.8",
+					"match": "^\\s*ip icmp timestamp-reply send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.1.9",
+					"match": "^\\s*ip icmp unreachable send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.1.10",
+					"match": "^\\s*ip icmp error-decrypted-ipsec send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.1.11",
+					"match": "^\\s*ip icmp log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.1.12",
+					"match": "^\\s*ip stealth",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.1.13",
+					"match": "^\\s*ip (\\S+) arp mtu discovery",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "13.1.14",
+					"match": "^\\s*ip icmp unreachable-for-truncated send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.2.1, 13.2.2",
+					"match": "^\\s*ipv6 icmp echo-reply send(-only-linkup)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.2.3",
+					"match": "^\\s*ipv6 icmp parameter-problem send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.2.4",
+					"match": "^\\s*ipv6 icmp redirect send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.2.5",
+					"match": "^\\s*ipv6 icmp redirect receive",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.2.6",
+					"match": "^\\s*ipv6 icmp time-exceeded send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.2.7",
+					"match": "^\\s*ipv6 icmp unreachable send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.2.8",
+					"match": "^\\s*ipv6 icmp log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.2.9",
+					"match": "^\\s*ipv6 icmp packet-too-big send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.2.10",
+					"match": "^\\s*ipv6 icmp error-decrypted-ipsec send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.2.11",
+					"match": "^\\s*ipv6 stealth",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "13.2.12",
+					"match": "^\\s*ipv6 icmp packet-too-big-for-truncated send",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-14-tunneling": {
+			"patterns": [
+				{
+					"comment": "14.1, 14.2",
+					"match": "^\\s*tunnel (enable|disable)",
+					"name": "storage.type"
+				},
+				{
+					"comment": "14.3",
+					"match": "^\\s*tunnel type"
+				},
+				{
+					"comment": "14.4",
+					"match": "^\\s*tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp|map-e)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "14.5",
+					"match": "^\\s*ip tunnel address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.6",
+					"match": "^\\s*ip tunnel remote address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.7",
+					"match": "^\\s*tunnel endpoint remote address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.8",
+					"match": "^\\s*tunnel endpoint local address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.9",
+					"match": "^\\s*tunnel endpoint address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.10",
+					"match": "^\\s*tunnel endpoint name",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.11",
+					"match": "^\\s*tunnel multipoint server",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.12",
+					"match": "^\\s*tunnel multipoint local name",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.13",
+					"match": "^\\s*tunnel multipoint limit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.14",
+					"match": "^\\s*tunnel map-e type",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.15",
+					"match": "^\\s*tunnel translation",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-15-ipsesc": {
+			"patterns": [
+				{
+					"comment": "15.1",
+					"match": "^\\s*ipsec use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.2",
+					"match": "^\\s*ipsec ike version",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.3",
+					"match": "^\\s*ipsec ike auth method",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.4",
+					"match": "^\\s*ipsec ike auto received-id-route-add",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.5",
+					"match": "^\\s*ipsec ike pre-shared-key",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.6",
+					"match": "^\\s*ipsec ike pki file",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.7",
+					"match": "^\\s*ipsec ike eap myname",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.8",
+					"match": "^\\s*ipsec ike eap request",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.9",
+					"match": "^\\s*ipsec ike eap send certreq",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.10",
+					"match": "^\\s*ipsec auto refresh",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.11",
+					"match": "^\\s*ipsec ike negotiate-strictly",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.12",
+					"match": "^\\s*ipsec ike always-on",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.13",
+					"match": "^\\s*ipsec ike retry",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.14",
+					"match": "^\\s*ipsec ike remote name",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.15",
+					"match": "^\\s*ipsec ike remote address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.16",
+					"match": "^\\s*ipsec ike remote id",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.17",
+					"match": "^\\s*ipsec ike local name",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.18",
+					"match": "^\\s*ipsec ike local address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.19",
+					"match": "^\\s*ipsec ike local id",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.20",
+					"match": "^\\s*ipsec ike keepalive use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.21",
+					"match": "^\\s*ipsec ike keepalive log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.22",
+					"match": "^\\s*ipsec ike encryption",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.23",
+					"match": "^\\s*ipsec ike queue length",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.24",
+					"match": "^\\s*ipsec ike group",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.25",
+					"match": "^\\s*ipsec ike hash",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.26",
+					"match": "^\\s*ipsec log illegal-spi",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.27",
+					"match": "^\\s*ipsec ike payload type",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.28",
+					"match": "^\\s*ipsec ike backward-compatibility",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.29",
+					"match": "^\\s*ipsec ike send info",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.30",
+					"match": "^\\s*ipsec ike pfs",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.31",
+					"match": "^\\s*ipsec ike xauth myname",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.32, 15.33, 15.33, 15.35",
+					"match": "^\\s*auth user( (attribute|group|group( attribute)?))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.36",
+					"match": "^\\s*ipsec ike xauth request",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.37",
+					"match": "^\\s*ipsec ike mode-cfg address pool",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.38",
+					"match": "^\\s*ipsec ike mode-cfg method",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.39",
+					"match": "^\\s*ipsec ike mode-cfg address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.40, 15.41",
+					"match": "^\\s*ipsec ike license-key( use)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.42",
+					"match": "^\\s*ipsec ike log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.43",
+					"match": "^\\s*ipsec ike esp-encapsulation",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.44",
+					"match": "^\\s*ipsec ike proposal-limitation",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.45",
+					"match": "^\\s*ipsec ike message-id-control",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.46",
+					"match": "^\\s*ipsec ike child-exchange type",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.47",
+					"match": "^\\s*ipsec ike negotiation receive",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.48.1",
+					"match": "^\\s*ipsec ike duration",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.48.2",
+					"match": "^\\s*ipsec sa policy",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.48.3",
+					"match": "^\\s*ipsec refresh sa",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.48.4",
+					"match": "^\\s*ipsec ike restrict-dangling-sa",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.48.5",
+					"match": "^\\s*ipsec ike nat-traversal",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.48.6",
+					"match": "^\\s*ipsec sa delete",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.49.1",
+					"match": "^\\s*ipsec tunnel fastpath-fragment-function follow df-bit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.49.2",
+					"match": "^\\s*ipsec tunnel outer df-bit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.49.3",
+					"match": "^\\s*ipsec tunnel",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.49.4",
+					"match": "^\\s*ipsec ipcomp type",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.49.5",
+					"match": "^\\s*tunnel backup( (pp|tunnel))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.49.6",
+					"match": "^\\s*tunnel template",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.50",
+					"match": "^\\s*ipsec transport( template)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.51",
+					"match": "^\\s*pki certificate file",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "15.52",
+					"match": "^\\s*pki crl file",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-16-l2tp": {
+			"patterns": [
+				{
+					"comment": "16.1",
+					"match": "^\\s*l2tp service",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "16.2",
+					"match": "^\\s*l2tp tunnel auth",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "16.3",
+					"match": "^\\s*l2tp tunnel disconnect time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "16.4",
+					"match": "^\\s*l2tp keepalive use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "16.5",
+					"match": "^\\s*l2tp keepalive log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "16.6",
+					"match": "^\\s*l2tp syslog",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "16.7",
+					"match": "^\\s*l2tp always-on",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "16.8",
+					"match": "^\\s*l2tp hostname",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "16.9",
+					"match": "^\\s*l2tp local router-id",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "16.10",
+					"match": "^\\s*l2tp remote router-id",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "16.11",
+					"match": "^\\s*l2tp remote end-id",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-17-pptp": {
+			"patterns": [
+				{
+					"comment": "17.1.1, 17.1.3",
+					"match": "^\\s*pptp service( type)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "17.1.4",
+					"match": "^\\s*pptp hostname",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "17.1.5",
+					"match": "^\\s*pptp vendorname",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "17.1.6",
+					"match": "^\\s*pptp window size",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "17.1.7",
+					"match": "^\\s*pp auth request",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "17.1.8",
+					"match": "^\\s*pp auth accept",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "17.1.9",
+					"match": "^\\s*pptp syslog",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "17.2.1",
+					"match": "^\\s*pptp tunnel disconnect time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "17.2.2",
+					"match": "^\\s*pptp keepalive use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "17.2.3",
+					"match": "^\\s*pptp keepalive log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "17.2.4",
+					"match": "^\\s*pptp keepalive interval",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "17.2.5",
+					"match": "^\\s*ppp ccp no-encryption",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-18-ipip": {
+			"patterns": [
+				{
+					"comment": "18.1",
+					"match": "^\\s*ipip keepalive use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "18.2",
+					"match": "^\\s*ipip keepalive log",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-19-cloud_vpn": {
+			"patterns": [
+				{
+					"comment": "19.1",
+					"match": "^\\s*cloud vpn service",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "19.2",
+					"match": "^\\s*cloud vpn parameter",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "19.3",
+					"match": "^\\s*cloud vpn name",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "19.4",
+					"match": "^\\s*cloud vpn bind",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "19.5",
+					"match": "^\\s*cloud vpn option",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "19.6",
+					"match": "^\\s*cloud vpn set go",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "19.7",
+					"match": "^\\s*show status cloud vpn",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "19.8",
+					"match": "^\\s*cloud vpn syslog",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-20-sip": {
+			"patterns": [
+				{
+					"comment": "20.1.1",
+					"match": "^\\s*sip use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.1.2",
+					"match": "^\\s*sip session timer (\\d+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "20.1.3",
+					"match": "^\\s*sip ip protocol",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.1.4",
+					"match": "^\\s*sip 100rel",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.1.5",
+					"match": "^\\s*sip user agent",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.1.6",
+					"match": "^\\s*sip arrive session timer refresher",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.1.7",
+					"match": "^\\s*sip arrive ringing p-n-uatype",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.1.8",
+					"match": "^\\s*sip arrive session timer method",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.1.9",
+					"match": "^\\s*sip arrive address check",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.1.10",
+					"match": "^\\s*sip response code busy",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.1.11",
+					"match": "^\\s*sip outer address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.1.12",
+					"match": "^\\s*sip log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.2.2, 20.2.3, 20.2.4, 20.2.5",
+					"match": "^\\s*sip server (session timer|pilot address|privacy|display name)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.2.6, 20.2.7, 22.2.8, 20.2.9",
+					"match": "^\\s*sip server (call remote domain|100rel|register timer|register request-uri)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.2.1, 20.2.10, 20.2.11",
+					"match": "^\\s*sip server( (qvalue|call own permit))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.1",
+					"match": "^\\s*ngn type",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.2",
+					"match": "^\\s*tunnel ngn disconnect time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.3",
+					"match": "^\\s*tunnel ngn bandwidth",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.4",
+					"match": "^\\s*tunnel ngn arrive permit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.5",
+					"match": "^\\s*tunnel ngn call permit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.6",
+					"match": "^\\s*tunnel ngn interface",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.7",
+					"match": "^\\s*tunnel ngn fallback",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.8",
+					"match": "^\\s*tunnel ngn radius auth",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.9",
+					"match": "^\\s*ngn radius auth password",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.10",
+					"match": "^\\s*ngn radius account caller",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.11",
+					"match": "^\\s*ngn radius account callee",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.12",
+					"match": "^\\s*ngn renumbering link-refresh",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "20.3.13",
+					"match": "^\\s*show status ngn",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-21-snmp": {
+			"patterns": [
+				{
+					"comment": "21.1",
+					"match": "^\\s*snmp host",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.2, 21.3",
+					"match": "^\\s*snmp community (read-only|read-write) (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						},
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "21.4",
+					"match": "^\\s*snmp trap host",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.5",
+					"match": "^\\s*snmp trap community (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "21.6",
+					"match": "^\\s*snmpv2c host",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.7, 21.8",
+					"match": "^\\s*snmpv2c community (read-only|read-write) (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						},
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "21.9",
+					"match": "^\\s*snmpv2c trap host",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.10",
+					"match": "^\\s*snmpv2c trap community",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.11, 21.12, 21.13, 21.14, 21.15, 21.16, 21.17",
+					"match": "^\\s*snmpv3 (engine id|context name|usm user|host|vacm view|vacm access|trap host)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.18",
+					"match": "^\\s*snmp local address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.19, 21.20, 21.21",
+					"match": "^\\s*snmp sys(contact|location|name) (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "21.22",
+					"begin": "^\\s*snmp trap enable snmp",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"patterns": [
+						{
+							"match": "((coldstart|warmstart|linkdown|linkup|authenticationfailure)+|all)",
+							"captures": {
+								"1": {
+									"name": "constant.language"
+								}
+							}
+						}
+					]
+				},
+				{
+					"comment": "21.23",
+					"match": "^\\s*snmp trap cpu threshold",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.24",
+					"match": "^\\s*snmp trap memory threshold",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.25",
+					"match": "^\\s*snmp trap delay-timer",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.26",
+					"match": "^\\s*snmp trap send linkdown( (pp|tunnel))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.27",
+					"match": "^\\s*snmp yrifppdisplayatmib2",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.28",
+					"match": "^\\s*snmp yriftunneldisplayatmib2",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.29",
+					"match": "^\\s*snmp yrifswitchdisplayatmib2",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.30",
+					"match": "^\\s*snmp display ipcp force",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.31",
+					"match": "^\\s*snmp trap link-updown separate-l2switch-port",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.32",
+					"match": "^\\s*snmp trap mobile signal-strength",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.33",
+					"match": "^\\s*snmp ifindex switch static index",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.34",
+					"match": "^\\s*snmp yrswindex switch static index",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.35",
+					"match": "^\\s*snmp trap enable switchx",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "21.36",
+					"match": "^\\s*snmp trap enable switch common",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-22-radius": {
+			"patterns": [
+				{
+					"comment": "22.1, 22.4, 22.6",
+					"match": "^\\s*radius auth( (server|port))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "22.2, 22.5, 22.7",
+					"match": "^\\s*radius account( (server|port))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "22.3",
+					"match": "^\\s*radius server",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "22.8",
+					"match": "^\\s*radius secret",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "22.9",
+					"match": "^\\s*radius retry",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-23-nat": {
+			"patterns": [
+				{
+					"comment": "23.1",
+					"match": "^\\s*nat descriptor backward-compatibility",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.2",
+					"match": "^\\s*ip (\\S+) nat descriptor",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "23.3",
+					"match": "^\\s*nat descriptor type (\\d+) (none|nat|masquerade|nat-masquerade)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.numeric"
+						},
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "23.4, 23.5",
+					"match": "^\\s*nat descriptor address (outer|inner)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "23.6",
+					"match": "^\\s*nat descriptor static",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.7",
+					"match": "^\\s*nat descriptor masquerade rlogin",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.8",
+					"match": "^\\s*nat descriptor masquerade static",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.9",
+					"match": "^\\s*nat descriptor timer",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.10",
+					"match": "^\\s*nat descriptor masquerade incoming",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.11",
+					"match": "^\\s*nat descriptor masquerade port range",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.12",
+					"match": "^\\s*nat descriptor ftp port",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.13",
+					"match": "^\\s*nat descriptor masquerade unconvertible port",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.14",
+					"match": "^\\s*nat descriptor log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.15",
+					"match": "^\\s*nat descriptor sip",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.16",
+					"match": "^\\s*nat descriptor masquerade remove df-bit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "23.17, 23.18",
+					"match": "^\\s*nat descriptor masquerade session limit( total)?",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-24-dns": {
+			"patterns": [
+				{
+					"comment": "24.1",
+					"match": "^\\s*dns service (recursive|off)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "24.2, 24.4, 24.5, 24.10",
+					"match": "^\\s*dns server( (pp|dhcp|select))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "24.3",
+					"match": "^\\s*dns domain (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "24.6",
+					"match": "^\\s*dns notice order",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "24.7",
+					"match": "^\\s*dns private address spoof",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "24.8",
+					"match": "^\\s*dns service aaaa filter",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "24.9",
+					"match": "^\\s*dns syslog resolv",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "24.11, 24.13",
+					"match": "^\\s*(ip|dns) host",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "24.12",
+					"match": "^\\s*dns srcport",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "24.14",
+					"match": "^\\s*dns cache use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "24.15",
+					"match": "^\\s*dns cache max entry",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "24.16",
+					"match": "^\\s*dns service fallback",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-25-nat45anddns46": {
+			"patterns": [
+				{
+					"comment": "25.1",
+					"match": "^\\s*nat46 ip address pool",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "25.2",
+					"match": "^\\s*nat46 ipv6 prefix",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "25.3",
+					"match": "^\\s*nat46 static",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "25.4",
+					"match": "^\\s*show status nat46 table",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-26-queue": {
+			"patterns": [
+				{
+					"comment": "26.1",
+					"match": "^\\s*speed( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "26.2",
+					"match": "^\\s*queue class filter",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "26.3",
+					"match": "^\\s*queue ((\\S+)|pp) type",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "26.4",
+					"match": "^\\s*ppp mp interleave",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "26.5",
+					"match": "^\\s*queue ((\\S+)|pp|tunnel) class filter list",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "26.6, 26.7",
+					"match": "^\\s*queue ((\\S+)|pp) length( secondary)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "26.8, 26.9",
+					"match": "^\\s*queue ((\\S+)|pp|tunnel) default class( secondary)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "26.10",
+					"match": "^\\s*queue ((\\S+)|pp) class property",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "26.11",
+					"match": "^\\s*queue (\\S+) class control",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "26.12",
+					"match": "^\\s*queue length auto-config go",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-27-cooperation": {
+			"patterns": [
+				{
+					"comment": "27.1",
+					"match": "^\\s*cooperation (bandwidth-measuring|load-watch) (server|client)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "27.2",
+					"match": "^\\s*cooperation port",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "27.3",
+					"match": "^\\s*cooperation bandwidth-measuring remote",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "27.4",
+					"match": "^\\s*cooperation load-watch remote",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "27.5",
+					"match": "^\\s*cooperation load-watch trigger",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "27.6",
+					"match": "^\\s*cooperation load-watch control",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "27.7",
+					"match": "^\\s*cooperation (bandwidth-measuring|load-watch) go",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-28-ospf": {
+			"patterns": [
+				{
+					"comment": "28.1",
+					"match": "^\\s*ospf configure refresh",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.2",
+					"match": "^\\s*ospf use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.3",
+					"match": "^\\s*ospf preference",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.4",
+					"match": "^\\s*ospf router id",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.5",
+					"match": "^\\s*ospf export from ospf",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.6",
+					"match": "^\\s*ospf import from",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.7",
+					"match": "^\\s*ospf export filter",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.8",
+					"match": "^\\s*ospf impoty filter",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.9, 28.10, 28.11",
+					"match": "^\\s*ospf area( (network|stubhost))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.12",
+					"match": "^\\s*ospf virtual-link",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.13, 28.14",
+					"match": "^\\s*ip (\\S+) ospf (area|neighbor)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "28.15",
+					"match": "^\\s*ospf merge equal cost stub",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.16",
+					"match": "^\\s*ospf log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "28.17",
+					"match": "^\\s*ospf reric interval",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-29-bgp": {
+			"patterns": [
+				{
+					"comment": "29.1",
+					"match": "^\\s*bgp use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.2, 29.3",
+					"match": "^\\s*bgp aggregate( filter)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.4",
+					"match": "^\\s*bgp autonomous-system",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.5",
+					"match": "^\\s*bgp router id",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.6",
+					"match": "^\\s*bgp preference",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.7, 29.8, 29.18",
+					"match": "^\\s*bgp export( (aspath|filter|route selection rule))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.10",
+					"match": "^\\s*bgp configure refresh",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.9, 29.11",
+					"match": "^\\s*bgp import( filter)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.12, 29.13",
+					"match": "^\\s*bgp neighbor( pre-shared-key)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.14",
+					"match": "^\\s*bgp log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.15",
+					"match": "^\\s*bgp force-to-advertise",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.16",
+					"match": "^\\s*bgp reric interval",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "29.17",
+					"match": "^\\s*bgp default med",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-30-ipv6": {
+			"patterns": [
+				{
+					"comment": "30.1.1, 30.1.6",
+					"match": "^\\s*ipv6 routing( process)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.1.2",
+					"match": "^\\s*ipv6 ((\\S+)|pp|tunnel) mtu",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.1.3",
+					"match": "^\\s*ipv6 ((\\S+)|pp|tunnel) tcp mss limit",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.1.4",
+					"match": "^\\s*ipv6 ((\\S+)|pp|tunnel) tcp window-scale",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.1.5",
+					"match": "^\\s*ipv6 rh0 discard",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.1.7",
+					"match": "^\\s*ipv6 (\\S+) icmp-nd queue length",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.1.8",
+					"match": "^\\s*ipv6 (\\S+) neighbor cache max entry",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.1.9",
+					"match": "^\\s*ipv6 reassembly hold-time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.1.10",
+					"match": "^\\s*ipv6 dscp supersede",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.2.1",
+					"match": "^\\s*ipv6 (\\S+) address",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.2.2, 30.2.3",
+					"match": "^\\s*ipv6 (\\S+) prefix( change log)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.2.4",
+					"match": "^\\s*ipv6 (\\S+) dhcp service",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.2.5",
+					"match": "^\\s*ipv6 (\\S+) dad retry count",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.2.6",
+					"match": "^\\s*ipv6 max auto address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.2.7",
+					"match": "^\\s*ipv6 source address selection rule",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.3.1",
+					"match": "^\\s*ipv6 prefix",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.3.2",
+					"match": "^\\s*ipv6 nd ra-rdnss",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.3.3",
+					"match": "^\\s*ipv6 (\\S+) rtadv send",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.3.4",
+					"match": "^\\s*ipv6 (\\S+) rtsol max-retransmit",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.3.5",
+					"match": "^\\s*ipv6 nd ra-dnssl",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.4.1",
+					"begin": "^\\s*ipv6 route",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"patterns": [
+						{
+							"match": "(default|pp|dhcp|tunnel)",
+							"name": "constant.language"
+						},
+						{
+							"match": "gateway",
+							"name": "entity.name.function"
+						},
+						{
+							"match": "(filter|metric|hide|weight|keepalive)",
+							"name": "keyword.control"
+						},
+						{
+							"include": "#keyword"
+						}
+					]
+				},
+				{
+					"comment": "30.4.2",
+					"match": "^\\s*ipv6 route change log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.5.1",
+					"match": "^\\s*ipv6 rip use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.5.2, 30.5.3, 30.5.4, 30.5.5, 30.5.6",
+					"match": "^\\s*ipv6 (\\S+) rip (send|receive|hop|trust gateway|filter)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.5.7",
+					"match": "^\\s*ipv6 pp rip connect send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.5.8",
+					"match": "^\\s*ipv6 pp rip connect interval",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.5.9",
+					"match": "^\\s*ipv6 pp rip disconnect send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.5.10",
+					"match": "^\\s*ipv6 pp rip disconnect interval",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.5.11",
+					"match": "^\\s*ipv6 pp rip hold routing",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.5.12",
+					"match": "^\\s*ipv6 rip preference",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.6.1, 30.6.2",
+					"match": "^\\s*ipv6 (\\S+) vrrp( shutdown trigger)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.7.1, 30.7.3",
+					"match": "^\\s*ipv6 filter( dynamic)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "30.7.2",
+					"begin": "ipv6 (\\S+) secure filter",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					},
+					"patterns": [
+						{
+							"match": "^\\s*dynamic",
+							"name": "keyword.control"
+						},
+						{
+							"include": "#keyword"
+						}
+					]
+				},
+				{
+					"comment": "30.8.1, 30.8.2",
+					"match": "^\\s*ipv6 (\\S+) mld( static)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "30.9.1",
+					"match": "^\\s*ipv6 nd ns-trigger-dad",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-31-ospfv3": {
+			"patterns": [
+				{
+					"comment": "31.1",
+					"match": "^\\s*ipv6 ospf configure refresh",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "31.2",
+					"match": "^\\s*ipv6 ospf use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "31.3",
+					"match": "^\\s*ipv6 ospf router id",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "31.4, 31.5",
+					"match": "^\\s*ipv6 ospf area( network)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "31.6",
+					"match": "^\\s*ipv6 (\\S+) ospf area",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "31.7",
+					"match": "^\\s*ipv6 ospf virtual-link",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "31.8",
+					"match": "^\\s*ipv6 ospf preference",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "31.9, 31.10",
+					"match": "^\\s*ipv6 ospf export( from ospf)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "31.11, 31.12",
+					"match": "^\\s*ipv6 ospf import( from)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "31.13",
+					"match": "^\\s*ipv6 ospf log",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-32-mail_notify_trigger": {
+			"patterns": [
+				{
+					"comment": "32.1, 32.2, 32.3, 32.4",
+					"match": "^\\s*mail server (name|smtp|pop|timeout)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "32.5",
+					"match": "^\\s*mail template",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "32.6",
+					"match": "^\\s*mail notify",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-33-http_server": {
+			"patterns": [
+				{
+					"comment": "33.1.1",
+					"match": "^\\s*httpd service",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.1.2",
+					"match": "^\\s*httpd host",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.1.3",
+					"match": "^\\s*httpd timeout",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.1.4",
+					"match": "^\\s*httpd listen",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.1.5",
+					"match": "^\\s(pp|tunnel) name",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.1",
+					"match": "^\\s*provider type",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.2",
+					"match": "^\\s*provider set",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.3",
+					"match": "^\\s*provider select",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.4, 33.2.6",
+					"match": "^\\s*provider dns server( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.5",
+					"match": "^\\s*provider (\\S+) dns server",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "33.2.7",
+					"match": "^\\s*provider filter routing",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.8",
+					"match": "^\\s*provider (\\S*) name",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "33.2.9",
+					"match": "^\\s*provider ntpdate",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.10",
+					"match": "^\\s*provider ntp server",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.11",
+					"match": "^\\s*provider auto connect forced disable",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.12",
+					"match": "^\\s*provider ipv6 connect pp",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.13",
+					"match": "^\\s*provider (\\S*) bind",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				}
+			]
+		},
+		"rtx-34-netvolante-dns": {
+			"patterns": [
+				{
+					"comment": "34.1",
+					"match": "^\\s*netvolante-dns use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.2",
+					"match": "^\\s*netvolante-dns go( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.3",
+					"match": "^\\s*netvolante-dns delete go( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.4",
+					"match": "^\\s*netvolante-dns port",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.5",
+					"match": "^\\s*netvolante-dns get hostname list( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.6",
+					"match": "^\\s*netvolante-dns hostname host( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.7",
+					"match": "^\\s*netvolante-dns timeout( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.8",
+					"match": "^\\s*netvolante-dns auto hostname( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.9",
+					"match": "^\\s*netvolante-dns set hostname",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.10, 34.11, 34.12",
+					"match": "^\\s*netvolante-dns server( update address (use|port))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.13",
+					"match": "^\\s*netvolante-dns retry interval( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.14",
+					"match": "^\\s*netvolante-dns register timer",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "34.15",
+					"match": "^\\s*netvolante-dns auto save",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-35-upnp": {
+			"patterns": [
+				{
+					"comment": "35.1",
+					"match": "^\\s*upnp use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "35.2",
+					"match": "^\\s*upnp external address refer( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "35.3, 35.4",
+					"match": "^\\s*upnp port mapping timer( type)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "35.5",
+					"match": "^\\s*upnp syslog",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-36-usb": {
+			"patterns": [
+				{
+					"comment": "36.1",
+					"match": "^\\s*usbhost use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "36.2",
+					"match": "^\\s*usbhost overcurrent duration",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-37-schedule": {
+			"patterns": [
+				{
+					"comment": "37.1",
+					"match": "\\b(schedule at)\\b",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-38-vlan": {
+			"patterns": [
+				{
+					"comment": "38.1",
+					"match": "^\\s*vlan (\\S+) 802\\.1q",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "38.2",
+					"match": "^\\s*vlan port mapping",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-39-heartbeat": {
+			"patterns": [
+				{
+					"comment": "39.1",
+					"match": "^\\s*heartbeat pre-shared-key",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "39.2",
+					"match": "^\\s*heartbeat receive",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "39.3",
+					"match": "^\\s*heartbeat send",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-40-heartbeat2": {
+			"patterns": [
+				{
+					"comment": "40.1",
+					"match": "^\\s*heartbeat2 myname",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "40.2, 40.3, 40.5",
+					"match": "^\\s*heartbeat2 transmit (enable|interval|log)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "40.6, 40.7, 40.8, 40.9, 40.10",
+					"match": "^\\s*heartbeat2 receive (enable|monitor|log|record limit)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "40.11",
+					"match": "^\\s*show status heartbeat2 (id|name)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "40.12",
+					"match": "^\\s*clear status heartbeat2 (id|name)?",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-41-sntp": {
+			"patterns": [
+				{
+					"comment": "41.1",
+					"match": "^\\s*sntpd service",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "41.2",
+					"match": "^\\s*sntpd host",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-42-external-memory": {
+			"patterns": [
+				{
+					"comment": "42.1",
+					"match": "^\\s*sd use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.2",
+					"match": "^\\s*external-memory cache mode",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.3",
+					"match": "^\\s*external-memory accelerator cache size",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.4",
+					"match": "^\\s*external-memory statistics filename prefix",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.7, 42.8",
+					"match": "^\\s*external-memory boot (permit|timeout)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.9",
+					"match": "^\\s*external-memory exec filename",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.10",
+					"match": "^\\s*external-memory config filename",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.11",
+					"match": "^\\s*external-memory auto-search time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.12",
+					"match": "^\\s*execute batch",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.13",
+					"match": "^\\s*external-memory batch filename",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.14",
+					"match": "^\\s*external-memory performance-test go",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.15",
+					"match": "^\\s*external-memory button function download",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.16",
+					"match": "^\\s*external-memory execute batch permit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.17",
+					"match": "^\\s*external-memory dpi signature directory",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "42.18",
+					"match": "^\\s*operation button function func",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-43-http_upload": {
+			"patterns": [
+				{
+					"comment": "43.1, 43.2, 43.3, 43.4, 43.5, 43.6, 43.7",
+					"match": "^\\s*http upload (url|permit|timeout|retry interval|proxy|go)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "43.8",
+					"match": "^\\s*alarm http upload",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-44-mobile_internet": {
+			"patterns": [
+				{
+					"comment": "44.1",
+					"match": "^\\s*mobile use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.2",
+					"match": "^\\s*mobile pin code",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.3",
+					"match": "^\\s*mobile call type",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.4",
+					"match": "^\\s*execute at-command",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.5",
+					"match": "^\\s*clear mobile access limitation",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.6"
+				},
+				{
+					"comment": "44.7",
+					"match": "^\\s*mobile auto connect",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.8",
+					"match": "^\\s*mobile disconnect time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.9",
+					"match": "^\\s*mobile disconnect input time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.10",
+					"match": "^\\s*mobile disconnect output time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.11",
+					"match": "^\\s*mobile access-point name",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.12",
+					"match": "^\\s*mobile dial number",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.13",
+					"match": "^\\s*mobile access limit length",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.14",
+					"match": "^\\s*mobile access limit time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.15",
+					"match": "^\\s*mobile call prohibit auth-error count",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.16",
+					"match": "^\\s*ppp lcp accm",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.17",
+					"match": "^\\s*mobile display caller id",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.18",
+					"match": "^\\s*mobile syslog",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.19",
+					"match": "^\\s*alarm mobile",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.20",
+					"match": "^\\s*mobile access limit connection length",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.21",
+					"match": "^\\s*mobile access limit connection time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.22",
+					"match": "^\\s*mobile access limit duration",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.23",
+					"match": "^\\s*mobile arrive use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.24",
+					"match": "^\\s*mobile arrive permit",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.25, 44.26",
+					"match": "^\\s*mobile signal-strength( go)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.27",
+					"match": "^\\s*show status mobile signal-strength",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.28",
+					"match": "^\\s*usbhost modem initialize",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.29",
+					"match": "^\\s*usbhost modem flow control",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.30",
+					"match": "^\\s*mobile firmware update go",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.31",
+					"match": "^\\s*mobile carrier mode",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "44.32",
+					"match": "^\\s*(wan1) auth myname",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.33",
+					"match": "^\\s*(wan1) bind",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.34",
+					"match": "^\\s*(wan1) auto connect",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.35",
+					"match": "^\\s*(wan1) disconnect time",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.36",
+					"match": "^\\s*(wan1) disconnect input time",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.37",
+					"match": "^\\s*(wan1) disconnect output time",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.38",
+					"match": "^\\s*(wan1) always-on",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.39",
+					"match": "^\\s*(wan1) access-point name",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.40",
+					"match": "^\\s*(wan1) access limit length",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.41",
+					"match": "^\\s*(wan1) access limit time",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.42",
+					"match": "^\\s*(wan1) access limit connection length",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.43",
+					"match": "^\\s*(wan1) access limit connection time",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "44.44",
+					"match": "^\\s*(wan1) access limit duration",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				}
+			]
+		},
+		"rtx-45-bridge_interface": {
+			"patterns": [
+				{
+					"comment": "45.1",
+					"match": "^\\s*bridge member",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "45.2, 45.3, 45.4",
+					"match": "^\\s*bridge learning",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-46-lua": {
+			"patterns": [
+				{
+					"comment": "46.1, 46.2",
+					"match": "^\\s*lua (use)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "46.3",
+					"match": "^\\s*luac",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "46.4",
+					"match": "^\\s*show status lua",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "46.5",
+					"match": "^\\s*terminate lua( file)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "46.6",
+					"match": "^\\s*alarm lua",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-47-custom_gui": {
+			"patterns": [
+				{
+					"comment": "47.1, 47.2",
+					"match": "^\\s*httpd custom-gui (user|use)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "47.3",
+					"match": "^\\s*httpd custom-gui api use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "47.4",
+					"match": "^\\s*httpd custom-gui api password",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-48-l2ms": {
+			"patterns": [
+				{
+					"comment": "48.1.1",
+					"match": "^\\s*switch control mode (master|slave|off)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.1.2",
+					"match": "^\\s*switch control use (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "48.1.3",
+					"match": "^\\s*switch control watch interval",
+					"name": "storage.type"
+				},
+				{
+					"comment": "48.1.4",
+					"match": "^\\s*lan-map terminal watch interval",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.1.5",
+					"match": "^\\s*lan-map snapshot use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.1.6",
+					"match": "^\\s*take lan-map snapshot ",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.1.7",
+					"match": "^\\s*lan-map log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.1.8",
+					"match": "^\\s*lan-map sysname",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.2.1",
+					"match": "^\\s*switch select",
+					"name": "storage.type"
+				},
+				{
+					"comment": "48.2.2"
+				},
+				{
+					"comment": "48.2.3"
+				},
+				{
+					"comment": "48.2.4"
+				},
+				{
+					"comment": "48.2.5",
+					"match": "^\\s*switch control function default",
+					"name": "storage.type"
+				},
+				{
+					"comment": "48.2.6",
+					"match": "^\\s*switch control firmware upload go",
+					"name": "storage.type"
+				},
+				{
+					"comment": "48.2.7",
+					"match": "^\\s*switch control route backup",
+					"name": "storage.type"
+				},
+				{
+					"comment": "48.2.8",
+					"match": "^\\s*switch config directory",
+					"name": "storage.type"
+				},
+				{
+					"comment": "48.2.9",
+					"match": "^\\s*switch config filename",
+					"name": "storage.type"
+				},
+				{
+					"comment": "48.2.10",
+					"match": "^\\s*switch control config get",
+					"name": "storage.type"
+				},
+				{
+					"comment": "48.2.11",
+					"match": "^\\s*switch control config set",
+					"name": "storage.type"
+				},
+				{
+					"comment": "48.2.12",
+					"match": "^\\s*switch control config-auto-set use",
+					"name": "storage.type"
+				},
+				{
+					"comment": "48.3.1.1",
+					"match": "^\\s*switch control function (get) boot-rom-version",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.1.2",
+					"match": "^\\s*switch control function (get) firmware-revision",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.1.3",
+					"match": "^\\s*switch control function (get) serial-number",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.1.4",
+					"match": "^\\s*switch control function (get) model-name",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.1.5",
+					"match": "^\\s*switch control function (get) system-macaddress",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.1.6",
+					"match": "^\\s*switch control function (set|get) system-name",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.1.7",
+					"match": "^\\s*switch control function (set|get) energy-saving",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.1.8",
+					"match": "^\\s*switch control function (get|set) led-brightness",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.1.9",
+					"match": "^\\s*switch control function (get) status-led-mode",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.1.10, 48.3.1.11",
+					"match": "^\\s*switch control function (get) status-fan(-rpm)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.1.12",
+					"match": "^\\s*switch control function (execute) restart",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.1.13",
+					"match": "^\\s*switch control function (get) system-uptime",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.2.1",
+					"match": "^\\s*switch control function (get) lag-type",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.2.2",
+					"match": "^\\s*switch control function (get|set) port-speed",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.2.3",
+					"match": "^\\s*switch control function (get|set) port-use",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.2.4",
+					"match": "^\\s*switch control function (get|set) port-auto-crossover",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.2.5",
+					"match": "^\\s*switch control function (get|set) port-speed-downshift",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.2.6",
+					"match": "^\\s*switch control function (get|set) port-flow-control",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.2.7",
+					"match": "^\\s*switch control function (get|set) port-blocking-control-packet",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.2.8",
+					"match": "^\\s*switch control function (get|set) port-blocking-data-packet",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.2.9",
+					"match": "^\\s*switch control function (get) status-combo-port",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.2.10",
+					"match": "^\\s*switch control function (get) status-port-sfp-rx-power",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.2.11",
+					"match": "^\\s*switch control function (get) status-port-speed",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.3.1, 48.3.3.2",
+					"match": "^\\s*switch control function (get|set) macaddress-aging(-timer)?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.3.3",
+					"match": "^\\s*switch control function (get) status-macaddress-addr",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.3.4",
+					"match": "^\\s*switch control function (get) status-macaddress-port",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.3.5",
+					"match": "^\\s*switch control function (execute) clear-macaddress-table",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.4.1",
+					"match": "^\\s*switch control function (set|get) vlan-id",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.4.2",
+					"match": "^\\s*switch control function (set|get) vlan-port-mode",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.4.3",
+					"match": "^\\s*switch control function (set|get) vlan-access",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.4.4",
+					"match": "^\\s*switch control function (set|get) vlan-trunk",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.4.5",
+					"match": "^\\s*switch control function (set|get) vlan-multiple-use",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.4.6",
+					"match": "^\\s*switch control function (set|get) vlan-multiple",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.5.1, 48.3.5.2",
+					"match": "^\\s*switch control function (set|get) qos-dscp-remark-(type|class)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.5.3",
+					"match": "^\\s*switch control function (set|get) qos-speed-unit",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.5.4",
+					"match": "^\\s*switch control function (set|get) qos-policing-use",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.5.5",
+					"match": "^\\s*switch control function (set|get) qos-policing-speed",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.5.6",
+					"match": "^\\s*switch control function (set|get) qos-shaping-use",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.5.6",
+					"match": "^\\s*switch control function (set|get) qos-shaping-speed",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.6.1",
+					"match": "^\\s*switch control function (set|get) mirroring-use",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.6.2",
+					"match": "^\\s*switch control function (set|get) mirroring-dest",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.6.3",
+					"match": "^\\s*switch control function (set|get) mirroring-src-rx",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.6.4",
+					"match": "^\\s*switch control function (set|get) mirroring-src-tx",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.7.1",
+					"match": "^\\s*switch control function (set|get) counter-frame-rx-type",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.7.2",
+					"match": "^\\s*switch control function (set|get) counter-frame-tx-type",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.7.3",
+					"match": "^\\s*switch control function (set|get) status-counter-frame-rx",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.7.4",
+					"match": "^\\s*switch control function (set|get) status-counter-frame-tx",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.7.5",
+					"match": "^\\s*switch control function (set|get) status-counter-octet-rx",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.7.6",
+					"match": "^\\s*switch control function (set|get) status-counter-octet-tx",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.7.7",
+					"match": "^\\s*switch control function (execute) clear-counter",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.8.1",
+					"match": "^\\s*switch control function (set|get) loopdetect-count",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.8.2",
+					"match": "^\\s*switch control function (set|get) loopdetect-time",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.8.3",
+					"match": "^\\s*switch control function (set|get) loopdetect-linkdown",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.8.4",
+					"match": "^\\s*switch control function (set|get) loopdetect-recovery-timer",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.8.5",
+					"match": "^\\s*switch control function (set|get) loopdetect-port-use",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.8.6",
+					"match": "^\\s*switch control function (set|get) loopdetect-use-control-packet",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.8.7",
+					"match": "^\\s*switch control function (get) status-loopdetect-port",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.8.8",
+					"match": "^\\s*switch control function (get) status-loopdetect-recovery-timer",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.8.9",
+					"match": "^\\s*switch control function (exec) reset-loopdetect",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.9.1",
+					"match": "^\\s*switch control function (get|set) poe-class",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.9.2",
+					"match": "^\\s*switch control function (get) status-poe-state",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.9.3",
+					"match": "^\\s*switch control function (get) status-poe-detect-class",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.9.4",
+					"match": "^\\s*switch control function (get) status-poe-temperature",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.9.5, 48.3.9.6, 48.3.9.7",
+					"match": "^\\s*switch control function (get) status-poe-supply(-(detail|total))?",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.9.8",
+					"match": "^\\s*switch control function (exec) restart-poe-supply",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.9.9",
+					"match": "^\\s*switch control function (exec) start-poe-supply",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.3.9.10",
+					"match": "^\\s*switch control function (exec) stop-poe-supply",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "48.4.1",
+					"match": "^\\s*ap select",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.4.2",
+					"match": "^\\s*ap config directory",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.4.3",
+					"match": "^\\s*ap config filename",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.4.4",
+					"match": "^\\s*ap control config get",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.4.5",
+					"match": "^\\s*ap control config set",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.4.6",
+					"match": "^\\s*ap control config delete",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.4.7",
+					"match": "^\\s*ap control config-auto-set use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.4.8",
+					"match": "^\\s*ap control firmware update go",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.4.9",
+					"match": "^\\s*ap control http proxy use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.4.10",
+					"match": "^\\s*ap control http proxy timeout",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "48.5.1",
+					"match": "^\\s*httpd proxy-access l2ms permit",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-49-yno": {
+			"patterns": [
+				{
+					"comment": "49.1",
+					"match": "^\\s*yno use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.2",
+					"match": "^\\s*yno access code",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.3",
+					"match": "^\\s*yno log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.4",
+					"match": "^\\s*description yno",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.5",
+					"match": "^\\s*yno https-proxy",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.6",
+					"match": "^\\s*yno gui-forwarder timeout",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.7",
+					"match": "^\\s*yno zero-config id",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.8, 49.9.5",
+					"match": "^\\s*show status yno( las)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.9.1",
+					"match": "^\\s*yno las syslog queue length",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.9.2",
+					"match": "^\\s*yno las request timeout",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.9.3",
+					"match": "^\\s*yno las request retry",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.9.4",
+					"match": "^\\s*yno las connection keepalive",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.9.4",
+					"match": "^\\s*yno las connection keepalive",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "49.10",
+					"match": "^\\s*yno xmpp connection keepalive",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-50-diagnose": {
+			"patterns": [
+				{
+					"comment": "50.1",
+					"match": "^\\s*diagnose config port map",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "50.2",
+					"match": "^\\s*diagnose config port access",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "50.3",
+					"match": "^\\s*diagnosis config port max-detect",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "50.4",
+					"match": "^\\s*diagnosis config port history-num",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "50.5, 50.6",
+					"match": "^\\s*show diagnosis config port (access|map)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "50.7",
+					"match": "^\\s*clear diagnosis config port",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-51-statistics": {
+			"patterns": [
+				{
+					"comment": "51.1",
+					"match": "^\\s*statistics (cpu|memory|traffic|flow|nat|route|filter|qos|application)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				}
+			]
+		},
+		"rtx-52-dpi": {
+			"patterns": [
+				{
+					"comment": "52.1",
+					"match": "^\\s*dpi use",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.2",
+					"match": "^\\s*ip dpi filter",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.3",
+					"match": "^\\s*ipv6 dpi filter",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.4",
+					"match": "^\\s*ip(v6)? (\\S+) dpi filter",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "52.5",
+					"match": "^\\s*dpi group set",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.6",
+					"match": "^\\s*dpi signature download go",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.7",
+					"match": "^\\s*dpi signature download url",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.8",
+					"match": "^\\s*dpi log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.9",
+					"match": "^\\s*show dpi statistics",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.10",
+					"match": "^\\s*clear dpi statistics",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.11",
+					"match": "^\\s*show dpi cache",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.12",
+					"match": "^\\s*clear dpi cache",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.13",
+					"match": "^\\s*show dpi application",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.14",
+					"match": "^\\s*show dpi category",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.15",
+					"match": "^\\s*show status dpi",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "52.16",
+					"match": "^\\s*dpi signature directory",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-53-flexible-lan": {
+			"patterns": [
+				{
+					"comment": "53.1",
+					"match": "^\\s*lan flexible-port",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "53.2",
+					"match": "^\\s*show lan flexible-port",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "53.3",
+					"match": "^\\s*lan port type",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "53.4",
+					"match": "^\\s*switching-hub macaddress-aging",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "53.5",
+					"match": "^\\s*lan port shutdown",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-54-dashboard": {
+			"patterns": [
+				{
+					"comment": "54.1",
+					"match": "^\\s*dashboard accumulate",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-55-operation": {
+			"patterns": [
+				{
+					"comment": "55.1",
+					"match": "^\\s*pp select",
+					"name": "storage.type"
+				},
+				{
+					"comment": "55.2",
+					"match": "^\\s*tunnel select",
+					"name": "storage.type"
+				},
+				{
+					"comment": "55.3.1"
+				},
+				{
+					"comment": "55.3.2",
+					"match": "^\\s*(quit|exit)",
+					"name": "storage.type"
+				},
+				{
+					"comment": "55.3.3",
+					"match": "^\\s*save",
+					"name": "storage.type"
+				},
+				{
+					"comment": "55.3.4, 55.3.5",
+					"match": "^\\s*copy (config|exec)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.3.6, 55.3.7",
+					"match": "^\\s*delete (config|exec)",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.3.8",
+					"match": "^\\s*set-default-config",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.3.9",
+					"match": "^\\s*set-default-exec",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.3.10",
+					"match": "^\\s*set-serial-baudrate",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.3.11",
+					"match": "^\\s*cold start",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.3.12, 55.3.13",
+					"match": "^\\s*remote setup( accept)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.1, 55.4.2, 55.4.3, 55.4.4, 55.4.5",
+					"match": "^\\s*clear account( (pp|tunnel|mobile|ngn data))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.6",
+					"match": "^\\s*clear arp",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.7",
+					"match": "^\\s*clear ip dynamic routing",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.8",
+					"match": "^\\s*clear bridge learning",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.9",
+					"match": "^\\s*clear log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.10",
+					"match": "^\\s*clear inarp",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.11",
+					"match": "^\\s*clear dns cache",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.12",
+					"match": "^\\s*clear status( (pp|tunnel))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.13",
+					"match": "^\\s*clear pri status",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.14",
+					"match": "^\\s*clear nat descriptor dynamic",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.15",
+					"match": "^\\s*clear nat descriptor interface dynamic( (pp|tunnel))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.16",
+					"match": "^\\s*clear nat descriptor masquerade session statistics",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.17",
+					"match": "^\\s*clear pppoe pass-through learning",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.18",
+					"match": "^\\s*clear ipv6 dynamic routing",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.19",
+					"match": "^\\s*clear ipv6 neighbor cache",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.20",
+					"match": "^\\s*clear boot list",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.4.21",
+					"match": "^\\s*clear external-memory syslog",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.5.1",
+					"match": "^\\s*make directory",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.5.2",
+					"match": "^\\s*delete",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.5.3",
+					"match": "^\\s*copy",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.5.4",
+					"match": "^\\s*rename",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.1",
+					"match": "^\\s*pp enable",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.2",
+					"match": "^\\s*pp disable",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.3",
+					"match": "^\\s*restart",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.4, 55.6.5",
+					"match": "^\\s*interface reset( pp)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.6",
+					"match": "^\\s*connect( (pp|tunnel))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.7",
+					"match": "^\\s*disconnect( (pp|tunnel))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.8, 55.6.9",
+					"match": "^\\s*ping(6)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.10, 55.6.11",
+					"match": "^\\s*traceroute(6)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.12",
+					"match": "^\\s*nslookup",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.13",
+					"match": "^\\s*sip server connect",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.14",
+					"match": "^\\s*sip server disconnect",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.15",
+					"match": "^\\s*disconnect ip connection",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.16",
+					"match": "^\\s*telnet",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.17",
+					"match": "^\\s*disconnect ipv6 connection",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.18",
+					"match": "^\\s*clear switching-hub macaddress",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.19",
+					"match": "^\\s*pri loopback active",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.20",
+					"match": "^\\s*pri loopback passive",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.21",
+					"match": "^\\s*wol send",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.22",
+					"match": "^\\s*http revision-up go",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.23",
+					"match": "^\\s*clear url filter ( (pp|tunnel))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.24",
+					"match": "^\\s*clear url filter external-database( (pp|tunnel))?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.25",
+					"match": "^\\s*mail notify status exec",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.26",
+					"match": "^\\s*rotate external-memory syslog",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.27",
+					"match": "^\\s*license authentication go",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.28",
+					"match": "^\\s*license authentication retry interval",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.29",
+					"match": "^\\s*load",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.30",
+					"match": "^\\s*rollback timer",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.31",
+					"match": "^\\s*confirm",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.32",
+					"match": "^\\s*call",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "55.6.33",
+					"match": "^\\s*echo ",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-56-showconfig": {
+			"patterns": [
+				{
+					"comment": "56.1",
+					"match": "^\\s*show environment",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.3",
+					"match": "^\\s*(show|less) config ap",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.4",
+					"match": "^\\s*(show|less) config pp",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.5",
+					"match": "^\\s*(show|less) config switch",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.6",
+					"match": "^\\s*(show|less) config tunnel",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.7",
+					"match": "^\\s*show config difference",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.8",
+					"match": "^\\s*(show|less) config list",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.9",
+					"match": "^\\s*(show|less) file list",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.10",
+					"match": "^\\s*show ipv6 address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.11",
+					"match": "^\\s*show line masterclock",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.12",
+					"match": "^\\s*show sshd public key",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.13",
+					"match": "^\\s*show ip secure filter",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.14",
+					"match": "^\\s*show ip secure filter",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.15",
+					"match": "^\\s*(show|less) exec list",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.16",
+					"match": "^\\s*show set",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.17",
+					"match": "^\\s*show alias",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "56.18",
+					"match": "^\\s*show macro",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-57-showstatus": {
+			"patterns": [
+				{
+					"comment": "57.1",
+					"match": "^\\s*show arp",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.3",
+					"match": "^\\s*show status pp",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.4",
+					"match": "^\\s*show ip route",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.5",
+					"match": "^\\s*show ip rip table",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.6",
+					"match": "^\\s*show ipv6 route",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.7",
+					"match": "^\\s*show ipv6 rip table",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.8",
+					"match": "^\\s*show ipv6 neighbor cache",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.9",
+					"match": "^\\s*show bridge learning",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.10",
+					"match": "^\\s*show ipsec sa( gateway)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.11",
+					"match": "^\\s*show pki certificate summary",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.12",
+					"match": "^\\s*show pki crl",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.13",
+					"match": "^\\s*show status vrrp",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.14",
+					"match": "^\\s*show nat descriptor address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.15",
+					"match": "^\\s*show nat descriptor interface bind",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.16",
+					"match": "^\\s*show nat descriptor interface address",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.17",
+					"match": "^\\s*show nat descriptor masquerade port",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.18",
+					"match": "^\\s*show nat descriptor masquerade session",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.19",
+					"match": "^\\s*show nat descriptor masquerade session statistics",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.20",
+					"match": "^\\s*show status l2tp",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.21",
+					"match": "^\\s*show status pptp",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.22",
+					"match": "^\\s*show status ipip",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.23",
+					"match": "^\\s*show status ospf",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.24",
+					"match": "^\\s*show status bgp neighbor",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.25, 57.26",
+					"match": "^\\s*show status dhcp(c)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.27",
+					"match": "^\\s*show status ipv6 dhcp",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.28",
+					"match": "^\\s*show status backup",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.29",
+					"match": "^\\s*show ip connection",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.30",
+					"match": "^\\s*show ipv6 connection",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.31",
+					"match": "^\\s*show ip keepalive",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.32",
+					"match": "^\\s*show ip intrusion detection",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.33",
+					"match": "^\\s*show pp connect time",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.34",
+					"match": "^\\s*show pppoe pass-through learning",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.35",
+					"match": "^\\s*show status netvolante-dns",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.36",
+					"match": "^\\s*show status switching-hub macaddress",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.37",
+					"match": "^\\s*show status upnp",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.38",
+					"match": "^\\s*show status tunnel",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.39",
+					"match": "^\\s*show status vlan",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.40",
+					"match": "^\\s*show status mail service",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.41",
+					"match": "^\\s*show status ip pim sparse",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.42",
+					"match": "^\\s*show status ipv6 mld",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.43",
+					"match": "^\\s*show ipv6 mroute fib",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.44, 57.45",
+					"match": "^\\s*show status user( history)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.46",
+					"match": "^\\s*show status packet-buffer",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.47",
+					"match": "^\\s*show status qos",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.48",
+					"match": "^\\s*show status cooperation",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.49",
+					"match": "^\\s*show ipv6 ospf",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.50, 57.51, 57.52",
+					"match": "^\\s*show url filter( external-database( id)?)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.53",
+					"match": "^\\s*show status heartbeat",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.54",
+					"match": "^\\s*show status usbhost",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.55",
+					"match": "^\\s*show status remote setup",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.56",
+					"match": "^\\s*show techinfo",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.57",
+					"match": "^\\s*show status sd",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.58",
+					"match": "^\\s*show status external-memory",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.59",
+					"match": "^\\s*show status rtfs",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.60, 57.61, 57.62",
+					"match": "^\\s*show status boot",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.64",
+					"match": "^\\s*show status switch control( route backup)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.65",
+					"match": "^\\s*show dns cache",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.66, 57.67",
+					"match": "^\\s*show status license( authentication)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.68",
+					"match": "^\\s*show status packet-scheduling",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.69",
+					"match": "^\\s*show status status-led",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.70",
+					"match": "^\\s*show lan-map",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.71",
+					"match": "^\\s*show copyright",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "57.72",
+					"match": "^\\s*show sfp-module info( detail)?",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-58-logging": {
+			"patterns": [
+				{
+					"comment": "58.1",
+					"match": "^\\s*show log",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "58.2, 58.3, 58.4, 58.5, 58.6",
+					"match": "^\\s*show account (pp|tunnel|mobile|ngn data)?",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "58.7",
+					"match": "^\\s*show history",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "58.8",
+					"match": "^\\s*show command history",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtxold-7-fr": {
+			"patterns": [
+				{
+					"match": "^\\s*fr (dlci|cir|lmi|inarp|backup|compression use|confestion control)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*fr (pp dequeue type|de)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*pp encapsulation",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtxold-8-pri": {
+			"patterns": [
+				{
+					"match": "^\\s*pri leased channel",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtxold-48-mobile": {
+			"patterns": [
+				{
+					"match": "^\\s*jate number",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtxold-50-qac_tm": {
+			"patterns": [
+				{
+					"match": "^\\s*qac-tm (client (permit|port|refresh go|update)|port|redirect|server (refresh go)?|unqualified client access control|use|version margin|warning url)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtxold-59": {
+			"patterns": [
+				{
+					"match": "^\\s*pri loopback (active|passive)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"nvr-4-onu": {
+			"patterns": [
+				{
+					"match": "^\\s*onu type",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"nvr-29-analog": {
+			"patterns": [
+				{
+					"match": "^\\s*analog arrive (another-device|global|ignore-subaddress|ring-while-talking|without-subaddress) permit",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*analog arrive (incoming-signal|incoming-signal timing pb|inumber-port|number display|priority|restrict|restrict list|ringer-type list|without-calling-number)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*analog call (route-table|route)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*analog (device type|disc-signal|end-of-dialing-code)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*analog extension (address refer|agent permit|dial prefix|emergency-call-dial type|incoming ringer|log|machine-id|manager|master|mode|other-dial-tone|sip address|slave permit)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*analog (hooking (inhibit timer|timer|wait timer)|impedance|local address|local address notice)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*analog (loop-closure threshold|mp prior|off-hook call|off-hook mask|pad (receive|rtp receive|rtp send|send))",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*analog (pause timer|power|rapid call|re-ringing-timer)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*analog sip (arrive (incoming-signal|myaddress|permit|restrict|restrict list|without-calling-number)|call display name|call myname|call permit)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*analog (supplementary-service|supplementary-service call-deflection (address|reject||ringer|talkie))",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*analog use",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*analog wait dial timer",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"nvr-42-wwan": {
+			"patterns": [
+				{
+					"match": "^\\s*unlock (wwan pin-code|wwan-module firmware)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*wwan access limit (connection length|connection time|duration|length|time)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*wwan (access-point name|always-on|auth accept|auth myname|auto connect|disable)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*wwan disconnect (input time|output time|time)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*wwan (enable|pin code|radio access technology|select)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*wwan-module (radio-power|signal-strength go|signal-strength|syslog|use)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*http wwan-module-up (go|permit|timeout|url)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"nvr-50-swctl": {
+			"patterns": [
+				{
+					"match": "^\\s*ap config (directory|filename)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*ap control (config (delete|get|set)|config-auto-set use|firmware update go|http proxy (timeout|use))",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*ap select",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"keyword": {
+			"patterns": [
+				{
+					"match": "\\b(\\S+)(!=|=)((([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(/(([1-2]?[0-9])|3[0-2]))?)\\b",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "keyword.operator"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"match": "\\b(\\S+)(!=|=)(\\d+)\\b",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "keyword.operator"
+						},
+						"3": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"match": "\\b(\\S+)(!=|=)(on|off)\\b",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "keyword.operator"
+						},
+						"3": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"match": "\\b(\\S+)(!=|=)(\\S+)\\b",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "keyword.operator"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"match": "\\b(1000-fdx|(100|10)-(fdx|hdx))\\b",
+					"name": "constant.language",
+					"comment": "speed"
+				},
+				{
+					"match": "\\b(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(/(([1-2]?[0-9])|3[0-2]))?\\b",
+					"name": "string",
+					"comment": "IPv4 Address"
+				},
+				{
+					"match": "\\b([0-9a-f]{0,4}:){7}[0-9a-f]{0,4}(%\\S+|(/(12[0-8]|1([0-1]|[39]){2}|[1-9]?[0-9])))?\\b",
+					"name": "string",
+					"comment": "IPv6 Address省略なし"
+				},
+				{
+					"match": "\\b([0-9a-f]{0,4}:){3}(:|[0-9a-f]{0,4})?(:[0-9a-f]{0,4}){0,4}(%\\S+|(/(12[0-8]|1([0-1]|[39]){2}|[1-9]?[0-9])))?\\b",
+					"name": "string",
+					"comment": "IPv6 Address省略あり48bitマスク以上"
+				},
+				{
+					"match": "\\b(dhcp|ra)-prefix@lan([0-9a-f:]+)(%\\S+)?(/(12[0-8]|1([0-1]|[39]){2}|[1-9]?[0-9]))?\\b",
+					"name": "string",
+					"comment": "IPv6 プレフィックス表記"
+				},
+				{
+					"match": "\\b(([0-9a-fA-F]{2}(:|-)){5}[0-9a-fA-F]{2})\\b",
+					"name": "string",
+					"comment": "MACアドレス"
+				},
+				{
+					"match": "\\b(lan\\d+(\\.\\d+|/\\d+)?)\\b",
+					"name": "constant.language",
+					"comment": "LANインターフェース"
+				},
+				{
+					"match": "\\b(bri[1-2](\\.\\d+)?)\\b",
+					"name": "constant.language",
+					"comment": "BRIインターフェース"
+				},
+				{
+					"match": "\\b(vlan\\d+|pri1|bridge1|loopback[1-9])\\b",
+					"name": "constant.language",
+					"comment": "その他インターフェース"
+				},
+				{
+					"match": "\\b(port\\d+(\\.\\d+)?|sa\\d+|po\\d+)\\b",
+					"name": "constant.language",
+					"comment": "その他インターフェース"
+				},
+				{
+					"match": "\\b(backup|select|enable|disable)\\b",
+					"name": "constant.language",
+					"comment": "トンネル等の選択と有効無効の切り替えその他インターフェース"
+				},
+				{
+					"match": "\\b(auto|dhcp|on|off|in|out|only|none|hide|weight|static|deny|permit|call-only|arrive-only)\\b",
+					"name": "constant.language",
+					"comment": "スイッチ"
+				},
+				{
+					"match": "\\b(any|join|hybrid)\\b",
+					"name": "constant.language",
+					"comment": ""
+				},
+				{
+					"match": "\\b(pap|chap|mschap(-v2)?)\\b",
+					"name": "constant.language",
+					"comment": "認証方式"
+				},
+				{
+					"match": "\\b((md5|sha)-hmac|sha(256|384|512)-hmac|(aes(256)?|(3)?des)-cbc)\\b",
+					"name": "constant.language",
+					"comment": "認証・暗号アルゴリズム"
+				},
+				{
+					"match": "\\b(myname|clid|mscbcp)\\b",
+					"name": "constant.language",
+					"comment": "pp auth キーワード"
+				},
+				{
+					"match": "\\b(pass|reject|restrict)(-log|-nolog)?\\b",
+					"name": "constant.language",
+					"comment": "pass_reject"
+				},
+				{
+					"match": "\\b(([0-1][0-9]|2[0-3]):[0-5][0-9])\\b",
+					"name": "constant.numeric",
+					"comment": "時間"
+				},
+				{
+					"match": "\\b(\\d+)\\b",
+					"name": "constant.numeric",
+					"comment": "数字"
+				}
+			]
+		},
+		"mnemonic": {
+			"comment": "http://www.rtpro.yamaha.co.jp/RT/docs/misc/mnemonic.html",
+			"patterns": [
+				{
+					"match": "\\b(ah|at_(3|5|7|8|echo|nbp|rtmp|zis)|auditd|bgp|biff|chargen|daytime|dhcp(c|s|v6c|v6s)|discard|dns|domain|doom)\\b",
+					"name": "constant.language",
+					"comment": "ニーモニック"
+				},
+				{
+					"match": "\\b(echo|esp|established|exec|finger|ftp(data)?|gopher|gre|http(s)?|icmp(6|-error|-info)?|ident|ike|imap(2|3)?|ipmpv6|ipsec-nat-t|ipv6|irc)\\b",
+					"name": "constant.language",
+					"comment": "ニーモニック"
+				},
+				{
+					"match": "\\b(kerberos|l2tp|ldap|login|mobileip_agent|mobilip_mn|msblast|ms-(ds|rpc|sql)|nameserver|netbios_(dgm|ns|ssn)|netmeeting|netware_ip|nfs|nntp|ntp)\\b",
+					"name": "constant.language",
+					"comment": "ニーモニック"
+				},
+				{
+					"match": "\\b(ospf|pim|ping(6)?|pop(2|3)|pptp|printer|radius|rip(ng)?|rje|rlogin|route|rsh|rsvp|rwho)\\b",
+					"name": "constant.language",
+					"comment": "ニーモニック"
+				},
+				{
+					"match": "\\b(sip|smtp|snmp(trap)?|ssh|submission|sunrpc|syslog|systat|tacacs_ds|talk|tcp(fin|mux|rst|syn)?|telnet|tftp|timbuktu|time|udp|uucp|who(is)?|www)\\b",
+					"name": "constant.language",
+					"comment": "ニーモニック"
+				}
+			]
+		},
+		"common": {
+			"patterns": [
+				{
+					"match": "^.* syslog (on|off)",
+					"name": "entity.name.function",
+					"comment": "各種SYSLOG表示",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				}
+			]
+		},
+		"wlx-a": {
+			"patterns": [
+				{
+					"match": "^\\s*airlink configure refresh",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*airlink (enable|select|disable) (all|module\\S|\\S+|none)",
+					"name": "storage.type",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "^\\s*airlink emergency-mode",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*airlink channel (range)?",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*airlink (mode|beacon dtim-period|mac client|stealth|cce use)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*airlink optimization use",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*airlink macaddress filter list",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*airlink macaddress filter use",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*airlink (ssid|vlan-id|bind|auth|radius (auth|server|secret)|psk-key|privacy)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"wlx-c": {
+			"patterns": [
+				{
+					"match": "^\\s*cluster config-id",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*cluster cluster-mode (auto-cluster|standalone)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"match": "^\\s*cluster virtual-ip address",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"wlx-i": {
+			"patterns": [
+				{
+					"match": "^\\s*ip http-client proxy",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*ip vlan-id (\\d+) address",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.numeric"
+						}
+					}
+				}
+			]
+		},
+		"wlx-l": {
+			"patterns": [
+				{
+					"match": "^\\s*led blink",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"wlx-r": {
+			"patterns": [
+				{
+					"match": "^\\s*radiusd (use|reauth|client|user)",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"wlx-v": {
+			"patterns": [
+				{
+					"match": "^\\s*vlan-access (\\S+) (\\d+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"match": "^\\s*vlan-id (\\d+) (\\d+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.numeric"
+						},
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"match": "^\\s*vlan-port-mode",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*vlan-trunk (\\S+) (\\d+) (join|leave)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "variable.language"
+						},
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "constant.language"
+						}
+					}
+				}
+			]
+		},
+		"wlx-w": {
+			"patterns": [
+				{
+					"match": "^\\s*wlan-controller config set",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*wlan-controller select",
+					"name": "storage.type"
+				},
+				{
+					"match": "^\\s*wlan-controller (member-ap|serial|system name|ip address)",
+					"name": "entity.name.function"
+				}
+			]
+		}
+	},
+	"scopeName": "text.yamahart"
+}

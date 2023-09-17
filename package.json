@@ -1,8 +1,8 @@
 {
   "name": "yamaha-rt",
-  "displayName": "YAMAHA Router",
+  "displayName": "YAMAHA Router series",
   "description": "Highlight the configuration file of YAMAHA router product.",
-  "version": "1.4.3",
+  "version": "2.0.0",
   "publisher": "hrst",
   "icon": "images/rtx1210_icon.png",
   "engines": {
@@ -17,11 +17,11 @@
       {
         "id": "yamahart",
         "aliases": [
-          "YAMAHA Router"
+          "YAMAHA RTX",
+          "YAMAHA NVR"
         ],
         "firstLine": "^# (# )?(RT|NVR|WLX)\\S+ Rev\\.",
         "extensions": [
-          ".conf",
           ".rtx",
           ".nvr",
           ".wlx"
@@ -33,7 +33,7 @@
       {
         "language": "yamahart",
         "scopeName": "text.yamahart",
-        "path": "./syntaxes/yamahart.tmLanguage.json"
+        "path": "./syntaxes/yamahart.tmLanguage_v2.json"
       }
     ],
     "snippets": [
