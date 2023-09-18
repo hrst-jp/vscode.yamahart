@@ -20,11 +20,10 @@
           "YAMAHA RTX",
           "YAMAHA NVR"
         ],
-        "firstLine": "^# (# )?(RT|NVR|WLX)\\S+ Rev\\.",
+        "firstLine": "^# (# )?(RT|NVR)\\S+ Rev\\.",
         "extensions": [
           ".rtx",
-          ".nvr",
-          ".wlx"
+          ".nvr"
         ],
         "configuration": "./language-configuration.json"
       }

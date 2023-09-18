@@ -9,7 +9,7 @@ YAMAHA ルーターの設定ファイルをハイライト表示します。
 
 # 使用方法
 Show Configで表示された結果をコメントを含め保存して下さい。  
-拡張子は ".rtx",　".nvr", ".wlx"を指定しています。
+拡張子は ".rtx",　".nvr"を指定しています。
 
 # 現在の対応製品
 RTX5000/RTX3510/RTX3500  
@@ -23,12 +23,12 @@ RT250i/RT107e
 SRT100  
 # 一部対応製品
 NVR700W/NVR510  
-WLX  
+
 
 #その他
 * [YAMAHA Router series](https://marketplace.visualstudio.com/items?itemName=hrst.yamaha-rt)
 * [YAMAHA SWX series](https://marketplace.visualstudio.com/items?itemName=hrst.yamaha-swx)
-
+* [YAMAHA WLX series](https://marketplace.visualstudio.com/items?itemName=hrst.yamaha-wlx)
 
 # 参考資料
 * [ヤマハネットワーク製品](https://network.yamaha.com/)
