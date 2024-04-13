@@ -474,3 +474,18 @@ pp enable 1
  ipv6 filter dynamic 200084 * * pop3
  ipv6 filter dynamic 200098 * * tcp
  ipv6 filter dynamic 200099 * * udp
+
+
+ 
+【 国内標準プロビジョニング方式の設定 】
+ tunnel select 1
+  tunnel encapsulation hb46pp
+  tunnel hb46pp auth myname ( ユーザー ) ( パスワード )
+  ip tunnel mtu 1460
+  ip tunnel nat descriptor 1
+  tunnel enable 1
+ nat descriptor type 1 masquerade
+ nat descriptor address outer 1 hb46pp
+
+
+ 

@@ -215,6 +215,10 @@
 				{
 					"match": "^#.*",
 					"name": "comment.line"
+				},
+				{
+					"match": "^\\s*no .*",
+					"name": "comment.line"
 				}
 			]
 		},
@@ -1790,7 +1794,7 @@
 				},
 				{
 					"comment": "14.4",
-					"match": "^\\s*tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp|map-e)",
+					"match": "^\\s*tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp|map-e|hb46pp)",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -1851,6 +1855,16 @@
 				{
 					"comment": "14.15",
 					"match": "^\\s*tunnel translation",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.16",
+					"match": "^\\s*tunnel hb46pp auth myname",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "14.17",
+					"match": "^\\s*tunnel hb46pp server",
 					"name": "entity.name.function"
 				}
 			]
@@ -3308,6 +3322,11 @@
 					"name": "entity.name.function"
 				},
 				{
+					"comment": "30.3.6",
+					"match": "^\\s*ipv6 nd ra-route-info",
+					"name": "entity.name.function"
+				},
+				{
 					"comment": "30.4.1",
 					"begin": "^\\s*ipv6 route",
 					"end": "\\n",
@@ -3745,6 +3764,16 @@
 				{
 					"comment": "38.2",
 					"match": "^\\s*vlan port mapping",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "38.3",
+					"match": "^\\s*vlan interconnect group",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "38.4",
+					"match": "^\\s*vlan interconnect log",
 					"name": "entity.name.function"
 				}
 			]
@@ -6344,12 +6373,22 @@
 					"comment": "その他インターフェース"
 				},
 				{
+					"comment": "8.2.4",
+					"match": "\\b(lcp-echo|icmp-echo)\\b",
+					"name": "constant.language"
+				},
+				{
 					"match": "\\b(backup|select|enable|disable)\\b",
 					"name": "constant.language",
 					"comment": "トンネル等の選択と有効無効の切り替えその他インターフェース"
 				},
 				{
-					"match": "\\b(auto|dhcp|on|off|in|out|only|none|hide|weight|static|deny|permit|call-only|arrive-only)\\b",
+					"match": "\\b(on|off)\\b",
+					"name": "keyword.control",
+					"comment": "スイッチ"
+				},
+				{
+					"match": "\\b(auto|dhcp|in|out|only|none|hide|weight|static|deny|permit|call-only|arrive-only)\\b",
 					"name": "constant.language",
 					"comment": "スイッチ"
 				},
