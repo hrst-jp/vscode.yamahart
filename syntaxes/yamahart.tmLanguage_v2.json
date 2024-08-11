@@ -6,199 +6,199 @@
 			"include": "#comment"
 		},
 		{
-			"include": "#rtx-4-setup"
+			"include": "#rtx-setup"
 		},
 		{
-			"include": "#rtx-5-rtfs"
+			"include": "#rtx-rtfs"
 		},
 		{
-			"include": "#rtx-6-isdn"
+			"include": "#rtx-isdn"
 		},
 		{
-			"include": "#rtx-7-pri"
+			"include": "#rtx-pri"
 		},
 		{
-			"include": "#rtx-8-ip"
+			"include": "#rtx-ip"
 		},
 		{
-			"include": "#rtx-9-ethernet_filter"
+			"include": "#rtx-ethernet_filter"
 		},
 		{
-			"include": "#rtx-10-url_filter"
+			"include": "#rtx-url_filter"
 		},
 		{
-			"include": "#rtx-11-ppp"
+			"include": "#rtx-ppp"
 		},
 		{
-			"include": "#rtx-12.1-dhcp_server"
+			"include": "#rtx-dhcp_server"
 		},
 		{
-			"include": "#rtx-12.1-dhcp_client"
+			"include": "#rtx-dhcp_client"
 		},
 		{
-			"include": "#rtx-13-icmp"
+			"include": "#rtx-icmp"
 		},
 		{
-			"include": "#rtx-14-tunneling"
+			"include": "#rtx-tunneling"
 		},
 		{
-			"include": "#rtx-15-ipsesc"
+			"include": "#rtx-ipsesc"
 		},
 		{
-			"include": "#rtx-16-l2tp"
+			"include": "#rtx-l2tp"
 		},
 		{
-			"include": "#rtx-17-pptp"
+			"include": "#rtx-pptp"
 		},
 		{
-			"include": "#rtx-18-ipip"
+			"include": "#rtx-ipip"
 		},
 		{
-			"include": "#rtx-19-cloud_vpn"
+			"include": "#rtx-cloud_vpn"
 		},
 		{
-			"include": "#rtx-20-sip"
+			"include": "#rtx-sip"
 		},
 		{
-			"include": "#rtx-21-snmp"
+			"include": "#rtx-snmp"
 		},
 		{
-			"include": "#rtx-22-radius"
+			"include": "#rtx-radius"
 		},
 		{
-			"include": "#rtx-23-nat"
+			"include": "#rtx-nat"
 		},
 		{
-			"include": "#rtx-24-dns"
+			"include": "#rtx-dns"
 		},
 		{
-			"include": "#rtx-25-nat45anddns46"
+			"include": "#rtx-nat45anddns46"
 		},
 		{
-			"include": "#rtx-26-queue"
+			"include": "#rtx-queue"
 		},
 		{
-			"include": "#rtx-27-cooperation"
+			"include": "#rtx-cooperation"
 		},
 		{
-			"include": "#rtx-28-ospf"
+			"include": "#rtx-ospf"
 		},
 		{
-			"include": "#rtx-29-bgp"
+			"include": "#rtx-bgp"
 		},
 		{
-			"include": "#rtx-30-ipv6"
+			"include": "#rtx-ipv6"
 		},
 		{
-			"include": "#rtx-31-ospfv3"
+			"include": "#rtx-ospfv3"
 		},
 		{
-			"include": "#rtx-32-mail_notify_trigger"
+			"include": "#rtx-mail_notify_trigger"
 		},
 		{
-			"include": "#rtx-33-http_server"
+			"include": "#rtx-http_server"
 		},
 		{
-			"include": "#rtx-34-netvolante-dns"
+			"include": "#rtx-netvolante-dns"
 		},
 		{
-			"include": "#rtx-35-upnp"
+			"include": "#rtx-upnp"
 		},
 		{
-			"include": "#rtx-36-usb"
+			"include": "#rtx-usb"
 		},
 		{
-			"include": "#rtx-37-schedule"
+			"include": "#rtx-schedule"
 		},
 		{
-			"include": "#rtx-38-vlan"
+			"include": "#rtx-vlan"
 		},
 		{
-			"include": "#rtx-39-heartbeat"
+			"include": "#rtx-heartbeat"
 		},
 		{
-			"include": "#rtx-40-heartbeat2"
+			"include": "#rtx-heartbeat2"
 		},
 		{
-			"include": "#rtx-41-sntp"
+			"include": "#rtx-sntp"
 		},
 		{
-			"include": "#rtx-42-external-memory"
+			"include": "#rtx-external-memory"
 		},
 		{
-			"include": "#rtx-43-http_upload"
+			"include": "#rtx-http_upload"
 		},
 		{
-			"include": "#rtx-44-mobile_internet"
+			"include": "#rtx-mobile_internet"
 		},
 		{
-			"include": "#rtx-45-bridge_interface"
+			"include": "#rtx-bridge_interface"
 		},
 		{
-			"include": "#rtx-46-lua"
+			"include": "#rtx-lua"
 		},
 		{
-			"include": "#rtx-47-custom_gui"
+			"include": "#rtx-custom_gui"
 		},
 		{
-			"include": "#rtx-48-l2ms"
+			"include": "#rtx-l2ms"
 		},
 		{
-			"include": "#rtx-49-yno"
+			"include": "#rtx-yno"
 		},
 		{
-			"include": "#rtx-50-diagnose"
+			"include": "#rtx-diagnose"
 		},
 		{
-			"include": "#rtx-51-statistics"
+			"include": "#rtx-statistics"
 		},
 		{
-			"include": "#rtx-52-dpi"
+			"include": "#rtx-dpi"
 		},
 		{
-			"include": "#rtx-53-flexible-lan"
+			"include": "#rtx-flexible-lan"
 		},
 		{
-			"include": "#rtx-54-dashboard"
+			"include": "#rtx-dashboard"
 		},
 		{
-			"include": "#rtx-55-operation"
+			"include": "#rtx-operation"
 		},
 		{
-			"include": "#rtx-56-showconfig"
+			"include": "#rtx-showconfig"
 		},
 		{
-			"include": "#rtx-57-showstatus"
+			"include": "#rtx-showstatus"
 		},
 		{
-			"include": "#rtx-58-logging"
+			"include": "#rtx-logging"
 		},
 		{
-			"include": "#rtxold-7-fr"
+			"include": "#rtxold-fr"
 		},
 		{
-			"include": "#rtxold-8-pri"
+			"include": "#rtxold-pri"
 		},
 		{
-			"include": "#rtxold-48-mobile"
+			"include": "#rtxold-mobile"
 		},
 		{
-			"include": "#rtxold-50-qac_tm"
+			"include": "#rtxold-qac_tm"
 		},
 		{
-			"include": "#rtxold-59"
+			"include": "#rtxold"
 		},
 		{
-			"include": "#nvr-4-onu"
+			"include": "#nvr-onu"
 		},
 		{
-			"include": "#nvr-29-analog"
+			"include": "#nvr-analog"
 		},
 		{
-			"include": "#nvr-42-wwan"
+			"include": "#nvr-wwan"
 		},
 		{
-			"include": "#nvr-50-swctl"
+			"include": "#nvr-swctl"
 		},
 		{
 			"include": "#keyword",
@@ -222,7 +222,7 @@
 				}
 			]
 		},
-		"rtx-4-setup": {
+		"rtx-setup": {
 			"patterns": [
 				{
 					"comment": "4.1, 4.2",
@@ -272,6 +272,38 @@
 				{
 					"comment": "4.8.5",
 					"match": "^\\s*clear ex-license",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*vrx user (\\S+) (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "string"
+						},
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"match": "^\\s*vrx license file directory",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*vrx license update schedule",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*import vrx license (file|key)",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*export vrx license file",
+					"name": "entity.name.function"
+				},
+				{
+					"match": "^\\s*clear vrx license",
 					"name": "entity.name.function"
 				},
 				{
@@ -353,9 +385,29 @@
 					"name": "entity.name.function"
 				},
 				{
+					"comment": "SYSLOG パケットの形式の設定",
+					"match": "^\\s*syslog format type (rfc3164|rfc5424|yamaha)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "string"
+						}
+					}
+				},
+				{
 					"comment": "4.25",
 					"match": "^\\s*syslog facility",
 					"name": "entity.name.function"
+				},
+				{
+					"comment": "",
+					"match": "^\\s*syslog format hostname text (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "4.26",
@@ -643,7 +695,7 @@
 				}
 			]
 		},
-		"rtx-5-rtfs": {
+		"rtx-rtfs": {
 			"patterns": [
 				{
 					"comment": "5.1",
@@ -657,7 +709,7 @@
 				}
 			]
 		},
-		"rtx-6-isdn": {
+		"rtx-isdn": {
 			"patterns": [
 				{
 					"comment": "6.1.1",
@@ -781,7 +833,7 @@
 				}
 			]
 		},
-		"rtx-7-pri": {
+		"rtx-pri": {
 			"patterns": [
 				{
 					"comment": "7.2",
@@ -790,7 +842,7 @@
 				}
 			]
 		},
-		"rtx-8-ip": {
+		"rtx-ip": {
 			"patterns": [
 				{
 					"comment": "8.1.1",
@@ -921,12 +973,54 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.17, 8.1.18, 8.1.19, 8.1.20",
-					"match": "^\\s*ip (\\S+) intrusion detection( (notice-interval|repeat-control|report))?",
+					"comment": "侵入検知機能の動作の設定",
+					"match": "^\\s*ip (\\S+) intrusion detection (in|out)?",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
 							"name": "constant.language"
+						},
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "1 秒間に侵入検知情報を通知する頻度の設定",
+					"match": "^\\s*ip (\\S+) intrusion detection notice-interval (\\d+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						},
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "重複する侵入検知情報の通知抑制の設定",
+					"match": "^\\s*ip (\\S+) intrusion detection repeat-control (\\d+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						},
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "侵入検知情報の最大表示件数の設定",
+					"match": "^\\s*ip (\\S+) intrusion detection report (\\d+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						},
+						"2": {
+							"name": "constant.numeric"
 						}
 					}
 				},
@@ -1302,7 +1396,7 @@
 				}
 			]
 		},
-		"rtx-9-ethernet_filter": {
+		"rtx-ethernet_filter": {
 			"patterns": [
 				{
 					"comment": "9.1",
@@ -1326,7 +1420,7 @@
 				}
 			]
 		},
-		"rtx-10-url_filter": {
+		"rtx-url_filter": {
 			"patterns": [
 				{
 					"comment": "10.1",
@@ -1385,7 +1479,7 @@
 				}
 			]
 		},
-		"rtx-11-ppp": {
+		"rtx-ppp": {
 			"patterns": [
 				{
 					"comment": "11.1, 11.2, 11.3, 11.4, 11.5",
@@ -1529,7 +1623,7 @@
 				}
 			]
 		},
-		"rtx-12.1-dhcp_server": {
+		"rtx-dhcp_server": {
 			"patterns": [
 				{
 					"comment": "12.1.1",
@@ -1608,7 +1702,7 @@
 				}
 			]
 		},
-		"rtx-12.1-dhcp_client": {
+		"rtx-dhcp_client": {
 			"patterns": [
 				{
 					"comment": "12.2.1",
@@ -1652,7 +1746,7 @@
 				}
 			]
 		},
-		"rtx-13-icmp": {
+		"rtx-icmp": {
 			"patterns": [
 				{
 					"comment": "13.1.1, 13.1.2",
@@ -1781,7 +1875,7 @@
 				}
 			]
 		},
-		"rtx-14-tunneling": {
+		"rtx-tunneling": {
 			"patterns": [
 				{
 					"comment": "14.1, 14.2",
@@ -1869,7 +1963,7 @@
 				}
 			]
 		},
-		"rtx-15-ipsesc": {
+		"rtx-ipsesc": {
 			"patterns": [
 				{
 					"comment": "15.1",
@@ -1893,8 +1987,19 @@
 				},
 				{
 					"comment": "15.5",
-					"match": "^\\s*ipsec ike pre-shared-key",
-					"name": "entity.name.function"
+					"match": "^\\s*ipsec ike pre-shared-key (\\d+)( text) (\\S+)",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.numeric"
+						},
+						"2": {
+							"name": "keyword.control"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "15.6",
@@ -2163,7 +2268,7 @@
 				}
 			]
 		},
-		"rtx-16-l2tp": {
+		"rtx-l2tp": {
 			"patterns": [
 				{
 					"comment": "16.1",
@@ -2222,7 +2327,7 @@
 				}
 			]
 		},
-		"rtx-17-pptp": {
+		"rtx-pptp": {
 			"patterns": [
 				{
 					"comment": "17.1.1, 17.1.3",
@@ -2286,7 +2391,7 @@
 				}
 			]
 		},
-		"rtx-18-ipip": {
+		"rtx-ipip": {
 			"patterns": [
 				{
 					"comment": "18.1",
@@ -2300,7 +2405,7 @@
 				}
 			]
 		},
-		"rtx-19-cloud_vpn": {
+		"rtx-cloud_vpn": {
 			"patterns": [
 				{
 					"comment": "19.1",
@@ -2344,7 +2449,7 @@
 				}
 			]
 		},
-		"rtx-20-sip": {
+		"rtx-sip": {
 			"patterns": [
 				{
 					"comment": "20.1.1",
@@ -2493,7 +2598,7 @@
 				}
 			]
 		},
-		"rtx-21-snmp": {
+		"rtx-snmp": {
 			"patterns": [
 				{
 					"comment": "21.1",
@@ -2664,7 +2769,7 @@
 				}
 			]
 		},
-		"rtx-22-radius": {
+		"rtx-radius": {
 			"patterns": [
 				{
 					"comment": "22.1, 22.4, 22.6",
@@ -2693,7 +2798,7 @@
 				}
 			]
 		},
-		"rtx-23-nat": {
+		"rtx-nat": {
 			"patterns": [
 				{
 					"comment": "23.1",
@@ -2795,7 +2900,7 @@
 				}
 			]
 		},
-		"rtx-24-dns": {
+		"rtx-dns": {
 			"patterns": [
 				{
 					"comment": "24.1",
@@ -2869,7 +2974,7 @@
 				}
 			]
 		},
-		"rtx-25-nat45anddns46": {
+		"rtx-nat45anddns46": {
 			"patterns": [
 				{
 					"comment": "25.1",
@@ -2893,7 +2998,7 @@
 				}
 			]
 		},
-		"rtx-26-queue": {
+		"rtx-queue": {
 			"patterns": [
 				{
 					"comment": "26.1",
@@ -2977,7 +3082,7 @@
 				}
 			]
 		},
-		"rtx-27-cooperation": {
+		"rtx-cooperation": {
 			"patterns": [
 				{
 					"comment": "27.1",
@@ -3016,7 +3121,7 @@
 				}
 			]
 		},
-		"rtx-28-ospf": {
+		"rtx-ospf": {
 			"patterns": [
 				{
 					"comment": "28.1",
@@ -3095,7 +3200,7 @@
 				}
 			]
 		},
-		"rtx-29-bgp": {
+		"rtx-bgp": {
 			"patterns": [
 				{
 					"comment": "29.1",
@@ -3164,7 +3269,7 @@
 				}
 			]
 		},
-		"rtx-30-ipv6": {
+		"rtx-ipv6": {
 			"patterns": [
 				{
 					"comment": "30.1.1, 30.1.6",
@@ -3451,7 +3556,7 @@
 				}
 			]
 		},
-		"rtx-31-ospfv3": {
+		"rtx-ospfv3": {
 			"patterns": [
 				{
 					"comment": "31.1",
@@ -3510,7 +3615,7 @@
 				}
 			]
 		},
-		"rtx-32-mail_notify_trigger": {
+		"rtx-mail_notify_trigger": {
 			"patterns": [
 				{
 					"comment": "32.1, 32.2, 32.3, 32.4",
@@ -3529,7 +3634,7 @@
 				}
 			]
 		},
-		"rtx-33-http_server": {
+		"rtx-http_server": {
 			"patterns": [
 				{
 					"comment": "33.1.1",
@@ -3633,7 +3738,7 @@
 				}
 			]
 		},
-		"rtx-34-netvolante-dns": {
+		"rtx-netvolante-dns": {
 			"patterns": [
 				{
 					"comment": "34.1",
@@ -3702,7 +3807,7 @@
 				}
 			]
 		},
-		"rtx-35-upnp": {
+		"rtx-upnp": {
 			"patterns": [
 				{
 					"comment": "35.1",
@@ -3726,7 +3831,7 @@
 				}
 			]
 		},
-		"rtx-36-usb": {
+		"rtx-usb": {
 			"patterns": [
 				{
 					"comment": "36.1",
@@ -3740,7 +3845,7 @@
 				}
 			]
 		},
-		"rtx-37-schedule": {
+		"rtx-schedule": {
 			"patterns": [
 				{
 					"comment": "37.1",
@@ -3749,7 +3854,7 @@
 				}
 			]
 		},
-		"rtx-38-vlan": {
+		"rtx-vlan": {
 			"patterns": [
 				{
 					"comment": "38.1",
@@ -3778,7 +3883,7 @@
 				}
 			]
 		},
-		"rtx-39-heartbeat": {
+		"rtx-heartbeat": {
 			"patterns": [
 				{
 					"comment": "39.1",
@@ -3797,7 +3902,7 @@
 				}
 			]
 		},
-		"rtx-40-heartbeat2": {
+		"rtx-heartbeat2": {
 			"patterns": [
 				{
 					"comment": "40.1",
@@ -3826,7 +3931,7 @@
 				}
 			]
 		},
-		"rtx-41-sntp": {
+		"rtx-sntp": {
 			"patterns": [
 				{
 					"comment": "41.1",
@@ -3840,7 +3945,7 @@
 				}
 			]
 		},
-		"rtx-42-external-memory": {
+		"rtx-external-memory": {
 			"patterns": [
 				{
 					"comment": "42.1",
@@ -3919,7 +4024,7 @@
 				}
 			]
 		},
-		"rtx-43-http_upload": {
+		"rtx-http_upload": {
 			"patterns": [
 				{
 					"comment": "43.1, 43.2, 43.3, 43.4, 43.5, 43.6, 43.7",
@@ -3933,7 +4038,7 @@
 				}
 			]
 		},
-		"rtx-44-mobile_internet": {
+		"rtx-mobile_internet": {
 			"patterns": [
 				{
 					"comment": "44.1",
@@ -4215,7 +4320,7 @@
 				}
 			]
 		},
-		"rtx-45-bridge_interface": {
+		"rtx-bridge_interface": {
 			"patterns": [
 				{
 					"comment": "45.1",
@@ -4229,7 +4334,7 @@
 				}
 			]
 		},
-		"rtx-46-lua": {
+		"rtx-lua": {
 			"patterns": [
 				{
 					"comment": "46.1, 46.2",
@@ -4258,7 +4363,7 @@
 				}
 			]
 		},
-		"rtx-47-custom_gui": {
+		"rtx-custom_gui": {
 			"patterns": [
 				{
 					"comment": "47.1, 47.2",
@@ -4277,7 +4382,7 @@
 				}
 			]
 		},
-		"rtx-48-l2ms": {
+		"rtx-l2ms": {
 			"patterns": [
 				{
 					"comment": "48.1.1",
@@ -5110,7 +5215,7 @@
 				}
 			]
 		},
-		"rtx-49-yno": {
+		"rtx-yno": {
 			"patterns": [
 				{
 					"comment": "49.1",
@@ -5184,7 +5289,7 @@
 				}
 			]
 		},
-		"rtx-50-diagnose": {
+		"rtx-diagnose": {
 			"patterns": [
 				{
 					"comment": "50.1",
@@ -5218,7 +5323,7 @@
 				}
 			]
 		},
-		"rtx-51-statistics": {
+		"rtx-statistics": {
 			"patterns": [
 				{
 					"comment": "51.1",
@@ -5232,7 +5337,7 @@
 				}
 			]
 		},
-		"rtx-52-dpi": {
+		"rtx-dpi": {
 			"patterns": [
 				{
 					"comment": "52.1",
@@ -5321,7 +5426,7 @@
 				}
 			]
 		},
-		"rtx-53-flexible-lan": {
+		"rtx-flexible-lan": {
 			"patterns": [
 				{
 					"comment": "53.1",
@@ -5350,7 +5455,7 @@
 				}
 			]
 		},
-		"rtx-54-dashboard": {
+		"rtx-dashboard": {
 			"patterns": [
 				{
 					"comment": "54.1",
@@ -5359,7 +5464,7 @@
 				}
 			]
 		},
-		"rtx-55-operation": {
+		"rtx-operation": {
 			"patterns": [
 				{
 					"comment": "55.1",
@@ -5676,7 +5781,7 @@
 				}
 			]
 		},
-		"rtx-56-showconfig": {
+		"rtx-showconfig": {
 			"patterns": [
 				{
 					"comment": "56.1",
@@ -5765,7 +5870,7 @@
 				}
 			]
 		},
-		"rtx-57-showstatus": {
+		"rtx-showstatus": {
 			"patterns": [
 				{
 					"comment": "57.1",
@@ -6084,7 +6189,7 @@
 				}
 			]
 		},
-		"rtx-58-logging": {
+		"rtx-logging": {
 			"patterns": [
 				{
 					"comment": "58.1",
@@ -6108,7 +6213,7 @@
 				}
 			]
 		},
-		"rtxold-7-fr": {
+		"rtxold-fr": {
 			"patterns": [
 				{
 					"match": "^\\s*fr (dlci|cir|lmi|inarp|backup|compression use|confestion control)",
@@ -6124,7 +6229,7 @@
 				}
 			]
 		},
-		"rtxold-8-pri": {
+		"rtxold-pri": {
 			"patterns": [
 				{
 					"match": "^\\s*pri leased channel",
@@ -6132,7 +6237,7 @@
 				}
 			]
 		},
-		"rtxold-48-mobile": {
+		"rtxold-mobile": {
 			"patterns": [
 				{
 					"match": "^\\s*jate number",
@@ -6140,7 +6245,7 @@
 				}
 			]
 		},
-		"rtxold-50-qac_tm": {
+		"rtxold-qac_tm": {
 			"patterns": [
 				{
 					"match": "^\\s*qac-tm (client (permit|port|refresh go|update)|port|redirect|server (refresh go)?|unqualified client access control|use|version margin|warning url)",
@@ -6148,7 +6253,7 @@
 				}
 			]
 		},
-		"rtxold-59": {
+		"rtxold": {
 			"patterns": [
 				{
 					"match": "^\\s*pri loopback (active|passive)",
@@ -6156,7 +6261,7 @@
 				}
 			]
 		},
-		"nvr-4-onu": {
+		"nvr-onu": {
 			"patterns": [
 				{
 					"match": "^\\s*onu type",
@@ -6164,7 +6269,7 @@
 				}
 			]
 		},
-		"nvr-29-analog": {
+		"nvr-analog": {
 			"patterns": [
 				{
 					"match": "^\\s*analog arrive (another-device|global|ignore-subaddress|ring-while-talking|without-subaddress) permit",
@@ -6216,7 +6321,7 @@
 				}
 			]
 		},
-		"nvr-42-wwan": {
+		"nvr-wwan": {
 			"patterns": [
 				{
 					"match": "^\\s*unlock (wwan pin-code|wwan-module firmware)",
@@ -6248,7 +6353,7 @@
 				}
 			]
 		},
-		"nvr-50-swctl": {
+		"nvr-swctl": {
 			"patterns": [
 				{
 					"match": "^\\s*ap config (directory|filename)",
