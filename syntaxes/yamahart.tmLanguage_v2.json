@@ -217,8 +217,8 @@
 					"name": "comment.line"
 				},
 				{
-					"match": "^\\s*no .*",
-					"name": "comment.line"
+					"match": "^\\s*no\\s",
+					"name": "invalid"
 				}
 			]
 		},
