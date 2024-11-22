@@ -460,9 +460,14 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "4.41",
-					"match": "^\\s*ip routing process",
-					"name": "entity.name.function"
+					"comment": "ファストパス機能の設定",
+					"match": "\\b(ip routing process (fast|normal))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
 					"comment": "4.42",
@@ -689,8 +694,31 @@
 					}
 				},
 				{
-					"comment": "4.91, 4.92, 4.93",
-					"match": "^\\s*system packet-scheduling( filter( list)?)?",
+					"comment": "CPUスケジューリング方式の設定",
+					"match": "\\b(system packet-scheduling (hash|load-balance|lan-based|fixed))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "CPUスケジューリングフィルターの設定",
+					"match": "\\b(system packet-scheduling filter (\\d+) (\\d+) (ipv6|ip))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "CPUスケジューリングフィルターの適用",
+					"match": "\\b(system packet-scheduling filter list)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -698,14 +726,24 @@
 		"rtx-rtfs": {
 			"patterns": [
 				{
-					"comment": "5.1",
-					"match": "^\\s*rtfs garbage-collect",
-					"name": "entity.name.function"
+					"comment": "RTFS のフォーマット",
+					"match": "\\b(rtfs (format))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
-					"comment": "5.2",
-					"match": "^\\s*rtfs garbage-collect",
-					"name": "entity.name.function"
+					"comment": "RTFS のガベージコレクト",
+					"match": "\\b(rtfs (garbage-collect))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				}
 			]
 		},
@@ -845,61 +883,71 @@
 		"rtx-ip": {
 			"patterns": [
 				{
-					"comment": "8.1.1",
-					"match": "^\\s*ip routing",
+					"comment": "IP パケットを扱うか否かの設定",
+					"match": "\\b(ip routing (on|off))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "IP アドレスの設定",
+					"match": "\\b(ip (\\S+) address)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "セカンダリ IP アドレスの設定",
+					"match": "\\b(ip (\\S+) secondary address)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "インタフェースの MTU の設定",
+					"match": "\\s*ip (\\S+) mtu",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "同一インタフェースに折り返すパケットを送信するか否かの設定",
+					"match": "\\b(ip (\\S+) rebound)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"1": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "echo,discard,time サービスを動作させるか否かの設定",
+					"match": "\\b(ip simple-service)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.2",
-					"match": "^\\s*ip (\\S+) address",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "constant.language"
-						}
-					}
-				},
-				{
-					"comment": "8.1.3",
-					"match": "^\\s*ip (\\S+) secondary address",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "constant.language"
-						}
-					}
-				},
-				{
-					"comment": "8.1.4",
-					"match": "^\\s*ip (\\S+) mtu",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "constant.language"
-						}
-					}
-				},
-				{
-					"comment": "8.1.5",
-					"match": "^\\s*ip (\\S+) rebound",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "constant.language"
-						}
-					}
-				},
-				{
-					"comment": "8.1.6",
-					"match": "^\\s*ip simple-service",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.1.7",
-					"begin": "^\\s*ip route",
+					"comment": "IP の静的経路情報の設定",
+					"begin": "\\b(ip route)\\b",
 					"end": "\\n",
 					"name": "entity.name.function",
 					"patterns": [
+						{
+							"comment": "IPv4 の経路情報に変化があった時にログに記録するか否かの設定",
+							"match": "change log",
+							"name": "entity.name.function"
+						},
 						{
 							"match": "(default|pp|dhcp|tunnel)",
 							"name": "constant.language"
@@ -918,156 +966,162 @@
 					]
 				},
 				{
-					"comment": "8.1.8",
-					"match": "^\\s*ip (\\S+) dhcp auto default-route-add",
+					"comment": "DHCPでIPアドレスを取得したときにデフォルト経路を自動的に追加するか否かを設定",
+					"match": "\\b(ip (\\S+) dhcp auto default-route-add)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.1.9",
-					"match": "^\\s*ip (\\S+) dhcp auto interface-route-add",
+					"comment": "DHCPでIPアドレスを取得したときにimplicit経路を自動的に追加するか否かを設定",
+					"match": "\\b(ip (\\S+) dhcp auto interface-route-add)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.1.10",
-					"match": "^\\s*ip filter (\\d+)",
+					"comment": "IP パケットのフィルターの設定",
+					"match": "\\b(ip filter (\\d+) ((pass|reject|restrict)(-log|-nolog)?))\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "8.1.11",
-					"match": "^\\s*ip filter set",
+					"comment": "フィルタセットの定義",
+					"match": "\\b(ip filter set (\\S+) (in|out))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						},
+						"3": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "Source-route オプション付き IP パケットをフィルタアウトするか否かの設定",
+					"match": "\\b(ip filter source-route)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.12",
-					"match": "^\\s*ip filter source-route",
+					"comment": "ディレクテッドブロードキャストパケットをフィルタアウトするか否かの設定",
+					"match": "\\b(ip filter directed-broadcast( filter)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.13",
-					"match": "^\\s*ip filter directed-broadcast( filter)?",
+					"comment": "動的フィルターの定義, 動的フィルタのタイムアウトの設定",
+					"match": "\\b(ip filter dynamic( timer)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.14, 8.1.15",
-					"match": "^\\s*ip filter dynamic( timer)?",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.1.16",
-					"match": "^\\s*ip filter fqdn timer",
+					"comment": "FQDN フィルターで使用するキャッシュのタイマーの設定",
+					"match": "\\b(ip filter fqdn timer)\\b",
 					"name": "entity.name.function"
 				},
 				{
 					"comment": "侵入検知機能の動作の設定",
-					"match": "^\\s*ip (\\S+) intrusion detection (in|out)?",
+					"match": "\\b(ip (\\S+) intrusion detection (in|out)?)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						},
-						"2": {
+						"3": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
 					"comment": "1 秒間に侵入検知情報を通知する頻度の設定",
-					"match": "^\\s*ip (\\S+) intrusion detection notice-interval (\\d+)",
+					"match": "\\b(ip (\\S+) intrusion detection notice-interval (\\d+))\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						},
-						"2": {
+						"3": {
 							"name": "constant.numeric"
 						}
 					}
 				},
 				{
 					"comment": "重複する侵入検知情報の通知抑制の設定",
-					"match": "^\\s*ip (\\S+) intrusion detection repeat-control (\\d+)",
+					"match": "\\b(ip (\\S+) intrusion detection repeat-control (\\d+))\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						},
-						"2": {
+						"3": {
 							"name": "constant.numeric"
 						}
 					}
 				},
 				{
 					"comment": "侵入検知情報の最大表示件数の設定",
-					"match": "^\\s*ip (\\S+) intrusion detection report (\\d+)",
+					"match": "\\b(ip (\\S+) intrusion detection report (\\d+))\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						},
-						"2": {
+						"3": {
 							"name": "constant.numeric"
 						}
 					}
 				},
 				{
-					"comment": "8.1.21",
-					"match": "^\\s*ip (\\S+) tcp mss limit",
+					"comment": "TCP セッションの MSS 制限の設定",
+					"match": "\\b(ip (\\S+) tcp mss limit)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.1.22",
-					"match": "^\\s*ip (\\S+) tcp window-scale",
+					"comment": "TCP ウィンドウ・スケール・オプション を変更する",
+					"match": "\\b(ip (\\S+) tcp window-scale)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.1.23",
-					"match": "^\\s*tcp session limit",
+					"comment": "ルーターが端点となる TCP のセッション数の設定",
+					"match": "\\b(tcp session limit)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.24",
-					"match": "^\\s*ip route change log",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.1.25",
-					"begin": "ip (\\S+) secure filter",
+					"comment": "フィルタリングによるセキュリティーの設定",
+					"begin": "\\b(ip (\\S+) secure filter)\\b",
 					"end": "\\n",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					},
 					"patterns": [
 						{
-							"match": "^\\s*dynamic",
-							"name": "keyword.control"
+							"match": "\\b(dynamic)\\b",
+							"name": "constant.language"
 						},
 						{
 							"include": "#keyword"
@@ -1075,321 +1129,408 @@
 					]
 				},
 				{
-					"comment": "8.1.26",
-					"match": "^\\s*ip fragment remove df-bit",
+					"comment": "ルールに一致する IP パケットの DF ビットを 0 に書き換えるか否かの設定",
+					"match": "\\b(ip fragment remove df-bit)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.27",
-					"match": "^\\s*ip tos supersede",
+					"comment": "IP パケットの TOS フィールドの書き換えの設定",
+					"match": "\\b(ip tos supersede)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.28",
-					"match": "^\\s*ip (\\S+) proxyarp( vrrp)?",
+					"comment": "代理 ARP の設定",
+					"match": "\\b(ip (\\S+) proxyarp( vrrp)?)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.1.29",
-					"match": "^\\s*ip arp timer",
+					"comment": "ARP エントリの寿命の設定",
+					"match": "\\b(ip arp timer)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.30",
-					"match": "^\\s*ip (\\S+) arp static",
+					"comment": "静的 ARP エントリの設定",
+					"match": "\\b(ip (\\S+) arp static)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.1.31",
-					"match": "^\\s*ip (\\S+) arp queue length",
+					"comment": "ARP が解決されるまでの間に送信を保留しておくパケットの数を制御する",
+					"match": "\\b(ip (\\S+) arp queue length)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.1.32",
-					"match": "^\\s*ip (\\S+) arp log",
+					"comment": "ARP エントリの変化をログに残すか否かの設定",
+					"match": "\\b(ip (\\S+) arp log)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.1.33",
-					"match": "^\\s*ip implicit-route preference",
+					"comment": "implicit 経路の優先度の設定",
+					"match": "\\b(ip implicit-route preference)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.34",
-					"match": "^\\s*ip flow timer",
+					"comment": "フローテーブルの各エントリの寿命を設定する",
+					"match": "\\b(ip flow timer)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.35",
-					"match": "^\\s*ip flow limit",
+					"comment": "フローテーブルのエントリー数の設定",
+					"match": "\\b(ip flow limit)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.36",
-					"match": "^\\s*ip reassembly hold-time",
+					"comment": "フラグメントパケットを再構成するために保持しておく時間を設定",
+					"match": "\\b(ip reassembly hold-time)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.1.37",
-					"match": "^\\s*ip dscp supersede",
+					"comment": "IP パケットの DS フィールドの書き換えの設定",
+					"match": "\\b(ip dscp supersede)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.2.1, 8.2.2",
-					"match": "^\\s*ip pp remote address( pool)?",
+					"comment": "PP 側 IP アドレスの設定, リモート IP アドレスプールの設定",
+					"match": "\\b(ip pp remote address( pool)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.2.3",
-					"match": "^\\s*pp keepalive interval",
+					"comment": "PP 経由のキープアライブの時間間隔の設定",
+					"match": "\\b(pp keepalive interval)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.2.4",
-					"match": "^\\s*pp keepalive use",
+					"comment": "PP 経由のキープアライブを使用するか否かの設定",
+					"match": "\\b(pp keepalive use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.2.5",
-					"match": "^\\s*pp keepalive log",
+					"comment": "PP 経由のキープアライブのログをとるか否かの設定",
+					"match": "\\b(pp keepalive log)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.2.6",
-					"match": "^\\s*leased keepalive down",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.3.1",
-					"match": "^\\s*rip use",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.3.2",
-					"match": "^\\s*ip (\\S+) rip trust gateway",
+					"comment": "専用線ダウン検出時の動作の設定",
+					"match": "\\b(leased keepalive down (silent|reset))\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "RIP を使用するか否かの設定",
+					"match": "\\b(rip use)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "RIP に関して信用できるゲートウェイの設定",
+					"match": "\\b(ip (\\S+) rip trust gateway)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.3.3",
-					"match": "^\\s*rip preference",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.3.4",
-					"match": "^\\s*ip (\\S+) rip send",
+					"comment": "RIP による経路の優先度の設定",
+					"match": "\\b(rip preference (\\d+)( (invalid-route-reactivate)(=)(on|off))?)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"4": {
+							"name": "constant.language"
+						},
+						"5": {
+							"name": "keyword.operator"
+						},
+						"6": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "RIP パケットの送信に関する設定",
+					"match": "\\b(ip (\\S+) rip send)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.3.5",
-					"match": "^\\s*ip (\\S+) rip receive",
+					"comment": "RIP パケットの受信に関する設定",
+					"match": "\\b(ip (\\S+) rip receive)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.3.6",
-					"match": "^\\s*ip (\\S+) rip filter",
+					"comment": "RIP のフィルタリングの設定",
+					"match": "\\b(ip (\\S+) rip filter)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.3.7",
-					"match": "^\\s*ip (\\S+) rip hop",
+					"comment": "RIP で加算するホップ数の設定",
+					"match": "\\b(ip (\\S+) rip hop)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.3.8",
-					"match": "^\\s*ip (\\S+) rip auth type",
+					"comment": "RIP2 での認証の設定",
+					"match": "\\b(ip (\\S+) rip auth type (\\S+))\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
+							"name": "constant.language"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "RIP2 での認証キーの設定",
+					"match": "\\b(ip (\\S+) rip auth ((key text) (.+)|key((\\s[0-9a-f]{2})+)$))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						},
+						"5": {
+							"name": "string"
+						},
+						"6": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "RIP2での広告動作モードの設定",
+					"match": "\\b(rip advertise mode)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "回線切断時の経路保持の設定",
+					"match": "\\b(ip pp rip hold routing)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "回線接続時の PP 側の RIP の動作の設定",
+					"match": "\\b(ip pp rip connect send (interval|update|none))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "回線接続時の PP 側の RIP 送出の時間間隔の設定",
+					"match": "\\b(ip pp rip connect interval)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "回線切断時の PP 側の RIP の動作の設定",
+					"match": "\\b(ip pp rip disconnect send (interval|update|none))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "回線切断時の PP 側の RIP 送出の時間間隔の設定",
+					"match": "\\b(ip pp rip disconnect interval)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "バックアップ時の RIP の送信元インタフェース切り替えの設定",
+					"match": "\\b(ip pp rip backup interface)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "RIP で強制的に経路を広告する",
+					"match": "\\b(ip (\\S+) rip force-to-advertise)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.3.9",
-					"match": "^\\s*ip (\\S+) rip auth key( text)?",
+					"comment": "RIP2 でのフィルタの比較方法",
+					"match": "\\b(rip filter rule (address-only|with-netmask))\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "RIP のタイマーを調整する",
+					"match": "\\b(rip timer((\\s\\d+){1,3}$))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "インタフェース毎の VRRP の設定",
+					"match": "\\b(ip (\\S+) vrrp (\\d+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						},
+						"3": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "シャットダウントリガの設定",
+					"match": "\\b(ip (\\S+) vrrp shutdown trigger)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.3.10",
-					"match": "^\\s*rip advertise mode",
+					"comment": "プロバイダ接続がダウンした時に PP バックアップする接続先の指定",
+					"match": "\\b(pp backup (pp|tunnel)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.3.11",
-					"match": "^\\s*ip pp rip hold routing",
+					"comment": "バックアップからの復帰待ち時間の設定",
+					"match": "\\b(pp backup recovery time)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.3.12",
-					"match": "^\\s*ip pp rip connect send",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.3.13",
-					"match": "^\\s*ip pp rip connect interval",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.3.14",
-					"match": "^\\s*ip pp rip disconnect send",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.3.15",
-					"match": "^\\s*ip pp rip disconnect interval",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.3.16",
-					"match": "^\\s*ip pp rip backup interface",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.3.17",
-					"match": "^\\s*ip (\\S+) rip force-to-advertise",
+					"comment": "LAN 経由でのプロバイダ接続がダウンした時にバックアップする接続先の指定,バックアップからの復帰待ち時間の設",
+					"match": "\\b(lan backup (recovery time|(\\S+)) (none)?)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"3": {
+							"name": "constant.language"
+						},
+						"4": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "LAN 経由のキープアライブを使用するか否かの設定",
+					"match": "\\b(lan keepalive use)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "LAN 経由のキープアライブの時間間隔の設定",
+					"match": "\\b(lan keepalive interval)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "LAN 経由のキープアライブのログをとるか否かの設定",
+					"match": "\\b(lan keepalive log)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ネットワーク監視機能の設定",
+					"match": "\\b(ip keepalive (\\d+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "受信パケットの統計情報を記録するか否かの設定",
+					"match": "\\b(ip (\\S+) traffic list (on|off))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						},
+						"3": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "受信したパケットの統計情報のクリア",
+					"match": "\\b(clear ip traffic list)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "受信したパケットの統計情報の表示",
+					"match": "\\b(show ip traffic list)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "統計情報を記録する受信パケットの分類数の設定",
+					"match": "\\b(ip (\\S+) traffic list threshold)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "8.3.18",
-					"match": "^\\s*rip filter rule",
+					"comment": "パケット転送フィルターの定義",
+					"match": "\\b(ip forward filter)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "8.3.19",
-					"match": "^\\s*rip timer",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.4.1, 8.4.2",
-					"match": "^\\s*ip (\\S+) vrrp( shutdown trigger)?",
+					"comment": "インタフェースへのパケット転送フィルターの適用",
+					"match": "\\b(ip (\\S+) forward filter)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
-							"name": "constant.language"
-						}
-					}
-				},
-				{
-					"comment": "8.5.1",
-					"match": "^\\s*pp backup (pp|tunnel)?",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.5.2",
-					"match": "^\\s*pp backup recovery time",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.5.3, 8.5.4",
-					"match": "^\\s*lan backup( recovery time)?",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.5.5",
-					"match": "^\\s*lan keepalive use",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.5.6",
-					"match": "^\\s*lan keepalive interval",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.5.7",
-					"match": "^\\s*lan keepalive log",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.5.8",
-					"match": "^\\s*ip keepalive",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.6.1, 8.6.4",
-					"match": "^\\s*ip (\\S+) traffic list( threshold)?",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "constant.language"
-						}
-					}
-				},
-				{
-					"comment": "8.6.2",
-					"match": "^\\s*clear ip traffic list",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.6.3",
-					"match": "^\\s*show ip traffic list",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.7.1",
-					"match": "^\\s*ip forward filter",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "8.7.2",
-					"match": "^\\s*ip (\\S+) forward filter",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
@@ -1399,23 +1540,23 @@
 		"rtx-ethernet_filter": {
 			"patterns": [
 				{
-					"comment": "9.1",
-					"match": "^\\s*ethernet filter",
+					"comment": "フィルター定義の設定",
+					"match": "\\b(ethernet filter)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "9.2",
-					"match": "^\\s*ethernet (\\S+) filter",
+					"comment": "インターフェースへの適用の設定",
+					"match": "\\b(ethernet (\\S+) filter)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "9.3",
-					"match": "^\\s*show status ethernet filter",
+					"comment": "イーサネットフィルタの状態の表示",
+					"match": "\\b(show status ethernet filter)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -1482,143 +1623,230 @@
 		"rtx-ppp": {
 			"patterns": [
 				{
-					"comment": "11.1, 11.2, 11.3, 11.4, 11.5",
-					"match": "^\\s*pp auth (username|accept|request|myname|multi connect prohibit)",
+					"comment": "相手の名前とパスワードの設定",
+					"match": "\\b(pp auth username (\\S{1,64}) (\\S{1,64})( myname (\\S+) (\\S+))?( isdn1)?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						},
+						"3": {
+							"name": "string"
+						},
+						"5": {
+							"name": "string"
+						},
+						"6": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "受け入れる認証タイプの設定",
+					"match": "\\b(pp auth accept( (pap|chap|machap(-v2)?)){1,2})\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"3": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "要求する認証タイプの設定",
+					"match": "\\b(pp auth request( (pap|chap(-pap)?|machap(-v2)?)){1,2})\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"3": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "自分の名前とパスワードの設定",
+					"match": "\\b(pp auth myname (\\S{1,64}) (\\S{1,64}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "同一 username を持つ相手からの二重接続を禁止するか否かの設定",
+					"match": "\\b(pp auth multi connect prohibit)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.6",
-					"match": "^\\s*ppp lcp (acfc|magicnumber|mru|pfc|restart|maxterminate|maxconfigure|maxfailure|silent)",
+					"comment": "CP 関連の設定",
+					"match": "\\b(ppp lcp (acfc|magicnumber|mru|pfc|restart|maxterminate|maxconfigure|maxfailure|silent))\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.7",
-					"match": "^\\s*ppp pap (restart|maxauthreq)",
+					"comment": "PAP 関連の設定",
+					"match": "\\b(ppp pap (restart|maxauthreq))\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.8",
-					"match": "^\\s*ppp chap (restart|maxchallenge)",
+					"comment": "CHAP 関連の設定",
+					"match": "\\b(ppp chap (restart|maxchallenge))\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.9",
-					"match": "^\\s*ppp ipcp (vjc|ipaddress|restart|maxterminate|maxconfigure|maxfailure|msext)",
+					"comment": "IPCP 関連の設定",
+					"match": "\\b(ppp ipcp (vjc|ipaddress|restart|maxterminate|maxconfigure|maxfailure|msext))\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.9.7",
-					"match": "^\\s*wins server",
+					"comment": "WINS サーバーの IP アドレスの設定",
+					"match": "\\b(wins server)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.8",
-					"match": "^\\s*ppp ipcp msext",
+					"comment": "IPCP の MS 拡張オプションを使うか否かの設定",
+					"match": "\\b(ppp ipcp msext)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.9.9",
-					"match": "^\\s*ppp ipcp remote address check",
+					"comment": "ホスト経路が存在する相手側 IP アドレスを受け入れるか否かの設定",
+					"match": "\\b(ppp ipcp remote address check)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.10",
-					"match": "^\\s*ppp mscbcp (restart|maxretry)",
+					"comment": "MSCBCP 関連の設定",
+					"match": "\\b(ppp mscbcp (restart|maxretry))\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.11.1",
-					"match": "^\\s*ppp ccp type",
+					"comment": "全パケットの圧縮タイプの設定",
+					"match": "\\b(ppp ccp type (stac(0)?|cstac|mppe-(40|128|any)|none))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "CCP 関連の設定",
+					"match": "\\b(ppp ccp (restart|maxterminate|maxconfigure|maxfailure))\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.11.2, 11.11.3, 11.11.4, 11.11.5",
-					"match": "^\\s*ppp ccp (restart|maxterminate|maxconfigure|maxfailure)",
+					"comment": "IPV6CP を使用するか否かの設定",
+					"match": "\\b(ppp ipv6cp use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.12.1",
-					"match": "^\\s*ppp ipv6cp use",
+					"comment": "MP を使用するか否かの設定",
+					"match": "\\b(ppp mp use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.13.1",
-					"match": "^\\s*ppp mp use",
+					"comment": "MP の制御方法の設定",
+					"match": "\\b(ppp mp control (arrive|both|call))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword"
+						}
+					}
+				},
+				{
+					"comment": "MP の最大リンク数の設定",
+					"match": "\\b(ppp mp maxlink)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.14",
-					"match": "^\\s*ppp bacp (restart|maxterminate|maxconfigure|maxfailure)",
+					"comment": "MP の最小リンク数の設定",
+					"match": "\\b(ppp mp minlink)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.15",
-					"match": "^\\s*ppp bap (restart|maxretry)",
+					"comment": "MP のための負荷計測間隔の設定",
+					"match": "\\b(ppp mp timer)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.1",
-					"match": "^\\s*pppoe use",
+					"comment": "MP のパケットを分割するか否かの設定",
+					"match": "\\b(ppp mp divide)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.2",
-					"match": "^\\s*pppoe access concentrator",
+					"comment": "BACP 関連の設定",
+					"match": "\\b(ppp bacp (restart|maxterminate|maxconfigure|maxfailure))\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.3",
-					"match": "^\\s*pppoe auto connect",
+					"comment": "BAP 関連の設定",
+					"match": "\\b(ppp bap (restart|maxretry))\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.4",
-					"match": "^\\s*pppoe auto disconnect",
+					"comment": "PPPoE で使用する LAN インタフェースの指定",
+					"match": "\\b(pppoe use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.5",
-					"match": "^\\s*pppoe padi maxretry",
+					"comment": "アクセスコンセントレータ名の設定",
+					"match": "\\b(pppoe access concentrator)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.6",
-					"match": "^\\s*pppoe padi restart",
+					"comment": "セッションの自動接続の設定",
+					"match": "\\b(pppoe auto connect)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.7",
-					"match": "^\\s*pppoe padr maxretry",
+					"comment": "セッションの自動切断の設定",
+					"match": "\\b(pppoe auto disconnect)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.8",
-					"match": "^\\s*pppoe padr restart",
+					"comment": "PADI パケットの最大再送回数の設定",
+					"match": "\\b(pppoe padi maxretry)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.9",
-					"match": "^\\s*pppoe disconnect time",
+					"comment": "PADI パケットの再送時間の設定",
+					"match": "\\b(pppoe padi restart)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.10",
-					"match": "^\\s*pppoe service-name",
+					"comment": "PADR パケットの最大再送回数の設定",
+					"match": "\\b(pppoe padr maxretry)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.11",
-					"match": "^\\s*pppoe tcp mss limite",
+					"comment": "PADR パケットの再送時間の設定",
+					"match": "\\b(pppoe padr restart)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.12",
-					"match": "^\\s*pppoe invalid-session forced close",
+					"comment": "PPPoE セッションの切断タイマの設定",
+					"match": "\\b(pppoe disconnect time)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "11.16.13",
-					"match": "^\\s*pppoe pass-through member",
+					"comment": "サービス名の指定",
+					"match": "\\b(pppoe service-name)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TCP パケットの MSS の制限の有無とサイズの指定",
+					"match": "\\b(pppoe tcp mss limite)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ルーター側には存在しない PPPoE セッションを強制的に切断するか否かの設定",
+					"match": "\\b(pppoe invalid-session forced close)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "PPPoE フレームを中継するインターフェースの指定",
+					"match": "\\b(pppoe pass-through member)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -1705,43 +1933,43 @@
 		"rtx-dhcp_client": {
 			"patterns": [
 				{
-					"comment": "12.2.1",
-					"match": "^\\s*dhcp client hostname( (pp|pool))?",
+					"comment": "DHCP クライアントのホスト名の設定",
+					"match": "\\b(dhcp client hostname( (pp|pool))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "12.2.2",
-					"match": "^\\s*ip (\\S+) dhcp lease time",
+					"comment": "要求する IP アドレスリース期間の設定",
+					"match": "\\b(ip (\\S+) dhcp lease time)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "12.2.3",
-					"match": "^\\s*ip (\\S+) dhcp retry",
+					"comment": "IP アドレス取得要求の再送回数と間隔の設定",
+					"match": "\\b(ip (\\S+) dhcp retry)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "12.2.4",
-					"match": "^\\s*dhcp client client-identifier( (pp|pool))?",
+					"comment": "DHCP クライアント ID オプションの設定",
+					"match": "\\b(dhcp client client-identifier( (pp|pool))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "12.2.5",
-					"match": "^\\s*dhcp client option( (pp|pool))?",
+					"comment": "DHCP クライアントが DHCP サーバーへ送るメッセージ中に格納するオプションの設定",
+					"match": "\\b(dhcp client option( (pp|pool))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "12.2.6",
-					"match": "^\\s*dhcp client release linkdown",
+					"comment": "リンクダウンした時に情報を解放するか否かの設定",
+					"match": "\\b(dhcp client release linkdown)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -1878,123 +2106,110 @@
 		"rtx-tunneling": {
 			"patterns": [
 				{
-					"comment": "14.1, 14.2",
-					"match": "^\\s*tunnel (enable|disable)",
+					"comment": "トンネルインターフェースの使用許可(不許可)の設定",
+					"match": "\\b(tunnel (enable|disable))\\b",
 					"name": "storage.type"
 				},
 				{
-					"comment": "14.3",
-					"match": "^\\s*tunnel type"
-				},
-				{
-					"comment": "14.4",
-					"match": "^\\s*tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp|map-e|hb46pp)",
+					"comment": "トンネルインタフェースの接続種別の設定",
+					"match": "\\b(tunnel type (point-to-point|multipoint)( (server|client))?)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
+							"name": "string"
+						},
+						"4": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "トンネルインタフェースの種別の設定",
+					"match": "\\b(tunnel encapsulation (ipsec|ipip|pptp|l2tpv3-raw|l2tpv3|l2tp|ipudp|map-e|hb46pp))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "14.5",
-					"match": "^\\s*ip tunnel address",
+					"comment": "トンネルインタフェースの IPv4 アドレスの設定",
+					"match": "\\b(ip tunnel address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "14.6",
-					"match": "^\\s*ip tunnel remote address",
+					"comment": "トンネルインターフェースの相手側の IPv4 アドレスの設定",
+					"match": "\\b(ip tunnel remote address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "14.7",
-					"match": "^\\s*tunnel endpoint remote address",
+					"comment": "相手側トンネルインタフェースの端点 IP アドレスの設定",
+					"match": "\\b(tunnel endpoint remote address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "14.8",
-					"match": "^\\s*tunnel endpoint local address",
+					"comment": "自分側トンネルインタフェースの端点 IP アドレスの設定",
+					"match": "\\b(tunnel endpoint local address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "14.9",
-					"match": "^\\s*tunnel endpoint address",
+					"comment": "トンネルインタフェースの端点 IP アドレスの設定",
+					"match": "\\b(tunnel endpoint address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "14.10",
-					"match": "^\\s*tunnel endpoint name",
+					"comment": "トンネルの端点の名前の設定",
+					"match": "\\b(tunnel endpoint name)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "14.11",
-					"match": "^\\s*tunnel multipoint server",
+					"comment": "マルチポイントトンネルのサーバーの設定",
+					"match": "\\b(tunnel multipoint server)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "14.12",
-					"match": "^\\s*tunnel multipoint local name",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "14.13",
-					"match": "^\\s*tunnel multipoint limit",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "14.14",
-					"match": "^\\s*tunnel map-e type",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "14.15",
-					"match": "^\\s*tunnel translation",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "14.16",
-					"match": "^\\s*tunnel hb46pp auth myname",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "14.17",
-					"match": "^\\s*tunnel hb46pp server",
-					"name": "entity.name.function"
-				}
-			]
-		},
-		"rtx-ipsesc": {
-			"patterns": [
-				{
-					"comment": "15.1",
-					"match": "^\\s*ipsec use",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "15.2",
-					"match": "^\\s*ipsec ike version",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "15.3",
-					"match": "^\\s*ipsec ike auth method",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "15.4",
-					"match": "^\\s*ipsec ike auto received-id-route-add",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "15.5",
-					"match": "^\\s*ipsec ike pre-shared-key (\\d+)( text) (\\S+)",
+					"comment": "マルチポイントトンネルで使用する自分の名前の設定",
+					"match": "\\b(tunnel multipoint local name (\\S{1,64}))\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
-							"name": "constant.numeric"
-						},
 						"2": {
-							"name": "keyword.control"
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "マルチポイントトンネルで接続する相手の最大数の設定",
+					"match": "\\b(tunnel multipoint limit)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "トンネルインタフェースのMAP-E種別の設定",
+					"match": "\\b(tunnel map-e type (v6plus|ocn|ipv6option))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "トンネルインタフェースの変換種別の設定",
+					"match": "\\b(tunnel translation (nat64))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "IPv6 マイグレーション技術の国内標準プロビジョニング方式でプロビジョニングサーバーに送信する自分の名前とパスワードの設定",
+					"match": "\\b(tunnel hb46pp auth myname (\\S{1,32}) (\\S{1,32}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
 						},
 						"3": {
 							"name": "string"
@@ -2002,268 +2217,400 @@
 					}
 				},
 				{
-					"comment": "15.6",
-					"match": "^\\s*ipsec ike pki file",
+					"comment": "IPv6 マイグレーション技術の国内標準プロビジョニング方式で使用するプロビジョニングサーバー名の設定",
+					"match": "\\b(tunnel hb46pp server)\\b",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-ipsesc": {
+			"patterns": [
+				{
+					"comment": "IPsec の動作の設定",
+					"match": "\\b(ipsec use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.7",
-					"match": "^\\s*ipsec ike eap myname",
+					"comment": "IKE バージョンの設定",
+					"match": "\\b(ipsec ike version (\\d+) (1|2))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "IKE の認証方式の設定",
+					"match": "\\b(ipsec ike auth method (\\d+) (auto|pre-shared-key|certificate|eap-md5))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "IKE で受信した ID を基とした経路を自動的に追加するか否かの設定",
+					"match": "\\b(ipsec ike auto received-id-route-add)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.8",
-					"match": "^\\s*ipsec ike eap request",
+					"comment": "事前共有鍵の登録",
+					"match": "\\b(ipsec ike pre-shared-key (\\d+) ((0x[0-9a-fA-F]{1,126})|text (\\S{1,128})))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"4": {
+							"name": "string"
+						},
+						"5": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "IKEv2 の認証に使用する PKI ファイルの設定",
+					"match": "\\b(ipsec ike pki file (\\d+) certificate(=)(\\d)( crl(=)(\\d))?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "keyword.operator"
+						},
+						"4": {
+							"name": "constant.numeric"
+						},
+						"6": {
+							"name": "keyword.operator"
+						},
+						"7": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "EAP-MD5 認証で使用する自分の名前とパスワードの設定",
+					"match": "\\b(ipsec ike eap myname)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.9",
-					"match": "^\\s*ipsec ike eap send certreq",
+					"comment": "EAP-MD5によるユーザ認証の設定",
+					"match": "\\b(ipsec ike eap request)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.10",
-					"match": "^\\s*ipsec auto refresh",
+					"comment": "EAP-MD5 認証で証明書要求ペイロードを送信するか否かの設定",
+					"match": "\\b(ipsec ike eap send certreq)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.11",
-					"match": "^\\s*ipsec ike negotiate-strictly",
+					"comment": "IKE の鍵交換を始動するか否かの設定",
+					"match": "\\b(ipsec auto refresh)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.12",
-					"match": "^\\s*ipsec ike always-on",
+					"comment": "設定が異なる場合に鍵交換を拒否するか否かの設定",
+					"match": "\\b(ipsec ike negotiate-strictly)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.13",
-					"match": "^\\s*ipsec ike retry",
+					"comment": "IKE の鍵交換に失敗したときに鍵交換を休止せずに継続するか否かの設定",
+					"match": "\\b(ipsec ike always-on)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.14",
-					"match": "^\\s*ipsec ike remote name",
+					"comment": "鍵交換の再送回数と間隔の設定",
+					"match": "\\b(ipsec ike retry)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.15",
-					"match": "^\\s*ipsec ike remote address",
+					"comment": "相手側のセキュリティ・ゲートウェイの名前の設定",
+					"match": "\\b(ipsec ike remote name)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.16",
-					"match": "^\\s*ipsec ike remote id",
+					"comment": "相手側セキュリティ・ゲートウェイの IP アドレスの設定",
+					"match": "\\b(ipsec ike remote address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.17",
-					"match": "^\\s*ipsec ike local name",
+					"comment": "相手側の ID の設定",
+					"match": "\\b(ipsec ike remote id)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.18",
-					"match": "^\\s*ipsec ike local address",
+					"comment": "自分側のセキュリティ・ゲートウェイの名前の設定",
+					"match": "\\b(ipsec ike local name)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.19",
-					"match": "^\\s*ipsec ike local id",
+					"comment": "自分側セキュリティ・ゲートウェイの IP アドレスの設定",
+					"match": "\\b(ipsec ike local address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.20",
-					"match": "^\\s*ipsec ike keepalive use",
+					"comment": "自分側の ID の設定",
+					"match": "\\b(ipsec ike local id)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.21",
-					"match": "^\\s*ipsec ike keepalive log",
+					"comment": "IKE キープアライブ機能の設定",
+					"match": "\\b(ipsec ike keepalive use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.22",
-					"match": "^\\s*ipsec ike encryption",
+					"comment": "IKE キープアライブに関する SYSLOG を出力するか否かの設定",
+					"match": "\\b(ipsec ike keepalive log)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.23",
-					"match": "^\\s*ipsec ike queue length",
+					"comment": "IKE が用いる暗号アルゴリズムの設定",
+					"match": "\\b(ipsec ike encryption)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.24",
-					"match": "^\\s*ipsec ike group",
+					"comment": "受信した IKE パケットを蓄積するキューの長さの設定",
+					"match": "\\b(ipsec ike queue length)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.25",
-					"match": "^\\s*ipsec ike hash",
+					"comment": "IKE が用いるグループの設定",
+					"match": "\\b(ipsec ike group)\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.26",
-					"match": "^\\s*ipsec log illegal-spi",
+					"comment": "IKE が用いるハッシュアルゴリズムの設定",
+					"match": "\\b(ipsec ike hash)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.27",
-					"match": "^\\s*ipsec ike payload type",
+					"comment": "受信したパケットの SPI 値が無効な値の場合にログに出力するか否かの設定",
+					"match": "\\b(ipsec log illegal-spi)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.28",
-					"match": "^\\s*ipsec ike backward-compatibility",
+					"comment": "IKE ペイロードのタイプの設定",
+					"match": "\\b(ipsec ike payload type)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.29",
-					"match": "^\\s*ipsec ike send info",
+					"comment": "IKEv1 鍵交換タイプの設定",
+					"match": "\\b(ipsec ike backward-compatibility)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.30",
-					"match": "^\\s*ipsec ike pfs",
+					"comment": "IKE の情報ペイロードを送信するか否かの設定",
+					"match": "\\b(ipsec ike send info)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.31",
-					"match": "^\\s*ipsec ike xauth myname",
+					"comment": "PFS を用いるか否かの設定",
+					"match": "\\b(ipsec ike pfs)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.32, 15.33, 15.33, 15.35",
-					"match": "^\\s*auth user( (attribute|group|group( attribute)?))?",
+					"comment": "XAUTH の設定",
+					"match": "\\b(ipsec ike xauth myname)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.36",
-					"match": "^\\s*ipsec ike xauth request",
+					"comment": "XAUTH 認証、EAP-MD5 認証に使用するユーザ ID の設定",
+					"match": "\\b(auth user (\\d{1,4}) (\\S{3,256}) (\\S{3,64}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "string"
+						},
+						"4": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "XAUTH 認証、EAP-MD5 認証に使用するユーザ ID の属性の設定",
+					"match": "\\b(auth user attribute)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.37",
-					"match": "^\\s*ipsec ike mode-cfg address pool",
+					"comment": "XAUTH 認証、EAP-MD5 認証に使用するユーザグループの設定",
+					"match": "\\b(auth user group (\\d{1,4}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "XAUTH 認証、EAP-MD5 認証に使用するユーザグループの属性の設定",
+					"match": "\\b(auth user group attribute (\\d{1,4}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "XAUTH によるユーザ認証の設定",
+					"match": "\\b(ipsec ike xauth request)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.38",
-					"match": "^\\s*ipsec ike mode-cfg method",
+					"comment": "内部 IP アドレスプールの設定",
+					"match": "\\b(ipsec ike mode-cfg address pool)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.39",
-					"match": "^\\s*ipsec ike mode-cfg address",
+					"comment": "IKE XAUTH Mode-Cfg メソッドの設定",
+					"match": "\\b(ipsec ike mode-cfg method)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.40, 15.41",
-					"match": "^\\s*ipsec ike license-key( use)?",
+					"comment": "IPsec クライアントに割り当てる内部 IP アドレスプールの設定",
+					"match": "\\b(ipsec ike mode-cfg address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.42",
-					"match": "^\\s*ipsec ike log",
+					"comment": "VPN クライアントの同時接続制限ライセンスの登録",
+					"match": "\\b(ipsec ike license-key (\\d{1,3}) (\\S{1,64}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "VPN クライアントの同時接続制限ライセンスの適用",
+					"match": "\\b(ipsec ike license-key use (\\d{1,3}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "IKE のログの種類の設定",
+					"match": "\\b(ipsec ike log)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.43",
-					"match": "^\\s*ipsec ike esp-encapsulation",
+					"comment": "ESP を UDP でカプセル化して送受信するか否かの設定",
+					"match": "\\b(ipsec ike esp-encapsulation)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.44",
-					"match": "^\\s*ipsec ike proposal-limitation",
+					"comment": "折衝パラメーターを制限するか否かの設定",
+					"match": "\\b(ipsec ike proposal-limitation)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.45",
-					"match": "^\\s*ipsec ike message-id-control",
+					"comment": "IKE のメッセージ ID 管理の設定",
+					"match": "\\b(ipsec ike message-id-control)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.46",
-					"match": "^\\s*ipsec ike child-exchange type",
+					"comment": "CHILD SA 作成方法の設定",
+					"match": "\\b(ipsec ike child-exchange type)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.47",
-					"match": "^\\s*ipsec ike negotiation receive",
+					"comment": "鍵交換の始動パケットを受信するか否かの設定",
+					"match": "\\b(ipsec ike negotiation receive)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.48.1",
-					"match": "^\\s*ipsec ike duration",
+					"comment": "SA の寿命の設定",
+					"match": "\\b(ipsec ike duration)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.48.2",
-					"match": "^\\s*ipsec sa policy",
+					"comment": "SA のポリシーの定義",
+					"match": "\\b(ipsec sa policy)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.48.3",
-					"match": "^\\s*ipsec refresh sa",
+					"comment": "SA の手動更新",
+					"match": "\\b(ipsec refresh sa)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.48.4",
-					"match": "^\\s*ipsec ike restrict-dangling-sa",
+					"comment": "ダングリング SA の動作の設定",
+					"match": "\\b(ipsec ike restrict-dangling-sa)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.48.5",
-					"match": "^\\s*ipsec ike nat-traversal",
+					"comment": "IPsec NAT トラバーサルを利用するための設定",
+					"match": "\\b(ipsec ike nat-traversal)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.48.6",
-					"match": "^\\s*ipsec sa delete",
+					"comment": "SA の削除",
+					"match": "\\b(ipsec sa delete)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.49.1",
-					"match": "^\\s*ipsec tunnel fastpath-fragment-function follow df-bit",
+					"comment": "IPsec トンネルの外側の IPv4 パケットに対するフラグメントの設定",
+					"match": "\\b(ipsec tunnel fastpath-fragment-function follow df-bit)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.49.2",
-					"match": "^\\s*ipsec tunnel outer df-bit",
+					"comment": "IPsec トンネルの外側の IPv4 パケットに対する DF ビットの制御の設定",
+					"match": "\\b(ipsec tunnel outer df-bit)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.49.3",
-					"match": "^\\s*ipsec tunnel",
+					"comment": "使用する SA のポリシーの設定",
+					"match": "\\b(ipsec tunnel)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.49.4",
-					"match": "^\\s*ipsec ipcomp type",
+					"comment": "IPComp によるデータ圧縮の設定",
+					"match": "\\b(ipsec ipcomp type)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.49.5",
-					"match": "^\\s*tunnel backup( (pp|tunnel))?",
+					"comment": "トンネルバックアップの設定",
+					"match": "\\b(tunnel backup( (pp|tunnel))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.49.6",
-					"match": "^\\s*tunnel template",
+					"comment": "トンネルテンプレートの設定",
+					"match": "\\b(tunnel template)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.50",
-					"match": "^\\s*ipsec transport( template)?",
+					"comment": "トランスポートモード関連の設定",
+					"match": "\\b(ipsec transport( template)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.51",
-					"match": "^\\s*pki certificate file",
+					"comment": "証明書ファイルの設定",
+					"match": "\\b(pki certificate file)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "15.52",
-					"match": "^\\s*pki crl file",
+					"comment": "CRL ファイルの設定",
+					"match": "\\b(pki crl file)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -2394,13 +2741,13 @@
 		"rtx-ipip": {
 			"patterns": [
 				{
-					"comment": "18.1",
-					"match": "^\\s*ipip keepalive use",
+					"comment": "IPIP キープアライブの設定",
+					"match": "\\b(ipip keepalive use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "18.2",
-					"match": "^\\s*ipip keepalive log",
+					"comment": "IPIP キープアライブのログ設定",
+					"match": "^\\b(ipip keepalive log)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -2408,43 +2755,93 @@
 		"rtx-cloud_vpn": {
 			"patterns": [
 				{
-					"comment": "19.1",
-					"match": "^\\s*cloud vpn service",
-					"name": "entity.name.function"
+					"comment": "VPN 接続するクラウドサービスの指定",
+					"match": "\\b(cloud vpn service ([1-3]) (amazon-api))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
 				},
 				{
-					"comment": "19.2",
-					"match": "^\\s*cloud vpn parameter",
-					"name": "entity.name.function"
+					"comment": "クラウドサービスとの VPN 接続設定に必要なパラメーターの設定",
+					"match": "\\b(cloud vpn parameter ([1-3])((\\s\\S{1,256}){1,3}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
 				},
 				{
-					"comment": "19.3",
-					"match": "^\\s*cloud vpn name",
-					"name": "entity.name.function"
+					"comment": "クラウドサービスとの VPN 接続設定の名称の設定",
+					"match": "\\b(cloud vpn name ([1-3]) (\\S{1,32}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
 				},
 				{
-					"comment": "19.4",
-					"match": "^\\s*cloud vpn bind",
-					"name": "entity.name.function"
+					"comment": "クラウドサービスとの VPN 接続を設定するトンネルインターフェースの指定",
+					"match": "\\b(cloud vpn bind ([1-3])((\\s\\d+){1,2}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
-					"comment": "19.5",
-					"match": "^\\s*cloud vpn option",
-					"name": "entity.name.function"
+					"comment": "クラウドサービスとの VPN 接続設定に使用するオプションの設定",
+					"match": "\\b(cloud vpn option ([1-3]))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
-					"comment": "19.6",
-					"match": "^\\s*cloud vpn set go",
-					"name": "entity.name.function"
+					"comment": "クラウドサービスとの VPN 接続設定の手動実行",
+					"match": "\\b(cloud vpn set go ([1-3]) (save|no-save))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
-					"comment": "19.7",
-					"match": "^\\s*show status cloud vpn",
-					"name": "entity.name.function"
+					"comment": "クラウドサービスとの VPN 接続設定の状態の表示",
+					"match": "\\b(show status cloud vpn ([1-3])?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
-					"comment": "19.8",
-					"match": "^\\s*cloud vpn syslog",
+					"comment": "クラウドサービス接続時の詳細情報を SYSLOG に表示",
+					"match": "\\b(cloud vpn syslog)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -4435,62 +4832,83 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.2.1",
-					"match": "^\\s*switch select",
+					"comment": "スイッチの選択",
+					"match": "\\b(switch select)\\b",
 					"name": "storage.type"
 				},
 				{
-					"comment": "48.2.2"
+					"comment": "スイッチの設定の削除",
+					"match": "\\b(switch control function default)\\b",
+					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.2.3"
+					"comment": "スイッチのファームウェアの更新",
+					"match": "\\b(switch control firmware upload go)\\b",
+					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.2.4"
+					"comment": "LANケーブル二重化機能の設定",
+					"match": "\\b(switch control route backup)\\b",
+					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.2.5",
-					"match": "^\\s*switch control function default",
-					"name": "storage.type"
+					"comment": "スイッチの設定ファイルを格納するディレクトリの指定",
+					"match": "\\b(switch config directory)\\b",
+					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.2.6",
-					"match": "^\\s*switch control firmware upload go",
-					"name": "storage.type"
+					"comment": "スイッチの設定を保存するファイル名の指定",
+					"match": "\\b(switch config filename)\\b",
+					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.2.7",
-					"match": "^\\s*switch control route backup",
-					"name": "storage.type"
+					"comment": "スイッチの設定の取得",
+					"match": "\\b(switch control config get)\\b",
+					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.2.8",
-					"match": "^\\s*switch config directory",
-					"name": "storage.type"
+					"comment": "スイッチの設定の復元",
+					"match": "\\b(switch control config set)\\b",
+					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.2.9",
-					"match": "^\\s*switch config filename",
-					"name": "storage.type"
+					"comment": "スイッチのゼロコンフィグ機能を使用するか否かの設定",
+					"match": "\\b(switch control config-auto-set use)\\b",
+					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.2.10",
-					"match": "^\\s*switch control config get",
-					"name": "storage.type"
+					"comment": "BootROMバージョンの取得",
+					"match": "\\b(switch control function (get) boot-rom-version)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
-					"comment": "48.2.11",
-					"match": "^\\s*switch control config set",
-					"name": "storage.type"
+					"comment": "ファームウェアリビジョンの取得",
+					"match": "\\b(switch control function (get) firmware-revision)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
-					"comment": "48.2.12",
-					"match": "^\\s*switch control config-auto-set use",
-					"name": "storage.type"
+					"comment": "シリアル番号の取得",
+					"match": "\\b(switch control function (get) serial-number)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
-					"comment": "48.3.1.1",
-					"match": "^\\s*switch control function (get) boot-rom-version",
+					"comment": "製品名称の取得",
+					"match": "\\b(switch control function (get) model-name)\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
@@ -4499,121 +4917,91 @@
 					}
 				},
 				{
-					"comment": "48.3.1.2",
-					"match": "^\\s*switch control function (get) firmware-revision",
+					"comment": "MACアドレスの取得",
+					"match": "\\b(switch control function (get) system-macaddress)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.1.3",
-					"match": "^\\s*switch control function (get) serial-number",
+					"comment": "機器の名前の設定",
+					"match": "\\b(switch control function (set|get) system-name)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.1.4",
-					"match": "^\\s*switch control function (get) model-name",
+					"comment": "省電力機能を使用するか否かの設定",
+					"match": "\\b(switch control function (set|get) energy-saving)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.1.5",
-					"match": "^\\s*switch control function (get) system-macaddress",
+					"comment": "LEDの輝度の調整",
+					"match": "\\b(switch control function (get|set) led-brightness)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.1.6",
-					"match": "^\\s*switch control function (set|get) system-name",
+					"comment": "LEDの表示モードの取得",
+					"match": "\\b(switch control function (get) status-led-mode)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.1.7",
-					"match": "^\\s*switch control function (set|get) energy-saving",
+					"comment": "ファンの状態(回転数)の取得",
+					"match": "\\b(switch control function (get) status-fan(-rpm)?)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.1.8",
-					"match": "^\\s*switch control function (get|set) led-brightness",
+					"comment": "再起動",
+					"match": "\\b(switch control function (execute) restart)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.1.9",
-					"match": "^\\s*switch control function (get) status-led-mode",
+					"comment": "起動してからの時間の取得",
+					"match": "\\b(switch control function (get) system-uptime)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.1.10, 48.3.1.11",
-					"match": "^\\s*switch control function (get) status-fan(-rpm)?",
+					"comment": "リンクアグリゲーションのタイプの取得",
+					"match": "\\b(switch control function (get) lag-type)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
-							"name": "keyword.control"
-						}
-					}
-				},
-				{
-					"comment": "48.3.1.12",
-					"match": "^\\s*switch control function (execute) restart",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "keyword.control"
-						}
-					}
-				},
-				{
-					"comment": "48.3.1.13",
-					"match": "^\\s*switch control function (get) system-uptime",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
-							"name": "keyword.control"
-						}
-					}
-				},
-				{
-					"comment": "48.3.2.1",
-					"match": "^\\s*switch control function (get) lag-type",
-					"name": "entity.name.function",
-					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
@@ -6372,57 +6760,57 @@
 		"keyword": {
 			"patterns": [
 				{
-					"match": "\\b(\\S+)(!=|=)((([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(/(([1-2]?[0-9])|3[0-2]))?)\\b",
+					"match": "\\b((\\S+)(!=|=)((([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(/(([1-2]?[0-9])|3[0-2]))?))\\b",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "variable.language"
 						},
-						"2": {
+						"3": {
 							"name": "keyword.operator"
 						},
-						"3": {
+						"4": {
 							"name": "string"
 						}
 					}
 				},
 				{
-					"match": "\\b(\\S+)(!=|=)(\\d+)\\b",
+					"match": "\\b((\\S+)(!=|=)(\\d+))\\b",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "variable.language"
 						},
-						"2": {
+						"3": {
 							"name": "keyword.operator"
 						},
-						"3": {
+						"4": {
 							"name": "constant.numeric"
 						}
 					}
 				},
 				{
-					"match": "\\b(\\S+)(!=|=)(on|off)\\b",
+					"match": "\\b((\\S+)(!=|=)(on|off|auto))\\b",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "variable.language"
 						},
-						"2": {
+						"3": {
 							"name": "keyword.operator"
 						},
-						"3": {
+						"4": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"match": "\\b(\\S+)(!=|=)(\\S+)\\b",
+					"match": "\\b((\\S+)(!=|=)(\\S+))\\b",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "variable.language"
 						},
-						"2": {
+						"3": {
 							"name": "keyword.operator"
 						},
-						"3": {
+						"4": {
 							"name": "string"
 						}
 					}
@@ -6493,7 +6881,12 @@
 					"comment": "スイッチ"
 				},
 				{
-					"match": "\\b(auto|dhcp|in|out|only|none|hide|weight|static|deny|permit|call-only|arrive-only)\\b",
+					"match": "\\b(auto|in|out)\\b",
+					"name": "keyword.control",
+					"comment": "スイッチ"
+				},
+				{
+					"match": "\\b(dhcp|only|none|hide|weight|static|deny|permit|call-only|arrive-only)\\b",
 					"name": "constant.language",
 					"comment": "スイッチ"
 				},
