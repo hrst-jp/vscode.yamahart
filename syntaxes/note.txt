@@ -1,58 +1,29 @@
-comment
-4
-5
-6
-7
-8
-9
-10
-11
-12.1
-12.2
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48-未完成
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
+コマンド
+    太文字      コマンドの名称部分      entity.name.function
+    斜体        パラメータ部分
+    キーワード  標準文字                
+    [ ]         省略可能                (xxx)?
 
+
+https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide#predefined-textmate-scope-mappings
+
+
+コマンド                    entity.name.function
+インターフェース名          constant.language
+ニーモニックなど            constant.language
+type                        entity.name.type
+switch                      keyword.control
+文字列                      string
+数字                        constant.numeric
+計算式(=)                   keyword.operator
+変数                        variable.language
+
+https://macromates.com/manual/en/language_grammars
+comment     コメント
+constant    決められた文字
+entity      
+
+
+\\h             16進数
+\\x22           "
+\\x27           '

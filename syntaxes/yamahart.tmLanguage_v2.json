@@ -195,10 +195,13 @@
 			"include": "#nvr-analog"
 		},
 		{
-			"include": "#nvr-wwan"
+			"include": "#nvr-cascade"
 		},
 		{
-			"include": "#nvr-swctl"
+			"include": "#nvr-sip"
+		},
+		{
+			"include": "#nvr-wwan"
 		},
 		{
 			"include": "#keyword",
@@ -213,7 +216,7 @@
 		"comment": {
 			"patterns": [
 				{
-					"match": "^#.*",
+					"match": "^\\s*#.*",
 					"name": "comment.line"
 				},
 				{
@@ -2984,7 +2987,7 @@
 				},
 				{
 					"comment": "IPIP キープアライブのログ設定",
-					"match": "^\\b(ipip keepalive log)\\b",
+					"match": "\\b(ipip keepalive log)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -5173,7 +5176,7 @@
 				},
 				{
 					"comment": "通信制限の累積期間の設定",
-					"match": "\\B((wan1) access limit duration)\\b",
+					"match": "\\b((wan1) access limit duration)\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -5279,7 +5282,7 @@
 			]
 		},
 		"rtx-l2ms": {
-			"padtterns": [
+			"patterns": [
 				{
 					"comment": "L2MS の動作モードの設定",
 					"match": "\\b(switch control mode (master|slave|off))\\b",
@@ -5851,278 +5854,298 @@
 					}
 				},
 				{
-					"comment": "48.3.7.3",
-					"match": "^\\s*switch control function (set|get) status-counter-frame-rx",
+					"comment": "受信フレームカウンタの値の取得",
+					"match": "\\b(switch control function (set|get) status-counter-frame-rx)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.7.4",
-					"match": "^\\s*switch control function (set|get) status-counter-frame-tx",
+					"comment": "送信フレームカウンタの値の取得",
+					"match": "\\b(switch control function (set|get) status-counter-frame-tx)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.7.5",
-					"match": "^\\s*switch control function (set|get) status-counter-octet-rx",
+					"comment": "受信オクテットカウンタの値の取得",
+					"match": "\\b(switch control function (set|get) status-counter-octet-rx)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.7.6",
-					"match": "^\\s*switch control function (set|get) status-counter-octet-tx",
+					"comment": "送信オクテットカウンタの値の取得",
+					"match": "\\b(switch control function (set|get) status-counter-octet-tx)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.7.7",
-					"match": "^\\s*switch control function (execute) clear-counter",
+					"comment": "カウンタのクリア",
+					"match": "\\b(switch control function (execute) clear-counter)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.8.1",
-					"match": "^\\s*switch control function (set|get) loopdetect-count",
+					"comment": "1秒あたりのループが発生したと判断する閾値の設定",
+					"match": "\\b(switch control function (set|get) loopdetect-count)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.8.2",
-					"match": "^\\s*switch control function (set|get) loopdetect-time",
+					"comment": "ループが発生したと判断するまでの時間の設定",
+					"match": "\\b(switch control function (set|get) loopdetect-time)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.8.3",
-					"match": "^\\s*switch control function (set|get) loopdetect-linkdown",
+					"comment": "ループ発生時の動作の設定3",
+					"match": "\\b(switch control function (set|get) loopdetect-linkdown)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.8.4",
-					"match": "^\\s*switch control function (set|get) loopdetect-recovery-timer",
+					"comment": "ポートをリンクダウンしてから復帰させるまでの時間の設定",
+					"match": "\\b(switch control function (set|get) loopdetect-recovery-timer)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.8.5",
-					"match": "^\\s*switch control function (set|get) loopdetect-port-use",
+					"comment": "ループ検出機能を使用するか否かの設定",
+					"match": "\\b(switch control function (set|get) loopdetect-port-use)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.8.6",
-					"match": "^\\s*switch control function (set|get) loopdetect-use-control-packet",
+					"comment": "L2MS パケットを用いたループ検出を行うか否かの設定",
+					"match": "\\b(switch control function (set|get) loopdetect-use-control-packet)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.8.7",
-					"match": "^\\s*switch control function (get) status-loopdetect-port",
+					"comment": "ループ検出機能に関するポートの状態の取得",
+					"match": "\\b(switch control function (get) status-loopdetect-port)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.8.8",
-					"match": "^\\s*switch control function (get) status-loopdetect-recovery-timer",
+					"comment": "リンクダウンしている状態から復帰するまでの残り時間の取得",
+					"match": "\\b(switch control function (get) status-loopdetect-recovery-timer)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.8.9",
-					"match": "^\\s*switch control function (exec) reset-loopdetect",
+					"comment": "ループ発生によってリンクダウンしているポートの復帰",
+					"match": "\\b(switch control function (exec) reset-loopdetect)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.9.1",
-					"match": "^\\s*switch control function (get|set) poe-class",
+					"comment": "各ポートで給電可能なクラスの上限の設定",
+					"match": "\\b(switch control function (get|set) poe-class)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.9.2",
-					"match": "^\\s*switch control function (get) status-poe-state",
+					"comment": "各ポートの給電状態の取得",
+					"match": "\\b(switch control function (get) status-poe-state)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.9.3",
-					"match": "^\\s*switch control function (get) status-poe-detect-class",
+					"comment": "各ポートに接続された機器のクラスの取得",
+					"match": "\\b(switch control function (get) status-poe-detect-class)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.9.4",
-					"match": "^\\s*switch control function (get) status-poe-temperature",
+					"comment": "スイッチの内部温度の取得",
+					"match": "\\b(switch control function (get) status-poe-temperature)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.9.5, 48.3.9.6, 48.3.9.7",
-					"match": "^\\s*switch control function (get) status-poe-supply(-(detail|total))?",
+					"comment": "各ポートの供給電力の取得",
+					"match": "\\b(switch control function (get) status-poe-supply)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.9.8",
-					"match": "^\\s*switch control function (exec) restart-poe-supply",
+					"comment": "各ポートの詳細な供給電力の取得",
+					"match": "\\b(switch control function (get) status-poe-supply-detail)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.9.9",
-					"match": "^\\s*switch control function (exec) start-poe-supply",
+					"comment": "スイッチの総供給電力の取得",
+					"match": "\\b(switch control function (get) status-poe-supply-total)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.3.9.10",
-					"match": "^\\s*switch control function (exec) stop-poe-supply",
+					"comment": "給電復帰",
+					"match": "\\b(switch control function (exec) restart-poe-supply)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
 				},
 				{
-					"comment": "48.4.1",
-					"match": "^\\s*ap select",
+					"comment": "各ポートへの給電を開始",
+					"match": "\\b(switch control function (exec) start-poe-supply)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "各ポートへの給電を停止",
+					"match": "\\b(switch control function (exec) stop-poe-supply)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
+				},
+				{
+					"comment": "アクセスポイントの選択",
+					"match": "\\b(ap select)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.4.2",
-					"match": "^\\s*ap config directory",
+					"comment": "アクセスポイントの設定ファイルを格納するディレクトリの指定",
+					"match": "\\b(ap config directory)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.4.3",
-					"match": "^\\s*ap config filename",
+					"comment": "アクセスポイントの設定を保存するファイル名の指定",
+					"match": "\\b(ap config filename)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.4.4",
-					"match": "^\\s*ap control config get",
+					"comment": "アクセスポイントの設定のバックアップ実行",
+					"match": "\\b(ap control config get)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.4.5",
-					"match": "^\\s*ap control config set",
+					"comment": "アクセスポイントの設定の復元実行",
+					"match": "\\b(ap control config set)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.4.6",
-					"match": "^\\s*ap control config delete",
+					"comment": "アクセスポイントの設定の削除",
+					"match": "\\b(ap control config delete)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.4.7",
-					"match": "^\\s*ap control config-auto-set use",
+					"comment": "アクセスポイント設定のゼロコンフィグ機能を使用するか否かの設定",
+					"match": "\\b(ap control config-auto-set use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.4.8",
-					"match": "^\\s*ap control firmware update go",
+					"comment": "アクセスポイントのHTTPリビジョンアップ機能の実行",
+					"match": "\\b(ap control firmware update go)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.4.9",
-					"match": "^\\s*ap control http proxy use",
+					"comment": "アクセスポイント制御用のHTTPプロキシの使用",
+					"match": "\\b(ap control http proxy use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.4.10",
-					"match": "^\\s*ap control http proxy timeout",
+					"comment": "アクセスポイント制御用のHTTPプロキシのタイムアウト時間の設定",
+					"match": "\\b(ap control http proxy timeout)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "48.5.1",
-					"match": "^\\s*httpd proxy-access l2ms permit",
+					"comment": "HTTP プロキシー経由での Web GUI へのアクセスを許可するか否かの設定",
+					"match": "\\b(httpd proxy-access l2ms permit)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -6130,73 +6153,68 @@
 		"rtx-yno": {
 			"patterns": [
 				{
-					"comment": "49.1",
-					"match": "^\\s*yno use",
+					"comment": "YNO エージェント機能を使用するか否かの設定",
+					"match": "\\b(yno use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.2",
-					"match": "^\\s*yno access code",
+					"comment": "YNO マネージャー接続用のアクセスコードの設定",
+					"match": "\\b(yno access code)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.3",
-					"match": "^\\s*yno log",
+					"comment": "YNO エージェント機能に関する追加の SYSLOG を出力するか否かの設定",
+					"match": "\\b(yno log)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.4",
-					"match": "^\\s*description yno",
+					"comment": "YNO マネージャーに表示される自身の機器説明の設定",
+					"match": "\\b(description yno)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.5",
-					"match": "^\\s*yno https-proxy",
+					"comment": "YNO で使用するHTTPS プロキシサーバーの設定",
+					"match": "\\b(yno https-proxy)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.6",
-					"match": "^\\s*yno gui-forwarder timeout",
+					"comment": "GUI Forwarder 接続のタイムアウト時間の設定",
+					"match": "\\b(yno gui-forwarder timeout)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.7",
-					"match": "^\\s*yno zero-config id",
+					"comment": "YNO のゼロコンフィグの設定",
+					"match": "\\b(yno zero-config id)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.8, 49.9.5",
-					"match": "^\\s*show status yno( las)?",
+					"comment": "YNO エージェント機能の動作状態の表示",
+					"match": "\\b(show status yno)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.9.1",
-					"match": "^\\s*yno las syslog queue length",
+					"comment": "SYSLOG送信キューの長さの設定",
+					"match": "\\b(yno las syslog queue length)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.9.2",
-					"match": "^\\s*yno las request timeout",
+					"comment": "LASクライアントが送信したリクエストに対するLASサーバーからの応答待ちがタイムアウトするまでの時間の設定",
+					"match": "\\b(yno las request timeout)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.9.3",
-					"match": "^\\s*yno las request retry",
+					"comment": "LASクライアントがリクエストの送信を再試行する回数の設定",
+					"match": "\\b(yno las request retry)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.9.4",
-					"match": "^\\s*yno las connection keepalive",
+					"comment": "LASサーバーとのコネクションに対するキープアライブの設定",
+					"match": "\\b(yno las connection keepalive)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "49.9.4",
-					"match": "^\\s*yno las connection keepalive",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "49.10",
-					"match": "^\\s*yno xmpp connection keepalive",
+					"comment": "XMPPサーバーとのキープアライブの時間間隔の設定",
+					"match": "\\b(yno xmpp connection keepalive)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -6204,33 +6222,38 @@
 		"rtx-diagnose": {
 			"patterns": [
 				{
-					"comment": "50.1",
-					"match": "^\\s*diagnose config port map",
+					"comment": "ポートの開閉状態の診断",
+					"match": "\\b(diagnose config port map)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "50.2",
-					"match": "^\\s*diagnose config port access",
+					"comment": "ポートへ到達可能なアクセス範囲の診断",
+					"match": "\\b(diagnose config port access)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "50.3",
-					"match": "^\\s*diagnosis config port max-detect",
+					"comment": "ポートの開閉状態の診断で検出可能な通過パケットの最大数の設定",
+					"match": "\\b(diagnosis config port max-detect)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "50.4",
-					"match": "^\\s*diagnosis config port history-num",
+					"comment": "ポートの開閉状態の診断結果の履歴数の設定",
+					"match": "\\b(diagnosis config port history-num)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "50.5, 50.6",
-					"match": "^\\s*show diagnosis config port (access|map)",
+					"comment": "ポートの開閉状態の診断結果の表示",
+					"match": "\\b(show diagnosis config port map)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "50.7",
-					"match": "^\\s*clear diagnosis config port",
+					"comment": "ポートへ到達可能なアクセス範囲の診断結果の表示",
+					"match": "\\b(show diagnosis config port access)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ポートの開閉状態の診断結果の消去",
+					"match": "\\b(clear diagnosis config port)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -6238,11 +6261,11 @@
 		"rtx-statistics": {
 			"patterns": [
 				{
-					"comment": "51.1",
-					"match": "^\\s*statistics (cpu|memory|traffic|flow|nat|route|filter|qos|application)",
+					"comment": "統計機能を有効にするか否かの設定",
+					"match": "\\b(statistics (cpu|memory|traffic|flow|nat|route|filter|qos|application))\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "constant.language"
 						}
 					}
@@ -6252,88 +6275,88 @@
 		"rtx-dpi": {
 			"patterns": [
 				{
-					"comment": "52.1",
-					"match": "^\\s*dpi use",
+					"comment": "DPI を使用するか否かの設定",
+					"match": "\\b(dpi use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.2",
-					"match": "^\\s*ip dpi filter",
+					"comment": "IPv4 の DPI フィルターの設定",
+					"match": "\\b(ip dpi filter)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.3",
-					"match": "^\\s*ipv6 dpi filter",
+					"comment": "IPv6 の DPI フィルタの設定",
+					"match": "\\b(ipv6 dpi filter)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.4",
-					"match": "^\\s*ip(v6)? (\\S+) dpi filter",
+					"comment": "DPI のフィルターのインターフェースへの適用",
+					"match": "\\b(ip(v6)? (\\S+) dpi filter)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"2": {
+						"3": {
 							"name": "constant.language"
 						}
 					}
 				},
 				{
-					"comment": "52.5",
-					"match": "^\\s*dpi group set",
+					"comment": "DPI のアプリケーショングループの作成",
+					"match": "\\b(dpi group set)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.6",
-					"match": "^\\s*dpi signature download go",
+					"comment": "シグネチャーのダウンロードの手動実行",
+					"match": "\\b(dpi signature download go)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.7",
-					"match": "^\\s*dpi signature download url",
+					"comment": "シグネチャーのダウンロード先 URL の設定",
+					"match": "\\b(dpi signature download url)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.8",
-					"match": "^\\s*dpi log",
+					"comment": "アプリケーションの識別に関するログを出力するか否かの設定",
+					"match": "\\b(dpi log)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.9",
-					"match": "^\\s*show dpi statistics",
+					"comment": "DPI の統計情報の表示",
+					"match": "\\b(show dpi statistics)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.10",
-					"match": "^\\s*clear dpi statistics",
+					"comment": "DPI の統計情報のクリア",
+					"match": "\\b(clear dpi statistics)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.11",
-					"match": "^\\s*show dpi cache",
+					"comment": "識別結果のキャッシュの表示",
+					"match": "\\b(show dpi cache)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.12",
-					"match": "^\\s*clear dpi cache",
+					"comment": "識別結果のキャッシュのクリア",
+					"match": "\\b(clear dpi cache)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.13",
-					"match": "^\\s*show dpi application",
+					"comment": "アプリケーションを表すニーモニック一覧の表示",
+					"match": "\\b(show dpi application)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.14",
-					"match": "^\\s*show dpi category",
+					"comment": "カテゴリーを表すニーモニック一覧の表示",
+					"match": "\\b(show dpi category)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.15",
-					"match": "^\\s*show status dpi",
+					"comment": "DPI の動作状態、およびシグネチャーの状態の表示",
+					"match": "\\b(show status dpi)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "52.16",
-					"match": "^\\s*dpi signature directory",
+					"comment": "シグネチャーを保存するディレクトリーの設定",
+					"match": "\\b(dpi signature directory)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -6341,28 +6364,28 @@
 		"rtx-flexible-lan": {
 			"patterns": [
 				{
-					"comment": "53.1",
-					"match": "^\\s*lan flexible-port",
+					"comment": "LAN インタフェースにマッピングするポートの設定",
+					"match": "\\b(lan flexible-port)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "53.2",
-					"match": "^\\s*show lan flexible-port",
+					"comment": "LAN インタフェースへマッピングされているポートの表示",
+					"match": "\\b(show lan flexible-port)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "53.3",
-					"match": "^\\s*lan port type",
+					"comment": "LAN ポートの動作タイプの設定",
+					"match": "\\b(lan port type)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "53.4",
-					"match": "^\\s*switching-hub macaddress-aging",
+					"comment": "MAC アドレスエージング機能の設定",
+					"match": "\\b(switching-hub macaddress-aging)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "53.5",
-					"match": "^\\s*lan port shutdown",
+					"comment": "LAN ポートの動作設定",
+					"match": "\\b(lan port shutdown)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -6370,8 +6393,8 @@
 		"rtx-dashboard": {
 			"patterns": [
 				{
-					"comment": "54.1",
-					"match": "^\\s*dashboard accumulate",
+					"comment": "ダッシュボードのデータを蓄積するか否かの設定",
+					"match": "\\b(dashboard accumulate)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -6379,191 +6402,216 @@
 		"rtx-operation": {
 			"patterns": [
 				{
-					"comment": "55.1",
-					"match": "^\\s*pp select",
+					"comment": "相手先情報番号の選択",
+					"match": "\\b(pp select)\\b",
 					"name": "storage.type"
 				},
 				{
-					"comment": "55.2",
-					"match": "^\\s*tunnel select",
+					"comment": "トンネルインタフェース番号の選択",
+					"match": "\\b(tunnel select)\\b",
 					"name": "storage.type"
 				},
 				{
-					"comment": "55.3.1"
+					"comment": "管理ユーザへの移行"
 				},
 				{
-					"comment": "55.3.2",
-					"match": "^\\s*(quit|exit)",
+					"comment": "終了",
+					"match": "\\b((quit|exit))\\b",
 					"name": "storage.type"
 				},
 				{
-					"comment": "55.3.3",
-					"match": "^\\s*save",
+					"comment": "設定内容の保存",
+					"match": "\\b(save)\\b",
 					"name": "storage.type"
 				},
 				{
-					"comment": "55.3.4, 55.3.5",
-					"match": "^\\s*copy (config|exec)",
+					"comment": "設定ファイルの複製",
+					"match": "\\b(copy config)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.3.6, 55.3.7",
-					"match": "^\\s*delete (config|exec)",
+					"comment": "ファームウェアファイルを内部ストレージ ( 内蔵フラッシュ ROM 等 ) にコピー",
+					"match": "\\b(copy exec)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.3.8",
-					"match": "^\\s*set-default-config",
+					"comment": "設定ファイルの削除",
+					"match": "\\b(delete config)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.3.9",
-					"match": "^\\s*set-default-exec",
+					"comment": "実行形式ファームウェアファイルの削除",
+					"match": "\\b(delete exec)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.3.10",
-					"match": "^\\s*set-serial-baudrate",
+					"comment": "デフォルト設定ファイルの設定",
+					"match": "\\b(set-default-config)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.3.11",
-					"match": "^\\s*cold start",
+					"comment": "デフォルトファームウェアファイルの設定",
+					"match": "\\b(set-default-exec)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.3.12, 55.3.13",
-					"match": "^\\s*remote setup( accept)?",
+					"comment": "シリアルポートのボーレートの設定",
+					"match": "\\b(set-serial-baudrate)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.1, 55.4.2, 55.4.3, 55.4.4, 55.4.5",
-					"match": "^\\s*clear account( (pp|tunnel|mobile|ngn data))?",
+					"comment": "設定の初期化",
+					"match": "\\b(cold start)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.6",
-					"match": "^\\s*clear arp",
+					"comment": "遠隔地のルーターの設定",
+					"match": "\\b(remote setup( accept)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.7",
-					"match": "^\\s*clear ip dynamic routing",
+					"comment": "アカウントのクリア",
+					"match": "\\b(clear account( (pp|tunnel|mobile|ngn data))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.8",
-					"match": "^\\s*clear bridge learning",
+					"comment": "ARP テーブルのクリア",
+					"match": "\\b(clear arp)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.9",
-					"match": "^\\s*clear log",
+					"comment": "IP の動的経路情報のクリア",
+					"match": "\\b(clear ip dynamic routing)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.10",
-					"match": "^\\s*clear inarp",
+					"comment": "ブリッジのラーニング情報のクリア",
+					"match": "\\b(clear bridge learning)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.11",
-					"match": "^\\s*clear dns cache",
+					"comment": "ログのクリア",
+					"match": "\\b(clear log)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.12",
-					"match": "^\\s*clear status( (pp|tunnel))?",
+					"comment": "InARP のクリア",
+					"match": "\\b(clear inarp)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.13",
-					"match": "^\\s*clear pri status",
+					"comment": "DNS キャッシュのクリア",
+					"match": "\\b(clear dns cache)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.14",
-					"match": "^\\s*clear nat descriptor dynamic",
+					"comment": "インタフェースのカウンター情報のクリア",
+					"match": "\\b(clear status( (pp|tunnel))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.15",
-					"match": "^\\s*clear nat descriptor interface dynamic( (pp|tunnel))?",
+					"comment": "PRI のステータス情報のクリア",
+					"match": "\\b(clear pri status)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.16",
-					"match": "^\\s*clear nat descriptor masquerade session statistics",
+					"comment": "NAT アドレステーブルのクリア",
+					"match": "\\b(clear nat descriptor dynamic)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.17",
-					"match": "^\\s*clear pppoe pass-through learning",
+					"comment": "インタフェースの NAT アドレステーブルのクリア",
+					"match": "\\b(clear nat descriptor interface dynamic( (pp|tunnel))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.18",
-					"match": "^\\s*clear ipv6 dynamic routing",
+					"comment": "IPマスカレードで管理しているセッションの統計情報のクリア",
+					"match": "\\b(clear nat descriptor masquerade session statistics)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.19",
-					"match": "^\\s*clear ipv6 neighbor cache",
+					"comment": "PPPoE パススルー機能がラーニングした情報のクリア",
+					"match": "\\b(clear pppoe pass-through learning)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.20",
-					"match": "^\\s*clear boot list",
+					"comment": "IPv6 の動的経路情報の消去",
+					"match": "\\b(clear ipv6 dynamic routing)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.4.21",
-					"match": "^\\s*clear external-memory syslog",
+					"comment": "近隣キャッシュの消去",
+					"match": "\\b(clear ipv6 neighbor cache)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.5.1",
-					"match": "^\\s*make directory",
+					"comment": "起動情報の履歴を削除する",
+					"match": "\\b(clear boot list)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.5.2",
-					"match": "^\\s*delete",
+					"comment": "外部メモリに保存された SYSLOG のクリアとバックアップファイルの削除",
+					"match": "\\b(clear external-memory syslog)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.5.3",
-					"match": "^\\s*copy",
+					"comment": "ディレクトリの作成",
+					"match": "\\b(make directory)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.5.4",
-					"match": "^\\s*rename",
+					"comment": "ファイルまたはディレクトリの削除",
+					"match": "\\b(delete)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.1",
-					"match": "^\\s*pp enable",
+					"comment": "ファイルまたはディレクトリの複製",
+					"match": "\\b(copy)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.2",
-					"match": "^\\s*pp disable",
+					"comment": "ファイル名またはディレクトリ名の変更",
+					"match": "\\b(rename)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.3",
-					"match": "^\\s*restart",
+					"comment": "外部ストレージをマウントする",
+					"match": "\\b(mount)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.4, 55.6.5",
-					"match": "^\\s*interface reset( pp)?",
+					"comment": "外部ストレージをアンマウントする",
+					"match": "\\b(unmount)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.6",
-					"match": "^\\s*connect( (pp|tunnel))?",
+					"comment": "相手先の使用許可の設定",
+					"match": "\\b(pp enable)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "相手先の使用不許可の設定",
+					"match": "\\b(pp disable)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "再起動",
+					"match": "\\b(restart)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "電源オフ",
+					"match": "\\b(shutdown)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "インタフェースの再起動",
+					"match": "\\b(interface reset( pp)?)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "発信",
+					"match": "\\b(connect( (pp|tunnel))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
@@ -6572,28 +6620,28 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.8, 55.6.9",
-					"match": "^\\s*ping(6)?",
+					"comment": "ping",
+					"match": "\\b(ping(6)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.10, 55.6.11",
-					"match": "^\\s*traceroute(6)?",
+					"comment": "traceroute",
+					"match": "\\b(traceroute(6)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.12",
-					"match": "^\\s*nslookup",
+					"comment": "nslookup",
+					"match": "\\b(nslookup)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.13",
-					"match": "^\\s*sip server connect",
+					"comment": "SIP サーバーに対し手動で接続",
+					"match": "\\b(sip server connect)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.14",
-					"match": "^\\s*sip server disconnect",
+					"comment": "SIP サーバーに対し手動で切断",
+					"match": "\\b(sip server disconnect)\\b",
 					"name": "entity.name.function"
 				},
 				{
@@ -6602,9 +6650,14 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.16",
-					"match": "^\\s*telnet",
-					"name": "entity.name.function"
+					"comment": "TELNET クライアント",
+					"match": "\\b(telnet (\\S+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "IPv6 動的フィルタのコネクション管理情報の削除",
@@ -6612,83 +6665,82 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.18",
-					"match": "^\\s*clear switching-hub macaddress",
+					"comment": "スイッチングハブ MAC アドレステーブルの消去",
+					"match": "\\b(clear switching-hub macaddress)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.19",
-					"match": "^\\s*pri loopback active",
+					"comment": "PRI のループバックの実行",
+					"match": "\\b(pri loopback active)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.20",
-					"match": "^\\s*pri loopback passive",
+					"comment": "PRI のループバック待ち受けの設定",
+					"match": "\\b(pri loopback passive)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.21",
-					"match": "^\\s*wol send",
+					"comment": "Magic Packet の送信",
+					"match": "\\b(wol send)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.22",
-					"match": "^\\s*http revision-up go",
+					"comment": "HTTP を利用したファームウェアのチェックおよびリビジョンアップの実行",
+					"match": "\\b(http revision-up go)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.23",
-					"match": "^\\s*clear url filter ( (pp|tunnel))?",
+					"comment": "URL フィルタの統計情報のクリア",
+					"match": "\\b(clear url filter ( (pp|tunnel))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.24",
-					"match": "^\\s*clear url filter external-database( (pp|tunnel))?",
+					"comment": "外部データベース参照型URLフィルターの統計情報のクリア",
+					"match": "\\b(clear url filter external-database( (pp|tunnel))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.25",
-					"match": "^\\s*mail notify status exec",
+					"comment": "メール通知の実行",
+					"match": "\\b(mail notify status exec)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.26",
-					"match": "^\\s*rotate external-memory syslog",
+					"comment": "外部メモリに保存された SYSLOG ファイルのローテート (バックアップ)",
+					"match": "\\b(rotate external-memory syslog)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.27",
-					"match": "^\\s*license authentication go",
+					"comment": "ライセンス認証の実行",
+					"match": "\\b(license authentication go)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.28",
-					"match": "^\\s*license authentication retry interval",
+					"comment": "ライセンス認証のリトライの間隔と回数の設定",
+					"match": "\\b(license authentication retry interval)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.29",
-					"match": "^\\s*load",
+					"comment": "設定の一括更新",
+					"match": "\\b(load)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.30",
-					"match": "^\\s*rollback timer",
+					"comment": "ロールバックタイマーの起動",
+					"match": "\\b(rollback timer)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.31",
-					"match": "^\\s*confirm",
+					"comment": "設定の確認",
+					"match": "\\b(confirm)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "55.6.32",
-					"match": "^\\s*call",
-					"name": "entity.name.function"
+					"comment": "ファイルをマクロとして実行する"
+
 				},
 				{
-					"comment": "55.6.33",
-					"match": "^\\s*echo ",
+					"comment": "echo",
+					"match": "\\b(echo)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -6696,88 +6748,58 @@
 		"rtx-showconfig": {
 			"patterns": [
 				{
-					"comment": "56.1",
-					"match": "^\\s*show environment",
+					"comment": "機器設定の表示",
+					"match": "\\b(show environment)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "56.3",
-					"match": "^\\s*(show|less) config ap",
+					"comment": "すべての設定内容の表示",
+					"match": "\\b((show|less) config( (ap|pp|switch|tunnel|difference|list))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "56.4",
-					"match": "^\\s*(show|less) config pp",
+					"comment": "ファイル情報の一覧の表示",
+					"match": "\\b((show|less) file list)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "56.5",
-					"match": "^\\s*(show|less) config switch",
+					"comment": "インタフェースに付与されている IPv6 アドレスの表示",
+					"match": "\\b(show ipv6 address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "56.6",
-					"match": "^\\s*(show|less) config tunnel",
+					"comment": "マスタクロックを得ている回線の表示",
+					"match": "\\b(show line masterclock)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "56.7",
-					"match": "^\\s*show config difference",
+					"comment": "SSH サーバー公開鍵の表示",
+					"match": "\\b(show sshd public key)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "56.8",
-					"match": "^\\s*(show|less) config list",
+					"comment": "指定したインタフェースのフィルタ内容の表示",
+					"match": "\\b(show ip secure filter)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "56.9",
-					"match": "^\\s*(show|less) file list",
+					"comment": "ファームウェアファイルの一覧",
+					"match": "\\b((show|less) exec list)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "56.10",
-					"match": "^\\s*show ipv6 address",
+					"comment": "環境変数の表示",
+					"match": "\\b(show set)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "56.11",
-					"match": "^\\s*show line masterclock",
+					"comment": "エイリアスの表示",
+					"match": "\\b(show alias)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "56.12",
-					"match": "^\\s*show sshd public key",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "56.13",
-					"match": "^\\s*show ip secure filter",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "56.14",
-					"match": "^\\s*show ip secure filter",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "56.15",
-					"match": "^\\s*(show|less) exec list",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "56.16",
-					"match": "^\\s*show set",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "56.17",
-					"match": "^\\s*show alias",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "56.18",
-					"match": "^\\s*show macro",
+					"comment": "マクロの表示",
+					"match": "\\b(show macro)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -6785,318 +6807,333 @@
 		"rtx-showstatus": {
 			"patterns": [
 				{
-					"comment": "57.1",
-					"match": "^\\s*show arp",
+					"comment": "ARP テーブルの表示",
+					"match": "\\b(show arp)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.3",
-					"match": "^\\s*show status pp",
+					"comment": "インタフェースの状態の表示",
+					"match": "\\b(show status( pp)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.4",
-					"match": "^\\s*show ip route",
+					"comment": "IP の経路情報テーブルの表示",
+					"match": "\\b(show ip route)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.5",
-					"match": "^\\s*show ip rip table",
+					"comment": "RIP で得られた経路情報の表示",
+					"match": "\\b(show ip rip table)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.6",
-					"match": "^\\s*show ipv6 route",
+					"comment": "IPv6 の経路情報の表示",
+					"match": "\\b(show ipv6 route)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.7",
-					"match": "^\\s*show ipv6 rip table",
+					"comment": "IPv6 の RIP テーブルの表示",
+					"match": "\\b(show ipv6 rip table)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.8",
-					"match": "^\\s*show ipv6 neighbor cache",
+					"comment": "近隣キャッシュの表示",
+					"match": "\\b(show ipv6 neighbor cache)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.9",
-					"match": "^\\s*show bridge learning",
+					"comment": "ブリッジのラーニング情報の表示",
+					"match": "\\b(show bridge learning)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.10",
-					"match": "^\\s*show ipsec sa( gateway)?",
+					"comment": "IPsec の SA の表示",
+					"match": "\\b(show ipsec sa( gateway)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.11",
-					"match": "^\\s*show pki certificate summary",
+					"comment": "証明書の情報の表示",
+					"match": "\\b(show pki certificate summary)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.12",
-					"match": "^\\s*show pki crl",
+					"comment": "CRLファイルの情報の表示",
+					"match": "\\b(show pki crl)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.13",
-					"match": "^\\s*show status vrrp",
+					"comment": "VRRP の情報の表示",
+					"match": "\\b(show status vrrp)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.14",
-					"match": "^\\s*show nat descriptor address",
+					"comment": "動的 NAT ディスクリプタのアドレスマップの表示",
+					"match": "\\b(show nat descriptor address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.15",
-					"match": "^\\s*show nat descriptor interface bind",
+					"comment": "動作中の NAT ディスクリプタの適用リストの表示",
+					"match": "\\b(show nat descriptor interface bind)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.16",
-					"match": "^\\s*show nat descriptor interface address",
+					"comment": "LAN インタフェースの NAT ディスクリプタのアドレスマップの表示",
+					"match": "\\b(show nat descriptor interface address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.17",
-					"match": "^\\s*show nat descriptor masquerade port",
+					"comment": "IP マスカレードで使用しているポート番号の個数の表示",
+					"match": "\\b(show nat descriptor masquerade port)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.18",
-					"match": "^\\s*show nat descriptor masquerade session",
+					"comment": "IP マスカレードで使用しているセッション数の表示",
+					"match": "\\b(show nat descriptor masquerade session)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.19",
-					"match": "^\\s*show nat descriptor masquerade session statistics",
+					"comment": "IPマスカレードで管理しているセッションの統計情報の表示",
+					"match": "\\b(show nat descriptor masquerade session statistics)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.20",
-					"match": "^\\s*show status l2tp",
+					"comment": "L2TP の状態の表示",
+					"match": "\\b(show status l2tp)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.21",
-					"match": "^\\s*show status pptp",
+					"comment": "PPTP の状態の表示",
+					"match": "\\b(show status pptp)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.22",
-					"match": "^\\s*show status ipip",
+					"comment": "IPIP トンネリングの状態の表示",
+					"match": "\\b(show status ipip)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.23",
-					"match": "^\\s*show status ospf",
+					"comment": "OSPF 情報の表示",
+					"match": "\\b(show status ospf)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.24",
-					"match": "^\\s*show status bgp neighbor",
+					"comment": "BGP の状態の表示",
+					"match": "\\b(show status bgp neighbor)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.25, 57.26",
-					"match": "^\\s*show status dhcp(c)?",
+					"comment": "DHCP サーバーの状態の表示",
+					"match": "\\b(show status dhcp)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.27",
-					"match": "^\\s*show status ipv6 dhcp",
+					"comment": "DHCP クライアントの状態の表示",
+					"match": "\\b(show status dhcpc)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.28",
-					"match": "^\\s*show status backup",
+					"comment": "DHCPv6 の状態の表示",
+					"match": "\\b(show status ipv6 dhcp)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.29",
-					"match": "^\\s*show ip connection",
+					"comment": "バックアップ状態の表示",
+					"match": "\\b(show status backup)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.30",
-					"match": "^\\s*show ipv6 connection",
+					"comment": "動的フィルタによって管理されているコネクションの表示",
+					"match": "\\b(show ip connection)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.31",
-					"match": "^\\s*show ip keepalive",
+					"comment": "IPv6 の動的フィルタによって管理されているコネクションの表示",
+					"match": "\\b(show ipv6 connection)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.32",
-					"match": "^\\s*show ip intrusion detection",
+					"comment": "ネットワーク監視機能の状態の表示",
+					"match": "\\b(show ip keepalive)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.33",
-					"match": "^\\s*show pp connect time",
+					"comment": "侵入情報の履歴の表示",
+					"match": "\\b(show ip intrusion detection)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.34",
-					"match": "^\\s*show pppoe pass-through learning",
+					"comment": "相手先ごとの接続時間情報の表示",
+					"match": "\\b(show pp connect time)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.35",
-					"match": "^\\s*show status netvolante-dns",
+					"comment": "PPPoE パススルー機能がラーニングした情報の表示",
+					"match": "\\b(show pppoe pass-through learning)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.36",
-					"match": "^\\s*show status switching-hub macaddress",
+					"comment": "ネットボランチ DNS サービスに関する設定の表示",
+					"match": "\\b(show status netvolante-dns)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.37",
-					"match": "^\\s*show status upnp",
+					"comment": "スイッチングハブ MAC アドレステーブルの表示6",
+					"match": "\\b(show status switching-hub macaddress)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.38",
-					"match": "^\\s*show status tunnel",
+					"comment": "UPnP に関するステータス情報の表示",
+					"match": "\\b(show status upnp)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.39",
-					"match": "^\\s*show status vlan",
+					"comment": "トンネルインタフェースの状態の表示",
+					"match": "\\b(show status tunnel)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.40",
-					"match": "^\\s*show status mail service",
+					"comment": "VLAN インタフェースの状態の表示",
+					"match": "\\b(show status vlan)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.41",
-					"match": "^\\s*show status ip pim sparse",
+					"comment": "トリガによるメール通知機能の状態の表示",
+					"match": "\\b(show status mail service)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.42",
-					"match": "^\\s*show status ipv6 mld",
+					"comment": "マウントされている外部ストレージの一覧を表示する",
+					"match": "\\b(show status ip pim sparse)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.43",
-					"match": "^\\s*show ipv6 mroute fib",
+					"comment": "MLD のグループ管理情報の表示",
+					"match": "\\b(show status ipv6 mld)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.44, 57.45",
-					"match": "^\\s*show status user( history)?",
+					"comment": "IPv6 マルチキャストの経路情報の表示",
+					"match": "\\b(show ipv6 mroute fib)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.46",
-					"match": "^\\s*show status packet-buffer",
+					"comment": "ログインしているユーザー情報の表示",
+					"match": "\\b(show status user( history)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.47",
-					"match": "^\\s*show status qos",
+					"comment": "パケットバッファの状態の表示",
+					"match": "\\b(show status packet-buffer)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.48",
-					"match": "^\\s*show status cooperation",
+					"comment": "QoS ステータスの表示",
+					"match": "\\b(show status qos)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.49",
-					"match": "^\\s*show ipv6 ospf",
+					"comment": "連携動作の状態の表示",
+					"match": "\\b(show status cooperation)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.50, 57.51, 57.52",
-					"match": "^\\s*show url filter( external-database( id)?)?",
+					"comment": "OSPFv3 情報の表示",
+					"match": "\\b(show ipv6 ospf)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.53",
-					"match": "^\\s*show status heartbeat",
+					"comment": "URL フィルタの情報の表示",
+					"match": "\\b(show url filter( external-database( id)?)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.54",
-					"match": "^\\s*show status usbhost",
+					"comment": "生存通知の状態の表示",
+					"match": "\\b(show status heartbeat)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.55",
-					"match": "^\\s*show status remote setup",
+					"comment": "USB ホスト機能の動作状態を表示",
+					"match": "\\b(show status usbhost)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.56",
-					"match": "^\\s*show techinfo",
+					"comment": "リモートセットアップ機能に関する接続情報の表示",
+					"match": "\\b(show status remote setup)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.57",
-					"match": "^\\s*show status sd",
+					"comment": "技術情報の表示",
+					"match": "\\b(show techinfo)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.58",
-					"match": "^\\s*show status external-memory",
+					"comment": "microSD スロットの動作状態を表示",
+					"match": "\\b(show status sd)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.59",
-					"match": "^\\s*show status rtfs",
+					"comment": "外部メモリの動作状態を表示",
+					"match": "\\b(show status external-memory)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.60, 57.61, 57.62",
-					"match": "^\\s*show status boot",
+					"comment": "RTFS の状態の表示",
+					"match": "\\b(show status rtfs)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.64",
-					"match": "^\\s*show status switch control( route backup)?",
+					"comment": "起動情報を表示する",
+					"match": "\\b(show status boot( (all|list))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.65",
-					"match": "^\\s*show dns cache",
+					"comment": "LANケーブル二重化機能の動作状態を表示",
+					"match": "\\b(show status switch control route backup)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.66, 57.67",
-					"match": "^\\s*show status license( authentication)?",
+					"comment": "DNSキャッシュの表示",
+					"match": "\\b(show dns cache)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.68",
-					"match": "^\\s*show status packet-scheduling",
+					"comment": "ライセンス情報の表示",
+					"match": "\\b(show status license( authentication)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.69",
-					"match": "^\\s*show status status-led",
+					"comment": "CPUスケジューリング(パケット転送)機能の状態の表示",
+					"match": "\\b(show status packet-scheduling)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.70",
-					"match": "^\\s*show lan-map",
+					"comment": "STATUS LED の情報の表示",
+					"match": "\\b(show status status-led)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.71",
-					"match": "^\\s*show copyright",
+					"comment": "LAN マップの状態を表示する",
+					"match": "\\b(show lan-map)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "57.72",
-					"match": "^\\s*show sfp-module info( detail)?",
+					"comment": "サードパーティー製ソフトウェアの著作権情報を表示",
+					"match": "\\b(show copyright)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "サードパーティー製ソフトウェアに適用される一般的なライセンスの条文を表示",
+					"match": "\\b(show copyright common-license)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SFP モジュールの情報を表示する",
+					"match": "\\b(show sfp-module info( detail)?)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "IPv6 マイグレーション技術の国内標準プロビジョニング方式の状態の表示",
+					"match": "\\b(show status hb46pp)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -7104,23 +7141,23 @@
 		"rtx-logging": {
 			"patterns": [
 				{
-					"comment": "58.1",
-					"match": "^\\s*show log",
+					"comment": "ログの表示",
+					"match": "\\b(show log)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "58.2, 58.3, 58.4, 58.5, 58.6",
-					"match": "^\\s*show account (pp|tunnel|mobile|ngn data)?",
+					"comment": "アカウントの表示",
+					"match": "\\b(show account( (pp|tunnel|mobile|ngn data))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "58.7",
-					"match": "^\\s*show history",
+					"comment": "通信履歴の表示",
+					"match": "\\b(show history)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "58.8",
-					"match": "^\\s*show command history",
+					"comment": "コマンドヒストリーの表示",
+					"match": "\\b(show command history)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -7128,15 +7165,15 @@
 		"rtxold-fr": {
 			"patterns": [
 				{
-					"match": "^\\s*fr (dlci|cir|lmi|inarp|backup|compression use|confestion control)",
+					"match": "\\b(fr (dlci|cir|lmi|inarp|backup|compression use|confestion control))\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*fr (pp dequeue type|de)",
+					"match": "\\b(fr (pp dequeue type|de))\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*pp encapsulation",
+					"match": "\\b(pp encapsulation)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -7144,7 +7181,7 @@
 		"rtxold-pri": {
 			"patterns": [
 				{
-					"match": "^\\s*pri leased channel",
+					"match": "\\b(pri leased channel)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -7152,7 +7189,7 @@
 		"rtxold-mobile": {
 			"patterns": [
 				{
-					"match": "^\\s*jate number",
+					"match": "\\b(jate number)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -7160,7 +7197,7 @@
 		"rtxold-qac_tm": {
 			"patterns": [
 				{
-					"match": "^\\s*qac-tm (client (permit|port|refresh go|update)|port|redirect|server (refresh go)?|unqualified client access control|use|version margin|warning url)",
+					"match": "\\b(qac-tm (client (permit|port|refresh go|update)|port|redirect|server (refresh go)?|unqualified client access control|use|version margin|warning url))\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -7168,7 +7205,7 @@
 		"rtxold": {
 			"patterns": [
 				{
-					"match": "^\\s*pri loopback (active|passive)",
+					"match": "\\b(pri loopback (active|passive))\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -7176,7 +7213,38 @@
 		"nvr-onu": {
 			"patterns": [
 				{
+					"comment": "ONU インターフェースの動作タイプの設定",
 					"match": "\\b(onu type)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ONU インターフェースの動作設定",
+					"match": "\\b(onu shutdown)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ONU インターフェースのリンクアップ後の送信抑制時間の設定",
+					"match": "\\b(onu linkup send-wait-time)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ONU 経由でのプロバイダー接続がダウンした時にバックアップする接続先の指定",
+					"match": "\\b(onu backup( recovery time)?)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ONU 経由のキープアライブを使用するか否かの設定",
+					"match": "\\b(onu keepalive use)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ONU 経由のキープアライブの時間間隔の設定",
+					"match": "\\b(onu keepalive interval)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ONU 経由のキープアライブのログをとるか否かの設定",
+					"match": "\\b(onu keepalive log)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -7184,51 +7252,577 @@
 		"nvr-analog": {
 			"patterns": [
 				{
-					"match": "^\\s*analog arrive (another-device|global|ignore-subaddress|ring-while-talking|without-subaddress) permit",
+					"comment": "TEL ポートを使うか否かの設定",
+					"match": "\\b(analog use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*analog arrive (incoming-signal|incoming-signal timing pb|inumber-port|number display|priority|restrict|restrict list|ringer-type list|without-calling-number)",
+					"comment": "TEL ポートのダイヤルイン番号の設定",
+					"match": "\\b(analog local address)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*analog call (route-table|route)",
+					"comment": "TEL ポートに接続する機器の設定",
+					"match": "\\b(analog device type)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*analog (device type|disc-signal|end-of-dialing-code)",
+					"comment": "TEL ポートの発信者番号を通知するか否かの設定",
+					"match": "\\b(analog local address notice)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*analog extension (address refer|agent permit|dial prefix|emergency-call-dial type|incoming ringer|log|machine-id|manager|master|mode|other-dial-tone|sip address|slave permit)",
+					"comment": "相手先番号による即時発信を許可するか否かの設定",
+					"match": "\\b(analog rapid call)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*analog (hooking (inhibit timer|timer|wait timer)|impedance|local address|local address notice)",
+					"comment": "ダイヤル完了ボタンの設定",
+					"match": "\\b(analog end-of-dialing-code)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*analog (loop-closure threshold|mp prior|off-hook call|off-hook mask|pad (receive|rtp receive|rtp send|send))",
+					"comment": "グローバル着信を許可するか否かの設定",
+					"match": "\\b(analog arrive global permit)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*analog (pause timer|power|rapid call|re-ringing-timer)",
+					"comment": "TEL ポートでの識別着信をするか否かの設定",
+					"match": "\\b(analog arrive restrict( list)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*analog sip (arrive (incoming-signal|myaddress|permit|restrict|restrict list|without-calling-number)|call display name|call myname|call permit)",
+					"comment": "識別着信リストの登録"
+				},
+				{
+					"comment": "サブアドレス無し着信を許可するか否かの設定",
+					"match": "\\b(analog arrive without-subaddress permit)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*analog (supplementary-service|supplementary-service call-deflection (address|reject||ringer|talkie))",
+					"comment": "サブアドレスにかかわらず着信を許可するか否かの設定",
+					"match": "\\b(analog arrive ignore-subaddress permit)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*analog use",
+					"comment": "異なる種類の通信機器からの着信を許可するか否かの設定",
+					"match": "\\b(analog arrive another-device permit)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "^\\s*analog wait dial timer",
+					"comment": "話中着信を許可するか否かの設定",
+					"match": "\\b(analog arrive ring-while-talking permit)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "着信ベルリストの登録",
+					"match": "\\b(analog arrive ringer-type list)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ナンバー・ディスプレイの設定",
+					"match": "\\b(analog arrive number display)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "指定したTEL ポートの優先着信順位を設定",
+					"match": "\\b(analog arrive priority)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ダイヤル桁間タイマの設定",
+					"match": "\\b(analog wait dial timer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "フッキングを判定する時間の設定",
+					"match": "\\b(analog hooking timer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "フッキング後にキー操作を受け入れる時間の設定",
+					"match": "\\b(analog hooking wait timer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "フッキング及びオンフック検出を無効と判断する時間の設定",
+					"match": "\\b(analog hooking inhibit timer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "オフフックを検出するまでの遅延時間の設定",
+					"match": "\\b(analog off-hook mask)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "オフフック/オンフックを検出する閾値の設定",
+					"match": "\\b(analog loop-closure threshold)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "インピーダンスの設定",
+					"match": "\\b(analog impedance)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "保留音の種類の設定",
+					"match": "\\b(audio hold-tone type)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TEL ポートの再呼出時間設定",
+					"match": "\\b(analog re-ringing-timer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "フレックスホン機能の使用パターンの設定",
+					"match": "\\b(analog supplementary-service)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "着信転送先アドレスの設定",
+					"match": "\\b(analog supplementary-service call-deflection address)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "着信転送を起動するタイミングの設定",
+					"match": "\\b(analog supplementary-service call-deflection ringer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "着信転送トーキの設定",
+					"match": "\\b(analog supplementary-service call-deflection talkie)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "着信転送が拒否された時の動作の設定",
+					"match": "\\b(analog supplementary-service call-deflection reject)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "送話PAD の設定",
+					"match": "\\b(analog pad send)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "受話PAD の設定",
+					"match": "\\b(analog pad receive)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "MP 時に電話発着信のために1B チャネルに落とすか否かの設定",
+					"match": "\\b(analog mp prior)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TEL ポートへの切断信号の送出の設定",
+					"match": "\\b(analog disc-signal)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "アザーダイヤルトーンを出すか否かの設定",
+					"match": "\\b(analog extension other-dial-tone)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "着信時の着信ベル鳴動モードの設定",
+					"match": "\\b(analog extension incoming ringer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "緊急番号の処理方式の設定",
+					"match": "\\b(analog extension emergency-call-dial type)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "i・ナンバーサービスのポート番号の設定",
+					"match": "\\b(analog arrive inumber-port)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "アナログダイヤルインと無鳴動着信機能の設定",
+					"match": "\\b(analog arrive incoming-signal( timing pb)?)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "PB ダイヤルインの一次応答検出タイミングの設定"
+				},
+				{
+					"comment": "発番号情報なし着信機能の設定",
+					"match": "\\b(analog arrive without-calling-number)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "RTP 音声の受話PAD の設定",
+					"match": "\\b(analog pad rtp receive)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "RTP 音声の送話PAD の設定",
+					"match": "\\b(analog pad rtp send)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ポーズを判定する時間の設定",
+					"match": "\\b(analog pause timer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TEL ポートに対する電力供給の設定",
+					"match": "\\b(analog power)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "オフフックで発信する相手先電話番号の設定",
+					"match": "\\b(analog off-hook call)\\b",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"nvr-cascade": {
+			"patterns": [
+				{
+					"comment": "カスケード接続モードの設定",
+					"match": "\\b(analog extension mode)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "カスケード接続に利用するIPアドレス取得インターフェースの設定",
+					"match": "\\b(analog extension address refer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "アナログ親機となる機器の設定",
+					"match": "\\b(analog extension master)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "アナログ親機となる機器の設定",
+					"match": "\\b(analog extension manager)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "アナログ子機受け入れモードの設定",
+					"match": "\\b(analog off-hook call)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "アナログ子機受け入れモードの設定",
+					"match": "\\b(analog extension agent permit)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "アナログ子機受け入れモードの設定",
+					"match": "\\b(analog extension machine-id)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "カスケード接続のログを記録するか否かの設定",
+					"match": "\\b(analog extension log)\\b",
+					"name": "entity.name.function"
+				}
+			]
+		},
+		"nvr-sip": {
+			"patterns": [
+				{
+					"comment": "SIP による VoIP 機能を使用するか否かの設定",
+					"match": "\\b(sip use)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP による発信時に使用するIP プロトコルの選択",
+					"match": "\\b(sip ip protocol)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP による VoIP 機能で利用可能な音声コーデックの設定",
+					"match": "\\b(sip codec permit( (pp|tunnel))?)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP のリクエスト再送タイムアウト値の設定",
+					"match": "\\b(sip request retransmit timer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ネットボランチ電話で使用するドメイン名の設定",
+					"match": "\\b(sip netvolante dial domain)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ネットボランチ電話で SIP ユーザー名として付与する番号桁数の設定",
+					"match": "\\b(sip netvolante dial figure)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "特定のダイヤルに対応するSIP による発信先の設定",
+					"match": "\\b(analog extension sip address)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP の session-timer 機能のタイマ値の設定",
+					"match": "\\b(sip session timer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP による発信時に 100rel をサポートするか否かの設定",
+					"match": "\\b(sip 100rel)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "送信する SIP パケットに User-Agentヘッダを付加する設定",
+					"match": "\\b(sip user agent)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "着信可能なポートがない場合に返す SIP のレスポンスコードの設定",
+					"match": "\\b(sip response code busy)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP による着信時の INVITE に refresher 指定がない場合の設定",
+					"match": "\\b(sip arrive session timer refresher)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "インターネット電話着信時におけるネーム・ディスプレイ情報通知設定",
+					"match": "\\b(sip arrive name-display default)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP による着信時に P-N-UAType ヘッダをサポートするか否かの設定",
+					"match": "\\b(sip arrive ringing p-n-uatype)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "着信時のセッションタイマのリクエストを設定",
+					"match": "\\b(sip arrive session timer method)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP 着信時に SIP ユーザー名を検証するかどうかの設定",
+					"match": "\\b(sip arrive address check)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP で使用するIPアドレスの設定",
+					"match": "\\b(sip outer address)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP メッセージのログを記録するか否かの設定",
+					"match": "\\b(sip log)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバーの設定",
+					"match": "\\b(sip server)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバー毎の先頭に付加された 184/186 の扱いの設定",
+					"match": "\\b(sip server privacy)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバー毎の発信時に使用する自己SIP ディスプレイ名の設定",
+					"match": "\\b(sip server display name)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバー毎の発信時の相手 SIP アドレスのドメイン名の設定",
+					"match": "\\b(sip server call remote domain)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバー毎の session-timer 機能のタイマ値の設定",
+					"match": "\\b(sip server session timer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバー毎の発信時に 100rel をサポートするか否かの設定",
+					"match": "\\b(sip server 100rel)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバー毎の REGISTER リクエストの更新間隔の設定",
+					"match": "\\b(sip server register timer)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバー毎の REGISTER リクエストの Request-URI の設定",
+					"match": "\\b(sip server register request-uri)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバー毎の REGISTER リクエストの Contact ヘッダに付加する q 値の設定",
+					"match": "\\b(sip server qvalue)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバー毎の着信時の発番号情報通知ルールの設定",
+					"match": "\\b(sip server arrive number display)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバー経由接続時におけるアナログ付加サービス設定",
+					"match": "\\b(sip server analog service)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバーへの接続状態に応じて発信するか否かの設定",
+					"match": "\\b(sip server call mode)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバーへの発信に番号以外を使えないように制限する設定",
+					"match": "\\b(sip server dial number-only)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "自分自身の SIP アドレスへの発信を許可するかどうかの設定",
+					"match": "\\b(sip server call own permit)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIP サーバー毎の代表SIP アドレスの設定",
+					"match": "\\b(sip server pilot address)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "発信時の5xx エラーをサーバー障害とするか否かの設定",
+					"match": "\\b(sip server call server error)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "SIPサーバー毎のREGISTERリクエストのContactヘッダーの設定",
+					"match": "\\b(sip server register contact mode)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TEL ポートからの SIP による発信の制限の設定",
+					"match": "\\b(analog sip call permit)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TEL ポートからの SIP による発信で使用する自己 SIP ユーザー名の設定",
+					"match": "\\b(analog sip call myname)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TEL ポートからの SIP による発信で使用する自己 SIP ディスプレイ名の設定",
+					"match": "\\b(analog sip call display name)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TEL ポートにおける宛先 SIP アドレスによる着信制限の設定",
+					"match": "\\b(analog sip arrive permit)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TEL ポートにおける SIP の着信識別で使用する自己 SIP アドレスの設定",
+					"match": "\\b(analog sip arrive myaddress)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TEL ポートにおける SIP の着信に対するアナログダイヤルインと無鳴動着信機能の設定",
+					"match": "\\b(analog sip arrive incoming-signal)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TEL ポートにおける特定のプレフィックスによる発呼経路選択の設定",
+					"match": "\\b(analog extension dial prefix)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "TEL ポートでの識別着信をするか否かの設定",
+					"match": "\\b(analog sip arrive restrict)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "識別着信リストの登録",
+					"match": "\\b(analog sip arrive restrict list)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "発番号情報なし SIP 着信機能の設定",
+					"match": "\\b(analog sip arrive without-calling-number)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ダイヤル番号によって発呼経路を自動選択するテーブルの設定",
+					"match": "\\b(analog call route-table)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "ダイヤル番号と発呼経路との関連付けの設定",
+					"match": "\\b(analog call route)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN 網に接続するインターフェースの設定",
+					"match": "\\b(ngn type)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN 網を介したリナンバリング発生時に LAN インターフェースを一時的にリンクダウンするか否かの設定",
+					"match": "\\b(ngn renumbering link-refresh)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN 網接続情報の表示",
+					"match": "\\b(show status ngn)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN 網を介したトンネルインターフェースの切断タイマの設定",
+					"match": "\\b(tunnel ngn disconnect time)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN 網を介したトンネルインターフェースの帯域の設定",
+					"match": "\\b(tunnel ngn bandwidth)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN 網を介したトンネルインターフェースの着信許可の設定",
+					"match": "\\b(tunnel ngn arrive permit)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN 網を介したトンネルインターフェースの発信許可の設定",
+					"match": "\\b(tunnel ngn call permit)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN 網を介したトンネルインターフェースで使用する LAN インターフェースの設定",
+					"match": "\\b(tunnel ngn interface)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN 網を介したトンネルインターフェースで接続に失敗した場合に接続を試みる相手番号の設定",
+					"match": "\\b(tunnel ngn fallback)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN電話番号をRADIUSで認証するか否かの設定",
+					"match": "\\b(tunnel ngn radius auth)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN電話番号をRADIUSで認証するときに使用するパスワードの設定",
+					"match": "\\b(ngn radius auth password)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN網への発信時にRADIUSアカウンティングを使用するか否かの設定",
+					"match": "\\b(ngn radius account caller)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NGN網からの着信時にRADIUSアカウンティングを使用するか否かの設定",
+					"match": "\\b(ngn radius account callee)\\b",
 					"name": "entity.name.function"
 				}
 			]
@@ -7236,47 +7830,168 @@
 		"nvr-wwan": {
 			"patterns": [
 				{
-					"match": "\\b(unlock (wwan pin-code|wwan-module firmware))\\b",
+					"comment": "内蔵無線 WAN モジュールを使用するか否かの設定",
+					"match": "\\b(wwan-module use)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "\\b(wwan access limit (connection length|connection time|duration|length|time))\\b",
+					"comment": "内蔵無線 WAN モジュールの無線通信機能を使うか否かの設定",
+					"match": "\\b(wwan-module radio-power)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "\\b(wwan (access-point name|always-on|auth accept|auth myname|auto connect|disable))\\b",
+					"comment": "電波の受信レベル取得機能の設定",
+					"match": "\\b(wwan-module signal-strength( go)?)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "\\b(wwan disconnect (input time|output time|time))\\b",
+					"comment": "内蔵無線 WAN モジュールに対する詳細な SYSLOG を出力するか否かの設定",
+					"match": "\\b(wwan-module syslog)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "\\b(wwan (enable|pin code|radio access technology|select))\\b",
+					"comment": "内蔵無線 WAN インターフェースの選択",
+					"match": "\\b(wwan select)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "\\b(wwan-module (radio-power|signal-strength go|signal-strength|syslog|use))\\b",
+					"comment": "内蔵無線 WAN インターフェースの使用許可の設定",
+					"match": "\\b(wwan enable)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "\\b(http wwan-module-up (go|permit|timeout|url))\\b",
-					"name": "entity.name.function"
-				}
-			]
-		},
-		"nvr-swctl": {
-			"patterns": [
-				{
-					"match": "\\b(ap config (directory|filename))\\b",
+					"comment": "内蔵無線 WAN インターフェースの使用不許可の設定",
+					"match": "\\b(wwan disable)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "\\b(ap control (config (delete|get|set)|config-auto-set use|firmware update go|http proxy (timeout|use)))\\b",
+					"comment": "内蔵無線 WAN の常時接続の設定",
+					"match": "\\b(wwan always-on)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"match": "\\b(ap select)\\b",
+					"comment": "内蔵無線 WAN の発信先アクセスポイントの設定",
+					"match": "\\b(wwan access-point name)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN の接続時の認証タイプの設定",
+					"match": "\\b(wwan auth accept)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN でのユーザー名とパスワードの設定",
+					"match": "\\b(wwan auth myname)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN からの自動発信設定",
+					"match": "\\b(wwan auto connect)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "入力がないときに内蔵無線 WAN を切断するタイマの設定",
+					"match": "\\b(wwan disconnect input time)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "出力がないときに内蔵無線 WAN を切断するタイマの設定",
+					"match": "\\b(wwan disconnect output time)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN を切断するタイマの設定",
+					"match": "\\b(wwan disconnect time)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN での接続毎パケット通信量制限の設定",
+					"match": "\\b(wwan access limit connection length)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN での接続毎パケット通信時間制限の設定",
+					"match": "\\b(wwan access limit connection time)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN での通信制限の累積期間の設定",
+					"match": "\\b(wwan access limit duration)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN でのパケット通信量制限の設定",
+					"match": "\\b(wwan access limit length)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN でのパケット通信時間制限の設定",
+					"match": "\\b(wwan access limit time)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線WANで使用する通信方式とバンドの設定",
+					"match": "\\b(wwan radio access technology)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN に入力する PIN コードの設定",
+					"match": "\\b(wwan pin code)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN のPIN認証を有効にする",
+					"match": "\\b(enable wwan pin-auth)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN のPIN認証を無効にする",
+					"match": "\\b(disable wwan pin-auth)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN モジュールで使用する PIN コードの変更",
+					"match": "\\b(change wwan pin-code)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "内蔵無線 WAN モジュールの PIN ロック解除コードの入力",
+					"match": "\\b(unlock wwan pin-code)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "指定した相手に対して発信制限を解除する",
+					"match": "\\b(clear wwan access limitation)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "定期実行で取得した電波の受信レベルの表示",
+					"match": "\\b(show status wwan-module signal-strength)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "外部メモリから内蔵無線 WAN モジュールのファームウェアを更新する",
+					"match": "\\b(update wwan-module firmware)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "HTTP を利用した内蔵無線 WAN モジュールファームウェアのチェックおよび更新の実行",
+					"match": "\\b(http wwan-module-up go)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "HTTP を利用した内蔵無線 WAN モジュールファームウェア更新用 URL の設定",
+					"match": "\\b(http wwan-module-up url)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "HTTP を利用した内蔵無線 WAN モジュールファームウェア更新を許可するか否かの設定",
+					"match": "\\b(http wwan-module-up permit)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "HTTP を利用した内蔵無線 WAN モジュールファームウェア更新のタイムアウトの設定",
+					"match": "\\b(http wwan-module-up timeout)\\b",
 					"name": "entity.name.function"
 				}
 			]
