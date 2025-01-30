@@ -2038,7 +2038,7 @@
 					"match": "\\b(dhcp service (server|relay))\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "keyword.control"
 						}
 					}
