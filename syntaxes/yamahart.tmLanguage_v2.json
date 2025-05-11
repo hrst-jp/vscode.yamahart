@@ -239,14 +239,14 @@
 				},
 				{
 					"comment": "一般ユーザ名とログインパスワードの設定",
-					"match": "\\b(login user (\\S{1,32})( (\\S{1,32}))?)\\b",
+					"match": "\\b(login user ([\\w-]{1,32})( ([\\w-]{1,32}))?)\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "strong"
+							"name": "string"
 						},
 						"4": {
-							"name": "strong"
+							"name": "string"
 						}
 					}
 				},
@@ -350,7 +350,7 @@
 				},
 				{
 					"comment": "タイムゾーンの設定",
-					"match": "\\b(timezone (jst|utc|(\\+|\\-)\\d\\d\\:\\d\\d))\\b",
+					"match": "\\b(timezone (jst|utc|(\\+|\\-)\\d{2}\\:\\d{2}))\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -1714,6 +1714,16 @@
 							"name": "constant.language"
 						}
 					}
+				},
+				{
+					"comment": "LAN パススルー機能で中継するイーサタイプの設定",
+					"match": "\\b(lan pass-through ethertype)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "LAN パススルー機能で使用するインタフェースの設定",
+					"match": "\\b(lan pass-through member)\\b",
+					"name": "entity.name.function"
 				}
 			]
 		},
@@ -1789,9 +1799,34 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "10.18, 10.19, 10.20",
-					"match": "\\b(url filter external-database id ((activate|check) go)?)\\b",
-					"name": "entity.name.function"
+					"comment": "データベースへアクセスするためのシリアルIDの設定",
+					"match": "\\b(url filter external-database id (digitalarts|trendmicro) (\\S+)?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "URLフィルタリングサービス事業者にシリアルIDの登録",
+					"match": "\\b(url filter external-database id activate go (reputation|category)?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "URLフィルタリングサービス事業者との契約状況の確認",
+					"match": "\\b(url filter external-database id check go (reputation|category)?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						}
+					}
 				},
 				{
 					"comment": "ユーザー認証に失敗した場合の再送間隔と回数の設定",
@@ -3668,13 +3703,18 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "24.11, 24.13",
-					"match": "\\b((ip|dns) host)\\b",
+					"comment": "静的 DNS レコードの登録",
+					"match": "\\b((ip host|dns static))\\b",
 					"name": "entity.name.function"
 				},
 				{
 					"comment": "DNS 問い合わせパケットの始点ポート番号の設定",
 					"match": "\\b(dns srcport)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "DNS サーバーへアクセスできるホストの設定",
+					"match": "\\b(dns host)\\b",
 					"name": "entity.name.function"
 				},
 				{
@@ -4481,69 +4521,251 @@
 		"rtx-netvolante-dns": {
 			"patterns": [
 				{
-					"comment": "ネットボランチ DNS サービスの使用の可否",
-					"match": "\\b(netvolante-dns use)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "ネットボランチ DNS サーバーへの手動更新",
-					"match": "\\b(netvolante-dns go( pp)?)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "ネットボランチ DNS サーバーからの削除",
-					"match": "\\b(netvolante-dns delete go( pp)?)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "ネットボランチ DNS サービスで使用するポート番号の設定",
-					"match": "\\b(netvolante-dns port)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "ネットボランチ DNS サーバーに登録済みのホスト名一覧を取得",
-					"match": "\\b(netvolante-dns get hostname list( pp)?)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "ホスト名の登録",
-					"match": "\\b(netvolante-dns hostname host( pp)?)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "通信タイムアウトの設定",
-					"match": "\\b(netvolante-dns timeout( pp)?)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "ホスト名を自動生成するか否かの設定",
-					"match": "\\b(netvolante-dns auto hostname( pp)?)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "シリアル番号を使ったホスト名登録コマンドの設定",
-					"match": "\\b(netvolante-dns set hostname)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "34.10, 34.11, 34.12",
-					"match": "\\b(netvolante-dns server( update address (use|port))?)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "自動更新に失敗した場合のリトライ間隔と回数の設定",
-					"match": "\\b(netvolante-dns retry interval( pp)?)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "ネットボランチDNS登録の定期更新間隔の設定",
-					"match": "\\b(netvolante-dns register timer)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "ネットボランチDNS の自動登録に成功したとき設定を保存するファイルの設定",
-					"match": "\\b(netvolante-dns auto save)\\b",
-					"name": "entity.name.function"
+					"begin": "\\b(netvolante-dns)\\b",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"patterns": [
+						{
+							"comment": "ネットボランチ DNS サービスの使用の可否",
+							"match": "\\b(use( \\S+) (auto|off))\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"2": {
+									"name": "constant.language"
+								},
+								"3": {
+									"name": "keyword.control"
+								}
+							}
+						},
+						{
+							"comment": "ネットボランチ DNS サーバーへの手動更新",
+							"match": "\\b(go (pp (\\d+)|(\\S+)))\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"3": {
+									"name": "constant.numeric"
+								},
+								"4": {
+									"name": "constant.language"
+								}
+							}
+						},
+						{
+							"comment": "ネットボランチ DNS サーバーからの削除",
+							"match": "\\b(delete go (pp (\\d+)|(\\S+))( \\S+)?)\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"3": {
+									"name": "constant.numeric"
+								},
+								"4": {
+									"name": "constant.language"
+								},
+								"5": {
+									"name": "string"
+								}
+							}
+						},
+						{
+							"comment": "ネットボランチ DNS サービスで使用するポート番号の設定",
+							"match": "\\b(port (\\d+))\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"2": {
+									"name": "constant.numeric"
+								}
+							}
+						},
+						{
+							"comment": "ネットボランチ DNS サーバーに登録済みのホスト名一覧を取得",
+							"match": "\\b(get hostname list (pp (\\d+)|(\\S+|all)))\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"3": {
+									"name": "constant.numeric"
+								},
+								"4": {
+									"name": "string"
+								}
+							}
+						},
+						{
+							"comment": "ホスト名の登録",
+							"match": "\\b(hostname host( \\S+)( (server)(=)(1|2))?( \\S+)( (ipv6 (address|prefix))( \\S+)?)?( duplicate)?)\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"2": {
+									"name": "constant.language"
+								},
+								"4": {
+									"name": "variable.language"
+								},
+								"5": {
+									"name": "keyword.operator"
+								},
+								"6": {
+									"name": "constant.numeric"
+								},
+								"7": {
+									"name": "string"
+								},
+								"9": {
+									"name": "entity.name.function"
+								},
+								"11": {
+									"name": "string"
+								},
+								"12": {
+									"name": "keyword.control"
+								}
+							}
+						},
+						{
+							"comment": "通信タイムアウトの設定",
+							"match": "\\b(timeout (pp|(\\S+)) (\\d+))\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"3": {
+									"name": "constant.language"
+								},
+								"4": {
+									"name": "constant.numeric"
+								}
+							}
+						},
+						{
+							"comment": "ホスト名を自動生成するか否かの設定",
+							"match": "\\b(auto hostname( \\S+)( (server)(=)(1|2))? ((on|off)|(ipv6 (address|prefix))( \\S+)?))\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"2": {
+									"name": "constant.language"
+								},
+								"4": {
+									"name": "variable.language"
+								},
+								"5": {
+									"name": "keyword.operator"
+								},
+								"6": {
+									"name": "constant.numeric"
+								},
+								"8": {
+									"name": "keyword.control"
+								},
+								"9": {
+									"name": "entity.name.function"
+								},
+								"11": {
+									"name": "string"
+								}
+							}
+						},
+						{
+							"comment": "シリアル番号を使ったホスト名登録コマンドの設定",
+							"match": "\\b(set hostname (\\S+) serial)\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"2": {
+									"name": "constant.language"
+								}
+							}
+						},
+
+						{
+							"comment": "ネットボランチDNSサーバアドレス更新機能のON/OFFの設定",
+							"match": "\\b(server update address use( (server)(=)(1|2))? (on|off))\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"3": {
+									"name": "variable.language"
+								},
+								"4": {
+									"name": "keyword.operator"
+								},
+								"5": {
+									"name": "constant.numeric"
+								},
+								"6": {
+									"name": "keyword.control"
+								}
+							}
+						},
+						{
+							"comment": "ネットボランチDNSサーバアドレス更新機能のポート番号の設定",
+							"match": "\\b(server update address port( (server)(=)(1|2))? \\d+)\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"3": {
+									"name": "variable.language"
+								},
+								"4": {
+									"name": "keyword.operator"
+								},
+								"5": {
+									"name": "constant.numeric"
+								}
+							}
+						},						{
+							"comment": "ネットボランチ DNS サーバーの設定",
+							"match": "\\b(server (\\S+))\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"2": {
+									"name": "string"
+								}
+							}
+						},
+						{
+							"comment": "自動更新に失敗した場合のリトライ間隔と回数の設定",
+							"match": "\\b(retry interval (\\S+) (\\d+) (\\d+))\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"2": {
+									"name": "constant.language"
+								}
+							}
+						},
+						{
+							"comment": "ネットボランチDNS登録の定期更新間隔の設定",
+							"match": "\\b(register timer( (server)(=)(1|2))? \\d+)\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"3": {
+									"name": "variable.language"
+								},
+								"4": {
+									"name": "keyword.operator"
+								},
+								"5": {
+									"name": "constant.numeric"
+								}
+							}
+						},
+						{
+							"comment": "ネットボランチDNS の自動登録に成功したとき設定を保存するファイルの設定",
+							"match": "\\b(auto save( (server)(=)(1|2))? (\\S+))\\b",
+							"name": "entity.name.function",
+							"captures": {
+								"3": {
+									"name": "variable.language"
+								},
+								"4": {
+									"name": "keyword.operator"
+								},
+								"5": {
+									"name": "constant.numeric"
+								},
+								"6": {
+									"name": "string"
+								}
+							}
+						},
+						{
+							"include": "#keyword"
+						}
+					]
 				}
 			]
 		},
@@ -6736,7 +6958,6 @@
 				},
 				{
 					"comment": "ファイルをマクロとして実行する"
-
 				},
 				{
 					"comment": "echo",

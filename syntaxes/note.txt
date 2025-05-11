@@ -17,6 +17,8 @@ switch                      keyword.control
 数字                        constant.numeric
 計算式(=)                   keyword.operator
 変数                        variable.language
+IPアドレス                  string
+
 
 https://macromates.com/manual/en/language_grammars
 comment     コメント
