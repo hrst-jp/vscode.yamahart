@@ -210,6 +210,9 @@
 		{
 			"include": "#mnemonic",
 			"comment": "RTシリーズで使えるニーモニック"
+		},
+		{
+			"include": "#showTechInfo"
 		}
 	],
 	"repository": {
@@ -2170,11 +2173,14 @@
 				},
 				{
 					"comment": "インターフェース毎のDHCPの動作の設定",
-					"match": "\\b(ip (\\S+) dhcp service)\\b",
+					"match": "\\b(ip (\\S+) dhcp service (off|server|relay))\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
 							"name": "constant.language"
+						},
+						"3": {
+							"name": "entity.name.type"
 						}
 					}
 				}
@@ -2596,8 +2602,19 @@
 				},
 				{
 					"comment": "相手側のセキュリティ・ゲートウェイの名前の設定",
-					"match": "\\b(ipsec ike remote name)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ipsec ike remote name (\\d+) (\\S+)( (ipv4-addr|fqdn|user-fqdn|rfc822-fqdn|ipv6-addr|key-id|tel-key|tel))?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "string"
+						},
+						"4": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"comment": "相手側セキュリティ・ゲートウェイの IP アドレスの設定",
@@ -2611,8 +2628,19 @@
 				},
 				{
 					"comment": "自分側のセキュリティ・ゲートウェイの名前の設定",
-					"match": "\\b(ipsec ike local name)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ipsec ike local name (\\d+) (\\S+)( (ipv4-addr|fqdn|user-fqdn|rfc822-fqdn|ipv6-addr|key-id|tel-key|tel))?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "string"
+						},
+						"4": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"comment": "自分側セキュリティ・ゲートウェイの IP アドレスの設定",
@@ -3219,11 +3247,6 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "NGN 網に接続するインタフェースの設定",
-					"match": "\\b(ngn type)\\b",
-					"name": "entity.name.function"
-				},
-				{
 					"comment": "NGN 網を介したトンネルインタフェースの切断タイマの設定",
 					"match": "\\b(tunnel ngn disconnect time)\\b",
 					"name": "entity.name.function"
@@ -3589,9 +3612,30 @@
 					}
 				},
 				{
-					"comment": "23.4, 23.5",
-					"match": "\\b(nat descriptor address (outer|inner))\\b",
-					"name": "entity.name.function"
+					"comment": "NAT 処理の外側 IP アドレスの設定",
+					"match": "\\b(nat descriptor address outer (\\d+) (\\S+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "NAT 処理の内側 IP アドレスの設定",
+					"match": "\\b(nat descriptor address inner (\\d+) (\\S+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "静的 NAT エントリの設定",
@@ -4123,7 +4167,7 @@
 				},
 				{
 					"comment": "インタフェースの IPv6 アドレスの設定",
-					"match": "\\b(ipv6 (\\S+) address)\\b",
+					"match": "\\b(ipv6 ((pp|lan|loopback|bridge|tunnel|bri|pri|vlan)\\S+) address)\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -4143,11 +4187,14 @@
 				},
 				{
 					"comment": "DHCPv6 の動作の設定",
-					"match": "\\b(ipv6 (\\S+) dhcp service)\\b",
+					"match": "\\b(ipv6 (\\S+) dhcp service (off|client|server))\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
 							"name": "constant.language"
+						},
+						"3": {
+							"name": "entity.name.type"
 						}
 					}
 				},
@@ -4168,8 +4215,13 @@
 				},
 				{
 					"comment": "始点 IPv6 アドレスを選択する規則の設定",
-					"match": "\\b(ipv6 source address selection rule)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ipv6 source address selection rule (prefix|lifetime))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						}
+					}
 				},
 				{
 					"comment": "ルーター広告で配布するプレフィックスの定義",
@@ -4438,8 +4490,13 @@
 				},
 				{
 					"comment": "PP インタフェースとトンネルインタフェースの名前の設定",
-					"match": "\\b((pp|tunnel) name)\\b",
-					"name": "entity.name.function"
+					"match": "\\b((pp|tunnel) name (\\S{,64}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"3": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "33.2.1",
@@ -4672,7 +4729,6 @@
 								}
 							}
 						},
-
 						{
 							"comment": "ネットボランチDNSサーバアドレス更新機能のON/OFFの設定",
 							"match": "\\b(server update address use( (server)(=)(1|2))? (on|off))\\b",
@@ -4707,7 +4763,8 @@
 									"name": "constant.numeric"
 								}
 							}
-						},						{
+						},
+						{
 							"comment": "ネットボランチ DNS サーバーの設定",
 							"match": "\\b(server (\\S+))\\b",
 							"name": "entity.name.function",
@@ -7034,12 +7091,17 @@
 				},
 				{
 					"comment": "インタフェースの状態の表示",
-					"match": "\\b(show status( pp)?)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(show status (pp|lan\\d+((.|/)\\d+)?|bri|pri1|bridge1))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						}
+					}
 				},
 				{
 					"comment": "IP の経路情報テーブルの表示",
-					"match": "\\b(show ip route)\\b",
+					"match": "\\b(show ip route( (detail|summary))?)\\b",
 					"name": "entity.name.function"
 				},
 				{
@@ -7174,7 +7236,7 @@
 				},
 				{
 					"comment": "ネットワーク監視機能の状態の表示",
-					"match": "\\b(show ip keepalive)\\b",
+					"match": "\\b(show status ip keepalive)\\b",
 					"name": "entity.name.function"
 				},
 				{
@@ -7983,8 +8045,16 @@
 				},
 				{
 					"comment": "NGN 網に接続するインターフェースの設定",
-					"match": "\\b(ngn type)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ngn type (lan\\S+) (off|ntt))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"comment": "NGN 網を介したリナンバリング発生時に LAN インターフェースを一時的にリンクダウンするか否かの設定",
@@ -8286,19 +8356,24 @@
 					"comment": "IPv4 Address"
 				},
 				{
-					"match": "\\b([0-9a-f]{0,4}:){7}[0-9a-f]{0,4}(%\\S+|(/(12[0-8]|1([0-1]|[39]){2}|[1-9]?[0-9])))?\\b",
-					"name": "string",
-					"comment": "IPv6 Address省略なし"
-				},
-				{
-					"match": "\\b([0-9a-f]{0,4}:){3}(:|[0-9a-f]{0,4})?(:[0-9a-f]{0,4}){0,4}(%\\S+|(/(12[0-8]|1([0-1]|[39]){2}|[1-9]?[0-9])))?\\b",
-					"name": "string",
-					"comment": "IPv6 Address省略あり48bitマスク以上"
-				},
-				{
 					"match": "\\b(dhcp|ra)-prefix@lan([0-9a-f:]+)(%\\S+)?(/(12[0-8]|1([0-1]|[39]){2}|[1-9]?[0-9]))?\\b",
 					"name": "string",
 					"comment": "IPv6 プレフィックス表記"
+				},
+				{
+					"match": "\\b(:(:[0-9a-f]{1,4}){1,7})\\b",
+					"name": "string",
+					"comment": "IPv6 Address先頭省略"
+				},
+				{
+					"match": "\\b(([0-9a-f]{1,4}:){1,7}:([0-9a-f]{1,4})((:[0-9a-f]{1,4}){1,6})?(%\\S+|(/(12[0-8]|1([0-1]|[39]){2}|[1-9]?[0-9])))?)\\b",
+					"name": "string",
+					"comment": "IPv6 Address省略あり"
+				},
+				{
+					"match": "\\b(([0-9a-f]{1,4}:){7}[0-9a-f]{1,4}(%\\S+|(/(12[0-8]|1([0-1]|[39]){2}|[1-9]?[0-9])))?)\\b",
+					"name": "string",
+					"comment": "IPv6 Address省略なし"
 				},
 				{
 					"match": "\\b((\\h{2}-){5}\\h{2})\\b",
@@ -8311,7 +8386,7 @@
 					"comment": "MACアドレス [:]区切り"
 				},
 				{
-					"match": "\\b(lan\\d+(\\.\\d+|/\\d+)?)\\b",
+					"match": "\\b((lan|LAN)\\d+(\\.\\d+|/\\d+)?)\\b",
 					"name": "constant.language",
 					"comment": "LANインターフェース"
 				},
@@ -8321,7 +8396,7 @@
 					"comment": "BRIインターフェース"
 				},
 				{
-					"match": "\\b(vlan\\d+|pri1|bridge1|loopback[1-9])\\b",
+					"match": "\\b(vlan\\d+|pri1|(bridge|BRIDGE)1|(loopback|LOOPBACK)[1-9])\\b",
 					"name": "constant.language",
 					"comment": "その他インターフェース"
 				},
@@ -8386,6 +8461,16 @@
 					"comment": "時間(hh:mm)"
 				},
 				{
+					"match": "\\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\\b",
+					"name": "constant.numeric",
+					"comment": "曜日"
+				},
+				{
+					"match": "\\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\b",
+					"name": "constant.numeric",
+					"comment": "月"
+				},
+				{
 					"match": "\\b(\\d+)\\b",
 					"name": "constant.numeric",
 					"comment": "数字"
@@ -8419,6 +8504,14 @@
 					"match": "\\b(sip|smtp|snmp(trap)?|ssh|submission|sunrpc|syslog|systat|tacacs_ds|talk|tcp(fin|mux|rst|syn)?|telnet|tftp|timbuktu|time|udp|uucp|who(is)?|www)\\b",
 					"name": "constant.language",
 					"comment": "ニーモニック"
+				}
+			]
+		},
+		"showTechInfo": {
+			"patterns": [
+				{
+					"match": "-{3,}",
+					"name": "comment.block.documentation"
 				}
 			]
 		}
