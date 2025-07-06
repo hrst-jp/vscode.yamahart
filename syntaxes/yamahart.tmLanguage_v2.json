@@ -615,7 +615,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "keyword.control"
@@ -904,8 +904,16 @@
 			"patterns": [
 				{
 					"comment": "BRI 回線の種類の指定",
-					"match": "\\b(line type)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(line type (bri\\S+) (isdn(-ntt)?|l64|l128))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "entity.name.type.interface"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"comment": "自分の ISDN 番号の設定",
@@ -999,8 +1007,13 @@
 				},
 				{
 					"comment": "コールバック要求タイプの設定",
-					"match": "\\b(isdn callback request type)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(isdn callback request type(( (yamaha|mscbcp)){1,2}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"comment": "コールバック受け入れタイプの設定",
@@ -1057,6 +1070,19 @@
 		"rtx-pri": {
 			"patterns": [
 				{
+					"comment": "PRI 回線の種類の指定",
+					"match": "\\b(line type (pri\\d+) (isdn(-ntt)?|leased))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "entity.name.type.interface"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
+				},
+				{
 					"comment": "情報チャネルとタイムスロットの設定",
 					"match": "\\b(pri leased channel)\\b",
 					"name": "entity.name.function"
@@ -1081,7 +1107,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1091,7 +1117,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1101,7 +1127,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1111,7 +1137,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"1": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1154,7 +1180,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1164,7 +1190,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1216,13 +1242,19 @@
 				},
 				{
 					"comment": "侵入検知機能の動作の設定",
-					"match": "\\b(ip (\\S+) intrusion detection (in|out)?)\\b",
+					"match": "\\b(ip (\\S+) intrusion detection (in|out)( (ip-option|ip|fragment|icmp|udp|tcp|ftp|winny|share|default))?( (on|off)))\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
+							"name": "keyword.control"
+						},
+						"4": {
+							"name": "entity.name.type"
+						},
+						"6": {
 							"name": "keyword.control"
 						}
 					}
@@ -1233,7 +1265,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "constant.numeric"
@@ -1246,7 +1278,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "constant.numeric"
@@ -1259,7 +1291,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "constant.numeric"
@@ -1272,7 +1304,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1282,7 +1314,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1298,7 +1330,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					},
 					"patterns": [
@@ -1327,7 +1359,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1342,7 +1374,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1352,7 +1384,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1362,7 +1394,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1432,7 +1464,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1461,7 +1493,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1471,7 +1503,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1481,7 +1513,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1491,20 +1523,20 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
 				{
 					"comment": "RIP2 での認証の設定",
-					"match": "\\b(ip (\\S+) rip auth type (\\S+))\\b",
+					"match": "\\b(ip (\\S+) rip auth type (text))\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
-							"name": "string"
+							"name": "entity.name.type"
 						}
 					}
 				},
@@ -1514,7 +1546,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"5": {
 							"name": "string"
@@ -1575,7 +1607,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1605,7 +1637,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "constant.numeric"
@@ -1618,7 +1650,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1633,15 +1665,28 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "LAN 経由でのプロバイダ接続がダウンした時にバックアップする接続先の指定,バックアップからの復帰待ち時間の設",
-					"match": "\\b(lan backup (recovery time|(\\S+)) (none)?)\\b",
+					"comment": "バックアップからの復帰待ち時間の設定",
+					"match": "\\b(lan backup recovery time (\\S+) (\\d+|off))\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"3": {
-							"name": "constant.language"
+						"2": {
+							"name": "entity.name.type.interface"
 						},
-						"4": {
-							"name": "keyword.control"
+						"3": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "LAN 経由でのプロバイダ接続がダウンした時にバックアップする接続先の指定",
+					"match": "\\b(lan backup (\\S+) ((none)|(\\S+)))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "entity.name.type.interface"
+						},
+						"5": {
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1676,7 +1721,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "keyword.control"
@@ -1699,7 +1744,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1714,7 +1759,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1743,7 +1788,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -1772,7 +1817,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -2113,11 +2158,14 @@
 				},
 				{
 					"comment": "DHCP アドレス割り当て動作の設定",
-					"match": "\\b(dhcp scope lease type (\\d{1,5}))\\b",
+					"match": "\\b(dhcp scope lease type (\\d{1,5}) (bind-priority|bind-only))\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
 							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "entity.name.type"
 						}
 					}
 				},
@@ -2177,7 +2225,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "entity.name.type"
@@ -2199,7 +2247,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -2209,7 +2257,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -2298,7 +2346,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -2382,7 +2430,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "string"
+							"name": "entity.name.type"
 						},
 						"4": {
 							"name": "string"
@@ -2455,7 +2503,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "string"
+							"name": "entity.name.type"
 						}
 					}
 				},
@@ -2689,8 +2737,19 @@
 				},
 				{
 					"comment": "IKE ペイロードのタイプの設定",
-					"match": "\\b(ipsec ike payload type)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ipsec ike payload type (\\d+) (1|2|3)( (1|2))?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "entity.name.type"
+						},
+						"5": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"comment": "IKEv1 鍵交換タイプの設定",
@@ -2818,8 +2877,16 @@
 				},
 				{
 					"comment": "CHILD SA 作成方法の設定",
-					"match": "\\b(ipsec ike child-exchange type)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ipsec ike child-exchange type (\\d+) (1|2))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"comment": "鍵交換の始動パケットを受信するか否かの設定",
@@ -2873,8 +2940,13 @@
 				},
 				{
 					"comment": "IPComp によるデータ圧縮の設定",
-					"match": "\\b(ipsec ipcomp type)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ipsec ipcomp type (deflate|none))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"comment": "トンネルバックアップの設定",
@@ -3585,7 +3657,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "constant.numeric"
@@ -3748,8 +3820,32 @@
 				},
 				{
 					"comment": "静的 DNS レコードの登録",
-					"match": "\\b((ip host|dns static))\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ip host (\\S+) (\\S+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "静的 DNS レコードの登録",
+					"match": "\\b(dns static (aaaa|a|ptr|mx|ns|cname) (\\S+) (\\S+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "entity.name.type"
+						},
+						"3": {
+							"name": "string"
+						},
+						"4": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "DNS 問い合わせパケットの始点ポート番号の設定",
@@ -3821,7 +3917,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -3836,7 +3932,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -3846,7 +3942,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -3856,7 +3952,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -3866,7 +3962,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -3876,7 +3972,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -3980,12 +4076,22 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "28.13, 28.14",
-					"match": "\\b(ip (\\S+) ospf (area|neighbor))\\b",
+					"comment": "指定インタフェースの OSPF エリア設定",
+					"match": "\\b(ip (\\S+) ospf area)\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
+						}
+					}
+				},
+				{
+					"comment": "非ブロードキャスト型ネットワークに接続されている OSPF ルーターの指定",
+					"match": "\\b(ip (\\S+) ospf neighbor)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4093,7 +4199,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4103,7 +4209,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"3": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4113,7 +4219,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"4": {
 							"name": "keyword.control"
@@ -4141,7 +4247,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4151,7 +4257,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4171,7 +4277,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4181,7 +4287,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4191,7 +4297,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "entity.name.type"
@@ -4204,7 +4310,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4239,7 +4345,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4249,7 +4355,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4302,7 +4408,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4342,7 +4448,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4358,7 +4464,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					},
 					"patterns": [
@@ -4377,7 +4483,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4416,7 +4522,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -4588,7 +4694,7 @@
 							"name": "entity.name.function",
 							"captures": {
 								"2": {
-									"name": "constant.language"
+									"name": "entity.name.type.interface"
 								},
 								"3": {
 									"name": "keyword.control"
@@ -4604,7 +4710,7 @@
 									"name": "constant.numeric"
 								},
 								"4": {
-									"name": "constant.language"
+									"name": "entity.name.type.interface"
 								}
 							}
 						},
@@ -4617,7 +4723,7 @@
 									"name": "constant.numeric"
 								},
 								"4": {
-									"name": "constant.language"
+									"name": "entity.name.type.interface"
 								},
 								"5": {
 									"name": "string"
@@ -4653,7 +4759,7 @@
 							"name": "entity.name.function",
 							"captures": {
 								"2": {
-									"name": "constant.language"
+									"name": "entity.name.type.interface"
 								},
 								"4": {
 									"name": "variable.language"
@@ -4684,7 +4790,7 @@
 							"name": "entity.name.function",
 							"captures": {
 								"3": {
-									"name": "constant.language"
+									"name": "entity.name.type.interface"
 								},
 								"4": {
 									"name": "constant.numeric"
@@ -4697,7 +4803,7 @@
 							"name": "entity.name.function",
 							"captures": {
 								"2": {
-									"name": "constant.language"
+									"name": "entity.name.type.interface"
 								},
 								"4": {
 									"name": "variable.language"
@@ -4725,7 +4831,7 @@
 							"name": "entity.name.function",
 							"captures": {
 								"2": {
-									"name": "constant.language"
+									"name": "entity.name.type.interface"
 								}
 							}
 						},
@@ -4780,7 +4886,7 @@
 							"name": "entity.name.function",
 							"captures": {
 								"2": {
-									"name": "constant.language"
+									"name": "entity.name.type.interface"
 								}
 							}
 						},
@@ -4840,8 +4946,13 @@
 				},
 				{
 					"comment": "UPnP のポートマッピング用消去タイマのタイプの設定",
-					"match": "\\b(upnp port mapping timer type)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(upnp port mapping timer type (normal|arp))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"comment": "UPnP のポートマッピングの消去タイマの設定",
@@ -4886,7 +4997,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5333,7 +5444,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "string"
@@ -5349,7 +5460,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5359,7 +5470,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5369,7 +5480,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5379,7 +5490,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5389,7 +5500,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5399,7 +5510,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5409,7 +5520,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5419,7 +5530,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5429,7 +5540,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5439,7 +5550,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5449,7 +5560,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5459,7 +5570,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				}
@@ -5478,7 +5589,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "keyword.control"
@@ -5491,7 +5602,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -5501,7 +5612,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				}
@@ -5578,7 +5689,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -6574,7 +6685,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"3": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -6654,8 +6765,34 @@
 				},
 				{
 					"comment": "LAN ポートの動作タイプの設定",
-					"match": "\\b(lan port type)\\b",
-					"name": "entity.name.function"
+					"begin": "\\b(lan port type (\\d+))\\b",
+					"end": "\\n",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					},
+					"patterns": [
+						{
+							"match": "\\b((auto-crossover|speed-downshift|energy-saving)(=)(on|off))\\b",
+							"captures": {
+								"1": {
+									"name": "variable.languagee"
+								},
+								"3": {
+									"name": "keyword.operator"
+								},
+								"4": {
+									"name": "keyword.control"
+								}
+							}
+						},
+						{
+							"match": "\\b(auto|10g-fdx|5g-fdx|2.5g-fdx|1000-fdx|100?-(f|h)dx)\\b",
+							"name": "entity.name.type"
+						}
+					]
 				},
 				{
 					"comment": "MAC アドレスエージング機能の設定",
@@ -6682,8 +6819,13 @@
 			"patterns": [
 				{
 					"comment": "相手先情報番号の選択",
-					"match": "\\b(pp select)\\b",
-					"name": "storage.type"
+					"match": "\\b(pp select (\\d+|none|anonymous))\\b",
+					"name": "storage.type",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"comment": "トンネルインタフェース番号の選択",
@@ -7095,7 +7237,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						}
 					}
 				},
@@ -8049,7 +8191,7 @@
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
-							"name": "constant.language"
+							"name": "entity.name.type.interface"
 						},
 						"3": {
 							"name": "entity.name.type"
@@ -8386,23 +8528,28 @@
 					"comment": "MACアドレス [:]区切り"
 				},
 				{
+					"match": "\\b(((tn\\d+-)?lan\\d+(:\\d+)?(-\\d+)*|tn\\d+))\\b",
+					"name": "entity.name.type.interface",
+					"comment": "L2MSの経路による指定"
+				},
+				{
 					"match": "\\b((lan|LAN)\\d+(\\.\\d+|/\\d+)?)\\b",
-					"name": "constant.language",
+					"name": "entity.name.type.interface",
 					"comment": "LANインターフェース"
 				},
 				{
 					"match": "\\b(bri[1-2](\\.\\d+)?)\\b",
-					"name": "constant.language",
+					"name": "entity.name.type.interface",
 					"comment": "BRIインターフェース"
 				},
 				{
 					"match": "\\b(vlan\\d+|pri1|(bridge|BRIDGE)1|(loopback|LOOPBACK)[1-9])\\b",
-					"name": "constant.language",
+					"name": "entity.name.type.interface",
 					"comment": "その他インターフェース"
 				},
 				{
 					"match": "\\b(port\\d+(\\.\\d+)?|sa\\d+|po\\d+)\\b",
-					"name": "constant.language",
+					"name": "entity.name.type.interface",
 					"comment": "その他インターフェース"
 				},
 				{

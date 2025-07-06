@@ -8,11 +8,17 @@
 https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide#predefined-textmate-scope-mappings
 
 
-コマンド                    entity.name.function
-インターフェース名          constant.language
+コマンド(太文字)            entity.name.function
+パラメータ（斜体）
+    インターフェース名          entity.name.type.interface
+    switch                      keyword.control
+    type                        entity.name.type
+    name                        string
+    value                       string
+    fqdn                        string
+キーワード（標準）          constant.language
+
 ニーモニックなど            constant.language
-type                        entity.name.type
-switch                      keyword.control
 文字列                      string
 数字                        constant.numeric
 計算式(=)                   keyword.operator

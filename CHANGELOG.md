@@ -1,5 +1,9 @@
 # Change Log
 All notable changes to the "yamaha-rt" extension will be documented in this file.
+
+## [2.0.12] - 2025-07-06
+- インターフェース名のTextMateスコープを「entity.name.type.interface」に変更
+
 ## [2.0.0] - 2023-09-18
 - 記述をコマンドマニュアルの表基準に変更
 - 拡張子 ".conf" の対応をやめました。今後は".rtx", ".nvr"の2種類のみにします。
