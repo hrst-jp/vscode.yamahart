@@ -159,6 +159,9 @@
 			"include": "#rtx-flexible-lan"
 		},
 		{
+			"include": "#rtx-lbo"
+		},
+		{
 			"include": "#rtx-dashboard"
 		},
 		{
@@ -6806,6 +6809,55 @@
 				}
 			]
 		},
+		"rtx-lbo": {
+			"patterns": [
+				{
+					"comment": "LBOを使用するか否かの設定",
+					"match": "\\b(lbo use)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "プライマリー通信先リストの取得先の設定",
+					"match": "\\b(lbo list primary (\\S+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "セカンダリー通信先リストの取得先の設定",
+					"match": "\\b(lbo list secondary (\\S+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "通信先リストの取得の手動実行",
+					"match": "\\b(lbo list get go( no-confirm)?( force)?)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "LBO の動作状態の表示",
+					"match": "\\b(show status lbo)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "経路を変更した通信量の表示",
+					"match": "\\b(show dpi statistics)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "経路を変更した通信量のクリア",
+					"match": "\\b(clear lbo traffic list)\\b",
+					"name": "entity.name.function"
+				}
+			]
+		},
 		"rtx-dashboard": {
 			"patterns": [
 				{
@@ -8526,6 +8578,11 @@
 					"match": "\\b((\\h{2}:){5}\\h{2})\\b",
 					"name": "string",
 					"comment": "MACアドレス [:]区切り"
+				},
+				{
+					"match": "\\b(map-e|hb46pp)\\b",
+					"name": "string",
+					"comment": "ip filterで使うキーワード"
 				},
 				{
 					"match": "\\b(((tn\\d+-)?lan\\d+(:\\d+)?(-\\d+)*|tn\\d+))\\b",
