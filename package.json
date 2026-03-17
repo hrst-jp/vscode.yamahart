@@ -2,7 +2,7 @@
   "name": "yamaha-rt",
   "displayName": "YAMAHA Router series",
   "description": "Highlight the configuration file of YAMAHA router product.",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "publisher": "hrst",
   "icon": "images/rtx1210_icon.png",
   "engines": {
@@ -21,9 +21,8 @@
           "YAMAHA NVR"
         ],
         "firstLine": "^# (# )?(RT|NVR)\\S+ Rev\\.",
-        "extensions": [
-          ".rtx",
-          ".nvr"
+        "filenamePatterns": [
+          "{*.rtx*.txt,*.rtx,*.nvr*.txt,*.nvr}"
         ],
         "configuration": "./language-configuration.json"
       }

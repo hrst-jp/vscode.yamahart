@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "yamaha-rt" extension will be documented in this file.
 
+## [2.0.14] - 2026-03-17
+- 拡張子の指定方法を変更した
+
 ## [2.0.12] - 2025-07-06
 - インターフェース名のTextMateスコープを「entity.name.type.interface」に変更
 
