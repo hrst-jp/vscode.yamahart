@@ -4035,56 +4035,178 @@
 				},
 				{
 					"comment": "OSPF の使用設定",
-					"match": "\\b(ospf use)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ospf use (on|off))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
 					"comment": "OSPF による経路の優先度設定",
-					"match": "\\b(ospf preference)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ospf preference (\\d+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"comment": "OSPF のルーターID 設定",
-					"match": "\\b(ospf router id)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ospf router id (\\S+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "OSPF で受け取った経路をルーティングテーブルに反映させるか否かの設定",
-					"match": "\\b(ospf export from ospf)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ospf export from ospf( filter(( \\d+)*))?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"3": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"comment": "外部プロトコルによる経路導入",
-					"match": "\\b(ospf import from)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ospf import from (static|rip|bgp)( filter(( \\d+)*))?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						},
+						"4": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"comment": "OSPF で受け取った経路をどう扱うかのフィルタの設定",
-					"match": "\\b(ospf export filter)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ospf export filter (\\d+)( (not|reject))? (include|refines|equal)(( \\d+\\.\\d+\\.\\d+\\.\\d+/\\d+)*))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "keyword.control"
+						},
+						"5": {
+							"name": "keyword.control"
+						},
+						"6": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "外部経路導入に適用するフィルタ定義",
-					"match": "\\b(ospf impoty filter)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ospf import filter (\\d+)( (not|reject))? (include|refines|equal)(( \\d+\\.\\d+\\.\\d+\\.\\d+/\\d+)*)( \\d+)*)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "keyword.control"
+						},
+						"5": {
+							"name": "keyword.control"
+						},
+						"6": {
+							"name": "string"
+						}
+					}
 				},
 				{
-					"comment": "28.9, 28.10, 28.11",
-					"match": "\\b(ospf area( (network|stubhost))?)\\b",
-					"name": "entity.name.function"
+					"comment": "OSPF エリア設定",
+					"match": "\\b(ospf area (backbone|\\d+.\\d+.\\d+.\\d+|(\\d+))( auth(=)(text|md5))?( stub( cost(=)(\\d+))?)?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						},
+						"3": {
+							"name": "constant.numeric"
+						},
+						"5": {
+							"name": "keyword.operator"
+						},
+						"6": {
+							"name": "string"
+						},
+						"9": {
+							"name": "keyword.operator"
+						},
+						"10": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "エリアへの経路広告",
+					"match": "\\b(ospf area network ((backbone|\\d+.\\d+.\\d+.\\d+)|(\\d+)) (\\d+.\\d+.\\d+.\\d+/\\d+)( restrict)?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"3": {
+							"name": "string"
+						},
+						"4": {
+							"name": "constant.numeric"
+						},
+						"5": {
+							"name": "string"
+						}
+					}
+				},
+				{
+					"comment": "スタブ的接続の広告",
+					"match": "\\b(ospf area stubhost ((backbone|\\d+.\\d+.\\d+.\\d+)|(\\d+)) (\\d+.\\d+.\\d+.\\d+)( cost (\\d+))?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"3": {
+							"name": "string"
+						},
+						"4": {
+							"name": "constant.numeric"
+						},
+						"5": {
+							"name": "string"
+						},
+						"7": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"comment": "仮想リンク設定",
-					"match": "\\b(ospf virtual-link)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ospf virtual-link (\\S+) (\\S+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "指定インタフェースの OSPF エリア設定",
-					"match": "\\b(ip (\\S+) ospf area)\\b",
+					"match": "\\b(ip (\\S+) ospf area (\\S+))\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
 							"name": "entity.name.type.interface"
+						},
+						"3": {
+							"name": "string"
 						}
 					}
 				},
@@ -4100,18 +4222,33 @@
 				},
 				{
 					"comment": "スタブが存在する時のネットワーク経路の扱いの設定",
-					"match": "\\b(ospf merge equal cost stub)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ospf merge equal cost stub (on|off))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
 					"comment": "OSPF の状態遷移とパケットの送受信をログに記録するか否かの設定",
-					"match": "\\b(ospf log)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(ospf log( (interface|neighbor|packet))+)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
-					"comment": "インタフェースの状態変化時、OSPF　に外部経路を反映させる時間間隔の設定",
-					"match": "\\b(ospf reric interval)\\b",
-					"name": "entity.name.function"
+					"comment": "インタフェースの状態変化時、OSPFに外部経路を反映させる時間間隔の設定",
+					"match": "\\b(ospf reric interval (\\d+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				}
 			]
 		},
@@ -4119,12 +4256,30 @@
 			"patterns": [
 				{
 					"comment": "BGP の起動の設定",
-					"match": "\\b(bgp use)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(bgp use (on|off))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
-					"comment": "29.2, 29.3",
-					"match": "\\b(bgp aggregate( filter)?)\\b",
+					"comment": "経路の集約の設定",
+					"match": "\\b(bgp aggregate (\\d+\\.\\d+\\.\\d+\\.\\d+/\\d+) filter ((\\d+)+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						},
+						"3": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
+					"comment": "経路を集約するためのフィルタの設定",
+					"match": "\\b(bgp aggregate filter)\\b",
 					"name": "entity.name.function"
 				},
 				{
@@ -4143,9 +4298,28 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "29.7, 29.8, 29.18",
-					"match": "\\b(bgp export( (aspath|filter|route selection rule))?)\\b",
+					"comment": "BGP で受信した経路に対するフィルタの適用",
+					"match": "\\b(bgp export (\\d+) filter)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},				{
+					"comment": "BGP で受信する経路に適用するフィルタの設定",
+					"match": "\\b(bgp export filter)\\b",
 					"name": "entity.name.function"
+				},
+				{
+					"comment": "に導入する経路に対するフィルタの適用",
+					"match": "\\b(bgp import (\\d+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"comment": "BGP の設定の有効化",
@@ -4153,14 +4327,27 @@
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "29.9, 29.11",
-					"match": "\\b(bgp import( filter)?)\\b",
+					"comment": "BGP に導入する経路に適用するフィルタの設定",
+					"match": "\\b(bgp import filter)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "29.12, 29.13",
-					"match": "\\b(bgp neighbor( pre-shared-key)?)\\b",
+					"comment": "BGP による接続先の設定",
+					"match": "\\b(bgp neighbor (\\d+))\\b",
 					"name": "entity.name.function"
+				},
+				{
+					"comment": "BGP で使用する TCP MD5認証の事前共有鍵の設定",
+					"match": "\\b(bgp neighbor pre-shared-key (\\d+) text (\\S+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"3": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "BGP のログの設定",
@@ -4181,6 +4368,16 @@
 					"comment": "BGPの最適経路選択におけるMED属性が付加されていない経路のデフォルトのMED値の設定",
 					"match": "\\b(bgp default med)\\b",
 					"name": "entity.name.function"
+				},
+				{
+					"comment": "BGPで受信した経路に対する経路選択の優先順位の規則を設定",
+					"match": "\\b(bgp export route selection rule (ebgp-only|all))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				}
 			]
 		},
