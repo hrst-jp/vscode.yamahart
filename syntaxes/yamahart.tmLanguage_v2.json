@@ -3598,13 +3598,30 @@
 				},
 				{
 					"comment": "スイッチの状態による SNMP トラップの条件の設定",
-					"match": "\\b(snmp trap enable switchx)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "スイッチで共通の SNMP トラップの条件の設",
-					"match": "\\b(snmp trap enable switch common)\\b",
-					"name": "entity.name.function"
+					"begin": "\\b(snmp trap enable switch)\\b",
+					"end": "\\n",
+					"captures": {
+						"1": {
+							"name": "entity.name.function"
+						}
+					},
+					"patterns": [
+						{
+							"match": "\\b(linkup|linkdown|fanlock|loopdetect|poesuppply|poeterminate|oversupply|overtemp|powerfailure|all|none)\\b",
+							"name": "constant.language"
+						},
+						{
+							"match": "\\b((common) (find-switch|detect-down|all|none))\\b",
+							"captures": {
+								"2": {
+									"name": "entity.name.function"
+								},
+								"3": {
+									"name": "constant.language"
+								}
+							}
+						}
+					]
 				}
 			]
 		},
@@ -4306,7 +4323,8 @@
 							"name": "constant.numeric"
 						}
 					}
-				},				{
+				},
+				{
 					"comment": "BGP で受信する経路に適用するフィルタの設定",
 					"match": "\\b(bgp export filter)\\b",
 					"name": "entity.name.function"
@@ -6744,38 +6762,88 @@
 			"patterns": [
 				{
 					"comment": "YNO エージェント機能を使用するか否かの設定",
-					"match": "\\b(yno use)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(yno use (on|off))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						}
+					}
 				},
 				{
 					"comment": "YNO マネージャー接続用のアクセスコードの設定",
-					"match": "\\b(yno access code)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(yno access code (\\S{4,64} \\S{8,64}))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "YNO エージェント機能に関する追加の SYSLOG を出力するか否かの設定",
-					"match": "\\b(yno log)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(yno log( (action-read|inform))?( (action-read|inform))?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "entity.name.type"
+						},
+						"4": {
+							"name": "entity.name.type"
+						}
+					}
 				},
 				{
 					"comment": "YNO マネージャーに表示される自身の機器説明の設定",
-					"match": "\\b(description yno)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(description yno (\\S+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "YNO で使用するHTTPS プロキシサーバーの設定",
-					"match": "\\b(yno https-proxy)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(yno https-proxy (\\S+) (\\d+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "string"
+						},
+						"3": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"comment": "GUI Forwarder 接続のタイムアウト時間の設定",
-					"match": "\\b(yno gui-forwarder timeout)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(yno gui-forwarder timeout (\\d+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"comment": "YNO のゼロコンフィグの設定",
-					"match": "\\b(yno zero-config id)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(yno zero-config id (text) (\\S+) (\\S+)( (\\S+))?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "entity.name.type"
+						},
+						"3": {
+							"name": "string"
+						},
+						"4": {
+							"name": "string"
+						},
+						"6": {
+							"name": "string"
+						}
+					}
 				},
 				{
 					"comment": "YNO エージェント機能の動作状態の表示",
@@ -6784,28 +6852,61 @@
 				},
 				{
 					"comment": "SYSLOG送信キューの長さの設定",
-					"match": "\\b(yno las syslog queue length)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(yno las syslog queue length (\\d+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"comment": "LASクライアントが送信したリクエストに対するLASサーバーからの応答待ちがタイムアウトするまでの時間の設定",
-					"match": "\\b(yno las request timeout)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(yno las request timeout (\\d+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"comment": "LASクライアントがリクエストの送信を再試行する回数の設定",
-					"match": "\\b(yno las request retry)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(yno las request retry (\\d+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				},
 				{
 					"comment": "LASサーバーとのコネクションに対するキープアライブの設定",
-					"match": "\\b(yno las connection keepalive)\\b",
+					"match": "\\b(yno las connection keepalive (\\d+)( timeout=(on|off))?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						},
+						"4": {
+							"name": "control.keyword"
+						}
+					}
+				},
+				{
+					"comment": "LASの動作状態の表示",
+					"match": "\\b(show status yno las)\\b",
 					"name": "entity.name.function"
 				},
 				{
 					"comment": "XMPPサーバーとのキープアライブの時間間隔の設定",
-					"match": "\\b(yno xmpp connection keepalive)\\b",
-					"name": "entity.name.function"
+					"match": "\\b(yno xmpp connection keepalive (\\d+))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
 				}
 			]
 		},
