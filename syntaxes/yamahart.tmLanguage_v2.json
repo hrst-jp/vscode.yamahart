@@ -72,6 +72,9 @@
 			"include": "#rtx-dns"
 		},
 		{
+			"include": "#rtx-dns-snooping"
+		},
+		{
 			"include": "#rtx-nat45anddns46"
 		},
 		{
@@ -97,6 +100,9 @@
 		},
 		{
 			"include": "#rtx-http_server"
+		},
+		{
+			"include": "#rtx-pki"
 		},
 		{
 			"include": "#rtx-netvolante-dns"
@@ -205,6 +211,9 @@
 		},
 		{
 			"include": "#nvr-wwan"
+		},
+		{
+			"include": "#nvr-http_server"
 		},
 		{
 			"include": "#keyword",
@@ -3663,7 +3672,7 @@
 			"patterns": [
 				{
 					"comment": "NAT 機能の動作タイプの設定",
-					"match": "\\b(nat descriptor backward-compatibility (1|2))\\b",
+					"match": "\\b(nat descriptor backward-compatibility (1|2|3))\\b",
 					"name": "entity.name.function",
 					"captures": {
 						"2": {
@@ -3891,6 +3900,44 @@
 					"comment": "DNS フォールバック動作をルーター全体で統一するか否かの設定",
 					"match": "\\b(dns service fallback)\\b",
 					"name": "entity.name.function"
+				}
+			]
+		},
+		"rtx-dns-snooping": {
+			"patterns": [
+				{
+					"comment": "DNS スヌーピング機能を使用するか否かの設定",
+					"match": "\\b(dns snooping use (on|off)( (a\\+aaaa|aaaa|a))?)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "keyword.control"
+						},
+						"4": {
+							"name": "entity.name.type"
+						}
+					}
+				},
+				{
+					"comment": "DNS スヌーピングの対象とする DNS サーバーの IP アドレスの設定",
+					"match": "\\b(dns snooping server)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "DNS スヌーピングで使用するキャッシュのタイマーの設定",
+					"match": "\\b(dns snooping ((\\d+)|(timer auto)( \\d+)?))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"3": {
+							"name": "constant.numeric"
+						},
+						"4": {
+							"name": "entity.name.function"
+						},
+						"5": {
+							"name": "constant.numeric"
+						}
+					}
 				}
 			]
 		},
@@ -4490,6 +4537,16 @@
 					"name": "entity.name.function"
 				},
 				{
+					"comment": "DHCPv6 で動的に割り当てるプレフィックスの定義",
+					"match": "\\b(ipv6 dhcp prefix (\\d+) dhcp-prefix@)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.numeric"
+						}
+					}
+				},
+				{
 					"comment": "インタフェースの IPv6 アドレスの設定",
 					"match": "\\b(ipv6 ((pp|lan|loopback|bridge|tunnel|bri|pri|vlan)\\S+) address)\\b",
 					"name": "entity.name.function",
@@ -4793,23 +4850,28 @@
 		"rtx-http_server": {
 			"patterns": [
 				{
-					"comment": "HTTP サーバー機能の有無の設定",
+					"comment": "Web GUI を使用するか否かの設定",
 					"match": "\\b(httpd service)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "HTTP サーバーへアクセスできるホストの設定",
+					"comment": "HTTP / HTTPS サーバーへアクセスできるホストの設定",
 					"match": "\\b(httpd host)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "HTTP サーバーのセッションタイムアウト時間の設定",
+					"comment": "HTTP / HTTPS サーバーのセッションタイムアウト時間の設定",
 					"match": "\\b(httpd timeout)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "HTTP サーバー機能の listen ポートの設定",
+					"comment": "HTTP の listen ポートの設定",
 					"match": "\\b(httpd listen)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "HTTPS の listen ポートの設定",
+					"match": "\\b(httpd secure listen)\\b",
 					"name": "entity.name.function"
 				},
 				{
@@ -4821,81 +4883,30 @@
 							"name": "string"
 						}
 					}
-				},
+				}
+			]
+		},
+		"rtx-pki": {
+			"patterns": [
 				{
-					"comment": "33.2.1",
-					"match": "\\b(provider type)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "33.2.2",
-					"match": "\\b(provider set)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "33.2.3",
-					"match": "\\b(provider select)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "33.2.4, 33.2.6",
-					"match": "\\b(provider dns server( pp)?)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "33.2.5",
-					"match": "\\b(provider (\\S+) dns server)\\b",
+					"comment": "HTTPS 接続で使用する証明書の作成",
+					"match": "\\b(make pki certificate https( bit=(2024|3072|4096))?)\\b",
 					"name": "entity.name.function",
 					"captures": {
-						"2": {
-							"name": "constant.language"
+						"3": {
+							"name": "constant.numeric"
 						}
 					}
 				},
 				{
-					"comment": "33.2.7",
-					"match": "\\b(provider filter routing)\\b",
+					"comment": "HTTPS 接続で使用する CA 証明書のエクスポート",
+					"match": "\\b(export pki certificate https)\\b",
 					"name": "entity.name.function"
 				},
 				{
-					"comment": "33.2.8",
-					"match": "\\b(provider (\\S*) name)\\b",
-					"name": "entity.name.function",
-					"captures": {
-						"2": {
-							"name": "constant.language"
-						}
-					}
-				},
-				{
-					"comment": "33.2.9",
-					"match": "\\b(provider ntpdate)\\b",
+					"comment": "HTTPS 接続で使用する証明書の削除",
+					"match": "\\b(delete pki certificate https)\\b",
 					"name": "entity.name.function"
-				},
-				{
-					"comment": "33.2.10",
-					"match": "\\b(provider ntp server)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "33.2.11",
-					"match": "\\b(provider auto connect forced disable)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "33.2.12",
-					"match": "\\b(provider ipv6 connect pp)\\b",
-					"name": "entity.name.function"
-				},
-				{
-					"comment": "33.2.13",
-					"match": "\\b(provider (\\S*) bind)\\b",
-					"name": "entity.name.function",
-					"captures": {
-						"2": {
-							"name": "constant.language"
-						}
-					}
 				}
 			]
 		},
@@ -8776,6 +8787,126 @@
 					"comment": "HTTP を利用した内蔵無線 WAN モジュールファームウェア更新のタイムアウトの設定",
 					"match": "\\b(http wwan-module-up timeout)\\b",
 					"name": "entity.name.function"
+				}
+			]
+		},
+		"nvr-http_server": {
+			"patterns": [
+				{
+					"comment": "プロバイダ接続タイプの設定",
+					"match": "\\b(provider type (isdn-terminal|isdn-network|leased-network|leased-wan|none))\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.type"
+						}
+					}
+				},
+				{
+					"comment": "プロバイダ情報の PP との関連付けと名前の設定",
+					"match": "\\b(provider set)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "プロバイダ接続設定",
+					"match": "\\b(provider select)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.4, 33.2.6",
+					"match": "\\b(provider dns server( pp)?)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "LAN インタフェースの DNS サーバーのアドレスの設定",
+					"match": "\\b(provider (\\S+) dns server)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "フィルタ型ルーティングの形式の設定",
+					"match": "\\b(provider filter routing)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "LAN 側のプロバイダ名称の設定",
+					"match": "\\b(provider (\\S*) name)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						}
+					}
+				},
+				{
+					"comment": "プロバイダに対する昼間課金単位時間の設定",
+					"match": "\\b(provider isdn disconnect daytime)\\b",
+					"name": "entity.name.function"
+				},
+								{
+					"comment": "プロバイダに対する昼間課金単位時間方式での単位時間と監視時間の設定",
+					"match": "\\b(provider isdn disconnect interval daytime)\\b",
+					"name": "entity.name.function"
+				},								{
+					"comment": "プロバイダに対する夜間課金単位時間の設定",
+					"match": "\\b(provider isdn disconnect nighttime)\\b",
+					"name": "entity.name.function"
+				},{
+					"comment": "プロバイダに対する夜間課金単位時間方式での単位時間と監視時間の設定",
+					"match": "\\b(provider isdn disconnect interval nighttime)\\b",
+					"name": "entity.name.function"
+				},{
+					"comment": "プロバイダに対する自動切断タイマ無効時間の設定",
+					"match": "\\b(provider isdn auto disconnect off)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "NTP サーバーの設定",
+					"match": "\\b(provider ntpdate)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "プロバイダの NTP サーバーのアドレス設定",
+					"match": "\\b(provider ntp server)\\b",
+					"name": "entity.name.function"
+				},{
+					"comment": "MP 使用時間帯の設定",
+					"match": "\\b(provider ppp mp use on)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "かんたん設定ページの切断ボタンを押した後に自動接続するか否かの設定",
+					"match": "\\b(provider auto connect forced disable)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "電話アドレスの設定",
+					"match": "\\b(provider netvolante-dns hostname sip)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "プロバイダ情報とトンネルとの関連付け",
+					"match": "\\b(provider pp bind)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "33.2.12",
+					"match": "\\b(provider ipv6 connect pp)\\b",
+					"name": "entity.name.function"
+				},
+				{
+					"comment": "LAN インタフェースのプロバイダ情報とトンネルとの関連付け",
+					"match": "\\b(provider (\\S*) bind)\\b",
+					"name": "entity.name.function",
+					"captures": {
+						"2": {
+							"name": "constant.language"
+						}
+					}
 				}
 			]
 		},

@@ -12,17 +12,16 @@ Show Configで表示された結果をコメントを含め保存して下さい
 拡張子は ".rtx",".rtx.txt",".nvr",".nvr.txt" を指定しています。  
 
 # 現在の対応製品
-RTX5000/RTX3510/RTX3500  
-RTX1300  
-RTX1220/RTX1210  
-RTX830/RTX810  
+vRXシリーズ/RTX840/RTX3510  
+RTX1300/RTX1220/RTX830  
+RTX1210/RTX5000/RTX3500  
 # 旧コマンドリファレンス
 RTX3000/RTX1500/RTX1100  
-RTX1200  
+RTX1200/RTX810  
 RT250i/RT107e  
 SRT100  
 # 一部対応製品
-NVR700W/NVR510  
+NVR700W/NVR510/NVR500  
 
 
 #その他
